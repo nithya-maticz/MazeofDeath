@@ -8,6 +8,7 @@ public class healthbarscript : MonoBehaviour
      
     public void UpdateHealthBar( float currentval, float maxval)
     {
+        Debug.Log("update healthbar");
         slider.value = currentval / maxval;
     }
     void Start()

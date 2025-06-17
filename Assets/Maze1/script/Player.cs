@@ -43,6 +43,9 @@ public class Player : MonoBehaviour
     public GameObject player;
     public ManagerMaze managerRef;
     public bool attacks;
+    public Transform bulletTrnsform;
+    public GameObject bullet;
+    public float bulletpeed;
 
 
     // Start is called before the first frame update
@@ -50,7 +53,7 @@ public class Player : MonoBehaviour
     {
        
         health = maxhealth;
-        healthBar = GetComponentInChildren<healthbarscript>();
+       // healthBar = GetComponent<healthbarscript>();
     }
 
     // Update is called once per frame
@@ -63,7 +66,7 @@ public class Player : MonoBehaviour
                 timer = timer - Time.deltaTime;
                 remainTime = Mathf.RoundToInt(timer);
                 Debug.Log(" TIME " + remainTime);
-                playerLifeTxt.text = remainTime.ToString();
+              //  playerLifeTxt.text = remainTime.ToString();
                 if(remainTime<=0)
                 {
 
@@ -148,13 +151,22 @@ public class Player : MonoBehaviour
    
     public void PlayerAttack()
     {
-        if(openDoor== false && playerDeath==false)
+       /* if (openDoor == false && playerDeath == false)
+        {
+           var bullet1 = Instantiate(bullet, bulletTrnsform.position, bulletTrnsform.rotation);
+            bullet1.GetComponent<Rigidbody2D>().linearVelocity = bulletTrnsform.forward * bulletpeed;
+           // attacks = true;
+           // Debug.Log("dfdsf");
+           // animatorRef.SetTrigger("playerattack");
+        }*/
+
+        if (openDoor == false && playerDeath == false)
         {
             attacks = true;
             Debug.Log("dfdsf");
             animatorRef.SetTrigger("playerattack");
         }
-       
+
     }
     public void LevelUp()
     {

@@ -13,6 +13,7 @@ public class Enemy : MonoBehaviour
     public bool Door;
     public bool playerDeath;
    
+   
     void Start()
     {
         Agent = GetComponent<NavMeshAgent>();
@@ -25,10 +26,37 @@ public class Enemy : MonoBehaviour
     {
         Door = FindObjectOfType<Player>().openDoor;
         playerDeath = FindObjectOfType<Player>().playerDeath;
-        if (Door==false && playerDeath==false)
+
+
+        /* if (Door == false && playerDeath == false)
+         {
+             Agent.SetDestination(target.position);
+
+             // Rotate enemy to face the player
+             Vector3 direction = (target.position - transform.position).normalized;
+             if (direction != Vector3.zero)
+             {
+                 Quaternion lookRotation = Quaternion.LookRotation(direction);
+                 transform.rotation = Quaternion.Slerp(transform.rotation, lookRotation, Time.deltaTime * 5f);
+             }
+         }*/
+
+        /* if (Door == false && playerDeath == false)
+         {
+             Agent.SetDestination(target.position);
+
+             // 2D Facing: Rotate on Z axis only
+             Vector2 direction = (target.position - transform.position);
+             float angle = Mathf.Atan2(direction.y, direction.x) * Mathf.Rad2Deg;
+             transform.rotation = Quaternion.Euler(0, 0, angle);
+         }*/
+
+        if (Door == false && playerDeath == false)
         {
             Agent.SetDestination(target.position);
+            Agent.transform.rotation = target.rotation;
         }
+
     }
 
     public void OnTriggerEnter2D(Collider2D collision)
