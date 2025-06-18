@@ -12,6 +12,7 @@ TagManager:
   - player
   - attack
   - unplayer
+  - EnemyDoor
   layers:
   - Default
   - TransparentFX

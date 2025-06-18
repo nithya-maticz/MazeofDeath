@@ -9,6 +9,7 @@ using UnityEngine.UI;
 
 public class Player : MonoBehaviour
 {
+    public ManagerMaze manager;
     public int keys = 0;
     public float speed = 5.0f;
     public Text keyAmount;
@@ -19,7 +20,7 @@ public class Player : MonoBehaviour
     public GameObject keyRef;
     public bool keyTaken;
     public int keyCount;
-    public TMP_Text keyCountTxt;
+    
     public bool openDoor;
     public bool playerDeath;
     public bool reach;
@@ -46,8 +47,12 @@ public class Player : MonoBehaviour
     public Transform bulletTrnsform;
     public GameObject bullet;
     public float bulletpeed;
+    // public bool isDeath;
 
-
+    [Space]
+    [Header("HEALTH")]
+    public Image playerHealthFill;
+    public float playerHealth;
     // Start is called before the first frame update
     void Start()
     {
@@ -59,7 +64,7 @@ public class Player : MonoBehaviour
     // Update is called once per frame
     void Update()
     {
-        if(attackEnemy==true && openDoor==false)
+       /* if(attackEnemy==true && openDoor==false)
         {
             if (timer > 0)
             {
@@ -79,7 +84,7 @@ public class Player : MonoBehaviour
 
                 healthBar.UpdateHealthBar(remainTime, maxhealth);
             }
-        }
+        }*/
         float moveH = joystick.Horizontal;
         float moveV = joystick.Vertical;
         Vector2 moveDir = new Vector2(moveH, moveV);
@@ -88,38 +93,33 @@ public class Player : MonoBehaviour
 
     private void OnCollisionEnter2D(Collision2D collision)
     {
-        if (collision.gameObject.tag == "walls")
+        print(collision.gameObject.name);
+        if (collision.gameObject.tag == "keys")
         {
-            Debug.Log("wallhit");
+            Debug.Log("keytaken");
+            manager.isPlayerGetKey = true;
+            manager.keyImg.SetActive(true);
+            collision.gameObject.GetComponent<BoxCollider2D>().enabled = false;
+            Destroy(collision.gameObject);
+            //collision box open sprite
         }
-        else if (collision.gameObject.tag == "keys")
-        {
-            keyTaken = true;
-           collision.gameObject.GetComponent<SpriteRenderer>().sprite = keySprite;
-            keyRef = collision.gameObject;
-            if (keyTaken && reach==false)
-            {
-                Debug.Log("keytaken");
-                keyCount++;
-                reach = true;
-                keyHead.SetActive(true);
-                keyCountTxt.text = keyCount.ToString();
-                Destroy(keyRef);
-            }
-           
-        }
-       else  if (collision.gameObject.tag=="box")
+        else  if (collision.gameObject.tag=="box")
         {
             Debug.Log("Box hit!");
+            collision.gameObject.GetComponent<BoxCollider2D>().enabled = false;
             Destroy(collision.gameObject);
+            //collision box open sprite
+
         }
-        else if (collision.gameObject.tag == "door" && keyCount>=1)
+        else if (collision.gameObject.tag == "EnemyDoor" && manager.isPlayerGetKey)
         {
-            openDoor = true;
+            Debug.Log("Enemy Door Closed!");
+            manager.isEnemyDoorOpen = false;
+        }
+        else if(collision.gameObject.tag == "door" && !manager.isEnemyDoorOpen)
+        {
+            Debug.Log("LEVEL UP!");
             LevelUp();
-            keyHead.SetActive(false);
-            Debug.Log("door hit!");
-           
         }
     }
 
@@ -181,7 +181,7 @@ public class Player : MonoBehaviour
         }
         else if(playerDeath)
         {
-            for(int i=0;i<= managerRef.enemys.Length-1;i++)
+           /* for(int i=0;i<= managerRef.enemys.Length-1;i++)
             {
                 //  managerRef.enemys[i].GetComponent<Enemy>().idleFun();
                 Destroy(managerRef.enemys[i].gameObject);
@@ -189,9 +189,23 @@ public class Player : MonoBehaviour
 
             }
             player.tag = "unplayer";
-            StartCoroutine(ShowdeathPageWithDelay(1f)); // 1 second delay
+            StartCoroutine(ShowdeathPageWithDelay(1f)); // 1 second delay*/
            
         }
+    }
+
+    public void GameOver()
+    {
+        animatorRef.SetTrigger("death");
+        for (int i = 0; i <= managerRef.enemys.Length - 1; i++)
+        {
+            //  managerRef.enemys[i].GetComponent<Enemy>().idleFun();
+            Destroy(managerRef.enemys[i].gameObject);
+            // Destory(managerRef.enemys[i]);
+
+        }
+        player.tag = "unplayer";
+        StartCoroutine(ShowdeathPageWithDelay(1f)); // 1 second delay
     }
     IEnumerator ShowdeathPageWithDelay(float delay)
     {
