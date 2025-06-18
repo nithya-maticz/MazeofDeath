@@ -37,7 +37,7 @@ public class Enemy : MonoBehaviour
     // Update is called once per frame
     void Update()
     {
-        Door = FindObjectOfType<Player>().openDoor;
+       
         playerDeath = FindObjectOfType<Player>().playerDeath;
 
         if (Door == false && playerDeath == false)
@@ -49,12 +49,14 @@ public class Enemy : MonoBehaviour
 
     public void OnTriggerEnter2D(Collider2D collision)
     {
-        Debug.Log("playercollider");
+       
         if (collision.gameObject.tag == "player")
         {
             attackPlayer = true;
-            Debug.Log("playercollider");
+            Debug.Log("playercollider on Tigger Enter ");
+
             animator.SetBool("attack", true);
+
             healthCoroutine = StartCoroutine(ReducePlayerHealth(collision));
 
         }
@@ -84,6 +86,7 @@ public class Enemy : MonoBehaviour
 
             attackPlayer = false;
             animator.SetBool("attack", false);
+
         }
     }
     public void idleFun()

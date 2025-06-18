@@ -64,27 +64,7 @@ public class Player : MonoBehaviour
     // Update is called once per frame
     void Update()
     {
-       /* if(attackEnemy==true && openDoor==false)
-        {
-            if (timer > 0)
-            {
-                timer = timer - Time.deltaTime;
-                remainTime = Mathf.RoundToInt(timer);
-                Debug.Log(" TIME " + remainTime);
-              //  playerLifeTxt.text = remainTime.ToString();
-                if(remainTime<=0)
-                {
-
-                    animatorRef.SetTrigger("death");
-                    playerDeath = true;
-                    LevelUp();
-                    Debug.Log("PlayerDeath" + playerDeath);
-                    openDoor = false;
-                }
-
-                healthBar.UpdateHealthBar(remainTime, maxhealth);
-            }
-        }*/
+       
         float moveH = joystick.Horizontal;
         float moveV = joystick.Vertical;
         Vector2 moveDir = new Vector2(moveH, moveV);
@@ -151,16 +131,8 @@ public class Player : MonoBehaviour
    
     public void PlayerAttack()
     {
-       /* if (openDoor == false && playerDeath == false)
-        {
-           var bullet1 = Instantiate(bullet, bulletTrnsform.position, bulletTrnsform.rotation);
-            bullet1.GetComponent<Rigidbody2D>().linearVelocity = bulletTrnsform.forward * bulletpeed;
-           // attacks = true;
-           // Debug.Log("dfdsf");
-           // animatorRef.SetTrigger("playerattack");
-        }*/
-
-        if (openDoor == false && playerDeath == false)
+        if (manager.isEnemyDoorOpen && !manager.playerRef.playerDeath)
+           
         {
             attacks = true;
             Debug.Log("dfdsf");
