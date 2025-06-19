@@ -40,3 +40,10 @@ public class BoxScript : MonoBehaviour
         
     }
 }
+
+[SerializeField]
+public class BoxClass
+{
+    public GameObject obj;
+    public float value;
+}

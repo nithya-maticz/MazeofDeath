@@ -47,6 +47,7 @@ public class Player : MonoBehaviour
     public Transform bulletTrnsform;
     public GameObject bullet;
     public float bulletpeed;
+    public Sprite boxOpen;
     // public bool isDeath;
 
     [Space]
@@ -74,6 +75,7 @@ public class Player : MonoBehaviour
     private void OnCollisionEnter2D(Collision2D collision)
     {
         print(collision.gameObject.name);
+        print(manager.isEnemyDoorOpen);
         if (collision.gameObject.tag == "keys")
         {
             Debug.Log("keytaken");
@@ -81,13 +83,15 @@ public class Player : MonoBehaviour
             manager.keyImg.SetActive(true);
             collision.gameObject.GetComponent<BoxCollider2D>().enabled = false;
             Destroy(collision.gameObject);
+            
             //collision box open sprite
         }
         else  if (collision.gameObject.tag=="box")
         {
             Debug.Log("Box hit!");
             collision.gameObject.GetComponent<BoxCollider2D>().enabled = false;
-            Destroy(collision.gameObject);
+            collision.gameObject.GetComponent<SpriteRenderer>().sprite = boxOpen;
+           // Destroy(collision.gameObject);
             //collision box open sprite
 
         }
@@ -96,7 +100,7 @@ public class Player : MonoBehaviour
             Debug.Log("Enemy Door Closed!");
             manager.isEnemyDoorOpen = false;
         }
-        else if(collision.gameObject.tag == "door" && !manager.isEnemyDoorOpen)
+        else if(collision.gameObject.tag == "door" && manager.isEnemyDoorOpen==false && manager.isPlayerGetKey)
         {
             Debug.Log("LEVEL UP!");
             LevelUp();
@@ -141,29 +145,19 @@ public class Player : MonoBehaviour
 
     }
     public void LevelUp()
-    {
-        if(openDoor )
+    { 
+        if(managerRef.enemys.Length>=0)
         {
             for (int i = 0; i <= managerRef.enemys.Length-1; i++)
             {
-                managerRef.enemys[i].GetComponent<Enemy>().idleFun();
-            }
-            player.tag = "unplayer";
-            winpage.SetActive(true);
-        }
-        else if(playerDeath)
-        {
-           /* for(int i=0;i<= managerRef.enemys.Length-1;i++)
-            {
-                //  managerRef.enemys[i].GetComponent<Enemy>().idleFun();
                 Destroy(managerRef.enemys[i].gameObject);
-               // Destory(managerRef.enemys[i]);
-
+                // managerRef.enemys[i].GetComponent<Enemy>().idleFun();
             }
-            player.tag = "unplayer";
-            StartCoroutine(ShowdeathPageWithDelay(1f)); // 1 second delay*/
-           
         }
+        player.tag = "unplayer";
+        winpage.SetActive(true);
+
+
     }
 
     public void GameOver()
