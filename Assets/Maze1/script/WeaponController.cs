@@ -33,6 +33,6 @@ public class WeaponController : MonoBehaviour
         GameObject shot = Instantiate(ammoType, firePoint.position, firePoint.rotation);
         Rigidbody2D rb = shot.GetComponent<Rigidbody2D>();
         rb.AddForce(firePoint.right * shotSpeed, ForceMode2D.Impulse);
-        Destroy(shot.gameObject, 1f);
+        Destroy(shot.gameObject, 0.5f);
     }
 }

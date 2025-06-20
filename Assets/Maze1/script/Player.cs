@@ -1,9 +1,5 @@
-﻿using NUnit.Framework;
-using System;
-using System.Collections;
-using System.Collections.Generic;
+﻿using System.Collections;
 using TMPro;
-using Unity.VisualScripting;
 using UnityEngine;
 using UnityEngine.UI;
 using UnityEngine.AI;
@@ -117,6 +113,7 @@ public class Player : MonoBehaviour
         else if(collision.gameObject.tag == "door" && manager.isEnemyDoorOpen==false && manager.isPlayerGetKey)
         {
             Debug.Log("LEVEL UP!");
+            Destroy(collision.gameObject);
             LevelUp();
         }
     }
@@ -151,17 +148,17 @@ public class Player : MonoBehaviour
     {
 
         ///// knife Function;
-        /* if (manager.isEnemyDoorOpen && !manager.playerRef.playerDeath)
+        if (manager.isEnemyDoorOpen && !manager.playerRef.playerDeath)
 
-         {
-             attacks = true;
-             Debug.Log("dfdsf");
-             animatorRef.SetTrigger("playerattack");
-         }*/
+        {
+            attacks = true;
+            Debug.Log("dfdsf");
+            animatorRef.SetTrigger("playerattack");
+        }
 
         //// Gun Function
         ///
-        attackButtonClick = true;
+       
 
     }
     public void LevelUp()

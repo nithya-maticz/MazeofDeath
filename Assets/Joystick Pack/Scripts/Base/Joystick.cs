@@ -112,6 +112,8 @@ public class Joystick : MonoBehaviour, IPointerDownHandler, IDragHandler, IPoint
                 manager.playerRef.transform.localRotation = Quaternion.Euler(0f, 180f, 0f);
                 //playerRef.transform.localScale = new Vector3(-2f, 2f, 1f);
             }
+
+            
         }
            
     }

@@ -13,6 +13,7 @@ GameObject:
   - component: {fileID: 7964938426353284597}
   - component: {fileID: 4611820628085550849}
   - component: {fileID: 7034546961525208353}
+  - component: {fileID: 5810721828194192723}
   m_Layer: 0
   m_Name: Lasser
   m_TagString: Untagged
@@ -169,6 +170,19 @@ Rigidbody2D:
   m_SleepingMode: 1
   m_CollisionDetection: 0
   m_Constraints: 0
+--- !u!114 &5810721828194192723
+MonoBehaviour:
+  m_ObjectHideFlags: 0
+  m_CorrespondingSourceObject: {fileID: 0}
+  m_PrefabInstance: {fileID: 0}
+  m_PrefabAsset: {fileID: 0}
+  m_GameObject: {fileID: 870480184921547841}
+  m_Enabled: 1
+  m_EditorHideFlags: 0
+  m_Script: {fileID: 11500000, guid: 05457b082fef45f4e9b23eb3b96b9902, type: 3}
+  m_Name: 
+  m_EditorClassIdentifier: 
+  bulletDamage: 1
 --- !u!1 &8793146986722115824
 GameObject:
   m_ObjectHideFlags: 0

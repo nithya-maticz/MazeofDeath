@@ -1,8 +1,8 @@
 using System.Collections;
 using UnityEngine;
-using UnityEngine.SceneManagement;
 using System;
 using UnityEngine.AI;
+using TMPro;
 
 
 
@@ -13,7 +13,9 @@ public class Enemy : MonoBehaviour
     // Start is called once before the first execution of Update after the MonoBehaviour is created
     [Header("Data")]
     public Transform target;
+    public TMP_Text enemyHealthTxt;
     public int enemyHealth;
+    private int currentHealth;
     NavMeshAgent Agent;
     public Animator animator;
     public bool attackPlayer;
@@ -21,6 +23,7 @@ public class Enemy : MonoBehaviour
     public bool playerDeath;
     public bool temp;
     private Coroutine healthCoroutine;
+   
 
     public Character walk;
 
@@ -30,19 +33,30 @@ public class Enemy : MonoBehaviour
         Agent = GetComponent<NavMeshAgent>();
         Agent.updateRotation = false;
         Agent.updateUpAxis = false;
+        currentHealth = enemyHealth;
 
         StartCoroutine(MovementCheckLoop());
     }
 
+    public void damageEnemy(int damange)
+    {
+        currentHealth -= damange;
+        enemyHealthTxt.text = currentHealth.ToString();
+    }
     // Update is called once per frame
     void Update()
     {
-       
+        
         playerDeath = FindObjectOfType<Player>().playerDeath;
 
         if (Door == false && playerDeath == false)
         {
             Agent.SetDestination(target.position);
+        }
+        if(currentHealth<=0)
+        {
+         
+            Destroy(gameObject);
         }
 
     }

@@ -12,6 +12,7 @@ GameObject:
   - component: {fileID: 7221204091218989632}
   - component: {fileID: 8393925333063405886}
   - component: {fileID: 3262548325279082241}
+  - component: {fileID: 8756214217028039785}
   m_Layer: 0
   m_Name: spred
   m_TagString: Untagged
@@ -152,3 +153,16 @@ CircleCollider2D:
   m_CompositeOrder: 0
   m_Offset: {x: 0, y: 0}
   m_Radius: 1.99
+--- !u!114 &8756214217028039785
+MonoBehaviour:
+  m_ObjectHideFlags: 0
+  m_CorrespondingSourceObject: {fileID: 0}
+  m_PrefabInstance: {fileID: 0}
+  m_PrefabAsset: {fileID: 0}
+  m_GameObject: {fileID: 5150349989641768367}
+  m_Enabled: 1
+  m_EditorHideFlags: 0
+  m_Script: {fileID: 11500000, guid: 05457b082fef45f4e9b23eb3b96b9902, type: 3}
+  m_Name: 
+  m_EditorClassIdentifier: 
+  bulletDamage: 3

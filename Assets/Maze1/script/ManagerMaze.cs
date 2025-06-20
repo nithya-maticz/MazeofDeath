@@ -2,7 +2,6 @@ using System.Collections;
 using UnityEngine;
 using UnityEngine.SceneManagement;
 using System;
-using UnityEngine.UI;
 public class ManagerMaze : MonoBehaviour
 {
     public GameObject enemy;
@@ -22,7 +21,7 @@ public class ManagerMaze : MonoBehaviour
     void Start()
     {
         instance = this;
-       // SpawnEnemy();
+        SpawnEnemy();
         isEnemyDoorOpen = true;
         isPlayerGetKey = false;
         isGameOver = false;
