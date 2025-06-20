@@ -6,6 +6,8 @@ using TMPro;
 using Unity.VisualScripting;
 using UnityEngine;
 using UnityEngine.UI;
+using UnityEngine.AI;
+
 
 public class Player : MonoBehaviour
 {
@@ -48,6 +50,8 @@ public class Player : MonoBehaviour
     public GameObject bullet;
     public float bulletpeed;
     public Sprite boxOpen;
+    NavMeshAgent Agent;
+     public Transform target;
     // public bool isDeath;
 
     [Space]
@@ -57,10 +61,16 @@ public class Player : MonoBehaviour
     // Start is called before the first frame update
     void Start()
     {
+        Agent = GetComponent<NavMeshAgent>();
+        Agent.updateRotation = false;
+        Agent.updateUpAxis = false;
+
        
+
         health = maxhealth;
        // healthBar = GetComponent<healthbarscript>();
     }
+    
 
     // Update is called once per frame
     void Update()
@@ -70,6 +80,9 @@ public class Player : MonoBehaviour
         float moveV = joystick.Vertical;
         Vector2 moveDir = new Vector2(moveH, moveV);
         rb.linearVelocity = moveDir * speed;
+
+      
+
     }
 
     private void OnCollisionEnter2D(Collision2D collision)
