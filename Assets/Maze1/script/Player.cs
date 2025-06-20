@@ -52,6 +52,7 @@ public class Player : MonoBehaviour
     public Sprite boxOpen;
     NavMeshAgent Agent;
      public Transform target;
+    public bool attackButtonClick;
     // public bool isDeath;
 
     [Space]
@@ -148,13 +149,19 @@ public class Player : MonoBehaviour
    
     public void PlayerAttack()
     {
-        if (manager.isEnemyDoorOpen && !manager.playerRef.playerDeath)
-           
-        {
-            attacks = true;
-            Debug.Log("dfdsf");
-            animatorRef.SetTrigger("playerattack");
-        }
+
+        ///// knife Function;
+        /* if (manager.isEnemyDoorOpen && !manager.playerRef.playerDeath)
+
+         {
+             attacks = true;
+             Debug.Log("dfdsf");
+             animatorRef.SetTrigger("playerattack");
+         }*/
+
+        //// Gun Function
+        ///
+        attackButtonClick = true;
 
     }
     public void LevelUp()
