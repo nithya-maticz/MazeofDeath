@@ -13,6 +13,7 @@ TagManager:
   - attack
   - unplayer
   - EnemyDoor
+  - drink
   layers:
   - Default
   - TransparentFX

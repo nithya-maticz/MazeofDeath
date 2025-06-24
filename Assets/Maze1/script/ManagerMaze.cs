@@ -13,6 +13,7 @@ public class ManagerMaze : MonoBehaviour
     public bool isEnemyDoorOpen;
     public bool isPlayerGetKey;
     public GameObject keyImg;
+    public GameObject Playerweapon;
     public bool isGameOver;
 
     public static ManagerMaze instance;
@@ -43,7 +44,7 @@ public class ManagerMaze : MonoBehaviour
             while (true)
             {
             yield return new WaitForSeconds(10f);
-            Debug.Log("outside true");
+           
             if (isEnemyDoorOpen && !playerRef.playerDeath)
             {
                 Debug.Log("inside true");

@@ -8,11 +8,11 @@ using UnityEngine.AI;
 public class Player : MonoBehaviour
 {
     public ManagerMaze manager;
-    public int keys = 0;
+   
     public float speed = 5.0f;
-    public Text keyAmount;
-    public Text youWin;
-    public Sprite keySprite;
+  
+   
+  
     public GameObject door;
     public GameObject enemy;
     public GameObject keyRef;
@@ -46,9 +46,10 @@ public class Player : MonoBehaviour
     public GameObject bullet;
     public float bulletpeed;
     public Sprite boxOpen;
-    NavMeshAgent Agent;
+    //NavMeshAgent Agent;
      public Transform target;
     public bool attackButtonClick;
+    public GameObject OpenDoorImg;
     // public bool isDeath;
 
     [Space]
@@ -58,9 +59,9 @@ public class Player : MonoBehaviour
     // Start is called before the first frame update
     void Start()
     {
-        Agent = GetComponent<NavMeshAgent>();
+       /* Agent = GetComponent<NavMeshAgent>();
         Agent.updateRotation = false;
-        Agent.updateUpAxis = false;
+        Agent.updateUpAxis = false;*/
 
        
 
@@ -84,8 +85,8 @@ public class Player : MonoBehaviour
 
     private void OnCollisionEnter2D(Collision2D collision)
     {
-        print(collision.gameObject.name);
-        print(manager.isEnemyDoorOpen);
+        print("Name   " +collision.gameObject.name);
+      
         if (collision.gameObject.tag == "keys")
         {
             Debug.Log("keytaken");
@@ -93,28 +94,43 @@ public class Player : MonoBehaviour
             manager.keyImg.SetActive(true);
             collision.gameObject.GetComponent<BoxCollider2D>().enabled = false;
             Destroy(collision.gameObject);
-            
+
             //collision box open sprite
         }
-        else  if (collision.gameObject.tag=="box")
+        else if (collision.gameObject.tag == "box")
         {
             Debug.Log("Box hit!");
             collision.gameObject.GetComponent<BoxCollider2D>().enabled = false;
             collision.gameObject.GetComponent<SpriteRenderer>().sprite = boxOpen;
-           // Destroy(collision.gameObject);
+            // Destroy(collision.gameObject);
             //collision box open sprite
 
         }
         else if (collision.gameObject.tag == "EnemyDoor" && manager.isPlayerGetKey)
         {
             Debug.Log("Enemy Door Closed!");
+            OpenDoorImg.SetActive(false);
             manager.isEnemyDoorOpen = false;
         }
-        else if(collision.gameObject.tag == "door" && manager.isEnemyDoorOpen==false && manager.isPlayerGetKey)
+        else if (collision.gameObject.tag == "door" && manager.isEnemyDoorOpen == false && manager.isPlayerGetKey)
         {
             Debug.Log("LEVEL UP!");
             Destroy(collision.gameObject);
             LevelUp();
+        }
+        else if (collision.gameObject.tag == "drink")
+        {
+            Debug.Log("Health Drink");
+            
+            if(playerHealth<1)
+            {
+                playerHealth = playerHealth + 0.5f;
+                Destroy(collision.gameObject);
+            }
+            if (playerHealth >= 1)
+            {
+                playerHealthFill.fillAmount = 1;
+            }
         }
     }
 
@@ -143,7 +159,7 @@ public class Player : MonoBehaviour
        
     }
     
-   
+   // canvas Attack Function
     public void PlayerAttack()
     {
 
@@ -152,7 +168,7 @@ public class Player : MonoBehaviour
 
         {
             attacks = true;
-            Debug.Log("dfdsf");
+            Debug.Log("inside Player Attack Function");
             animatorRef.SetTrigger("playerattack");
         }
 
@@ -187,6 +203,8 @@ public class Player : MonoBehaviour
             // Destory(managerRef.enemys[i]);
 
         }
+        playerDeath = true;
+
         player.tag = "unplayer";
         StartCoroutine(ShowdeathPageWithDelay(1f)); // 1 second delay
     }

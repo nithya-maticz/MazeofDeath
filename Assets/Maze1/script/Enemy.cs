@@ -22,6 +22,7 @@ public class Enemy : MonoBehaviour
     public bool Door;
     public bool playerDeath;
     public bool temp;
+    private bool _enemyAttack;
     private Coroutine healthCoroutine;
    
 
@@ -34,7 +35,6 @@ public class Enemy : MonoBehaviour
         Agent.updateRotation = false;
         Agent.updateUpAxis = false;
         currentHealth = enemyHealth;
-
         StartCoroutine(MovementCheckLoop());
     }
 
@@ -69,9 +69,10 @@ public class Enemy : MonoBehaviour
             attackPlayer = true;
             Debug.Log("playercollider on Tigger Enter ");
 
-            animator.SetBool("attack", true);
+            // animator.SetBool("attack", true);
 
-            healthCoroutine = StartCoroutine(ReducePlayerHealth(collision));
+            _enemyAttack = true;
+              healthCoroutine = StartCoroutine(ReducePlayerHealth(collision));
 
         }
         if (collision.gameObject.tag == "attack")
@@ -82,7 +83,6 @@ public class Enemy : MonoBehaviour
                 healthCoroutine = null;
                 Debug.Log("Coroutine stopped.");
             }
-            
             Destroy(this.gameObject,0.5f);
         }
     }
@@ -96,10 +96,11 @@ public class Enemy : MonoBehaviour
                 StopCoroutine(healthCoroutine);
                 healthCoroutine = null;
                 Debug.Log("Coroutine stopped.");
+                _enemyAttack = false;
             }
 
             attackPlayer = false;
-            animator.SetBool("attack", false);
+           // animator.SetBool("attack", false);
 
         }
     }
@@ -179,6 +180,11 @@ public class Enemy : MonoBehaviour
         {
             animator.Rebind();
             animator.Play(0, -1, 0);
+            if(_enemyAttack)
+            {
+                animator.SetTrigger("enemyattack");
+            }
+            
         }
     }
 

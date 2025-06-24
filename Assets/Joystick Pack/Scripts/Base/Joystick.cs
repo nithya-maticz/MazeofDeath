@@ -98,8 +98,10 @@ public class Joystick : MonoBehaviour, IPointerDownHandler, IDragHandler, IPoint
             FormatInput();
             HandleInput(input.magnitude, input.normalized, radius, cam);
             handle.anchoredPosition = input * radius * handleRange;
-           // Debug.Log("vertical" + handle.anchoredPosition.x); 
-            if(handle.anchoredPosition.x>=0)
+            // Debug.Log("vertical" + handle.anchoredPosition.x  
+          //  Debug.Log("horizontal" + handle.anchoredPosition.x + handle.anchoredPosition.y);
+
+            if (handle.anchoredPosition.x>=0)
             {
                // Debug.Log("greater 0");
                
@@ -112,8 +114,22 @@ public class Joystick : MonoBehaviour, IPointerDownHandler, IDragHandler, IPoint
                 manager.playerRef.transform.localRotation = Quaternion.Euler(0f, 180f, 0f);
                 //playerRef.transform.localScale = new Vector3(-2f, 2f, 1f);
             }
+           /* if (handle.anchoredPosition.y > 0)
+            {
+                // Debug.Log("greater 0");
 
-            
+                manager.Playerweapon.transform.localRotation = Quaternion.Euler(0f, 0f, 90f);
+
+            }
+            if (handle.anchoredPosition.y < 0)
+            {
+                // Debug.Log("greater 0");
+
+                manager.Playerweapon.transform.localRotation = Quaternion.Euler(0f, 0f, 180f);
+
+            }*/
+
+
         }
            
     }
@@ -191,6 +207,7 @@ public class Joystick : MonoBehaviour, IPointerDownHandler, IDragHandler, IPoint
 
             }
             return value;
+           
         }
         else
         {
@@ -208,6 +225,8 @@ public class Joystick : MonoBehaviour, IPointerDownHandler, IDragHandler, IPoint
                
         }
         return 0;
+
+        Debug.Log("Value" + value);
     }
 
     public virtual void OnPointerUp(PointerEventData eventData)
