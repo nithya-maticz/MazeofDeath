@@ -91,48 +91,50 @@ public class Joystick : MonoBehaviour, IPointerDownHandler, IDragHandler, IPoint
             cam = null;
             if (canvas.renderMode == RenderMode.ScreenSpaceCamera)
                 cam = canvas.worldCamera;
+
             Vector2 position = RectTransformUtility.WorldToScreenPoint(cam, background.position);
             Vector2 radius = background.sizeDelta / 2;
             input = (eventData.position - position) / (radius * canvas.scaleFactor);
-           // Debug.Log("Imput Value     "+ input);
+
             FormatInput();
             HandleInput(input.magnitude, input.normalized, radius, cam);
             handle.anchoredPosition = input * radius * handleRange;
-            // Debug.Log("vertical" + handle.anchoredPosition.x  
-          //  Debug.Log("horizontal" + handle.anchoredPosition.x + handle.anchoredPosition.y);
 
-            if (handle.anchoredPosition.x>=0)
+            Debug.Log("Joystick Input: " + handle.anchoredPosition);
+
+            Vector2 dir = handle.anchoredPosition;
+
+            if (Mathf.Abs(dir.x) > Mathf.Abs(dir.y))
             {
-               // Debug.Log("greater 0");
-               
-                manager.playerRef.transform.localRotation = Quaternion.Euler(0f, 0f, 0f);
-
+                // Horizontal movement is dominant
+                if (dir.x > 0)
+                {
+                    manager.playerRef.transform.localRotation = Quaternion.Euler(0f, 0f, 180f); // Right
+                    Debug.Log("Moving Right");
+                }
+                else
+                {
+                    manager.playerRef.transform.localRotation = Quaternion.Euler(0f, 0f, 0f); // Left
+                    Debug.Log("Moving Left");
+                }
             }
-            if (handle.anchoredPosition.x < 0)
+            else
             {
-              //  Debug.Log("less 0");
-                manager.playerRef.transform.localRotation = Quaternion.Euler(0f, 180f, 0f);
-                //playerRef.transform.localScale = new Vector3(-2f, 2f, 1f);
+                // Vertical movement is dominant
+                if (dir.y > 0)
+                {
+                    manager.playerRef.transform.localRotation = Quaternion.Euler(0f, 0f, 270f); // Up
+                    Debug.Log("Moving Up");
+                }
+                else
+                {
+                    manager.playerRef.transform.localRotation = Quaternion.Euler(0f, 0f, 90f); // Down
+                    Debug.Log("Moving Down");
+                }
             }
-            if (handle.anchoredPosition.y > 0)
-            {
-                // Debug.Log("greater 0");
-
-                manager.Playerweapon.transform.localRotation = Quaternion.Euler(0f, 0f, 90f);
-
-            }
-            if (handle.anchoredPosition.y < 0)
-            {
-                // Debug.Log("greater 0");
-
-                manager.Playerweapon.transform.localRotation = Quaternion.Euler(0f, 0f, 180f);
-
-            }
-
-
         }
-           
     }
+
 
     protected virtual void HandleInput(float magnitude, Vector2 normalised, Vector2 radius, Camera cam)
     {
