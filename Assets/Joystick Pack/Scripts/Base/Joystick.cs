@@ -114,7 +114,7 @@ public class Joystick : MonoBehaviour, IPointerDownHandler, IDragHandler, IPoint
                 manager.playerRef.transform.localRotation = Quaternion.Euler(0f, 180f, 0f);
                 //playerRef.transform.localScale = new Vector3(-2f, 2f, 1f);
             }
-           /* if (handle.anchoredPosition.y > 0)
+            if (handle.anchoredPosition.y > 0)
             {
                 // Debug.Log("greater 0");
 
@@ -127,7 +127,7 @@ public class Joystick : MonoBehaviour, IPointerDownHandler, IDragHandler, IPoint
 
                 manager.Playerweapon.transform.localRotation = Quaternion.Euler(0f, 0f, 180f);
 
-            }*/
+            }
 
 
         }
@@ -226,7 +226,7 @@ public class Joystick : MonoBehaviour, IPointerDownHandler, IDragHandler, IPoint
         }
         return 0;
 
-        Debug.Log("Value" + value);
+       
     }
 
     public virtual void OnPointerUp(PointerEventData eventData)

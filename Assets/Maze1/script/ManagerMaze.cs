@@ -22,7 +22,7 @@ public class ManagerMaze : MonoBehaviour
     void Start()
     {
         instance = this;
-        SpawnEnemy();
+       // SpawnEnemy();
         isEnemyDoorOpen = true;
         isPlayerGetKey = false;
         isGameOver = false;

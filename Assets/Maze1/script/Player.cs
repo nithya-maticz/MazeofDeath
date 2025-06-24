@@ -3,6 +3,7 @@ using TMPro;
 using UnityEngine;
 using UnityEngine.UI;
 using UnityEngine.AI;
+using UnityEngine.Splines.ExtrusionShapes;
 
 
 public class Player : MonoBehaviour
@@ -46,7 +47,7 @@ public class Player : MonoBehaviour
     public GameObject bullet;
     public float bulletpeed;
     public Sprite boxOpen;
-    //NavMeshAgent Agent;
+    NavMeshAgent Agent;
      public Transform target;
     public bool attackButtonClick;
     public GameObject OpenDoorImg;
@@ -56,14 +57,16 @@ public class Player : MonoBehaviour
     [Header("HEALTH")]
     public Image playerHealthFill;
     public float playerHealth;
+
+    public Transform TargetMovement;
     // Start is called before the first frame update
     void Start()
     {
-       /* Agent = GetComponent<NavMeshAgent>();
+        Agent = GetComponent<NavMeshAgent>();
         Agent.updateRotation = false;
-        Agent.updateUpAxis = false;*/
+        Agent.updateUpAxis = false;
 
-       
+
 
         health = maxhealth;
        // healthBar = GetComponent<healthbarscript>();
@@ -73,14 +76,76 @@ public class Player : MonoBehaviour
     // Update is called once per frame
     void Update()
     {
-       
-        float moveH = joystick.Horizontal;
-        float moveV = joystick.Vertical;
-        Vector2 moveDir = new Vector2(moveH, moveV);
+
+          float moveH = joystick.Horizontal;
+         float moveV = joystick.Vertical;
+         Vector2 moveDir = new Vector2(moveH, moveV);
         rb.linearVelocity = moveDir * speed;
+        /*if (Input.GetMouseButtonDown(0))
+        {
+            Debug.Log("hit");
+            Vector3 PlayerPosition = Camera.main.ScreenToWorldPoint(Input.mousePosition);
+            Debug.Log(PlayerPosition.x);
+           Instantiate(enemy, PlayerPosition.position, PlayerPosition.rotation);
+            // Agent.SetDestination(PlayerPosition);
+        }*/
 
-      
 
+
+       /* if (Input.GetMouseButtonDown(0))
+        {
+            Debug.Log("Mouse Clicked");
+
+            // Get mouse position in screen space
+            Vector3 mouseScreenPosition = Input.mousePosition;
+
+            // Set z to some distance from camera (e.g., 10 units in front of the camera)
+            mouseScreenPosition.z = 10f;
+
+            // Convert to world space
+            Vector3 worldPosition = Camera.main.ScreenToWorldPoint(mouseScreenPosition);
+
+            Debug.Log("World Position: " + worldPosition);
+
+            // Instantiate enemy prefab at that position
+            Instantiate(Circle, worldPosition, Quaternion.identity);
+        }*/
+
+
+        //  HandleClickOrTouch();
+
+        // Agent.SetDestination(TargetMovement.position);
+
+    }
+
+    void HandleClickOrTouch()
+    {
+        if (Input.GetMouseButtonDown(0)) // mouse or single tap
+        {
+            Vector3 worldPos = Camera.main.ScreenToWorldPoint(Input.mousePosition);
+            worldPos.z = 0f; // ensure it's on the 2D plane
+
+            RaycastHit2D hit = Physics2D.Raycast(worldPos, Vector2.zero);
+
+            if (hit.collider != null)
+            {
+                Debug.Log("2D Raycast hit: " + hit.collider.name);
+                NavMeshHit navHit;
+                if (NavMesh.SamplePosition(worldPos, out navHit, 1.0f, NavMesh.AllAreas))
+                {
+                    Agent.SetDestination(navHit.position);
+                    Debug.Log("Moving to NavMesh point: " + navHit.position);
+                }
+                else
+                {
+                    Debug.Log("Point not on NavMesh");
+                }
+            }
+            else
+            {
+                Debug.Log("2D Raycast did not hit anything");
+            }
+        }
     }
 
     private void OnCollisionEnter2D(Collision2D collision)
