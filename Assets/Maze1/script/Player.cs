@@ -118,35 +118,7 @@ public class Player : MonoBehaviour
 
     }
 
-    void HandleClickOrTouch()
-    {
-        if (Input.GetMouseButtonDown(0)) // mouse or single tap
-        {
-            Vector3 worldPos = Camera.main.ScreenToWorldPoint(Input.mousePosition);
-            worldPos.z = 0f; // ensure it's on the 2D plane
-
-            RaycastHit2D hit = Physics2D.Raycast(worldPos, Vector2.zero);
-
-            if (hit.collider != null)
-            {
-                Debug.Log("2D Raycast hit: " + hit.collider.name);
-                NavMeshHit navHit;
-                if (NavMesh.SamplePosition(worldPos, out navHit, 1.0f, NavMesh.AllAreas))
-                {
-                    Agent.SetDestination(navHit.position);
-                    Debug.Log("Moving to NavMesh point: " + navHit.position);
-                }
-                else
-                {
-                    Debug.Log("Point not on NavMesh");
-                }
-            }
-            else
-            {
-                Debug.Log("2D Raycast did not hit anything");
-            }
-        }
-    }
+    
 
     private void OnCollisionEnter2D(Collision2D collision)
     {

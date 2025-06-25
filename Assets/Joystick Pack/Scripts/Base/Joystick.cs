@@ -1,37 +1,20 @@
-﻿
-using UnityEngine;
+﻿using UnityEngine;
 using UnityEngine.EventSystems;
 
 public class Joystick : MonoBehaviour, IPointerDownHandler, IDragHandler, IPointerUpHandler
 {
     public Animator Animator1;
     public bool playerMovement;
-   
- 
+
     public float Horizontal { get { return (snapX) ? SnapFloat(input.x, AxisOptions.Horizontal) : input.x; } }
     public float Vertical { get { return (snapY) ? SnapFloat(input.y, AxisOptions.Vertical) : input.y; } }
     public Vector2 Direction { get { return new Vector2(Horizontal, Vertical); } }
 
-    public float HandleRange
-    {
-        get { return handleRange; }
-        set { handleRange = Mathf.Abs(value); }
-    }
-    public GameObject Animator
-    {
-        get { return Animator; }
-        //set { Animator = Animator }
-    }
-
-    public float DeadZone
-    {
-        get { return deadZone; }
-        set { deadZone = Mathf.Abs(value); }
-    }
-
-    public AxisOptions AxisOptions { get { return AxisOptions; } set { axisOptions = value; } }
-    public bool SnapX { get { return snapX; } set { snapX = value; } }
-    public bool SnapY { get { return snapY; } set { snapY = value; } }
+    public float HandleRange { get => handleRange; set => handleRange = Mathf.Abs(value); }
+    public float DeadZone { get => deadZone; set => deadZone = Mathf.Abs(value); }
+    public AxisOptions AxisOptions { get => axisOptions; set => axisOptions = value; }
+    public bool SnapX { get => snapX; set => snapX = value; }
+    public bool SnapY { get => snapY; set => snapY = value; }
 
     [SerializeField] private float handleRange = 1;
     [SerializeField] private float deadZone = 0;
@@ -41,18 +24,21 @@ public class Joystick : MonoBehaviour, IPointerDownHandler, IDragHandler, IPoint
 
     [SerializeField] protected RectTransform background = null;
     [SerializeField] private RectTransform handle = null;
-    private RectTransform baseRect = null;
 
+    private RectTransform baseRect;
     private Canvas canvas;
     private Camera cam;
-
     private Vector2 input = Vector2.zero;
+
+    // For smooth rotation
+    private Quaternion targetRotation;
+    public float rotationSpeed = 360f; // Degrees per second
+    private Transform playerTransform;
 
     protected virtual void Start()
     {
-
         Animator1 = FindObjectOfType<Player>().animatorRef;
-       
+        playerTransform = FindObjectOfType<ManagerMaze>().playerRef.transform;
 
         HandleRange = handleRange;
         DeadZone = deadZone;
@@ -67,28 +53,24 @@ public class Joystick : MonoBehaviour, IPointerDownHandler, IDragHandler, IPoint
         handle.anchorMax = center;
         handle.pivot = center;
         handle.anchoredPosition = Vector2.zero;
+
+        targetRotation = playerTransform.localRotation;
     }
 
     public virtual void OnPointerDown(PointerEventData eventData)
     {
-       
         playerMovement = FindObjectOfType<Player>().playerDeath;
-        Debug.Log("Player Move " + playerMovement);
-        if (playerMovement==false)
+        if (!playerMovement)
         {
             Animator1.SetBool("run", true);
-            Debug.Log("Down");
             OnDrag(eventData);
         }
-        
     }
 
     public void OnDrag(PointerEventData eventData)
     {
-        if (playerMovement == false)
+        if (!playerMovement)
         {
-            var manager = FindObjectOfType<ManagerMaze>();
-            cam = null;
             if (canvas.renderMode == RenderMode.ScreenSpaceCamera)
                 cam = canvas.worldCamera;
 
@@ -100,143 +82,78 @@ public class Joystick : MonoBehaviour, IPointerDownHandler, IDragHandler, IPoint
             HandleInput(input.magnitude, input.normalized, radius, cam);
             handle.anchoredPosition = input * radius * handleRange;
 
-            Debug.Log("Joystick Input: " + handle.anchoredPosition);
-
             Vector2 dir = handle.anchoredPosition;
 
-            if (Mathf.Abs(dir.x) > Mathf.Abs(dir.y))
+            if (dir.magnitude > 0.1f)
             {
-                // Horizontal movement is dominant
-                if (dir.x > 0)
+                if (Mathf.Abs(dir.x) > Mathf.Abs(dir.y))
                 {
-                    manager.playerRef.transform.localRotation = Quaternion.Euler(0f, 0f, 180f); // Right
-                    Debug.Log("Moving Right");
+                    // Horizontal rotation
+                    targetRotation = dir.x > 0 ?
+                        Quaternion.Euler(0f, 0f, 180f) : // Right
+                        Quaternion.Euler(0f, 0f, 0f);   // Left
                 }
                 else
                 {
-                    manager.playerRef.transform.localRotation = Quaternion.Euler(0f, 0f, 0f); // Left
-                    Debug.Log("Moving Left");
-                }
-            }
-            else
-            {
-                // Vertical movement is dominant
-                if (dir.y > 0)
-                {
-                    manager.playerRef.transform.localRotation = Quaternion.Euler(0f, 0f, 270f); // Up
-                    Debug.Log("Moving Up");
-                }
-                else
-                {
-                    manager.playerRef.transform.localRotation = Quaternion.Euler(0f, 0f, 90f); // Down
-                    Debug.Log("Moving Down");
+                    // Vertical rotation
+                    targetRotation = dir.y > 0 ?
+                        Quaternion.Euler(0f, 0f, 270f) : // Up
+                        Quaternion.Euler(0f, 0f, 90f);   // Down
                 }
             }
         }
     }
 
+    public virtual void OnPointerUp(PointerEventData eventData)
+    {
+        Animator1.SetBool("run", false);
+        input = Vector2.zero;
+        handle.anchoredPosition = Vector2.zero;
+    }
+
+    private void Update()
+    {
+        if (playerTransform != null && !playerMovement)
+        {
+            playerTransform.localRotation = Quaternion.RotateTowards(
+                playerTransform.localRotation,
+                targetRotation,
+                rotationSpeed * Time.deltaTime
+            );
+        }
+    }
 
     protected virtual void HandleInput(float magnitude, Vector2 normalised, Vector2 radius, Camera cam)
     {
-        if (magnitude > deadZone)
-        {
-            if (magnitude > 1)
-                input = normalised;
-        }
-        else
-         
-            input = Vector2.zero;
+        input = (magnitude > deadZone) ? (magnitude > 1 ? normalised : input) : Vector2.zero;
     }
 
     private void FormatInput()
     {
         if (axisOptions == AxisOptions.Horizontal)
-        {
-            Debug.Log("vertical"); ; ;
             input = new Vector2(input.x, 0f);
-        }
-           
         else if (axisOptions == AxisOptions.Vertical)
-        {
-            Debug.Log("vertical");;;
             input = new Vector2(0f, input.y);
-        }
-          
     }
 
     private float SnapFloat(float value, AxisOptions snapAxis)
     {
-       
-        if (value == 0)
-        {
-            Debug.Log("horizontal");
-            return value;
-        }
-           
+        if (value == 0) return 0;
 
         if (axisOptions == AxisOptions.Both)
         {
             float angle = Vector2.Angle(input, Vector2.up);
             if (snapAxis == AxisOptions.Horizontal)
-            {
-
-                if (angle < 22.5f || angle > 157.5f)
-                {
-                    Debug.Log("horizontal");
-                    return 0;
-                }
-
-                else
-                {
-                    Debug.Log("horizontal");
-                    return (value > 0) ? 1 : -1;
-                }
-
-            }
+                return (angle < 22.5f || angle > 157.5f) ? 0 : (value > 0 ? 1 : -1);
             else if (snapAxis == AxisOptions.Vertical)
-            {
-                if (angle > 67.5f && angle < 112.5f)
-                {
-                    Debug.Log("horizontal");
-                    return 0;
-                }
-
-                else
-                {
-                    Debug.Log("horizontal");
-                    return (value > 0) ? 1 : -1;
-                }
-
-            }
-            return value;
-           
+                return (angle > 67.5f && angle < 112.5f) ? 0 : (value > 0 ? 1 : -1);
         }
         else
         {
-            if (value > 0)
-            {
-                Debug.Log("horizontal");
-                return 1;
-            }
-               
-            if (value < 0)
-            {
-                Debug.Log("horizontal");
-                return -1;
-            }
-               
+            return value > 0 ? 1 : -1;
         }
+
         return 0;
-
-       
-    }
-
-    public virtual void OnPointerUp(PointerEventData eventData)
-    {
-        Debug.Log("up");
-        Animator1.SetBool("run", false);
-        input = Vector2.zero;
-        handle.anchoredPosition = Vector2.zero;
     }
 
     protected Vector2 ScreenPointToAnchoredPosition(Vector2 screenPosition)
