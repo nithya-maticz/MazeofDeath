@@ -3,7 +3,6 @@ using TMPro;
 using UnityEngine;
 using UnityEngine.UI;
 using UnityEngine.AI;
-using UnityEngine.Splines.ExtrusionShapes;
 
 
 public class Player : MonoBehaviour
@@ -42,14 +41,14 @@ public class Player : MonoBehaviour
     public GameObject winpage;
     public GameObject player;
     public ManagerMaze managerRef;
-    public bool attacks;
+    public bool attackButtonClick;
     public Transform bulletTrnsform;
     public GameObject bullet;
     public float bulletpeed;
     public Sprite boxOpen;
     NavMeshAgent Agent;
      public Transform target;
-    public bool attackButtonClick;
+   
     public GameObject OpenDoorImg;
     // public bool isDeath;
 
@@ -78,43 +77,10 @@ public class Player : MonoBehaviour
     {
 
           float moveH = joystick.Horizontal;
-         float moveV = joystick.Vertical;
-         Vector2 moveDir = new Vector2(moveH, moveV);
-        rb.linearVelocity = moveDir * speed;
-        /*if (Input.GetMouseButtonDown(0))
-        {
-            Debug.Log("hit");
-            Vector3 PlayerPosition = Camera.main.ScreenToWorldPoint(Input.mousePosition);
-            Debug.Log(PlayerPosition.x);
-           Instantiate(enemy, PlayerPosition.position, PlayerPosition.rotation);
-            // Agent.SetDestination(PlayerPosition);
-        }*/
-
-
-
-       /* if (Input.GetMouseButtonDown(0))
-        {
-            Debug.Log("Mouse Clicked");
-
-            // Get mouse position in screen space
-            Vector3 mouseScreenPosition = Input.mousePosition;
-
-            // Set z to some distance from camera (e.g., 10 units in front of the camera)
-            mouseScreenPosition.z = 10f;
-
-            // Convert to world space
-            Vector3 worldPosition = Camera.main.ScreenToWorldPoint(mouseScreenPosition);
-
-            Debug.Log("World Position: " + worldPosition);
-
-            // Instantiate enemy prefab at that position
-            Instantiate(Circle, worldPosition, Quaternion.identity);
-        }*/
-
-
-        //  HandleClickOrTouch();
-
-        // Agent.SetDestination(TargetMovement.position);
+          float moveV = joystick.Vertical;
+          Vector2 moveDir = new Vector2(moveH, moveV);
+          rb.linearVelocity = moveDir * speed;
+       
 
     }
 
@@ -133,6 +99,16 @@ public class Player : MonoBehaviour
             Destroy(collision.gameObject);
 
             //collision box open sprite
+        }
+        else if (collision.gameObject.tag == "enemy")
+        {
+
+            Debug.Log("Enemy hit!");
+            attackEnemy = true;
+            
+           
+           // animatorRef.SetTrigger("damage");
+
         }
         else if (collision.gameObject.tag == "box")
         {
@@ -158,8 +134,8 @@ public class Player : MonoBehaviour
         else if (collision.gameObject.tag == "drink")
         {
             Debug.Log("Health Drink");
-            
-            if(playerHealth<1)
+
+            if (playerHealth < 1)
             {
                 playerHealth = playerHealth + 0.5f;
                 Destroy(collision.gameObject);
@@ -173,27 +149,25 @@ public class Player : MonoBehaviour
 
     private void OnTriggerEnter2D(Collider2D collision)
     {
-        if (collision.gameObject.tag == "enemy")
-        {
-           
-            Debug.Log("Enemy hit!");
-            attackEnemy = true;
-          //  animatorRef.SetTrigger("damage");
-
-        }
+        Debug.Log("TIGGER ENTER " +collision.gameObject.tag);
+        Debug.Log("attacks " + attackButtonClick);
+       
 
     }
     private void OnTriggerExit2D(Collider2D collision)
     {
-        attacks = false;
-        attackEnemy = false;
+      
+       
+           
+      
+           
     }
     private void OnCollisionExit2D(Collision2D collision)
     {
 
-        Debug.Log("exit collider");
-        keyTaken = false;
-       
+        attackButtonClick = false;
+        attackEnemy = false;
+
     }
     
    // canvas Attack Function
@@ -204,7 +178,7 @@ public class Player : MonoBehaviour
         if (manager.isEnemyDoorOpen && !manager.playerRef.playerDeath)
 
         {
-            attacks = true;
+            attackButtonClick = true;
             Debug.Log("inside Player Attack Function");
             animatorRef.SetTrigger("playerattack");
         }

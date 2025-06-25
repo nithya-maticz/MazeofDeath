@@ -24,9 +24,13 @@ public class Enemy : MonoBehaviour
     public bool temp;
     private bool _enemyAttack;
     private Coroutine healthCoroutine;
-   
 
-    public Character walk;
+    private Quaternion targetRotation;
+    public float rotationSpeed = 360f; // Degrees per second
+    private Transform playerTransform;
+
+
+    
 
 
     void Start()
@@ -35,7 +39,7 @@ public class Enemy : MonoBehaviour
         Agent.updateRotation = false;
         Agent.updateUpAxis = false;
         currentHealth = enemyHealth;
-        StartCoroutine(MovementCheckLoop());
+
     }
 
     public void damageEnemy(int damange)
@@ -46,33 +50,39 @@ public class Enemy : MonoBehaviour
     // Update is called once per frame
     void Update()
     {
-        
+
         playerDeath = FindObjectOfType<Player>().playerDeath;
 
         if (Door == false && playerDeath == false)
-        {
-            Agent.SetDestination(target.position);
+        { 
+            if (target != null && Agent.enabled)
+            {
+                Agent.SetDestination(target.position);
+            }
+
         }
-        if(currentHealth<=0)
+        if (currentHealth <= 0)
         {
-         
             Destroy(gameObject);
         }
 
     }
 
-    public void OnTriggerEnter2D(Collider2D collision)
+    private void OnCollisionEnter2D(Collision2D collision)
     {
-       
+
+
         if (collision.gameObject.tag == "player")
         {
             attackPlayer = true;
+            target = null;
+            //Agent.enabled = false;
             Debug.Log("playercollider on Tigger Enter ");
 
             // animator.SetBool("attack", true);
 
             _enemyAttack = true;
-              healthCoroutine = StartCoroutine(ReducePlayerHealth(collision));
+            healthCoroutine = StartCoroutine(ReducePlayerHealth(collision));
 
         }
         if (collision.gameObject.tag == "attack")
@@ -83,14 +93,16 @@ public class Enemy : MonoBehaviour
                 healthCoroutine = null;
                 Debug.Log("Coroutine stopped.");
             }
-            Destroy(this.gameObject,0.5f);
+            Destroy(this.gameObject, 0.5f);
         }
     }
-    public void OnTriggerExit2D(Collider2D collision)
+
+    private void OnCollisionExit2D(Collision2D collision)
     {
 
         if (collision.gameObject.tag == "player")
         {
+            target = null;
             if (healthCoroutine != null)
             {
                 StopCoroutine(healthCoroutine);
@@ -100,10 +112,12 @@ public class Enemy : MonoBehaviour
             }
 
             attackPlayer = false;
-           // animator.SetBool("attack", false);
+            // animator.SetBool("attack", false);
 
         }
+
     }
+
     public void idleFun()
     {
         animator.SetTrigger("idle");
@@ -111,14 +125,14 @@ public class Enemy : MonoBehaviour
 
 
 
-    IEnumerator ReducePlayerHealth(Collider2D _player)
+    IEnumerator ReducePlayerHealth(Collision2D _player)
     {
-        Player player = _player.GetComponent<Player>();
+        Player player = _player.gameObject.GetComponent<Player>();
         while (true)
         {
             yield return new WaitForSeconds(2f);
             player.playerHealth = player.playerHealth - 0.1f;
-            if(player.playerHealth <= 0)
+            if (player.playerHealth <= 0)
             {
                 player.playerHealthFill.fillAmount = 0;
                 ManagerMaze.instance.GameOver();
@@ -128,277 +142,12 @@ public class Enemy : MonoBehaviour
             {
                 player.playerHealthFill.fillAmount = player.playerHealth;
             }
-                
 
-            
+
+
         }
-    }
-
-    IEnumerator MovementCheckLoop()
-    {
-        while (true)
-        {
-            if (target != null)
-            {
-                Agent.SetDestination(target.position);
-            }
-
-            Vector3 velocity = Agent.velocity;
-            SetWalkDirection(velocity.normalized);
-
-            yield return new WaitForSeconds(0.5f);
-        }
-    }
-
-    void SetWalkDirection(Vector3 dir)
-    {
-        string direction = "";
-
-        if (Mathf.Abs(dir.x) > Mathf.Abs(dir.y))
-            direction = dir.x > 0 ? "Right" : "Left";
-        else
-            direction = dir.y > 0 ? "Up" : "Down";
-
-        DisableAll();
-        ForcePlay(GetWalkObject(direction));
-       
-    }
-
-    void DisableAll()
-    {
-        walk.characterUp.SetActive(false);
-        walk.characterDown.SetActive(false);
-        walk.characterLeft.SetActive(false);
-        walk.characterRight.SetActive(false);
-    }
-
-    void ForcePlay(GameObject obj)
-    {
-        obj.SetActive(true);
-        Animator animator = obj.GetComponent<Animator>();
-        if (animator != null)
-        {
-            animator.Rebind();
-            animator.Play(0, -1, 0);
-            if(_enemyAttack)
-            {
-                animator.SetTrigger("enemyattack");
-            }
-            
-        }
-    }
-
-    GameObject GetWalkObject(string dir)
-    {
-        return dir switch
-        {
-            "Up" => walk.characterUp,
-            "Down" => walk.characterDown,
-            "Left" => walk.characterLeft,
-            "Right" => walk.characterRight,
-            _ => walk.characterDown
-        };
     }
 }
 
+   
 
-
-///////////////////////////////////////
-///
-/*using System;
-using System.Collections;
-using UnityEngine;
-using UnityEngine.AI;
- 
-public class Player : MonoBehaviour
-{
-    NavMeshAgent agent;
-    public Transform target;
-    public string moveState = "Idle";
-    public Character idle;
-    public Character walk;
-
-    private string lastDirection = "";
-    private string lastState = "";
-
-    void Start()
-    {
-        agent = GetComponent<NavMeshAgent>();
-        agent.updateRotation = false;
-        agent.updateUpAxis = false;
-
-        SetIdle(); // Set initial idle
-        StartCoroutine(MovementCheckLoop());
-    }
-
-    void Update()
-    {
-        HandleClickOrTouch();
-    }
-
-    void HandleClickOrTouch()
-    {
-        if (Input.GetMouseButtonDown(0)) // mouse or single tap
-        {
-            Vector3 worldPos = Camera.main.ScreenToWorldPoint(Input.mousePosition);
-            worldPos.z = 0f; // ensure it's on the 2D plane
-
-            RaycastHit2D hit = Physics2D.Raycast(worldPos, Vector2.zero);
-
-            if (hit.collider != null)
-            {
-                Debug.Log("2D Raycast hit: " + hit.collider.name);
-
-                NavMeshHit navHit;
-                if (NavMesh.SamplePosition(worldPos, out navHit, 1.0f, NavMesh.AllAreas))
-                {
-                    agent.SetDestination(navHit.position);
-                    Debug.Log("Moving to NavMesh point: " + navHit.position);
-                }
-                else
-                {
-                    Debug.Log("Point not on NavMesh");
-                }
-            }
-            else
-            {
-                Debug.Log("2D Raycast did not hit anything");
-            }
-        }
-    }
-
-
-
-    IEnumerator MovementCheckLoop()
-    {
-        while (true)
-        {
-            if (target != null)
-            {
-                agent.SetDestination(target.position);
-            }
-
-            Vector3 velocity = agent.velocity;
-
-            if (velocity.sqrMagnitude > 0.01f)
-            {
-                moveState = "Walk";
-                SetWalkDirection(velocity.normalized);
-            }
-            else
-            {
-                moveState = "Idle";
-                SetIdleDirection();
-            }
-
-            yield return new WaitForSeconds(0.1f);
-        }
-    }
-
-    void SetWalkDirection(Vector3 dir)
-    {
-        string direction = "";
-
-        if (Mathf.Abs(dir.x) > Mathf.Abs(dir.y))
-            direction = dir.x > 0 ? "Right" : "Left";
-        else
-            direction = dir.y > 0 ? "Up" : "Down";
-
-        if (moveState != lastState || direction != lastDirection)
-        {
-            lastState = moveState;
-            lastDirection = direction;
-
-            DisableAll();
-            ForcePlay(GetWalkObject(direction));
-        }
-    }
-
-    void SetIdleDirection()
-    {
-        Vector3 dir = agent.desiredVelocity;
-        string direction = "Down"; // default fallback
-
-        if (dir.sqrMagnitude >= 0.01f)
-        {
-            if (Mathf.Abs(dir.x) > Mathf.Abs(dir.y))
-                direction = dir.x > 0 ? "Right" : "Left";
-            else
-                direction = dir.y > 0 ? "Up" : "Down";
-        }
-
-        if (moveState != lastState || direction != lastDirection)
-        {
-            lastState = moveState;
-            lastDirection = direction;
-
-            DisableAll();
-            ForcePlay(GetIdleObject(direction));
-        }
-    }
-
-    GameObject GetWalkObject(string dir)
-    {
-        return dir switch
-        {
-            "Up" => walk.characterUp,
-            "Down" => walk.characterDown,
-            "Left" => walk.characterLeft,
-            "Right" => walk.characterRight,
-            _ => walk.characterDown
-        };
-    }
-
-    GameObject GetIdleObject(string dir)
-    {
-        return dir switch
-        {
-            "Up" => idle.characterUp,
-            "Down" => idle.characterDown,
-            "Left" => idle.characterLeft,
-            "Right" => idle.characterRight,
-            _ => idle.characterDown
-        };
-    }
-
-    void DisableAll()
-    {
-        idle.characterUp.SetActive(false);
-        idle.characterDown.SetActive(false);
-        idle.characterLeft.SetActive(false);
-        idle.characterRight.SetActive(false);
-
-        walk.characterUp.SetActive(false);
-        walk.characterDown.SetActive(false);
-        walk.characterLeft.SetActive(false);
-        walk.characterRight.SetActive(false);
-    }
-
-    void SetIdle()
-    {
-        DisableAll();
-        lastDirection = "Down";
-        lastState = "Idle";
-        ForcePlay(idle.characterDown);
-    }
-
-    void ForcePlay(GameObject obj)
-    {
-        obj.SetActive(true);
-        Animator animator = obj.GetComponent<Animator>();
-        if (animator != null)
-        {
-            animator.Rebind();
-            animator.Play(0, -1, 0);
-        }
-    }
-}*/
-
-[Serializable]
-public class Character
-{
-    public GameObject characterUp;
-    public GameObject characterDown;
-    public GameObject characterLeft;
-    public GameObject characterRight;
-}

@@ -22,7 +22,7 @@ public class ManagerMaze : MonoBehaviour
     void Start()
     {
         instance = this;
-       // SpawnEnemy();
+        SpawnEnemy();
         isEnemyDoorOpen = true;
         isPlayerGetKey = false;
         isGameOver = false;
@@ -48,9 +48,13 @@ public class ManagerMaze : MonoBehaviour
             if (isEnemyDoorOpen && !playerRef.playerDeath)
             {
                 Debug.Log("inside true");
-                GameObject enemyPrefab = Instantiate(enemy, spawnPosition.position, spawnPosition.rotation);
-                enemyPrefab.GetComponent<Enemy>().target = playerRef.transform;
-                enemys = GameObject.FindGameObjectsWithTag("enemy");
+                if(isPlayerGetKey)
+                {
+                    GameObject enemyPrefab = Instantiate(enemy, spawnPosition.position, spawnPosition.rotation);
+                    enemyPrefab.GetComponent<Enemy>().target = playerRef.transform;
+                    enemys = GameObject.FindGameObjectsWithTag("enemy");
+                }
+               
             }
             }
        
