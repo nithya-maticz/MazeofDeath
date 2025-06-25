@@ -29,8 +29,10 @@ public class Enemy : MonoBehaviour
     public float rotationSpeed = 360f; // Degrees per second
     private Transform playerTransform;
 
+    public float checkInterval = 1f; // How often to check for nearest target
+    private float timer;
 
-    
+
 
 
     void Start()
@@ -48,34 +50,82 @@ public class Enemy : MonoBehaviour
         enemyHealthTxt.text = currentHealth.ToString();
     }
     // Update is called once per frame
-    void Update()
+    /*void Update()
     {
-
         playerDeath = FindObjectOfType<Player>().playerDeath;
 
         if (Door == false && playerDeath == false)
-        { 
+        {
             if (target != null && Agent.enabled)
             {
-                Agent.SetDestination(target.position);
-            }
+                float distance = Vector2.Distance(transform.position, target.position);
 
+                if (distance > Agent.stoppingDistance)
+                {
+                    Agent.isStopped = false;
+                    Agent.SetDestination(target.position);
+                }
+                else
+                {
+                    Agent.isStopped = true;
+
+                    // Optional: Face the player for attack animation
+                    Vector2 direction = (target.position - transform.position).normalized;
+                    float angle = Mathf.Atan2(direction.y, direction.x) * Mathf.Rad2Deg;
+                    transform.rotation = Quaternion.Euler(0, 0, angle);
+                }
+            }
         }
+
         if (currentHealth <= 0)
         {
             Destroy(gameObject);
         }
+    }*/
+    void Update()
+    {
+        timer += Time.deltaTime;
+        if (timer >= checkInterval)
+        {
+            FindNearestTarget();
+            timer = 0f;
+        }
 
+        if (target != null)
+        {
+            Agent.SetDestination(target.position);
+        }
     }
 
-    private void OnCollisionEnter2D(Collision2D collision)
+    void FindNearestTarget()
+    {
+        GameObject[] targets = GameObject.FindGameObjectsWithTag("Target");
+        float minDistance = Mathf.Infinity;
+        Transform closest = null;
+
+        foreach (GameObject target in targets)
+        {
+            float dist = Vector3.Distance(transform.position, target.transform.position);
+            if (dist < minDistance)
+            {
+                minDistance = dist;
+                closest = target.transform;
+            }
+        }
+
+        target = closest;
+    }
+
+
+private void OnCollisionEnter2D(Collision2D collision)
     {
 
 
         if (collision.gameObject.tag == "player")
         {
+
             attackPlayer = true;
-            target = null;
+
             //Agent.enabled = false;
             Debug.Log("playercollider on Tigger Enter ");
 
@@ -102,7 +152,7 @@ public class Enemy : MonoBehaviour
 
         if (collision.gameObject.tag == "player")
         {
-            target = null;
+
             if (healthCoroutine != null)
             {
                 StopCoroutine(healthCoroutine);
@@ -149,5 +199,6 @@ public class Enemy : MonoBehaviour
     }
 }
 
-   
+
+
 

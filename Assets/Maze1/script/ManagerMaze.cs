@@ -17,16 +17,22 @@ public class ManagerMaze : MonoBehaviour
     public bool isGameOver;
 
     public static ManagerMaze instance;
-
+    public bool CreateEnemy;
     // Start is called once before the first execution of Update after the MonoBehaviour is created
     void Start()
     {
-        instance = this;
+        
         SpawnEnemy();
         isEnemyDoorOpen = true;
         isPlayerGetKey = false;
         isGameOver = false;
         keyImg.SetActive(false);
+        
+    }
+
+    private void Awake()
+    {
+        instance = this;
     }
     public void SpawnEnemy()
     {
@@ -48,7 +54,7 @@ public class ManagerMaze : MonoBehaviour
             if (isEnemyDoorOpen && !playerRef.playerDeath)
             {
                 Debug.Log("inside true");
-                if(isPlayerGetKey)
+                if(CreateEnemy)
                 {
                     GameObject enemyPrefab = Instantiate(enemy, spawnPosition.position, spawnPosition.rotation);
                     enemyPrefab.GetComponent<Enemy>().target = playerRef.transform;

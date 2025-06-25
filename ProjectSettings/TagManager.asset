@@ -14,6 +14,7 @@ TagManager:
   - unplayer
   - EnemyDoor
   - drink
+  - Target
   layers:
   - Default
   - TransparentFX
