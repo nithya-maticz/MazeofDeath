@@ -7,6 +7,7 @@ using UnityEngine.AI;
 
 public class Player : MonoBehaviour
 {
+    public static Player Instance;
     public ManagerMaze manager;
    
     public float speed = 5.0f;
@@ -70,7 +71,11 @@ public class Player : MonoBehaviour
       //  health = maxhealth;
        // healthBar = GetComponent<healthbarscript>();
     }
-    
+
+    private void Awake()
+    {
+        Instance = this;
+    }
 
     // Update is called once per frame
     void Update()
@@ -151,8 +156,21 @@ public class Player : MonoBehaviour
     {
         Debug.Log("TIGGER ENTER " +collision.gameObject.tag);
         Debug.Log("attacks " + attackButtonClick);
-       
 
+
+        if (collision.gameObject.tag == "EnemyDoor" && ManagerMaze.instance.isPlayerGetKey)
+        {
+            Debug.Log("Enemy Door Closed!");
+            ManagerMaze.instance.isEnemyDoorOpen = false;
+            ManagerMaze.instance.EnemyDoorSprite.sprite = ManagerMaze.instance.DoorClose;
+        }
+        else if (collision.gameObject.tag == "door" && manager.isEnemyDoorOpen == false && manager.isPlayerGetKey)
+        {
+            Debug.Log("LEVEL UP!");
+            ManagerMaze.instance.PlayerDoorSprite.sprite = ManagerMaze.instance.DoorOpen;
+           // LevelUp();
+            Invoke("LevelUp", 1f);
+        }
     }
     private void OnTriggerExit2D(Collider2D collision)
     {
@@ -189,15 +207,12 @@ public class Player : MonoBehaviour
     }
     public void LevelUp()
     { 
-      /*  if(managerRef.enemys.Length>=0)
+        foreach(Enemy enemy in ManagerMaze.instance.Enemies)
         {
-            for (int i = 0; i <= managerRef.enemys.Length-1; i++)
-            {
-                Destroy(managerRef.enemys[i].gameObject);
-                // managerRef.enemys[i].GetComponent<Enemy>().idleFun();
-            }
-        }*/
-        player.tag = "unplayer";
+            if(enemy != null)
+                Destroy(enemy);
+        }
+        
         winpage.SetActive(true);
 
 
@@ -222,5 +237,11 @@ public class Player : MonoBehaviour
     {
         yield return new WaitForSeconds(delay);
         gameoverpage.SetActive(true);
+    }
+
+    public void IncreaseHealth()
+    {
+        playerHealth = 1;
+        playerHealthFill.fillAmount = 1;
     }
 }

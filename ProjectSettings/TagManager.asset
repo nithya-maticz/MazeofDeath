@@ -16,6 +16,7 @@ TagManager:
   - drink
   - Target
   - PlayerRange
+  - Box
   layers:
   - Default
   - TransparentFX

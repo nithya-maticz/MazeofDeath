@@ -24,4 +24,19 @@ public class AnimationHandle : MonoBehaviour
         playerRef.playerCollider.SetActive(false);
     }
 
+    void Key()
+    {
+        ManagerMaze.instance.TreasureAnimation.gameObject.SetActive(false);
+        ManagerMaze.instance.TreasureKey.SetActive(false);
+        ManagerMaze.instance.keyImg.SetActive(true);
+        ManagerMaze.instance.isPlayerGetKey = true;
+    }
+
+    void Medikit()
+    {
+        ManagerMaze.instance.TreasureAnimation.gameObject.SetActive(false);
+        ManagerMaze.instance.TreasureMedikit.SetActive(false);
+        Player.Instance.IncreaseHealth();
+    }
+
 }

@@ -1,10 +1,10 @@
 fileFormatVersion: 2
-guid: d6db5f055bbedb544abfd9b55e7e20b1
+guid: 8b62049c50126ed4298082f00a28a1ed
 TextureImporter:
   internalIDToNameTable:
   - first:
-      213: 4947135102790592957
-    second: small box_0
+      213: -8702428474250064970
+    second: small box_broken (1)_0
   externalObjects: {}
   serializedVersion: 13
   mipmaps:
@@ -46,7 +46,7 @@ TextureImporter:
   nPOTScale: 0
   lightmap: 0
   compressionQuality: 50
-  spriteMode: 1
+  spriteMode: 2
   spriteExtrude: 1
   spriteMeshType: 1
   alignment: 0
@@ -139,7 +139,7 @@ TextureImporter:
     serializedVersion: 2
     sprites:
     - serializedVersion: 2
-      name: small box_0
+      name: small box_broken (1)_0
       rect:
         serializedVersion: 2
         x: 1
@@ -154,8 +154,8 @@ TextureImporter:
       physicsShape: []
       tessellationDetail: -1
       bones: []
-      spriteID: db9e2b93a21c7a440800000000000000
-      internalID: 4947135102790592957
+      spriteID: 6bb841df863ca3780800000000000000
+      internalID: -8702428474250064970
       vertices: []
       indices: 
       edges: []
@@ -164,7 +164,7 @@ TextureImporter:
     customData: 
     physicsShape: []
     bones: []
-    spriteID: 5e97eb03825dee720800000000000000
+    spriteID: 
     internalID: 0
     vertices: []
     indices: 
@@ -174,7 +174,7 @@ TextureImporter:
     spriteCustomMetadata:
       entries: []
     nameFileIdTable:
-      small box_0: 4947135102790592957
+      small box_broken (1)_0: -8702428474250064970
   mipmapLimitGroupName: 
   pSDRemoveMatte: 0
   userData: 

@@ -22,7 +22,20 @@ public class ManagerMaze : MonoBehaviour
     public bool CreateEnemy;
     public List<Enemy> Enemies;
     public int EnemyCount;
+    public SpriteRenderer EnemyDoorSprite;
+    public SpriteRenderer PlayerDoorSprite;
     // Start is called once before the first execution of Update after the MonoBehaviour is created
+
+    [Header("SPRITES")]
+    public Sprite SpriteBoxOpen;
+    public Sprite SpriteBoxClose;
+    public Sprite DoorOpen;
+    public Sprite DoorClose;
+
+    [Header("TREASURE HANDLE")]
+    public Animator TreasureAnimation;
+    public GameObject TreasureKey;
+    public GameObject TreasureMedikit;
     void Start()
     {
         
@@ -97,7 +110,25 @@ public class ManagerMaze : MonoBehaviour
 
     }
 
-   
+   public void GetTreasure(BoxObjects boxObjects)
+   {
+        if(boxObjects == BoxObjects.Key)
+        {
+            TreasureAnimation.gameObject.SetActive(true);
+            TreasureKey.SetActive(true);
+            TreasureAnimation.SetTrigger("Key");
+        }
+        else if(boxObjects == BoxObjects.MediKit)
+        {
+            TreasureAnimation.gameObject.SetActive(true);
+            TreasureMedikit.SetActive(true);
+            TreasureAnimation.SetTrigger("MediKit");
+        }
+        else if(boxObjects == BoxObjects.Empty)
+        {
+            return;
+        }
+   }
 
 }
 
