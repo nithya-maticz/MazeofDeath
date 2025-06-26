@@ -58,6 +58,7 @@ MonoBehaviour:
   playerDeath: 0
   temp: 0
   rotationSpeed: 360
+  checkInterval: 1
 --- !u!195 &2837233906372078032
 NavMeshAgent:
   m_ObjectHideFlags: 0
@@ -87,7 +88,7 @@ BoxCollider2D:
   m_PrefabInstance: {fileID: 0}
   m_PrefabAsset: {fileID: 0}
   m_GameObject: {fileID: 1183160398032462975}
-  m_Enabled: 0
+  m_Enabled: 1
   serializedVersion: 3
   m_Density: 1
   m_Material: {fileID: 0}

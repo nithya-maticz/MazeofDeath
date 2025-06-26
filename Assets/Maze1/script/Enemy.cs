@@ -94,6 +94,40 @@ public class Enemy : MonoBehaviour
         if (target != null)
         {
             Agent.SetDestination(target.position);
+
+            if (!Agent.pathPending && Agent.remainingDistance <= Agent.stoppingDistance)
+
+            {
+                Debug.Log(" 1 PathFind");
+
+                if (!Agent.hasPath || Agent.velocity.sqrMagnitude == 0f)
+
+                {
+
+                   
+
+                    Debug.Log("2 Destination reached!");
+                    if(healthCoroutine==null)
+                    {
+                        Debug.Log(" 3 healthCoroutine first");
+                        healthCoroutine = StartCoroutine(ReducePlayerHealth(ManagerMaze.instance.playerRef));
+                    }
+                    
+
+                }
+
+            }
+            else
+            {
+                Debug.Log(" 4 Else ");
+                if (healthCoroutine!=null)
+                {
+                    Debug.Log(" 5 Stop coroutine");
+                    StopCoroutine(healthCoroutine);
+                    healthCoroutine = null;
+                }
+            }
+
         }
     }
 
@@ -132,7 +166,7 @@ private void OnCollisionEnter2D(Collision2D collision)
             // animator.SetBool("attack", true);
 
             _enemyAttack = true;
-            healthCoroutine = StartCoroutine(ReducePlayerHealth(collision));
+           // healthCoroutine = StartCoroutine(ReducePlayerHealth(collision));
 
         }
         if (collision.gameObject.tag == "attack")
@@ -175,9 +209,9 @@ private void OnCollisionEnter2D(Collision2D collision)
 
 
 
-    IEnumerator ReducePlayerHealth(Collision2D _player)
+    IEnumerator ReducePlayerHealth(Player _player)
     {
-        Player player = _player.gameObject.GetComponent<Player>();
+        Player player = _player;
         while (true)
         {
             yield return new WaitForSeconds(2f);

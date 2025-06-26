@@ -24,8 +24,8 @@ public class Player : MonoBehaviour
     public bool reach;
     public GameObject keyHead;
     public Animator animatorRef;
-    public int maxhealth = 10;
-    public int health;
+   // public int maxhealth = 10;
+   // public int health;
     public int damage;
     public bool attackEnemy;
     public bool spaceClick;
@@ -67,7 +67,7 @@ public class Player : MonoBehaviour
 
 
 
-        health = maxhealth;
+      //  health = maxhealth;
        // healthBar = GetComponent<healthbarscript>();
     }
     
