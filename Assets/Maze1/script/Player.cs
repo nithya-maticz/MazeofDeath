@@ -10,8 +10,8 @@ public class Player : MonoBehaviour
     public ManagerMaze manager;
    
     public float speed = 5.0f;
-  
-   
+
+    
   
     public GameObject door;
     public GameObject enemy;
@@ -61,9 +61,9 @@ public class Player : MonoBehaviour
     // Start is called before the first frame update
     void Start()
     {
-        Agent = GetComponent<NavMeshAgent>();
+       /* Agent = GetComponent<NavMeshAgent>();
         Agent.updateRotation = false;
-        Agent.updateUpAxis = false;
+        Agent.updateUpAxis = false;*/
 
 
 
@@ -179,7 +179,6 @@ public class Player : MonoBehaviour
 
         {
             attackButtonClick = true;
-            Debug.Log("inside Player Attack Function");
             animatorRef.SetTrigger("playerattack");
         }
 
@@ -190,14 +189,14 @@ public class Player : MonoBehaviour
     }
     public void LevelUp()
     { 
-        if(managerRef.enemys.Length>=0)
+      /*  if(managerRef.enemys.Length>=0)
         {
             for (int i = 0; i <= managerRef.enemys.Length-1; i++)
             {
                 Destroy(managerRef.enemys[i].gameObject);
                 // managerRef.enemys[i].GetComponent<Enemy>().idleFun();
             }
-        }
+        }*/
         player.tag = "unplayer";
         winpage.SetActive(true);
 
@@ -207,13 +206,13 @@ public class Player : MonoBehaviour
     public void GameOver()
     {
         animatorRef.SetTrigger("death");
-        for (int i = 0; i <= managerRef.enemys.Length - 1; i++)
+      /*  for (int i = 0; i <= managerRef.enemys.Length - 1; i++)
         {
             //  managerRef.enemys[i].GetComponent<Enemy>().idleFun();
             Destroy(managerRef.enemys[i].gameObject);
             // Destory(managerRef.enemys[i]);
 
-        }
+        }*/
         playerDeath = true;
 
         player.tag = "unplayer";

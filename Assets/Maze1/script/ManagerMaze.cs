@@ -2,6 +2,8 @@ using System.Collections;
 using UnityEngine;
 using UnityEngine.SceneManagement;
 using System;
+using NUnit.Framework;
+using System.Collections.Generic;
 public class ManagerMaze : MonoBehaviour
 {
     public GameObject enemy;
@@ -9,7 +11,7 @@ public class ManagerMaze : MonoBehaviour
     //public Transform player;
     public Player playerRef;
     public bool attackPlayer;
-    public GameObject[] enemys;
+    //public GameObject[] enemys;
     public bool isEnemyDoorOpen;
     public bool isPlayerGetKey;
     public GameObject keyImg;
@@ -18,6 +20,8 @@ public class ManagerMaze : MonoBehaviour
 
     public static ManagerMaze instance;
     public bool CreateEnemy;
+    public List<Enemy> Enemies;
+    public int EnemyCount;
     // Start is called once before the first execution of Update after the MonoBehaviour is created
     void Start()
     {
@@ -56,9 +60,15 @@ public class ManagerMaze : MonoBehaviour
                 Debug.Log("inside true");
                 if(CreateEnemy)
                 {
-                    GameObject enemyPrefab = Instantiate(enemy, spawnPosition.position, spawnPosition.rotation);
-                    enemyPrefab.GetComponent<Enemy>().target = playerRef.transform;
-                    enemys = GameObject.FindGameObjectsWithTag("enemy");
+                    if(Enemies.Count < EnemyCount)
+                    {
+                        GameObject enemyPrefab = Instantiate(enemy, spawnPosition.position, spawnPosition.rotation);
+                        enemyPrefab.GetComponent<Enemy>().target = playerRef.transform;
+                        Enemies.Add(enemyPrefab.GetComponent<Enemy>());
+                    }
+                   
+                   // enemys = GameObject.FindGameObjectsWithTag("enemy");
+
                 }
                
             }

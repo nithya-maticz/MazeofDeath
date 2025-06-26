@@ -15,6 +15,7 @@ TagManager:
   - EnemyDoor
   - drink
   - Target
+  - PlayerRange
   layers:
   - Default
   - TransparentFX

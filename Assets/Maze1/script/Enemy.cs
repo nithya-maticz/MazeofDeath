@@ -41,6 +41,7 @@ public class Enemy : MonoBehaviour
         Agent.updateRotation = false;
         Agent.updateUpAxis = false;
         currentHealth = enemyHealth;
+        target = ManagerMaze.instance.playerRef.transform;
 
     }
 
@@ -49,85 +50,48 @@ public class Enemy : MonoBehaviour
         currentHealth -= damange;
         enemyHealthTxt.text = currentHealth.ToString();
     }
-    // Update is called once per frame
-    /*void Update()
-    {
-        playerDeath = FindObjectOfType<Player>().playerDeath;
-
-        if (Door == false && playerDeath == false)
-        {
-            if (target != null && Agent.enabled)
-            {
-                float distance = Vector2.Distance(transform.position, target.position);
-
-                if (distance > Agent.stoppingDistance)
-                {
-                    Agent.isStopped = false;
-                    Agent.SetDestination(target.position);
-                }
-                else
-                {
-                    Agent.isStopped = true;
-
-                    // Optional: Face the player for attack animation
-                    Vector2 direction = (target.position - transform.position).normalized;
-                    float angle = Mathf.Atan2(direction.y, direction.x) * Mathf.Rad2Deg;
-                    transform.rotation = Quaternion.Euler(0, 0, angle);
-                }
-            }
-        }
-
-        if (currentHealth <= 0)
-        {
-            Destroy(gameObject);
-        }
-    }*/
+    
     void Update()
     {
-        timer += Time.deltaTime;
+        /*timer += Time.deltaTime;
         if (timer >= checkInterval)
         {
             FindNearestTarget();
             timer = 0f;
-        }
+        }*/
 
         if (target != null)
         {
             Agent.SetDestination(target.position);
 
             if (!Agent.pathPending && Agent.remainingDistance <= Agent.stoppingDistance)
-
             {
-                Debug.Log(" 1 PathFind");
-
                 if (!Agent.hasPath || Agent.velocity.sqrMagnitude == 0f)
-
                 {
-
-                   
-
-                    Debug.Log("2 Destination reached!");
                     if(healthCoroutine==null)
                     {
-                        Debug.Log(" 3 healthCoroutine first");
                         healthCoroutine = StartCoroutine(ReducePlayerHealth(ManagerMaze.instance.playerRef));
                     }
-                    
-
                 }
-
             }
             else
             {
-                Debug.Log(" 4 Else ");
                 if (healthCoroutine!=null)
                 {
-                    Debug.Log(" 5 Stop coroutine");
                     StopCoroutine(healthCoroutine);
                     healthCoroutine = null;
                 }
             }
 
+        }
+
+        if (ManagerMaze.instance.playerRef != null)
+        {
+            Vector2 direction = ManagerMaze.instance.playerRef.transform.position - transform.position;
+            float angle = Mathf.Atan2(direction.y, direction.x) * Mathf.Rad2Deg;
+
+            // Apply rotation only on Z-axis for 2D
+            transform.rotation = Quaternion.Euler(0, 0, angle + 180);
         }
     }
 
@@ -151,7 +115,7 @@ public class Enemy : MonoBehaviour
     }
 
 
-private void OnCollisionEnter2D(Collision2D collision)
+    private void OnCollisionEnter2D(Collision2D collision)
     {
 
 
@@ -169,16 +133,7 @@ private void OnCollisionEnter2D(Collision2D collision)
            // healthCoroutine = StartCoroutine(ReducePlayerHealth(collision));
 
         }
-        if (collision.gameObject.tag == "attack")
-        {
-            if (healthCoroutine != null)
-            {
-                StopCoroutine(healthCoroutine);
-                healthCoroutine = null;
-                Debug.Log("Coroutine stopped.");
-            }
-            Destroy(this.gameObject, 0.5f);
-        }
+        
     }
 
     private void OnCollisionExit2D(Collision2D collision)
@@ -230,6 +185,44 @@ private void OnCollisionEnter2D(Collision2D collision)
 
 
         }
+    }
+
+    private void OnTriggerEnter2D(Collider2D collision)
+    {
+        if(collision.gameObject.tag == "PlayerRange")
+        {
+            target = null;
+            Agent.ResetPath();
+          //  Invoke("DeleyPathReset", 0.5f);
+           /* if(healthCoroutine == null)
+                healthCoroutine = StartCoroutine(ReducePlayerHealth(ManagerMaze.instance.playerRef.GetComponent<Player>()));*/
+        }
+
+        if (collision.gameObject.tag == "attack")
+        {
+            if (healthCoroutine != null)
+            {
+                StopCoroutine(healthCoroutine);
+                healthCoroutine = null;
+                Debug.Log("Coroutine stopped.");
+            }
+            Destroy(this.gameObject, 1f);
+        }
+    }
+
+    private void OnTriggerExit2D(Collider2D collision)
+    {
+        if (collision.gameObject.tag == "PlayerRange")
+        {
+            target = ManagerMaze.instance.playerRef.transform;
+          /*  if (healthCoroutine != null)
+                StopCoroutine(healthCoroutine);*/
+        }
+    }
+
+    void DeleyPathReset()
+    {
+        Agent.ResetPath();
     }
 }
 
