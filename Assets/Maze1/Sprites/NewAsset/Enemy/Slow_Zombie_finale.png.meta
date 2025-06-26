@@ -1,0 +1,793 @@
+fileFormatVersion: 2
+guid: b88e1c74641bcbb4590e2c8231c2ee76
+TextureImporter:
+  internalIDToNameTable:
+  - first:
+      213: 4375140917434487601
+    second: Slow_Zombie_finale_0
+  - first:
+      213: 3074062610568071842
+    second: Slow_Zombie_finale_1
+  - first:
+      213: -8656810392806514956
+    second: Slow_Zombie_finale_2
+  - first:
+      213: -8248573739004943977
+    second: Slow_Zombie_finale_3
+  - first:
+      213: -807422797974134757
+    second: Slow_Zombie_finale_4
+  - first:
+      213: -8200374726397928909
+    second: Slow_Zombie_finale_5
+  - first:
+      213: 2805164008479736452
+    second: Slow_Zombie_finale_6
+  - first:
+      213: 1340805316365040853
+    second: Slow_Zombie_finale_7
+  - first:
+      213: -545620710284255030
+    second: Slow_Zombie_finale_8
+  - first:
+      213: -3388263294501106258
+    second: Slow_Zombie_finale_9
+  - first:
+      213: -3276997413200139049
+    second: Slow_Zombie_finale_10
+  - first:
+      213: -3321632541487844316
+    second: Slow_Zombie_finale_11
+  - first:
+      213: -2860802347453310592
+    second: Slow_Zombie_finale_12
+  - first:
+      213: -4778624408752941462
+    second: Slow_Zombie_finale_13
+  - first:
+      213: 63866002716017697
+    second: Slow_Zombie_finale_14
+  - first:
+      213: 2561565990409475477
+    second: Slow_Zombie_finale_15
+  - first:
+      213: -2218755470433882527
+    second: Slow_Zombie_finale_16
+  - first:
+      213: -3729266586867808711
+    second: Slow_Zombie_finale_17
+  - first:
+      213: 7050725118334204084
+    second: Slow_Zombie_finale_18
+  - first:
+      213: -3626239560803178309
+    second: Slow_Zombie_finale_19
+  - first:
+      213: 2629833607986921750
+    second: Slow_Zombie_finale_20
+  - first:
+      213: -1451335609096864968
+    second: Slow_Zombie_finale_21
+  - first:
+      213: 4267594886748265160
+    second: Slow_Zombie_finale_22
+  - first:
+      213: 272378052024275111
+    second: Slow_Zombie_finale_23
+  - first:
+      213: -1057039070111230124
+    second: Slow_Zombie_finale_24
+  externalObjects: {}
+  serializedVersion: 13
+  mipmaps:
+    mipMapMode: 0
+    enableMipMap: 0
+    sRGBTexture: 1
+    linearTexture: 0
+    fadeOut: 0
+    borderMipMap: 0
+    mipMapsPreserveCoverage: 0
+    alphaTestReferenceValue: 0.5
+    mipMapFadeDistanceStart: 1
+    mipMapFadeDistanceEnd: 3
+  bumpmap:
+    convertToNormalMap: 0
+    externalNormalMap: 0
+    heightScale: 0.25
+    normalMapFilter: 0
+    flipGreenChannel: 0
+  isReadable: 0
+  streamingMipmaps: 0
+  streamingMipmapsPriority: 0
+  vTOnly: 0
+  ignoreMipmapLimit: 0
+  grayScaleToAlpha: 0
+  generateCubemap: 6
+  cubemapConvolution: 0
+  seamlessCubemap: 0
+  textureFormat: 1
+  maxTextureSize: 2048
+  textureSettings:
+    serializedVersion: 2
+    filterMode: 1
+    aniso: 1
+    mipBias: 0
+    wrapU: 1
+    wrapV: 1
+    wrapW: 1
+  nPOTScale: 0
+  lightmap: 0
+  compressionQuality: 50
+  spriteMode: 2
+  spriteExtrude: 1
+  spriteMeshType: 1
+  alignment: 0
+  spritePivot: {x: 0.5, y: 0.5}
+  spritePixelsToUnits: 100
+  spriteBorder: {x: 0, y: 0, z: 0, w: 0}
+  spriteGenerateFallbackPhysicsShape: 1
+  alphaUsage: 1
+  alphaIsTransparency: 1
+  spriteTessellationDetail: -1
+  textureType: 8
+  textureShape: 1
+  singleChannelComponent: 0
+  flipbookRows: 1
+  flipbookColumns: 1
+  maxTextureSizeSet: 0
+  compressionQualitySet: 0
+  textureFormatSet: 0
+  ignorePngGamma: 0
+  applyGammaDecoding: 0
+  swizzle: 50462976
+  cookieLightType: 0
+  platformSettings:
+  - serializedVersion: 4
+    buildTarget: DefaultTexturePlatform
+    maxTextureSize: 2048
+    resizeAlgorithm: 0
+    textureFormat: -1
+    textureCompression: 1
+    compressionQuality: 50
+    crunchedCompression: 0
+    allowsAlphaSplitting: 0
+    overridden: 0
+    ignorePlatformSupport: 0
+    androidETC2FallbackOverride: 0
+    forceMaximumCompressionQuality_BC6H_BC7: 0
+  - serializedVersion: 4
+    buildTarget: Standalone
+    maxTextureSize: 2048
+    resizeAlgorithm: 0
+    textureFormat: -1
+    textureCompression: 1
+    compressionQuality: 50
+    crunchedCompression: 0
+    allowsAlphaSplitting: 0
+    overridden: 0
+    ignorePlatformSupport: 0
+    androidETC2FallbackOverride: 0
+    forceMaximumCompressionQuality_BC6H_BC7: 0
+  - serializedVersion: 4
+    buildTarget: Android
+    maxTextureSize: 2048
+    resizeAlgorithm: 0
+    textureFormat: -1
+    textureCompression: 1
+    compressionQuality: 50
+    crunchedCompression: 0
+    allowsAlphaSplitting: 0
+    overridden: 0
+    ignorePlatformSupport: 0
+    androidETC2FallbackOverride: 0
+    forceMaximumCompressionQuality_BC6H_BC7: 0
+  - serializedVersion: 4
+    buildTarget: WebGL
+    maxTextureSize: 2048
+    resizeAlgorithm: 0
+    textureFormat: -1
+    textureCompression: 1
+    compressionQuality: 50
+    crunchedCompression: 0
+    allowsAlphaSplitting: 0
+    overridden: 0
+    ignorePlatformSupport: 0
+    androidETC2FallbackOverride: 0
+    forceMaximumCompressionQuality_BC6H_BC7: 0
+  spriteSheet:
+    serializedVersion: 2
+    sprites:
+    - serializedVersion: 2
+      name: Slow_Zombie_finale_0
+      rect:
+        serializedVersion: 2
+        x: 28
+        y: 555
+        width: 164
+        height: 120
+      alignment: 0
+      pivot: {x: 0, y: 0}
+      border: {x: 0, y: 0, z: 0, w: 0}
+      customData: 
+      outline: []
+      physicsShape: []
+      tessellationDetail: -1
+      bones: []
+      spriteID: 13395f1eb7f97bc30800000000000000
+      internalID: 4375140917434487601
+      vertices: []
+      indices: 
+      edges: []
+      weights: []
+    - serializedVersion: 2
+      name: Slow_Zombie_finale_1
+      rect:
+        serializedVersion: 2
+        x: 245
+        y: 555
+        width: 158
+        height: 120
+      alignment: 0
+      pivot: {x: 0, y: 0}
+      border: {x: 0, y: 0, z: 0, w: 0}
+      customData: 
+      outline: []
+      physicsShape: []
+      tessellationDetail: -1
+      bones: []
+      spriteID: 2aa483048a349aa20800000000000000
+      internalID: 3074062610568071842
+      vertices: []
+      indices: 
+      edges: []
+      weights: []
+    - serializedVersion: 2
+      name: Slow_Zombie_finale_2
+      rect:
+        serializedVersion: 2
+        x: 457
+        y: 555
+        width: 155
+        height: 120
+      alignment: 0
+      pivot: {x: 0, y: 0}
+      border: {x: 0, y: 0, z: 0, w: 0}
+      customData: 
+      outline: []
+      physicsShape: []
+      tessellationDetail: -1
+      bones: []
+      spriteID: 4fe9bd040d4dcd780800000000000000
+      internalID: -8656810392806514956
+      vertices: []
+      indices: 
+      edges: []
+      weights: []
+    - serializedVersion: 2
+      name: Slow_Zombie_finale_3
+      rect:
+        serializedVersion: 2
+        x: 667
+        y: 555
+        width: 155
+        height: 120
+      alignment: 0
+      pivot: {x: 0, y: 0}
+      border: {x: 0, y: 0, z: 0, w: 0}
+      customData: 
+      outline: []
+      physicsShape: []
+      tessellationDetail: -1
+      bones: []
+      spriteID: 791aefe13ed278d80800000000000000
+      internalID: -8248573739004943977
+      vertices: []
+      indices: 
+      edges: []
+      weights: []
+    - serializedVersion: 2
+      name: Slow_Zombie_finale_4
+      rect:
+        serializedVersion: 2
+        x: 877
+        y: 555
+        width: 154
+        height: 120
+      alignment: 0
+      pivot: {x: 0, y: 0}
+      border: {x: 0, y: 0, z: 0, w: 0}
+      customData: 
+      outline: []
+      physicsShape: []
+      tessellationDetail: -1
+      bones: []
+      spriteID: b10233f3e357bc4f0800000000000000
+      internalID: -807422797974134757
+      vertices: []
+      indices: 
+      edges: []
+      weights: []
+    - serializedVersion: 2
+      name: Slow_Zombie_finale_5
+      rect:
+        serializedVersion: 2
+        x: 1108
+        y: 555
+        width: 153
+        height: 120
+      alignment: 0
+      pivot: {x: 0, y: 0}
+      border: {x: 0, y: 0, z: 0, w: 0}
+      customData: 
+      outline: []
+      physicsShape: []
+      tessellationDetail: -1
+      bones: []
+      spriteID: 33ad5ff32aa623e80800000000000000
+      internalID: -8200374726397928909
+      vertices: []
+      indices: 
+      edges: []
+      weights: []
+    - serializedVersion: 2
+      name: Slow_Zombie_finale_6
+      rect:
+        serializedVersion: 2
+        x: 1317
+        y: 555
+        width: 154
+        height: 120
+      alignment: 0
+      pivot: {x: 0, y: 0}
+      border: {x: 0, y: 0, z: 0, w: 0}
+      customData: 
+      outline: []
+      physicsShape: []
+      tessellationDetail: -1
+      bones: []
+      spriteID: 4824526adc1fde620800000000000000
+      internalID: 2805164008479736452
+      vertices: []
+      indices: 
+      edges: []
+      weights: []
+    - serializedVersion: 2
+      name: Slow_Zombie_finale_7
+      rect:
+        serializedVersion: 2
+        x: 1524
+        y: 555
+        width: 155
+        height: 120
+      alignment: 0
+      pivot: {x: 0, y: 0}
+      border: {x: 0, y: 0, z: 0, w: 0}
+      customData: 
+      outline: []
+      physicsShape: []
+      tessellationDetail: -1
+      bones: []
+      spriteID: 5dcb4e2d45f7b9210800000000000000
+      internalID: 1340805316365040853
+      vertices: []
+      indices: 
+      edges: []
+      weights: []
+    - serializedVersion: 2
+      name: Slow_Zombie_finale_8
+      rect:
+        serializedVersion: 2
+        x: 1732
+        y: 555
+        width: 155
+        height: 120
+      alignment: 0
+      pivot: {x: 0, y: 0}
+      border: {x: 0, y: 0, z: 0, w: 0}
+      customData: 
+      outline: []
+      physicsShape: []
+      tessellationDetail: -1
+      bones: []
+      spriteID: ac02965dad09d68f0800000000000000
+      internalID: -545620710284255030
+      vertices: []
+      indices: 
+      edges: []
+      weights: []
+    - serializedVersion: 2
+      name: Slow_Zombie_finale_9
+      rect:
+        serializedVersion: 2
+        x: 26
+        y: 322
+        width: 156
+        height: 120
+      alignment: 0
+      pivot: {x: 0, y: 0}
+      border: {x: 0, y: 0, z: 0, w: 0}
+      customData: 
+      outline: []
+      physicsShape: []
+      tessellationDetail: -1
+      bones: []
+      spriteID: ead44c54c787af0d0800000000000000
+      internalID: -3388263294501106258
+      vertices: []
+      indices: 
+      edges: []
+      weights: []
+    - serializedVersion: 2
+      name: Slow_Zombie_finale_10
+      rect:
+        serializedVersion: 2
+        x: 236
+        y: 322
+        width: 157
+        height: 120
+      alignment: 0
+      pivot: {x: 0, y: 0}
+      border: {x: 0, y: 0, z: 0, w: 0}
+      customData: 
+      outline: []
+      physicsShape: []
+      tessellationDetail: -1
+      bones: []
+      spriteID: 7dce4580734c582d0800000000000000
+      internalID: -3276997413200139049
+      vertices: []
+      indices: 
+      edges: []
+      weights: []
+    - serializedVersion: 2
+      name: Slow_Zombie_finale_11
+      rect:
+        serializedVersion: 2
+        x: 445
+        y: 322
+        width: 158
+        height: 120
+      alignment: 0
+      pivot: {x: 0, y: 0}
+      border: {x: 0, y: 0, z: 0, w: 0}
+      customData: 
+      outline: []
+      physicsShape: []
+      tessellationDetail: -1
+      bones: []
+      spriteID: 4243d326dc037e1d0800000000000000
+      internalID: -3321632541487844316
+      vertices: []
+      indices: 
+      edges: []
+      weights: []
+    - serializedVersion: 2
+      name: Slow_Zombie_finale_12
+      rect:
+        serializedVersion: 2
+        x: 658
+        y: 322
+        width: 158
+        height: 120
+      alignment: 0
+      pivot: {x: 0, y: 0}
+      border: {x: 0, y: 0, z: 0, w: 0}
+      customData: 
+      outline: []
+      physicsShape: []
+      tessellationDetail: -1
+      bones: []
+      spriteID: 08911731c636c48d0800000000000000
+      internalID: -2860802347453310592
+      vertices: []
+      indices: 
+      edges: []
+      weights: []
+    - serializedVersion: 2
+      name: Slow_Zombie_finale_13
+      rect:
+        serializedVersion: 2
+        x: 879
+        y: 322
+        width: 156
+        height: 120
+      alignment: 0
+      pivot: {x: 0, y: 0}
+      border: {x: 0, y: 0, z: 0, w: 0}
+      customData: 
+      outline: []
+      physicsShape: []
+      tessellationDetail: -1
+      bones: []
+      spriteID: a6615412b6aeeadb0800000000000000
+      internalID: -4778624408752941462
+      vertices: []
+      indices: 
+      edges: []
+      weights: []
+    - serializedVersion: 2
+      name: Slow_Zombie_finale_14
+      rect:
+        serializedVersion: 2
+        x: 1100
+        y: 322
+        width: 156
+        height: 120
+      alignment: 0
+      pivot: {x: 0, y: 0}
+      border: {x: 0, y: 0, z: 0, w: 0}
+      customData: 
+      outline: []
+      physicsShape: []
+      tessellationDetail: -1
+      bones: []
+      spriteID: 124cc158ac5e2e000800000000000000
+      internalID: 63866002716017697
+      vertices: []
+      indices: 
+      edges: []
+      weights: []
+    - serializedVersion: 2
+      name: Slow_Zombie_finale_15
+      rect:
+        serializedVersion: 2
+        x: 1321
+        y: 322
+        width: 154
+        height: 120
+      alignment: 0
+      pivot: {x: 0, y: 0}
+      border: {x: 0, y: 0, z: 0, w: 0}
+      customData: 
+      outline: []
+      physicsShape: []
+      tessellationDetail: -1
+      bones: []
+      spriteID: 595141f42b28c8320800000000000000
+      internalID: 2561565990409475477
+      vertices: []
+      indices: 
+      edges: []
+      weights: []
+    - serializedVersion: 2
+      name: Slow_Zombie_finale_16
+      rect:
+        serializedVersion: 2
+        x: 1522
+        y: 322
+        width: 153
+        height: 120
+      alignment: 0
+      pivot: {x: 0, y: 0}
+      border: {x: 0, y: 0, z: 0, w: 0}
+      customData: 
+      outline: []
+      physicsShape: []
+      tessellationDetail: -1
+      bones: []
+      spriteID: 16e6555b7a56531e0800000000000000
+      internalID: -2218755470433882527
+      vertices: []
+      indices: 
+      edges: []
+      weights: []
+    - serializedVersion: 2
+      name: Slow_Zombie_finale_17
+      rect:
+        serializedVersion: 2
+        x: 1732
+        y: 322
+        width: 152
+        height: 120
+      alignment: 0
+      pivot: {x: 0, y: 0}
+      border: {x: 0, y: 0, z: 0, w: 0}
+      customData: 
+      outline: []
+      physicsShape: []
+      tessellationDetail: -1
+      bones: []
+      spriteID: 936c2093ccbfe3cc0800000000000000
+      internalID: -3729266586867808711
+      vertices: []
+      indices: 
+      edges: []
+      weights: []
+    - serializedVersion: 2
+      name: Slow_Zombie_finale_18
+      rect:
+        serializedVersion: 2
+        x: 26
+        y: 72
+        width: 151
+        height: 120
+      alignment: 0
+      pivot: {x: 0, y: 0}
+      border: {x: 0, y: 0, z: 0, w: 0}
+      customData: 
+      outline: []
+      physicsShape: []
+      tessellationDetail: -1
+      bones: []
+      spriteID: 4b8fb37832539d160800000000000000
+      internalID: 7050725118334204084
+      vertices: []
+      indices: 
+      edges: []
+      weights: []
+    - serializedVersion: 2
+      name: Slow_Zombie_finale_19
+      rect:
+        serializedVersion: 2
+        x: 236
+        y: 72
+        width: 151
+        height: 120
+      alignment: 0
+      pivot: {x: 0, y: 0}
+      border: {x: 0, y: 0, z: 0, w: 0}
+      customData: 
+      outline: []
+      physicsShape: []
+      tessellationDetail: -1
+      bones: []
+      spriteID: bb8abd305520dadc0800000000000000
+      internalID: -3626239560803178309
+      vertices: []
+      indices: 
+      edges: []
+      weights: []
+    - serializedVersion: 2
+      name: Slow_Zombie_finale_20
+      rect:
+        serializedVersion: 2
+        x: 446
+        y: 72
+        width: 151
+        height: 120
+      alignment: 0
+      pivot: {x: 0, y: 0}
+      border: {x: 0, y: 0, z: 0, w: 0}
+      customData: 
+      outline: []
+      physicsShape: []
+      tessellationDetail: -1
+      bones: []
+      spriteID: 611c176abbb0f7420800000000000000
+      internalID: 2629833607986921750
+      vertices: []
+      indices: 
+      edges: []
+      weights: []
+    - serializedVersion: 2
+      name: Slow_Zombie_finale_21
+      rect:
+        serializedVersion: 2
+        x: 656
+        y: 72
+        width: 151
+        height: 120
+      alignment: 0
+      pivot: {x: 0, y: 0}
+      border: {x: 0, y: 0, z: 0, w: 0}
+      customData: 
+      outline: []
+      physicsShape: []
+      tessellationDetail: -1
+      bones: []
+      spriteID: 83bf7e9f3f1dbdbe0800000000000000
+      internalID: -1451335609096864968
+      vertices: []
+      indices: 
+      edges: []
+      weights: []
+    - serializedVersion: 2
+      name: Slow_Zombie_finale_22
+      rect:
+        serializedVersion: 2
+        x: 877
+        y: 72
+        width: 151
+        height: 120
+      alignment: 0
+      pivot: {x: 0, y: 0}
+      border: {x: 0, y: 0, z: 0, w: 0}
+      customData: 
+      outline: []
+      physicsShape: []
+      tessellationDetail: -1
+      bones: []
+      spriteID: 8ca57e550fa893b30800000000000000
+      internalID: 4267594886748265160
+      vertices: []
+      indices: 
+      edges: []
+      weights: []
+    - serializedVersion: 2
+      name: Slow_Zombie_finale_23
+      rect:
+        serializedVersion: 2
+        x: 1097
+        y: 72
+        width: 151
+        height: 120
+      alignment: 0
+      pivot: {x: 0, y: 0}
+      border: {x: 0, y: 0, z: 0, w: 0}
+      customData: 
+      outline: []
+      physicsShape: []
+      tessellationDetail: -1
+      bones: []
+      spriteID: 7a0158b256ea7c300800000000000000
+      internalID: 272378052024275111
+      vertices: []
+      indices: 
+      edges: []
+      weights: []
+    - serializedVersion: 2
+      name: Slow_Zombie_finale_24
+      rect:
+        serializedVersion: 2
+        x: 1316
+        y: 72
+        width: 164
+        height: 120
+      alignment: 0
+      pivot: {x: 0, y: 0}
+      border: {x: 0, y: 0, z: 0, w: 0}
+      customData: 
+      outline: []
+      physicsShape: []
+      tessellationDetail: -1
+      bones: []
+      spriteID: 4579f40f094a451f0800000000000000
+      internalID: -1057039070111230124
+      vertices: []
+      indices: 
+      edges: []
+      weights: []
+    outline: []
+    customData: 
+    physicsShape: []
+    bones: []
+    spriteID: 5e97eb03825dee720800000000000000
+    internalID: 0
+    vertices: []
+    indices: 
+    edges: []
+    weights: []
+    secondaryTextures: []
+    spriteCustomMetadata:
+      entries: []
+    nameFileIdTable:
+      Slow_Zombie_finale_0: 4375140917434487601
+      Slow_Zombie_finale_1: 3074062610568071842
+      Slow_Zombie_finale_10: -3276997413200139049
+      Slow_Zombie_finale_11: -3321632541487844316
+      Slow_Zombie_finale_12: -2860802347453310592
+      Slow_Zombie_finale_13: -4778624408752941462
+      Slow_Zombie_finale_14: 63866002716017697
+      Slow_Zombie_finale_15: 2561565990409475477
+      Slow_Zombie_finale_16: -2218755470433882527
+      Slow_Zombie_finale_17: -3729266586867808711
+      Slow_Zombie_finale_18: 7050725118334204084
+      Slow_Zombie_finale_19: -3626239560803178309
+      Slow_Zombie_finale_2: -8656810392806514956
+      Slow_Zombie_finale_20: 2629833607986921750
+      Slow_Zombie_finale_21: -1451335609096864968
+      Slow_Zombie_finale_22: 4267594886748265160
+      Slow_Zombie_finale_23: 272378052024275111
+      Slow_Zombie_finale_24: -1057039070111230124
+      Slow_Zombie_finale_3: -8248573739004943977
+      Slow_Zombie_finale_4: -807422797974134757
+      Slow_Zombie_finale_5: -8200374726397928909
+      Slow_Zombie_finale_6: 2805164008479736452
+      Slow_Zombie_finale_7: 1340805316365040853
+      Slow_Zombie_finale_8: -545620710284255030
+      Slow_Zombie_finale_9: -3388263294501106258
+  mipmapLimitGroupName: 
+  pSDRemoveMatte: 0
+  userData: 
+  assetBundleName: 
+  assetBundleVariant: 
