@@ -10,10 +10,10 @@ GameObject:
   m_Component:
   - component: {fileID: 2615446218960859623}
   - component: {fileID: 7545295602050416999}
-  - component: {fileID: 2837233906372078032}
   - component: {fileID: 2833332161860841822}
   - component: {fileID: 6849430817529314888}
   - component: {fileID: 6728261130921266847}
+  - component: {fileID: 5646009769698632876}
   m_Layer: 0
   m_Name: 'enemy '
   m_TagString: enemy
@@ -59,28 +59,6 @@ MonoBehaviour:
   temp: 0
   rotationSpeed: 360
   checkInterval: 1
---- !u!195 &2837233906372078032
-NavMeshAgent:
-  m_ObjectHideFlags: 0
-  m_CorrespondingSourceObject: {fileID: 0}
-  m_PrefabInstance: {fileID: 0}
-  m_PrefabAsset: {fileID: 0}
-  m_GameObject: {fileID: 1183160398032462975}
-  m_Enabled: 1
-  m_AgentTypeID: 0
-  m_Radius: 1.2
-  m_Speed: 6
-  m_Acceleration: 8
-  avoidancePriority: 50
-  m_AngularSpeed: 120
-  m_StoppingDistance: 0
-  m_AutoTraverseOffMeshLink: 1
-  m_AutoBraking: 0
-  m_AutoRepath: 1
-  m_Height: 5.5
-  m_BaseOffset: 3.5
-  m_WalkableMask: 4294967295
-  m_ObstacleAvoidanceType: 4
 --- !u!61 &2833332161860841822
 BoxCollider2D:
   m_ObjectHideFlags: 0
@@ -115,7 +93,7 @@ BoxCollider2D:
   m_UsedByEffector: 0
   m_CompositeOperation: 0
   m_CompositeOrder: 0
-  m_Offset: {x: -0.08050737, y: -0.00010681152}
+  m_Offset: {x: -0.003176242, y: -0.00010681152}
   m_SpriteTilingProperty:
     border: {x: 0, y: 0, z: 0, w: 0}
     pivot: {x: 0.5, y: 0.5}
@@ -125,7 +103,7 @@ BoxCollider2D:
     drawMode: 0
     adaptiveTiling: 0
   m_AutoTiling: 0
-  m_Size: {x: 1.5689156, y: 1.4527206}
+  m_Size: {x: 1.723578, y: 1.4527206}
   m_EdgeRadius: 0
 --- !u!212 &6849430817529314888
 SpriteRenderer:
@@ -204,6 +182,28 @@ Animator:
   m_AllowConstantClipSamplingOptimization: 1
   m_KeepAnimatorStateOnDisable: 0
   m_WriteDefaultValuesOnDisable: 0
+--- !u!195 &5646009769698632876
+NavMeshAgent:
+  m_ObjectHideFlags: 0
+  m_CorrespondingSourceObject: {fileID: 0}
+  m_PrefabInstance: {fileID: 0}
+  m_PrefabAsset: {fileID: 0}
+  m_GameObject: {fileID: 1183160398032462975}
+  m_Enabled: 1
+  m_AgentTypeID: 0
+  m_Radius: 0.82
+  m_Speed: 6
+  m_Acceleration: 8
+  avoidancePriority: 50
+  m_AngularSpeed: 120
+  m_StoppingDistance: 0
+  m_AutoTraverseOffMeshLink: 1
+  m_AutoBraking: 1
+  m_AutoRepath: 1
+  m_Height: 1.2
+  m_BaseOffset: 0.6
+  m_WalkableMask: 4294967295
+  m_ObstacleAvoidanceType: 4
 --- !u!1 &2933210157223383004
 GameObject:
   m_ObjectHideFlags: 0

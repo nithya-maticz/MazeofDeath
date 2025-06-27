@@ -8,11 +8,9 @@ public class ManagerMaze : MonoBehaviour
 {
     public GameObject enemy;
     public Transform spawnPosition;
-    //public Transform player;
+
     public Player playerRef;
     public bool attackPlayer;
-    //public GameObject[] enemys;
-    public bool isEnemyDoorOpen;
     public bool isPlayerGetKey;
     public GameObject keyImg;
     public GameObject Playerweapon;
@@ -24,7 +22,8 @@ public class ManagerMaze : MonoBehaviour
     public int EnemyCount;
     public SpriteRenderer EnemyDoorSprite;
     public SpriteRenderer PlayerDoorSprite;
-    // Start is called once before the first execution of Update after the MonoBehaviour is created
+    public List<ZombieDoor> ZombieDoors;
+
 
     [Header("SPRITES")]
     public Sprite SpriteBoxOpen;
@@ -36,11 +35,16 @@ public class ManagerMaze : MonoBehaviour
     public Animator TreasureAnimation;
     public GameObject TreasureKey;
     public GameObject TreasureMedikit;
+
+    [Header("WIN PAGE")]
+    public GameObject WinPage;
+
+    [Header("GAMEOVER")]
+    public GameObject GameOverPage;
     void Start()
     {
         
         SpawnEnemy();
-        isEnemyDoorOpen = true;
         isPlayerGetKey = false;
         isGameOver = false;
         keyImg.SetActive(false);
@@ -53,7 +57,7 @@ public class ManagerMaze : MonoBehaviour
     }
     public void SpawnEnemy()
     {
-        StartCoroutine(SpawnEnemys());
+      //  StartCoroutine(SpawnEnemys());
 
     }
     // Update is called once per frame
@@ -62,7 +66,7 @@ public class ManagerMaze : MonoBehaviour
         
     }
   
-    IEnumerator SpawnEnemys()
+  /*  IEnumerator SpawnEnemys()
     {
             while (true)
             {
@@ -88,7 +92,7 @@ public class ManagerMaze : MonoBehaviour
             }
        
         
-    }
+    }*/
 
     public void AttackEnemy()
     {
@@ -99,16 +103,7 @@ public class ManagerMaze : MonoBehaviour
         SceneManager.LoadScene("Maze1");
     }
 
-    public void GameOver()
-    {
-        if(!isGameOver)
-        {
-            //action
-            playerRef.GameOver();
-            isGameOver = true;
-        }
-
-    }
+   
 
    public void GetTreasure(BoxObjects boxObjects)
    {
@@ -129,6 +124,43 @@ public class ManagerMaze : MonoBehaviour
             return;
         }
    }
+
+    public void CheckLevelUp()
+    {
+        bool allclosed = true;
+
+        foreach(ZombieDoor door in ZombieDoors)
+        {
+            if(!door.isClosed)
+                allclosed = false;
+        }
+
+        if (allclosed)
+            Invoke("LevelUP", 1f);
+        else
+            return;
+    }
+
+
+    void LevelUP()
+    {
+        foreach(Enemy enemy in Enemies)
+        {
+            Destroy(enemy);
+        }
+        WinPage.SetActive(true);
+    }
+
+    public void GameOver()
+    {
+        Invoke("game_over", 1f);
+    }
+
+    void game_over()
+    {
+        GameOverPage.SetActive(true);
+
+    }
 
 }
 

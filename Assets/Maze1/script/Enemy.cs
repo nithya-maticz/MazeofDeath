@@ -167,25 +167,37 @@ public class Enemy : MonoBehaviour
     IEnumerator ReducePlayerHealth(Player _player)
     {
         Player player = _player;
-        while (true)
+
+        while (player.playerHealth > 0)
         {
-            yield return new WaitForSeconds(2f);
-            player.playerHealth = player.playerHealth - 0.1f;
-            if (player.playerHealth <= 0)
+            float duration = 2f;
+            float elapsed = 0f;
+            float startHealth = player.playerHealth;
+            float targetHealth = player.playerHealth - 0.1f;
+
+            // Clamp to avoid negative health
+            targetHealth = Mathf.Max(0, targetHealth);
+
+            while (elapsed < duration)
             {
+                elapsed += Time.deltaTime;
+                float t = elapsed / duration;
+
+                player.playerHealth = Mathf.Lerp(startHealth, targetHealth, t);
+                player.playerHealthFill.fillAmount = player.playerHealth;
+                yield return null;
+            }
+
+            if (player.playerHealth < 0.1)
+            {
+                player.playerHealth = 0;
                 player.playerHealthFill.fillAmount = 0;
                 ManagerMaze.instance.GameOver();
-                //
+                yield break;
             }
-            else
-            {
-                player.playerHealthFill.fillAmount = player.playerHealth;
-            }
-
-
-
         }
     }
+
 
     private void OnTriggerEnter2D(Collider2D collision)
     {
@@ -193,9 +205,9 @@ public class Enemy : MonoBehaviour
         {
             target = null;
             Agent.ResetPath();
-          //  Invoke("DeleyPathReset", 0.5f);
-           /* if(healthCoroutine == null)
-                healthCoroutine = StartCoroutine(ReducePlayerHealth(ManagerMaze.instance.playerRef.GetComponent<Player>()));*/
+            //  Invoke("DeleyPathReset", 0.5f);
+            if (healthCoroutine == null)
+                healthCoroutine = StartCoroutine(ReducePlayerHealth(ManagerMaze.instance.playerRef.GetComponent<Player>()));
         }
 
         if (collision.gameObject.tag == "attack")
@@ -215,8 +227,8 @@ public class Enemy : MonoBehaviour
         if (collision.gameObject.tag == "PlayerRange")
         {
             target = ManagerMaze.instance.playerRef.transform;
-          /*  if (healthCoroutine != null)
-                StopCoroutine(healthCoroutine);*/
+            if (healthCoroutine != null)
+                StopCoroutine(healthCoroutine);
         }
     }
 

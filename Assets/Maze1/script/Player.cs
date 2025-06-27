@@ -62,14 +62,14 @@ public class Player : MonoBehaviour
     // Start is called before the first frame update
     void Start()
     {
-       /* Agent = GetComponent<NavMeshAgent>();
+        Agent = GetComponent<NavMeshAgent>();
         Agent.updateRotation = false;
-        Agent.updateUpAxis = false;*/
+        Agent.updateUpAxis = false;
 
 
 
-      //  health = maxhealth;
-       // healthBar = GetComponent<healthbarscript>();
+        //  health = maxhealth;
+        // healthBar = GetComponent<healthbarscript>();
     }
 
     private void Awake()
@@ -91,86 +91,25 @@ public class Player : MonoBehaviour
 
     
 
-    private void OnCollisionEnter2D(Collision2D collision)
-    {
-        print("Name   " +collision.gameObject.name);
-      
-        if (collision.gameObject.tag == "keys")
-        {
-            Debug.Log("keytaken");
-            manager.isPlayerGetKey = true;
-            manager.keyImg.SetActive(true);
-            collision.gameObject.GetComponent<BoxCollider2D>().enabled = false;
-            Destroy(collision.gameObject);
-
-            //collision box open sprite
-        }
-        else if (collision.gameObject.tag == "enemy")
-        {
-
-            Debug.Log("Enemy hit!");
-            attackEnemy = true;
-            
-           
-           // animatorRef.SetTrigger("damage");
-
-        }
-        else if (collision.gameObject.tag == "box")
-        {
-            Debug.Log("Box hit!");
-            collision.gameObject.GetComponent<BoxCollider2D>().enabled = false;
-            collision.gameObject.GetComponent<SpriteRenderer>().sprite = boxOpen;
-            // Destroy(collision.gameObject);
-            //collision box open sprite
-
-        }
-        else if (collision.gameObject.tag == "EnemyDoor" && manager.isPlayerGetKey)
-        {
-            Debug.Log("Enemy Door Closed!");
-            OpenDoorImg.SetActive(false);
-            manager.isEnemyDoorOpen = false;
-        }
-        else if (collision.gameObject.tag == "door" && manager.isEnemyDoorOpen == false && manager.isPlayerGetKey)
-        {
-            Debug.Log("LEVEL UP!");
-            Destroy(collision.gameObject);
-            LevelUp();
-        }
-        else if (collision.gameObject.tag == "drink")
-        {
-            Debug.Log("Health Drink");
-
-            if (playerHealth < 1)
-            {
-                playerHealth = playerHealth + 0.5f;
-                Destroy(collision.gameObject);
-            }
-            if (playerHealth >= 1)
-            {
-                playerHealthFill.fillAmount = 1;
-            }
-        }
-    }
-
+  
     private void OnTriggerEnter2D(Collider2D collision)
     {
-        Debug.Log("TIGGER ENTER " +collision.gameObject.tag);
-        Debug.Log("attacks " + attackButtonClick);
-
-
+      
         if (collision.gameObject.tag == "EnemyDoor" && ManagerMaze.instance.isPlayerGetKey)
         {
             Debug.Log("Enemy Door Closed!");
-            ManagerMaze.instance.isEnemyDoorOpen = false;
-            ManagerMaze.instance.EnemyDoorSprite.sprite = ManagerMaze.instance.DoorClose;
+            var zombieDoor = collision.GetComponent<ZombieDoor>();
+            zombieDoor.isClosed = true;
+            zombieDoor.sprite.sprite = ManagerMaze.instance.DoorClose;
+            ManagerMaze.instance.CheckLevelUp();
         }
-        else if (collision.gameObject.tag == "door" && manager.isEnemyDoorOpen == false && manager.isPlayerGetKey)
+      /*  else if (collision.gameObject.tag == "door" && manager.isEnemyDoorOpen == false && manager.isPlayerGetKey)
         {
             Debug.Log("LEVEL UP!");
             ManagerMaze.instance.PlayerDoorSprite.sprite = ManagerMaze.instance.DoorOpen;
            // LevelUp();
             Invoke("LevelUp", 1f);
-        }
+        }*/
     }
     private void OnTriggerExit2D(Collider2D collision)
     {
@@ -180,64 +119,18 @@ public class Player : MonoBehaviour
       
            
     }
-    private void OnCollisionExit2D(Collision2D collision)
+
+    public void PlayerAttackButton()
     {
-
-        attackButtonClick = false;
-        attackEnemy = false;
-
-    }
-    
-   // canvas Attack Function
-    public void PlayerAttack()
-    {
-
-        ///// knife Function;
-        if (manager.isEnemyDoorOpen && !manager.playerRef.playerDeath)
-
+        if(playerDeath)
         {
             attackButtonClick = true;
             animatorRef.SetTrigger("playerattack");
         }
-
-        //// Gun Function
-        ///
-       
-
     }
-    public void LevelUp()
-    { 
-        foreach(Enemy enemy in ManagerMaze.instance.Enemies)
-        {
-            if(enemy != null)
-                Destroy(enemy);
-        }
-        
-        winpage.SetActive(true);
+    
 
-
-    }
-
-    public void GameOver()
-    {
-        animatorRef.SetTrigger("death");
-      /*  for (int i = 0; i <= managerRef.enemys.Length - 1; i++)
-        {
-            //  managerRef.enemys[i].GetComponent<Enemy>().idleFun();
-            Destroy(managerRef.enemys[i].gameObject);
-            // Destory(managerRef.enemys[i]);
-
-        }*/
-        playerDeath = true;
-
-        player.tag = "unplayer";
-        StartCoroutine(ShowdeathPageWithDelay(1f)); // 1 second delay
-    }
-    IEnumerator ShowdeathPageWithDelay(float delay)
-    {
-        yield return new WaitForSeconds(delay);
-        gameoverpage.SetActive(true);
-    }
+   
 
     public void IncreaseHealth()
     {
