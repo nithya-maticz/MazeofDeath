@@ -122,7 +122,7 @@ public class Player : MonoBehaviour
 
     public void PlayerAttackButton()
     {
-        if(playerDeath)
+        if(!playerDeath)
         {
             attackButtonClick = true;
             animatorRef.SetTrigger("playerattack");

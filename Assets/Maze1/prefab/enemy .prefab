@@ -13,7 +13,7 @@ GameObject:
   - component: {fileID: 2833332161860841822}
   - component: {fileID: 6849430817529314888}
   - component: {fileID: 6728261130921266847}
-  - component: {fileID: 5646009769698632876}
+  - component: {fileID: 5958646828461935045}
   m_Layer: 0
   m_Name: 'enemy '
   m_TagString: enemy
@@ -93,7 +93,7 @@ BoxCollider2D:
   m_UsedByEffector: 0
   m_CompositeOperation: 0
   m_CompositeOrder: 0
-  m_Offset: {x: -0.003176242, y: -0.00010681152}
+  m_Offset: {x: 0.001195699, y: -0.0030629635}
   m_SpriteTilingProperty:
     border: {x: 0, y: 0, z: 0, w: 0}
     pivot: {x: 0.5, y: 0.5}
@@ -103,7 +103,7 @@ BoxCollider2D:
     drawMode: 0
     adaptiveTiling: 0
   m_AutoTiling: 0
-  m_Size: {x: 1.723578, y: 1.4527206}
+  m_Size: {x: 1.6448839, y: 1.1932387}
   m_EdgeRadius: 0
 --- !u!212 &6849430817529314888
 SpriteRenderer:
@@ -182,7 +182,7 @@ Animator:
   m_AllowConstantClipSamplingOptimization: 1
   m_KeepAnimatorStateOnDisable: 0
   m_WriteDefaultValuesOnDisable: 0
---- !u!195 &5646009769698632876
+--- !u!195 &5958646828461935045
 NavMeshAgent:
   m_ObjectHideFlags: 0
   m_CorrespondingSourceObject: {fileID: 0}
@@ -192,7 +192,7 @@ NavMeshAgent:
   m_Enabled: 1
   m_AgentTypeID: 0
   m_Radius: 0.82
-  m_Speed: 6
+  m_Speed: 3.5
   m_Acceleration: 8
   avoidancePriority: 50
   m_AngularSpeed: 120

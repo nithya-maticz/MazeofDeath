@@ -41,7 +41,7 @@ public class Enemy : MonoBehaviour
         Agent.updateRotation = false;
         Agent.updateUpAxis = false;
         currentHealth = enemyHealth;
-        target = ManagerMaze.instance.playerRef.transform;
+        target = Player.Instance.transform;
 
     }
 
@@ -53,12 +53,7 @@ public class Enemy : MonoBehaviour
     
     void Update()
     {
-        /*timer += Time.deltaTime;
-        if (timer >= checkInterval)
-        {
-            FindNearestTarget();
-            timer = 0f;
-        }*/
+       
 
         if (target != null)
         {
@@ -95,67 +90,10 @@ public class Enemy : MonoBehaviour
         }
     }
 
-    void FindNearestTarget()
-    {
-        GameObject[] targets = GameObject.FindGameObjectsWithTag("Target");
-        float minDistance = Mathf.Infinity;
-        Transform closest = null;
-
-        foreach (GameObject target in targets)
-        {
-            float dist = Vector3.Distance(transform.position, target.transform.position);
-            if (dist < minDistance)
-            {
-                minDistance = dist;
-                closest = target.transform;
-            }
-        }
-
-        target = closest;
-    }
+   
 
 
-    private void OnCollisionEnter2D(Collision2D collision)
-    {
-
-
-        if (collision.gameObject.tag == "player")
-        {
-
-            attackPlayer = true;
-
-            //Agent.enabled = false;
-            Debug.Log("playercollider on Tigger Enter ");
-
-            // animator.SetBool("attack", true);
-
-            _enemyAttack = true;
-           // healthCoroutine = StartCoroutine(ReducePlayerHealth(collision));
-
-        }
-        
-    }
-
-    private void OnCollisionExit2D(Collision2D collision)
-    {
-
-        if (collision.gameObject.tag == "player")
-        {
-
-            if (healthCoroutine != null)
-            {
-                StopCoroutine(healthCoroutine);
-                healthCoroutine = null;
-                Debug.Log("Coroutine stopped.");
-                _enemyAttack = false;
-            }
-
-            attackPlayer = false;
-            // animator.SetBool("attack", false);
-
-        }
-
-    }
+    
 
     public void idleFun()
     {
@@ -205,7 +143,6 @@ public class Enemy : MonoBehaviour
         {
             target = null;
             Agent.ResetPath();
-            //  Invoke("DeleyPathReset", 0.5f);
             if (healthCoroutine == null)
                 healthCoroutine = StartCoroutine(ReducePlayerHealth(ManagerMaze.instance.playerRef.GetComponent<Player>()));
         }
@@ -218,7 +155,7 @@ public class Enemy : MonoBehaviour
                 healthCoroutine = null;
                 Debug.Log("Coroutine stopped.");
             }
-            Destroy(this.gameObject, 1f);
+            Invoke("DestryInstance", .5f);
         }
     }
 
@@ -235,6 +172,14 @@ public class Enemy : MonoBehaviour
     void DeleyPathReset()
     {
         Agent.ResetPath();
+    }
+
+    void DestryInstance()
+    {
+        GameObject blood = Instantiate(ManagerMaze.instance.BloodPrefab.gameObject, transform);
+        blood.transform.SetParent(ManagerMaze.instance.BloodTransform);
+        blood.transform.localScale = Vector3.one;
+        Destroy(this.gameObject);
     }
 }
 

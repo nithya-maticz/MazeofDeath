@@ -23,7 +23,8 @@ public class ManagerMaze : MonoBehaviour
     public SpriteRenderer EnemyDoorSprite;
     public SpriteRenderer PlayerDoorSprite;
     public List<ZombieDoor> ZombieDoors;
-
+    public Blood BloodPrefab;
+    public Transform BloodTransform;
 
     [Header("SPRITES")]
     public Sprite SpriteBoxOpen;
