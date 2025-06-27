@@ -46,9 +46,11 @@ public class ManagerMaze : MonoBehaviour
 
     [Header("GAMEOVER")]
     public GameObject GameOverPage;
+
+    public GameObject PlayerImage;
     void Start()
     {
-        SpawnEnemy();
+       
         isPlayerGetKey = false;
         isGameOver = false;
         keyImg.SetActive(false);
@@ -59,45 +61,14 @@ public class ManagerMaze : MonoBehaviour
     {
         instance = this;
     }
-    public void SpawnEnemy()
-    {
-      //  StartCoroutine(SpawnEnemys());
-
-    }
+   
     // Update is called once per frame
     void Update()
     {
         
     }
   
-  /*  IEnumerator SpawnEnemys()
-    {
-            while (true)
-            {
-            yield return new WaitForSeconds(10f);
-           
-            if (isEnemyDoorOpen && !playerRef.playerDeath)
-            {
-                Debug.Log("inside true");
-                if(CreateEnemy)
-                {
-                    if(Enemies.Count < EnemyCount)
-                    {
-                        GameObject enemyPrefab = Instantiate(enemy, spawnPosition.position, spawnPosition.rotation);
-                        enemyPrefab.GetComponent<Enemy>().target = playerRef.transform;
-                        Enemies.Add(enemyPrefab.GetComponent<Enemy>());
-                    }
-                   
-                   // enemys = GameObject.FindGameObjectsWithTag("enemy");
-
-                }
-               
-            }
-            }
-       
-        
-    }*/
-
+  
     public void AttackEnemy()
     {
         attackPlayer=true;
