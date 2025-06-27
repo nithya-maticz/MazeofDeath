@@ -32,6 +32,8 @@ public class ZombieDoor : MonoBehaviour
                         GameObject enemyPrefab = Instantiate(ManagerMaze.instance.enemy, SpawnPoint);
                         enemyPrefab.GetComponent<Enemy>().target = Player.Instance.transform;
                         ManagerMaze.instance.Enemies.Add(enemyPrefab.GetComponent<Enemy>());
+
+                        WaypointAssigner.instance.AssignWaypoints(ManagerMaze.instance.Enemies);
                     }
                 }
             }
