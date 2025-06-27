@@ -4,6 +4,7 @@ using UnityEngine.SceneManagement;
 using System;
 using NUnit.Framework;
 using System.Collections.Generic;
+using TMPro;
 public class ManagerMaze : MonoBehaviour
 {
     public GameObject enemy;
@@ -23,8 +24,11 @@ public class ManagerMaze : MonoBehaviour
     public SpriteRenderer EnemyDoorSprite;
     public SpriteRenderer PlayerDoorSprite;
     public List<ZombieDoor> ZombieDoors;
+    public List<KeyBox> KeyBoxes;
     public Blood BloodPrefab;
     public Transform BloodTransform;
+    int _boxCount;
+    public TMP_Text OpenedBoxText;
 
     [Header("SPRITES")]
     public Sprite SpriteBoxOpen;
@@ -44,7 +48,6 @@ public class ManagerMaze : MonoBehaviour
     public GameObject GameOverPage;
     void Start()
     {
-        
         SpawnEnemy();
         isPlayerGetKey = false;
         isGameOver = false;
@@ -163,6 +166,19 @@ public class ManagerMaze : MonoBehaviour
 
     }
 
+    public void CheckBoxCount()
+    {
+        _boxCount = 0;
+        foreach(KeyBox box in KeyBoxes)
+        {
+           if (box.IsOpened)
+           {
+                _boxCount++;
+           }
+        }
+
+        OpenedBoxText.text = _boxCount.ToString() + "/" +KeyBoxes.Count.ToString();
+    }
 }
 
 

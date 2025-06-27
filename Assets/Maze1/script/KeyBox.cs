@@ -19,10 +19,13 @@ public class KeyBox : MonoBehaviour
     private Coroutine currentCoroutine = null;
     public GameObject CollideCircle;
     public GameObject FillCanvas;
+    public bool IsOpened;
 
     void Start()
     {
         _circleCollider = GetComponent<CircleCollider2D>();
+        ManagerMaze.instance.KeyBoxes.Add(this);
+        ManagerMaze.instance.CheckBoxCount();
     }
 
     void Update()
@@ -35,7 +38,7 @@ public class KeyBox : MonoBehaviour
     {
         if (collision.gameObject.CompareTag("PlayerRange"))
         {
-            
+            Debug.Log("eNTER");
             if (currentCoroutine == null)
             {
                 currentCoroutine = StartCoroutine(OpenBox());
@@ -63,6 +66,7 @@ public class KeyBox : MonoBehaviour
 
     IEnumerator OpenBox()
     {
+        IsOpened = true;
         FillCanvas.SetActive(true);
         CollideCircle.SetActive(true);
         float timer = 0f;
@@ -79,6 +83,7 @@ public class KeyBox : MonoBehaviour
         Debug.Log("Filled");
         BoxOpened();
         currentCoroutine = null;
+        ManagerMaze.instance.CheckBoxCount();
     }
 
     void BoxOpened()
