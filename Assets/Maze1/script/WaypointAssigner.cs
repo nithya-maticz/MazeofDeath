@@ -4,7 +4,7 @@ using UnityEngine;
 public class WaypointAssigner : MonoBehaviour
 {
     public MeshWaypointGenerator2D waypointGenerator;
-    public float minWaypointSpacing = 3f; // Minimum distance between waypoints assigned to different enemies
+    public float minWaypointSpacing = 3f; 
 
     public static WaypointAssigner instance;
 
