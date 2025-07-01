@@ -32,9 +32,13 @@ public class Enemy : MonoBehaviour
     public float checkInterval = 1f; // How often to check for nearest target
     private float timer;
 
-    
 
-
+    [Header("RAYCAST")]
+    [SerializeField] Transform RaycastParent;
+    [SerializeField] float rayLength;
+    [SerializeField]  int rayCount;
+    [SerializeField] float coneAngle;
+    [SerializeField]  LayerMask raycastLayerMask;
 
 
     void Start()
@@ -92,10 +96,32 @@ public class Enemy : MonoBehaviour
         }
     }
 
-   
+    private void FixedUpdate()
+    {
+        Vector2 centerDir = -RaycastParent.up;
+
+        for (int i = 0; i < rayCount; i++)
+        {
+            float angleOffset = Mathf.Lerp(-coneAngle / 2, coneAngle / 2, (float)i / (rayCount - 1));
+            Vector2 dir = Quaternion.Euler(0, 0, angleOffset) * centerDir;
+
+            RaycastHit2D hit = Physics2D.Raycast(RaycastParent.position, dir, rayLength, raycastLayerMask);
+
+            if (hit.collider != null)
+            {
+                
+                Debug.DrawRay(RaycastParent.position, dir * hit.distance, Color.green);
+            }
+            else
+            {
+                
+                Debug.DrawRay(RaycastParent.position, dir * rayLength, Color.red);
+            }
+        }
+    }
 
 
-    
+
 
     public void idleFun()
     {

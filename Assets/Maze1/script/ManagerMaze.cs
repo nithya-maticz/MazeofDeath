@@ -48,6 +48,9 @@ public class ManagerMaze : MonoBehaviour
     public GameObject GameOverPage;
 
     public GameObject PlayerImage;
+
+    [Header("PATROL POINTS")]
+    public List<PatrolPoints> PatrolAreas;
     void Start()
     {
        
@@ -166,3 +169,11 @@ public class ObjectDatas
     public GameObject obj;
 
 }
+
+[Serializable]
+public struct PatrolPoints
+{
+    public string Area;
+    public List<Transform> Points;
+}
+
