@@ -21,6 +21,7 @@ public class Joystick : MonoBehaviour, IPointerDownHandler, IDragHandler, IPoint
     [SerializeField] private AxisOptions axisOptions = AxisOptions.Both;
     [SerializeField] private bool snapX = false;
     [SerializeField] private bool snapY = false;
+    [SerializeField] private float sensitivity = 1.5f;
 
     [SerializeField] protected RectTransform background = null;
     [SerializeField] private RectTransform handle = null;
@@ -34,6 +35,10 @@ public class Joystick : MonoBehaviour, IPointerDownHandler, IDragHandler, IPoint
     private Quaternion targetRotation;
     public float rotationSpeed = 360f; // Degrees per second
     private Transform playerTransform;
+
+    private float currentZ;
+    private float rotationVelocity;
+
 
     protected virtual void Start()
     {
@@ -84,22 +89,54 @@ public class Joystick : MonoBehaviour, IPointerDownHandler, IDragHandler, IPoint
 
             Vector2 dir = handle.anchoredPosition;
 
+            /* if (dir.magnitude > 0.1f)
+             {
+                 if (Mathf.Abs(dir.x) > Mathf.Abs(dir.y))
+                 {
+                     // Horizontal rotation
+                     targetRotation = dir.x > 0 ?
+                         Quaternion.Euler(0f, 0f, 180f) : // Right
+                         Quaternion.Euler(0f, 0f, 0f);   // Left
+                 }
+                 else
+                 {
+                     // Vertical rotation
+                     targetRotation = dir.y > 0 ?
+                         Quaternion.Euler(0f, 0f, 270f) : // Up
+                         Quaternion.Euler(0f, 0f, 90f);   // Down
+                 }
+             }*/
+
             if (dir.magnitude > 0.1f)
             {
-                if (Mathf.Abs(dir.x) > Mathf.Abs(dir.y))
-                {
-                    // Horizontal rotation
-                    targetRotation = dir.x > 0 ?
-                        Quaternion.Euler(0f, 0f, 180f) : // Right
-                        Quaternion.Euler(0f, 0f, 0f);   // Left
-                }
-                else
-                {
-                    // Vertical rotation
-                    targetRotation = dir.y > 0 ?
-                        Quaternion.Euler(0f, 0f, 270f) : // Up
-                        Quaternion.Euler(0f, 0f, 90f);   // Down
-                }
+                float angle = Mathf.Atan2(dir.y, dir.x) * Mathf.Rad2Deg;
+
+
+                // Normalize angle to 0–360
+                if (angle < 0) angle += 360f;
+
+                float snappedAngle = 0f;
+
+                // Snap to 8 directions (every 45 degrees)
+                if (angle >= 337.5f || angle < 22.5f)
+                    snappedAngle = 180f; // Right
+                else if (angle >= 22.5f && angle < 67.5f)
+                    snappedAngle = 225f; // Up-Right
+                else if (angle >= 67.5f && angle < 112.5f)
+                    snappedAngle = 270f; // Up
+                else if (angle >= 112.5f && angle < 157.5f)
+                    snappedAngle = 315f; // Up-Left
+                else if (angle >= 157.5f && angle < 202.5f)
+                    snappedAngle = 0f;   // Left
+                else if (angle >= 202.5f && angle < 247.5f)
+                    snappedAngle = 45f;  // Down-Left
+                else if (angle >= 247.5f && angle < 292.5f)
+                    snappedAngle = 90f;  // Down
+                else if (angle >= 292.5f && angle < 337.5f)
+                    snappedAngle = 135f; // Down-Right
+
+
+                targetRotation = Quaternion.Euler(0f, 0f, snappedAngle);
             }
         }
     }
@@ -113,19 +150,38 @@ public class Joystick : MonoBehaviour, IPointerDownHandler, IDragHandler, IPoint
 
     private void Update()
     {
+        /*if (playerTransform != null && !playerMovement)
+        {
+             playerTransform.localRotation = Quaternion.RotateTowards(
+               playerTransform.localRotation,
+               targetRotation,
+             rotationSpeed * Time.deltaTime
+             );
+ 
+           *//* playerTransform.localRotation = Quaternion.Slerp(
+             playerTransform.localRotation,
+             targetRotation,
+            rotationSpeed * Time.deltaTime / 360f
+            );*//*
+        }*/
         if (playerTransform != null && !playerMovement)
         {
-            playerTransform.localRotation = Quaternion.RotateTowards(
-                playerTransform.localRotation,
-                targetRotation,
-                rotationSpeed * Time.deltaTime
+            float targetZ = targetRotation.eulerAngles.z;
+            float smoothedZ = Mathf.SmoothDampAngle(
+                playerTransform.localEulerAngles.z,
+                targetZ,
+                ref rotationVelocity,
+                0.2f // Smooth time (lower is faster)
             );
+
+            playerTransform.localRotation = Quaternion.Euler(0f, 0f, smoothedZ);
         }
     }
 
     protected virtual void HandleInput(float magnitude, Vector2 normalised, Vector2 radius, Camera cam)
     {
-        input = (magnitude > deadZone) ? (magnitude > 1 ? normalised : input) : Vector2.zero;
+        input = (magnitude > deadZone) ? (magnitude > 1 ? normalised : input * sensitivity) : Vector2.zero;
+        input = Vector2.ClampMagnitude(input, 1f);
     }
 
     private void FormatInput()

@@ -3,6 +3,7 @@ using UnityEngine;
 using System;
 using UnityEngine.AI;
 using TMPro;
+using UnityEngine.UI;
 
 
 
@@ -32,6 +33,9 @@ public class Enemy : MonoBehaviour
     public float checkInterval = 1f; // How often to check for nearest target
     private float timer;
 
+    public Sprite newSprite;
+    public float newAlpha = 0.5f;
+
 
     [Header("RAYCAST")]
     [SerializeField] Transform RaycastParent;
@@ -39,6 +43,7 @@ public class Enemy : MonoBehaviour
     [SerializeField]  int rayCount;
     [SerializeField] float coneAngle;
     [SerializeField]  LayerMask raycastLayerMask;
+    public int count = 1;
 
 
     void Start()
@@ -67,9 +72,11 @@ public class Enemy : MonoBehaviour
 
             if (!Agent.pathPending && Agent.remainingDistance <= Agent.stoppingDistance)
             {
+                
                 if (!Agent.hasPath || Agent.velocity.sqrMagnitude == 0f)
                 {
-                    if(healthCoroutine==null)
+                    Debug.Log("inside ");
+                    if (healthCoroutine == null)
                     {
                         healthCoroutine = StartCoroutine(ReducePlayerHealth(ManagerMaze.instance.playerRef));
                     }
@@ -111,6 +118,7 @@ public class Enemy : MonoBehaviour
             {
                 
                 Debug.DrawRay(RaycastParent.position, dir * hit.distance, Color.green);
+                Debug.Log(hit.collider.gameObject.name);
             }
             else
             {
@@ -144,6 +152,9 @@ public class Enemy : MonoBehaviour
             
             // Clamp to avoid negative health
             targetHealth = Mathf.Max(0, targetHealth);
+           
+       
+
 
             while (elapsed < duration)
             {
@@ -151,6 +162,7 @@ public class Enemy : MonoBehaviour
                 float t = elapsed / duration;
 
                 player.playerHealth = Mathf.Lerp(startHealth, targetHealth, t);
+               // Debug.Log(player.playerHealth);
                 player.playerHealthFill.fillAmount = player.playerHealth;
                 yield return null;
             }
@@ -171,7 +183,11 @@ public class Enemy : MonoBehaviour
         if(collision.gameObject.tag == "PlayerRange")
         {
             target = null;
+            animator.SetTrigger("enemyattack");
+            Attacfun();
             Agent.ResetPath();
+           // Attacfun();
+
             if (healthCoroutine == null)
                 healthCoroutine = StartCoroutine(ReducePlayerHealth(ManagerMaze.instance.playerRef.GetComponent<Player>()));
         }
@@ -194,7 +210,8 @@ public class Enemy : MonoBehaviour
         if (collision.gameObject.tag == "PlayerRange")
         {
             target = ManagerMaze.instance.playerRef.transform;
-           
+            animator.SetTrigger("idle");
+
             if (healthCoroutine != null)
             {
                 ManagerMaze.instance.PlayerImage.GetComponent<SpriteRenderer>().color = Color.white;
@@ -203,7 +220,13 @@ public class Enemy : MonoBehaviour
                 
         }
     }
-
+    public void Attacfun()
+    {
+       
+        count++;
+        Debug.Log("Count" + count);
+        Debug.Log("ATTTTTTTTT");
+    }
     void DeleyPathReset()
     {
         Agent.ResetPath();

@@ -5,6 +5,7 @@ using System;
 using NUnit.Framework;
 using System.Collections.Generic;
 using TMPro;
+using UnityEngine.UI;
 public class ManagerMaze : MonoBehaviour
 {
     public GameObject enemy;
@@ -36,6 +37,11 @@ public class ManagerMaze : MonoBehaviour
     public Sprite DoorOpen;
     public Sprite DoorClose;
 
+    public Sprite damage1;
+    public Sprite damage2;
+    public Sprite damage3;
+    public Sprite damage4;
+
     [Header("TREASURE HANDLE")]
     public Animator TreasureAnimation;
     public GameObject TreasureKey;
@@ -51,6 +57,9 @@ public class ManagerMaze : MonoBehaviour
 
     [Header("PATROL POINTS")]
     public List<PatrolPoints> PatrolAreas;
+
+    public Animator enemyAnimatorRef;
+    public Image bloodImage;
     void Start()
     {
        

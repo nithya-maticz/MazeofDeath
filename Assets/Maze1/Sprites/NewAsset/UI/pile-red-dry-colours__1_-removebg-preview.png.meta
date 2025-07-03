@@ -1,0 +1,4193 @@
+fileFormatVersion: 2
+guid: d0f8997ee45bcd74088364be61cc9ccd
+TextureImporter:
+  internalIDToNameTable:
+  - first:
+      213: -6319291976966758584
+    second: pile-red-dry-colours__1_-removebg-preview_0
+  - first:
+      213: -1223057302647125732
+    second: pile-red-dry-colours__1_-removebg-preview_1
+  - first:
+      213: 7494730892768061498
+    second: pile-red-dry-colours__1_-removebg-preview_2
+  - first:
+      213: 6703133303082222658
+    second: pile-red-dry-colours__1_-removebg-preview_3
+  - first:
+      213: -3364595446919696096
+    second: pile-red-dry-colours__1_-removebg-preview_4
+  - first:
+      213: -9193440611559988037
+    second: pile-red-dry-colours__1_-removebg-preview_5
+  - first:
+      213: 6989609141899071350
+    second: pile-red-dry-colours__1_-removebg-preview_6
+  - first:
+      213: 1425687440372557136
+    second: pile-red-dry-colours__1_-removebg-preview_7
+  - first:
+      213: -3137781832864270278
+    second: pile-red-dry-colours__1_-removebg-preview_8
+  - first:
+      213: 5132789393305083609
+    second: pile-red-dry-colours__1_-removebg-preview_9
+  - first:
+      213: 6215905672252925574
+    second: pile-red-dry-colours__1_-removebg-preview_10
+  - first:
+      213: 4039595537878989274
+    second: pile-red-dry-colours__1_-removebg-preview_11
+  - first:
+      213: -1015086304856883137
+    second: pile-red-dry-colours__1_-removebg-preview_12
+  - first:
+      213: 7990932780883111499
+    second: pile-red-dry-colours__1_-removebg-preview_13
+  - first:
+      213: -3793446122283929025
+    second: pile-red-dry-colours__1_-removebg-preview_14
+  - first:
+      213: -4057486481353512802
+    second: pile-red-dry-colours__1_-removebg-preview_15
+  - first:
+      213: -5019839932748708482
+    second: pile-red-dry-colours__1_-removebg-preview_16
+  - first:
+      213: -8069690763003061505
+    second: pile-red-dry-colours__1_-removebg-preview_17
+  - first:
+      213: 1113318350399414844
+    second: pile-red-dry-colours__1_-removebg-preview_18
+  - first:
+      213: 2068951860924439733
+    second: pile-red-dry-colours__1_-removebg-preview_19
+  - first:
+      213: 8973148656468552291
+    second: pile-red-dry-colours__1_-removebg-preview_20
+  - first:
+      213: -2951321618970458061
+    second: pile-red-dry-colours__1_-removebg-preview_21
+  - first:
+      213: -510273615299062328
+    second: pile-red-dry-colours__1_-removebg-preview_22
+  - first:
+      213: -4646576039098674992
+    second: pile-red-dry-colours__1_-removebg-preview_23
+  - first:
+      213: -5393346635461702314
+    second: pile-red-dry-colours__1_-removebg-preview_24
+  - first:
+      213: -372173668570727054
+    second: pile-red-dry-colours__1_-removebg-preview_25
+  - first:
+      213: -6889267279129306011
+    second: pile-red-dry-colours__1_-removebg-preview_26
+  - first:
+      213: -7229175804849664878
+    second: pile-red-dry-colours__1_-removebg-preview_27
+  - first:
+      213: 6335853371638808274
+    second: pile-red-dry-colours__1_-removebg-preview_28
+  - first:
+      213: 7097975605204534667
+    second: pile-red-dry-colours__1_-removebg-preview_29
+  - first:
+      213: 5903199899437679622
+    second: pile-red-dry-colours__1_-removebg-preview_30
+  - first:
+      213: 113847190853357109
+    second: pile-red-dry-colours__1_-removebg-preview_31
+  - first:
+      213: 7084996611450691631
+    second: pile-red-dry-colours__1_-removebg-preview_32
+  - first:
+      213: -2018996987086121830
+    second: pile-red-dry-colours__1_-removebg-preview_33
+  - first:
+      213: -2201024589041037507
+    second: pile-red-dry-colours__1_-removebg-preview_34
+  - first:
+      213: -6888832637832745727
+    second: pile-red-dry-colours__1_-removebg-preview_35
+  - first:
+      213: 912558461586961926
+    second: pile-red-dry-colours__1_-removebg-preview_36
+  - first:
+      213: 7113912242976166049
+    second: pile-red-dry-colours__1_-removebg-preview_37
+  - first:
+      213: 1917752979954694124
+    second: pile-red-dry-colours__1_-removebg-preview_38
+  - first:
+      213: -3339552169900391342
+    second: pile-red-dry-colours__1_-removebg-preview_39
+  - first:
+      213: 8645342417066181293
+    second: pile-red-dry-colours__1_-removebg-preview_40
+  - first:
+      213: 1224988911574208163
+    second: pile-red-dry-colours__1_-removebg-preview_41
+  - first:
+      213: 5845098888129207467
+    second: pile-red-dry-colours__1_-removebg-preview_42
+  - first:
+      213: -5830357376048725652
+    second: pile-red-dry-colours__1_-removebg-preview_43
+  - first:
+      213: -6028077189438771588
+    second: pile-red-dry-colours__1_-removebg-preview_44
+  - first:
+      213: 2073315986629796408
+    second: pile-red-dry-colours__1_-removebg-preview_45
+  - first:
+      213: 6526963534618665429
+    second: pile-red-dry-colours__1_-removebg-preview_46
+  - first:
+      213: 1760675142205382215
+    second: pile-red-dry-colours__1_-removebg-preview_47
+  - first:
+      213: -2490891073989281172
+    second: pile-red-dry-colours__1_-removebg-preview_48
+  - first:
+      213: 6803507591817747494
+    second: pile-red-dry-colours__1_-removebg-preview_49
+  - first:
+      213: 8090507555370129424
+    second: pile-red-dry-colours__1_-removebg-preview_50
+  - first:
+      213: -7099304930469372454
+    second: pile-red-dry-colours__1_-removebg-preview_51
+  - first:
+      213: -5010275348173179832
+    second: pile-red-dry-colours__1_-removebg-preview_52
+  - first:
+      213: -8886758727181341667
+    second: pile-red-dry-colours__1_-removebg-preview_53
+  - first:
+      213: -1586255055876566556
+    second: pile-red-dry-colours__1_-removebg-preview_54
+  - first:
+      213: 3817223902576047111
+    second: pile-red-dry-colours__1_-removebg-preview_55
+  - first:
+      213: -1214113913656228554
+    second: pile-red-dry-colours__1_-removebg-preview_56
+  - first:
+      213: -6292547077754354362
+    second: pile-red-dry-colours__1_-removebg-preview_57
+  - first:
+      213: -2846499036802461625
+    second: pile-red-dry-colours__1_-removebg-preview_58
+  - first:
+      213: -5686059747903143851
+    second: pile-red-dry-colours__1_-removebg-preview_59
+  - first:
+      213: 3656105129059858841
+    second: pile-red-dry-colours__1_-removebg-preview_60
+  - first:
+      213: -1823684553134495602
+    second: pile-red-dry-colours__1_-removebg-preview_61
+  - first:
+      213: -7996850267689731378
+    second: pile-red-dry-colours__1_-removebg-preview_62
+  - first:
+      213: -3010086011613545161
+    second: pile-red-dry-colours__1_-removebg-preview_63
+  - first:
+      213: -5552461691453770535
+    second: pile-red-dry-colours__1_-removebg-preview_64
+  - first:
+      213: 4647932120311651435
+    second: pile-red-dry-colours__1_-removebg-preview_65
+  - first:
+      213: -7959312647101410654
+    second: pile-red-dry-colours__1_-removebg-preview_66
+  - first:
+      213: 5491356120223364321
+    second: pile-red-dry-colours__1_-removebg-preview_67
+  - first:
+      213: -7577828273661042484
+    second: pile-red-dry-colours__1_-removebg-preview_68
+  - first:
+      213: 4516452120296777933
+    second: pile-red-dry-colours__1_-removebg-preview_69
+  - first:
+      213: -555603539314997043
+    second: pile-red-dry-colours__1_-removebg-preview_70
+  - first:
+      213: 6496132243779057640
+    second: pile-red-dry-colours__1_-removebg-preview_71
+  - first:
+      213: -2958680443756478335
+    second: pile-red-dry-colours__1_-removebg-preview_72
+  - first:
+      213: -5807583740393195557
+    second: pile-red-dry-colours__1_-removebg-preview_73
+  - first:
+      213: -1940559121781012722
+    second: pile-red-dry-colours__1_-removebg-preview_74
+  - first:
+      213: -1759762702210617423
+    second: pile-red-dry-colours__1_-removebg-preview_75
+  - first:
+      213: 5442377215366734412
+    second: pile-red-dry-colours__1_-removebg-preview_76
+  - first:
+      213: 7475707214935543556
+    second: pile-red-dry-colours__1_-removebg-preview_77
+  - first:
+      213: 2530379902586150982
+    second: pile-red-dry-colours__1_-removebg-preview_78
+  - first:
+      213: 5090602256331557960
+    second: pile-red-dry-colours__1_-removebg-preview_79
+  - first:
+      213: -4980918584493415086
+    second: pile-red-dry-colours__1_-removebg-preview_80
+  - first:
+      213: -2976841489494948920
+    second: pile-red-dry-colours__1_-removebg-preview_81
+  - first:
+      213: 8542984345129535807
+    second: pile-red-dry-colours__1_-removebg-preview_82
+  - first:
+      213: -1463758069704869401
+    second: pile-red-dry-colours__1_-removebg-preview_83
+  - first:
+      213: -7877687058019765949
+    second: pile-red-dry-colours__1_-removebg-preview_84
+  - first:
+      213: -7022915916033331247
+    second: pile-red-dry-colours__1_-removebg-preview_85
+  - first:
+      213: 5911389986042791020
+    second: pile-red-dry-colours__1_-removebg-preview_86
+  - first:
+      213: -8455690906438024744
+    second: pile-red-dry-colours__1_-removebg-preview_87
+  - first:
+      213: -7693520399089486211
+    second: pile-red-dry-colours__1_-removebg-preview_88
+  - first:
+      213: -6871241901566907422
+    second: pile-red-dry-colours__1_-removebg-preview_89
+  - first:
+      213: 3432094247970188309
+    second: pile-red-dry-colours__1_-removebg-preview_90
+  - first:
+      213: 8920118060174717637
+    second: pile-red-dry-colours__1_-removebg-preview_91
+  - first:
+      213: 4543281856480805951
+    second: pile-red-dry-colours__1_-removebg-preview_92
+  - first:
+      213: -2052501699384791249
+    second: pile-red-dry-colours__1_-removebg-preview_93
+  - first:
+      213: -2042182459820893110
+    second: pile-red-dry-colours__1_-removebg-preview_94
+  - first:
+      213: 6577801472649669458
+    second: pile-red-dry-colours__1_-removebg-preview_95
+  - first:
+      213: -8367829687710089424
+    second: pile-red-dry-colours__1_-removebg-preview_96
+  - first:
+      213: -442574261216179559
+    second: pile-red-dry-colours__1_-removebg-preview_97
+  - first:
+      213: 1843945435838772576
+    second: pile-red-dry-colours__1_-removebg-preview_98
+  - first:
+      213: 4705119118368246578
+    second: pile-red-dry-colours__1_-removebg-preview_99
+  - first:
+      213: 7287958250443528211
+    second: pile-red-dry-colours__1_-removebg-preview_100
+  - first:
+      213: -76636095764967356
+    second: pile-red-dry-colours__1_-removebg-preview_101
+  - first:
+      213: 6320767205873630937
+    second: pile-red-dry-colours__1_-removebg-preview_102
+  - first:
+      213: 540698286975787738
+    second: pile-red-dry-colours__1_-removebg-preview_103
+  - first:
+      213: 4980428231401491956
+    second: pile-red-dry-colours__1_-removebg-preview_104
+  - first:
+      213: 6850669931142437788
+    second: pile-red-dry-colours__1_-removebg-preview_105
+  - first:
+      213: 641553068908286637
+    second: pile-red-dry-colours__1_-removebg-preview_106
+  - first:
+      213: 4431697926596223536
+    second: pile-red-dry-colours__1_-removebg-preview_107
+  - first:
+      213: 8920112190891398108
+    second: pile-red-dry-colours__1_-removebg-preview_108
+  - first:
+      213: -2693265959577410361
+    second: pile-red-dry-colours__1_-removebg-preview_109
+  - first:
+      213: -8849926146706338188
+    second: pile-red-dry-colours__1_-removebg-preview_110
+  - first:
+      213: -9010611791115308024
+    second: pile-red-dry-colours__1_-removebg-preview_111
+  - first:
+      213: -1222244113424697118
+    second: pile-red-dry-colours__1_-removebg-preview_112
+  - first:
+      213: 7199010713657302414
+    second: pile-red-dry-colours__1_-removebg-preview_113
+  - first:
+      213: 8721158612668758156
+    second: pile-red-dry-colours__1_-removebg-preview_114
+  - first:
+      213: 973203301644451887
+    second: pile-red-dry-colours__1_-removebg-preview_115
+  - first:
+      213: 9189540345588227322
+    second: pile-red-dry-colours__1_-removebg-preview_116
+  - first:
+      213: -6882108141249229940
+    second: pile-red-dry-colours__1_-removebg-preview_117
+  - first:
+      213: 4864313764371260662
+    second: pile-red-dry-colours__1_-removebg-preview_118
+  - first:
+      213: -7480599749281671676
+    second: pile-red-dry-colours__1_-removebg-preview_119
+  - first:
+      213: -4596023715283260320
+    second: pile-red-dry-colours__1_-removebg-preview_120
+  - first:
+      213: -1239934017244861287
+    second: pile-red-dry-colours__1_-removebg-preview_121
+  - first:
+      213: -2430848059069980344
+    second: pile-red-dry-colours__1_-removebg-preview_122
+  - first:
+      213: 5797305418507253629
+    second: pile-red-dry-colours__1_-removebg-preview_123
+  - first:
+      213: 9160705513862536040
+    second: pile-red-dry-colours__1_-removebg-preview_124
+  - first:
+      213: 7310140250649473667
+    second: pile-red-dry-colours__1_-removebg-preview_125
+  - first:
+      213: -7637363783903657946
+    second: pile-red-dry-colours__1_-removebg-preview_126
+  - first:
+      213: -6690227174943703957
+    second: pile-red-dry-colours__1_-removebg-preview_127
+  - first:
+      213: -7394391093622199104
+    second: pile-red-dry-colours__1_-removebg-preview_128
+  - first:
+      213: -1181964334965846811
+    second: pile-red-dry-colours__1_-removebg-preview_129
+  - first:
+      213: -5139232728318416294
+    second: pile-red-dry-colours__1_-removebg-preview_130
+  - first:
+      213: -4515928908803298562
+    second: pile-red-dry-colours__1_-removebg-preview_131
+  - first:
+      213: 5909365084242005002
+    second: pile-red-dry-colours__1_-removebg-preview_132
+  - first:
+      213: -3547599783616463413
+    second: pile-red-dry-colours__1_-removebg-preview_133
+  - first:
+      213: -3383095141881262552
+    second: pile-red-dry-colours__1_-removebg-preview_134
+  - first:
+      213: -1730521391158352371
+    second: pile-red-dry-colours__1_-removebg-preview_135
+  - first:
+      213: -2786625512611817436
+    second: pile-red-dry-colours__1_-removebg-preview_136
+  - first:
+      213: -3384444337013601206
+    second: pile-red-dry-colours__1_-removebg-preview_137
+  - first:
+      213: -7895075671458443962
+    second: pile-red-dry-colours__1_-removebg-preview_138
+  - first:
+      213: -8312167227185860651
+    second: pile-red-dry-colours__1_-removebg-preview_139
+  - first:
+      213: -3914685274906688338
+    second: pile-red-dry-colours__1_-removebg-preview_140
+  - first:
+      213: -6231840062950203247
+    second: pile-red-dry-colours__1_-removebg-preview_141
+  - first:
+      213: -4390747588238860323
+    second: pile-red-dry-colours__1_-removebg-preview_142
+  - first:
+      213: 2608777192613175020
+    second: pile-red-dry-colours__1_-removebg-preview_143
+  - first:
+      213: 2329494661130309839
+    second: pile-red-dry-colours__1_-removebg-preview_144
+  - first:
+      213: -5168901487683004626
+    second: pile-red-dry-colours__1_-removebg-preview_145
+  - first:
+      213: 923865656289189586
+    second: pile-red-dry-colours__1_-removebg-preview_146
+  - first:
+      213: -5360377565105651207
+    second: pile-red-dry-colours__1_-removebg-preview_147
+  - first:
+      213: 8989793622040639934
+    second: pile-red-dry-colours__1_-removebg-preview_148
+  - first:
+      213: 3046400105349659988
+    second: pile-red-dry-colours__1_-removebg-preview_149
+  - first:
+      213: 6923085403354183411
+    second: pile-red-dry-colours__1_-removebg-preview_150
+  - first:
+      213: -351457104027023924
+    second: pile-red-dry-colours__1_-removebg-preview_151
+  - first:
+      213: 1049552468288407395
+    second: pile-red-dry-colours__1_-removebg-preview_152
+  - first:
+      213: 6830906317020896843
+    second: pile-red-dry-colours__1_-removebg-preview_153
+  - first:
+      213: -719215396191044496
+    second: pile-red-dry-colours__1_-removebg-preview_154
+  - first:
+      213: 1452316398321007837
+    second: pile-red-dry-colours__1_-removebg-preview_155
+  - first:
+      213: 7057384375790577445
+    second: pile-red-dry-colours__1_-removebg-preview_156
+  - first:
+      213: -3647405580334002588
+    second: pile-red-dry-colours__1_-removebg-preview_157
+  - first:
+      213: -732433777623075753
+    second: pile-red-dry-colours__1_-removebg-preview_158
+  - first:
+      213: 7534593968255760052
+    second: pile-red-dry-colours__1_-removebg-preview_159
+  - first:
+      213: -4071603090296130717
+    second: pile-red-dry-colours__1_-removebg-preview_160
+  - first:
+      213: 1754359032666732239
+    second: pile-red-dry-colours__1_-removebg-preview_161
+  externalObjects: {}
+  serializedVersion: 13
+  mipmaps:
+    mipMapMode: 0
+    enableMipMap: 0
+    sRGBTexture: 1
+    linearTexture: 0
+    fadeOut: 0
+    borderMipMap: 0
+    mipMapsPreserveCoverage: 0
+    alphaTestReferenceValue: 0.5
+    mipMapFadeDistanceStart: 1
+    mipMapFadeDistanceEnd: 3
+  bumpmap:
+    convertToNormalMap: 0
+    externalNormalMap: 0
+    heightScale: 0.25
+    normalMapFilter: 0
+    flipGreenChannel: 0
+  isReadable: 0
+  streamingMipmaps: 0
+  streamingMipmapsPriority: 0
+  vTOnly: 0
+  ignoreMipmapLimit: 0
+  grayScaleToAlpha: 0
+  generateCubemap: 6
+  cubemapConvolution: 0
+  seamlessCubemap: 0
+  textureFormat: 1
+  maxTextureSize: 2048
+  textureSettings:
+    serializedVersion: 2
+    filterMode: 1
+    aniso: 1
+    mipBias: 0
+    wrapU: 1
+    wrapV: 1
+    wrapW: 1
+  nPOTScale: 0
+  lightmap: 0
+  compressionQuality: 50
+  spriteMode: 2
+  spriteExtrude: 1
+  spriteMeshType: 1
+  alignment: 0
+  spritePivot: {x: 0.5, y: 0.5}
+  spritePixelsToUnits: 100
+  spriteBorder: {x: 0, y: 0, z: 0, w: 0}
+  spriteGenerateFallbackPhysicsShape: 1
+  alphaUsage: 1
+  alphaIsTransparency: 1
+  spriteTessellationDetail: -1
+  textureType: 8
+  textureShape: 1
+  singleChannelComponent: 0
+  flipbookRows: 1
+  flipbookColumns: 1
+  maxTextureSizeSet: 0
+  compressionQualitySet: 0
+  textureFormatSet: 0
+  ignorePngGamma: 0
+  applyGammaDecoding: 0
+  swizzle: 50462976
+  cookieLightType: 0
+  platformSettings:
+  - serializedVersion: 4
+    buildTarget: DefaultTexturePlatform
+    maxTextureSize: 2048
+    resizeAlgorithm: 0
+    textureFormat: -1
+    textureCompression: 1
+    compressionQuality: 50
+    crunchedCompression: 0
+    allowsAlphaSplitting: 0
+    overridden: 0
+    ignorePlatformSupport: 0
+    androidETC2FallbackOverride: 0
+    forceMaximumCompressionQuality_BC6H_BC7: 0
+  - serializedVersion: 4
+    buildTarget: Standalone
+    maxTextureSize: 2048
+    resizeAlgorithm: 0
+    textureFormat: -1
+    textureCompression: 1
+    compressionQuality: 50
+    crunchedCompression: 0
+    allowsAlphaSplitting: 0
+    overridden: 0
+    ignorePlatformSupport: 0
+    androidETC2FallbackOverride: 0
+    forceMaximumCompressionQuality_BC6H_BC7: 0
+  - serializedVersion: 4
+    buildTarget: Android
+    maxTextureSize: 2048
+    resizeAlgorithm: 0
+    textureFormat: -1
+    textureCompression: 1
+    compressionQuality: 50
+    crunchedCompression: 0
+    allowsAlphaSplitting: 0
+    overridden: 0
+    ignorePlatformSupport: 0
+    androidETC2FallbackOverride: 0
+    forceMaximumCompressionQuality_BC6H_BC7: 0
+  - serializedVersion: 4
+    buildTarget: WebGL
+    maxTextureSize: 2048
+    resizeAlgorithm: 0
+    textureFormat: -1
+    textureCompression: 1
+    compressionQuality: 50
+    crunchedCompression: 0
+    allowsAlphaSplitting: 0
+    overridden: 0
+    ignorePlatformSupport: 0
+    androidETC2FallbackOverride: 0
+    forceMaximumCompressionQuality_BC6H_BC7: 0
+  spriteSheet:
+    serializedVersion: 2
+    sprites:
+    - serializedVersion: 2
+      name: pile-red-dry-colours__1_-removebg-preview_0
+      rect:
+        serializedVersion: 2
+        x: 191
+        y: 607
+        width: 20
+        height: 5
+      alignment: 0
+      pivot: {x: 0, y: 0}
+      border: {x: 0, y: 0, z: 0, w: 0}
+      customData: 
+      outline: []
+      physicsShape: []
+      tessellationDetail: -1
+      bones: []
+      spriteID: 84f9be09d6d5d48a0800000000000000
+      internalID: -6319291976966758584
+      vertices: []
+      indices: 
+      edges: []
+      weights: []
+    - serializedVersion: 2
+      name: pile-red-dry-colours__1_-removebg-preview_1
+      rect:
+        serializedVersion: 2
+        x: 208
+        y: 592
+        width: 15
+        height: 14
+      alignment: 0
+      pivot: {x: 0, y: 0}
+      border: {x: 0, y: 0, z: 0, w: 0}
+      customData: 
+      outline: []
+      physicsShape: []
+      tessellationDetail: -1
+      bones: []
+      spriteID: c1945cffcd3d60fe0800000000000000
+      internalID: -1223057302647125732
+      vertices: []
+      indices: 
+      edges: []
+      weights: []
+    - serializedVersion: 2
+      name: pile-red-dry-colours__1_-removebg-preview_2
+      rect:
+        serializedVersion: 2
+        x: 212
+        y: 580
+        width: 9
+        height: 9
+      alignment: 0
+      pivot: {x: 0, y: 0}
+      border: {x: 0, y: 0, z: 0, w: 0}
+      customData: 
+      outline: []
+      physicsShape: []
+      tessellationDetail: -1
+      bones: []
+      spriteID: a382696c902a20860800000000000000
+      internalID: 7494730892768061498
+      vertices: []
+      indices: 
+      edges: []
+      weights: []
+    - serializedVersion: 2
+      name: pile-red-dry-colours__1_-removebg-preview_3
+      rect:
+        serializedVersion: 2
+        x: 52
+        y: 544
+        width: 18
+        height: 31
+      alignment: 0
+      pivot: {x: 0, y: 0}
+      border: {x: 0, y: 0, z: 0, w: 0}
+      customData: 
+      outline: []
+      physicsShape: []
+      tessellationDetail: -1
+      bones: []
+      spriteID: 2448e447930560d50800000000000000
+      internalID: 6703133303082222658
+      vertices: []
+      indices: 
+      edges: []
+      weights: []
+    - serializedVersion: 2
+      name: pile-red-dry-colours__1_-removebg-preview_4
+      rect:
+        serializedVersion: 2
+        x: 213
+        y: 557
+        width: 12
+        height: 17
+      alignment: 0
+      pivot: {x: 0, y: 0}
+      border: {x: 0, y: 0, z: 0, w: 0}
+      customData: 
+      outline: []
+      physicsShape: []
+      tessellationDetail: -1
+      bones: []
+      spriteID: 0217475744e8e41d0800000000000000
+      internalID: -3364595446919696096
+      vertices: []
+      indices: 
+      edges: []
+      weights: []
+    - serializedVersion: 2
+      name: pile-red-dry-colours__1_-removebg-preview_5
+      rect:
+        serializedVersion: 2
+        x: 336
+        y: 566
+        width: 9
+        height: 8
+      alignment: 0
+      pivot: {x: 0, y: 0}
+      border: {x: 0, y: 0, z: 0, w: 0}
+      customData: 
+      outline: []
+      physicsShape: []
+      tessellationDetail: -1
+      bones: []
+      spriteID: bb4215409765a6080800000000000000
+      internalID: -9193440611559988037
+      vertices: []
+      indices: 
+      edges: []
+      weights: []
+    - serializedVersion: 2
+      name: pile-red-dry-colours__1_-removebg-preview_6
+      rect:
+        serializedVersion: 2
+        x: 68
+        y: 548
+        width: 10
+        height: 12
+      alignment: 0
+      pivot: {x: 0, y: 0}
+      border: {x: 0, y: 0, z: 0, w: 0}
+      customData: 
+      outline: []
+      physicsShape: []
+      tessellationDetail: -1
+      bones: []
+      spriteID: 67f87b56b74100160800000000000000
+      internalID: 6989609141899071350
+      vertices: []
+      indices: 
+      edges: []
+      weights: []
+    - serializedVersion: 2
+      name: pile-red-dry-colours__1_-removebg-preview_7
+      rect:
+        serializedVersion: 2
+        x: 85
+        y: 552
+        width: 9
+        height: 6
+      alignment: 0
+      pivot: {x: 0, y: 0}
+      border: {x: 0, y: 0, z: 0, w: 0}
+      customData: 
+      outline: []
+      physicsShape: []
+      tessellationDetail: -1
+      bones: []
+      spriteID: 05564246c2f09c310800000000000000
+      internalID: 1425687440372557136
+      vertices: []
+      indices: 
+      edges: []
+      weights: []
+    - serializedVersion: 2
+      name: pile-red-dry-colours__1_-removebg-preview_8
+      rect:
+        serializedVersion: 2
+        x: 169
+        y: 547
+        width: 46
+        height: 13
+      alignment: 0
+      pivot: {x: 0, y: 0}
+      border: {x: 0, y: 0, z: 0, w: 0}
+      customData: 
+      outline: []
+      physicsShape: []
+      tessellationDetail: -1
+      bones: []
+      spriteID: a3873753c0c5474d0800000000000000
+      internalID: -3137781832864270278
+      vertices: []
+      indices: 
+      edges: []
+      weights: []
+    - serializedVersion: 2
+      name: pile-red-dry-colours__1_-removebg-preview_9
+      rect:
+        serializedVersion: 2
+        x: 214
+        y: 541
+        width: 11
+        height: 17
+      alignment: 0
+      pivot: {x: 0, y: 0}
+      border: {x: 0, y: 0, z: 0, w: 0}
+      customData: 
+      outline: []
+      physicsShape: []
+      tessellationDetail: -1
+      bones: []
+      spriteID: 9de97de22c45b3740800000000000000
+      internalID: 5132789393305083609
+      vertices: []
+      indices: 
+      edges: []
+      weights: []
+    - serializedVersion: 2
+      name: pile-red-dry-colours__1_-removebg-preview_10
+      rect:
+        serializedVersion: 2
+        x: 69
+        y: 449
+        width: 56
+        height: 94
+      alignment: 0
+      pivot: {x: 0, y: 0}
+      border: {x: 0, y: 0, z: 0, w: 0}
+      customData: 
+      outline: []
+      physicsShape: []
+      tessellationDetail: -1
+      bones: []
+      spriteID: 686a8ff8645534650800000000000000
+      internalID: 6215905672252925574
+      vertices: []
+      indices: 
+      edges: []
+      weights: []
+    - serializedVersion: 2
+      name: pile-red-dry-colours__1_-removebg-preview_11
+      rect:
+        serializedVersion: 2
+        x: 209
+        y: 511
+        width: 19
+        height: 15
+      alignment: 0
+      pivot: {x: 0, y: 0}
+      border: {x: 0, y: 0, z: 0, w: 0}
+      customData: 
+      outline: []
+      physicsShape: []
+      tessellationDetail: -1
+      bones: []
+      spriteID: ad9b78f2db68f0830800000000000000
+      internalID: 4039595537878989274
+      vertices: []
+      indices: 
+      edges: []
+      weights: []
+    - serializedVersion: 2
+      name: pile-red-dry-colours__1_-removebg-preview_12
+      rect:
+        serializedVersion: 2
+        x: 218
+        y: 526
+        width: 9
+        height: 13
+      alignment: 0
+      pivot: {x: 0, y: 0}
+      border: {x: 0, y: 0, z: 0, w: 0}
+      customData: 
+      outline: []
+      physicsShape: []
+      tessellationDetail: -1
+      bones: []
+      spriteID: f3044a64260b9e1f0800000000000000
+      internalID: -1015086304856883137
+      vertices: []
+      indices: 
+      edges: []
+      weights: []
+    - serializedVersion: 2
+      name: pile-red-dry-colours__1_-removebg-preview_13
+      rect:
+        serializedVersion: 2
+        x: 287
+        y: 511
+        width: 29
+        height: 27
+      alignment: 0
+      pivot: {x: 0, y: 0}
+      border: {x: 0, y: 0, z: 0, w: 0}
+      customData: 
+      outline: []
+      physicsShape: []
+      tessellationDetail: -1
+      bones: []
+      spriteID: b4eef84c60f75ee60800000000000000
+      internalID: 7990932780883111499
+      vertices: []
+      indices: 
+      edges: []
+      weights: []
+    - serializedVersion: 2
+      name: pile-red-dry-colours__1_-removebg-preview_14
+      rect:
+        serializedVersion: 2
+        x: 134
+        y: 510
+        width: 6
+        height: 6
+      alignment: 0
+      pivot: {x: 0, y: 0}
+      border: {x: 0, y: 0, z: 0, w: 0}
+      customData: 
+      outline: []
+      physicsShape: []
+      tessellationDetail: -1
+      bones: []
+      spriteID: f32feaea9d8fa5bc0800000000000000
+      internalID: -3793446122283929025
+      vertices: []
+      indices: 
+      edges: []
+      weights: []
+    - serializedVersion: 2
+      name: pile-red-dry-colours__1_-removebg-preview_15
+      rect:
+        serializedVersion: 2
+        x: 280
+        y: 493
+        width: 11
+        height: 17
+      alignment: 0
+      pivot: {x: 0, y: 0}
+      border: {x: 0, y: 0, z: 0, w: 0}
+      customData: 
+      outline: []
+      physicsShape: []
+      tessellationDetail: -1
+      bones: []
+      spriteID: e9869fdea89e0b7c0800000000000000
+      internalID: -4057486481353512802
+      vertices: []
+      indices: 
+      edges: []
+      weights: []
+    - serializedVersion: 2
+      name: pile-red-dry-colours__1_-removebg-preview_16
+      rect:
+        serializedVersion: 2
+        x: 66
+        y: 493
+        width: 6
+        height: 6
+      alignment: 0
+      pivot: {x: 0, y: 0}
+      border: {x: 0, y: 0, z: 0, w: 0}
+      customData: 
+      outline: []
+      physicsShape: []
+      tessellationDetail: -1
+      bones: []
+      spriteID: e75413b6d22f55ab0800000000000000
+      internalID: -5019839932748708482
+      vertices: []
+      indices: 
+      edges: []
+      weights: []
+    - serializedVersion: 2
+      name: pile-red-dry-colours__1_-removebg-preview_17
+      rect:
+        serializedVersion: 2
+        x: 188
+        y: 493
+        width: 6
+        height: 6
+      alignment: 0
+      pivot: {x: 0, y: 0}
+      border: {x: 0, y: 0, z: 0, w: 0}
+      customData: 
+      outline: []
+      physicsShape: []
+      tessellationDetail: -1
+      bones: []
+      spriteID: ffa93ff8103b20090800000000000000
+      internalID: -8069690763003061505
+      vertices: []
+      indices: 
+      edges: []
+      weights: []
+    - serializedVersion: 2
+      name: pile-red-dry-colours__1_-removebg-preview_18
+      rect:
+        serializedVersion: 2
+        x: 216
+        y: 497
+        width: 8
+        height: 11
+      alignment: 0
+      pivot: {x: 0, y: 0}
+      border: {x: 0, y: 0, z: 0, w: 0}
+      customData: 
+      outline: []
+      physicsShape: []
+      tessellationDetail: -1
+      bones: []
+      spriteID: c322b7d142d437f00800000000000000
+      internalID: 1113318350399414844
+      vertices: []
+      indices: 
+      edges: []
+      weights: []
+    - serializedVersion: 2
+      name: pile-red-dry-colours__1_-removebg-preview_19
+      rect:
+        serializedVersion: 2
+        x: 218
+        y: 484
+        width: 11
+        height: 12
+      alignment: 0
+      pivot: {x: 0, y: 0}
+      border: {x: 0, y: 0, z: 0, w: 0}
+      customData: 
+      outline: []
+      physicsShape: []
+      tessellationDetail: -1
+      bones: []
+      spriteID: 5bcd8c771c466bc10800000000000000
+      internalID: 2068951860924439733
+      vertices: []
+      indices: 
+      edges: []
+      weights: []
+    - serializedVersion: 2
+      name: pile-red-dry-colours__1_-removebg-preview_20
+      rect:
+        serializedVersion: 2
+        x: 281
+        y: 485
+        width: 9
+        height: 8
+      alignment: 0
+      pivot: {x: 0, y: 0}
+      border: {x: 0, y: 0, z: 0, w: 0}
+      customData: 
+      outline: []
+      physicsShape: []
+      tessellationDetail: -1
+      bones: []
+      spriteID: 36ae4994927078c70800000000000000
+      internalID: 8973148656468552291
+      vertices: []
+      indices: 
+      edges: []
+      weights: []
+    - serializedVersion: 2
+      name: pile-red-dry-colours__1_-removebg-preview_21
+      rect:
+        serializedVersion: 2
+        x: 318
+        y: 493
+        width: 33
+        height: 14
+      alignment: 0
+      pivot: {x: 0, y: 0}
+      border: {x: 0, y: 0, z: 0, w: 0}
+      customData: 
+      outline: []
+      physicsShape: []
+      tessellationDetail: -1
+      bones: []
+      spriteID: 338c553df9cca07d0800000000000000
+      internalID: -2951321618970458061
+      vertices: []
+      indices: 
+      edges: []
+      weights: []
+    - serializedVersion: 2
+      name: pile-red-dry-colours__1_-removebg-preview_22
+      rect:
+        serializedVersion: 2
+        x: 121
+        y: 466
+        width: 13
+        height: 15
+      alignment: 0
+      pivot: {x: 0, y: 0}
+      border: {x: 0, y: 0, z: 0, w: 0}
+      customData: 
+      outline: []
+      physicsShape: []
+      tessellationDetail: -1
+      bones: []
+      spriteID: 8c558d5b9d42be8f0800000000000000
+      internalID: -510273615299062328
+      vertices: []
+      indices: 
+      edges: []
+      weights: []
+    - serializedVersion: 2
+      name: pile-red-dry-colours__1_-removebg-preview_23
+      rect:
+        serializedVersion: 2
+        x: 210
+        y: 477
+        width: 7
+        height: 12
+      alignment: 0
+      pivot: {x: 0, y: 0}
+      border: {x: 0, y: 0, z: 0, w: 0}
+      customData: 
+      outline: []
+      physicsShape: []
+      tessellationDetail: -1
+      bones: []
+      spriteID: 0d09ea706bb048fb0800000000000000
+      internalID: -4646576039098674992
+      vertices: []
+      indices: 
+      edges: []
+      weights: []
+    - serializedVersion: 2
+      name: pile-red-dry-colours__1_-removebg-preview_24
+      rect:
+        serializedVersion: 2
+        x: 302
+        y: 471
+        width: 11
+        height: 15
+      alignment: 0
+      pivot: {x: 0, y: 0}
+      border: {x: 0, y: 0, z: 0, w: 0}
+      customData: 
+      outline: []
+      physicsShape: []
+      tessellationDetail: -1
+      bones: []
+      spriteID: 65dc1ca6fcbf625b0800000000000000
+      internalID: -5393346635461702314
+      vertices: []
+      indices: 
+      edges: []
+      weights: []
+    - serializedVersion: 2
+      name: pile-red-dry-colours__1_-removebg-preview_25
+      rect:
+        serializedVersion: 2
+        x: 108
+        y: 438
+        width: 22
+        height: 25
+      alignment: 0
+      pivot: {x: 0, y: 0}
+      border: {x: 0, y: 0, z: 0, w: 0}
+      customData: 
+      outline: []
+      physicsShape: []
+      tessellationDetail: -1
+      bones: []
+      spriteID: 27d76123506c5daf0800000000000000
+      internalID: -372173668570727054
+      vertices: []
+      indices: 
+      edges: []
+      weights: []
+    - serializedVersion: 2
+      name: pile-red-dry-colours__1_-removebg-preview_26
+      rect:
+        serializedVersion: 2
+        x: 215
+        y: 461
+        width: 10
+        height: 11
+      alignment: 0
+      pivot: {x: 0, y: 0}
+      border: {x: 0, y: 0, z: 0, w: 0}
+      customData: 
+      outline: []
+      physicsShape: []
+      tessellationDetail: -1
+      bones: []
+      spriteID: 56c96c819e76460a0800000000000000
+      internalID: -6889267279129306011
+      vertices: []
+      indices: 
+      edges: []
+      weights: []
+    - serializedVersion: 2
+      name: pile-red-dry-colours__1_-removebg-preview_27
+      rect:
+        serializedVersion: 2
+        x: 219
+        y: 461
+        width: 16
+        height: 15
+      alignment: 0
+      pivot: {x: 0, y: 0}
+      border: {x: 0, y: 0, z: 0, w: 0}
+      customData: 
+      outline: []
+      physicsShape: []
+      tessellationDetail: -1
+      bones: []
+      spriteID: 29c461548eeccab90800000000000000
+      internalID: -7229175804849664878
+      vertices: []
+      indices: 
+      edges: []
+      weights: []
+    - serializedVersion: 2
+      name: pile-red-dry-colours__1_-removebg-preview_28
+      rect:
+        serializedVersion: 2
+        x: 220
+        y: 455
+        width: 7
+        height: 7
+      alignment: 0
+      pivot: {x: 0, y: 0}
+      border: {x: 0, y: 0, z: 0, w: 0}
+      customData: 
+      outline: []
+      physicsShape: []
+      tessellationDetail: -1
+      bones: []
+      spriteID: 2defd7d92197de750800000000000000
+      internalID: 6335853371638808274
+      vertices: []
+      indices: 
+      edges: []
+      weights: []
+    - serializedVersion: 2
+      name: pile-red-dry-colours__1_-removebg-preview_29
+      rect:
+        serializedVersion: 2
+        x: 279
+        y: 460
+        width: 13
+        height: 12
+      alignment: 0
+      pivot: {x: 0, y: 0}
+      border: {x: 0, y: 0, z: 0, w: 0}
+      customData: 
+      outline: []
+      physicsShape: []
+      tessellationDetail: -1
+      bones: []
+      spriteID: b85ca9cc433118260800000000000000
+      internalID: 7097975605204534667
+      vertices: []
+      indices: 
+      edges: []
+      weights: []
+    - serializedVersion: 2
+      name: pile-red-dry-colours__1_-removebg-preview_30
+      rect:
+        serializedVersion: 2
+        x: 299
+        y: 449
+        width: 9
+        height: 13
+      alignment: 0
+      pivot: {x: 0, y: 0}
+      border: {x: 0, y: 0, z: 0, w: 0}
+      customData: 
+      outline: []
+      physicsShape: []
+      tessellationDetail: -1
+      bones: []
+      spriteID: 604ca1438016ce150800000000000000
+      internalID: 5903199899437679622
+      vertices: []
+      indices: 
+      edges: []
+      weights: []
+    - serializedVersion: 2
+      name: pile-red-dry-colours__1_-removebg-preview_31
+      rect:
+        serializedVersion: 2
+        x: 128
+        y: 448
+        width: 7
+        height: 6
+      alignment: 0
+      pivot: {x: 0, y: 0}
+      border: {x: 0, y: 0, z: 0, w: 0}
+      customData: 
+      outline: []
+      physicsShape: []
+      tessellationDetail: -1
+      bones: []
+      spriteID: 53e8d79ba67749100800000000000000
+      internalID: 113847190853357109
+      vertices: []
+      indices: 
+      edges: []
+      weights: []
+    - serializedVersion: 2
+      name: pile-red-dry-colours__1_-removebg-preview_32
+      rect:
+        serializedVersion: 2
+        x: 136
+        y: 440
+        width: 10
+        height: 13
+      alignment: 0
+      pivot: {x: 0, y: 0}
+      border: {x: 0, y: 0, z: 0, w: 0}
+      customData: 
+      outline: []
+      physicsShape: []
+      tessellationDetail: -1
+      bones: []
+      spriteID: f206d5451e6f25260800000000000000
+      internalID: 7084996611450691631
+      vertices: []
+      indices: 
+      edges: []
+      weights: []
+    - serializedVersion: 2
+      name: pile-red-dry-colours__1_-removebg-preview_33
+      rect:
+        serializedVersion: 2
+        x: 137
+        y: 451
+        width: 8
+        height: 7
+      alignment: 0
+      pivot: {x: 0, y: 0}
+      border: {x: 0, y: 0, z: 0, w: 0}
+      customData: 
+      outline: []
+      physicsShape: []
+      tessellationDetail: -1
+      bones: []
+      spriteID: a94d526ffe41bf3e0800000000000000
+      internalID: -2018996987086121830
+      vertices: []
+      indices: 
+      edges: []
+      weights: []
+    - serializedVersion: 2
+      name: pile-red-dry-colours__1_-removebg-preview_34
+      rect:
+        serializedVersion: 2
+        x: 219
+        y: 434
+        width: 16
+        height: 22
+      alignment: 0
+      pivot: {x: 0, y: 0}
+      border: {x: 0, y: 0, z: 0, w: 0}
+      customData: 
+      outline: []
+      physicsShape: []
+      tessellationDetail: -1
+      bones: []
+      spriteID: d3f0f4c3cc36471e0800000000000000
+      internalID: -2201024589041037507
+      vertices: []
+      indices: 
+      edges: []
+      weights: []
+    - serializedVersion: 2
+      name: pile-red-dry-colours__1_-removebg-preview_35
+      rect:
+        serializedVersion: 2
+        x: 275
+        y: 443
+        width: 12
+        height: 14
+      alignment: 0
+      pivot: {x: 0, y: 0}
+      border: {x: 0, y: 0, z: 0, w: 0}
+      customData: 
+      outline: []
+      physicsShape: []
+      tessellationDetail: -1
+      bones: []
+      spriteID: 10dacd8e633f560a0800000000000000
+      internalID: -6888832637832745727
+      vertices: []
+      indices: 
+      edges: []
+      weights: []
+    - serializedVersion: 2
+      name: pile-red-dry-colours__1_-removebg-preview_36
+      rect:
+        serializedVersion: 2
+        x: 312
+        y: 446
+        width: 20
+        height: 14
+      alignment: 0
+      pivot: {x: 0, y: 0}
+      border: {x: 0, y: 0, z: 0, w: 0}
+      customData: 
+      outline: []
+      physicsShape: []
+      tessellationDetail: -1
+      bones: []
+      spriteID: 606faabf51f0aac00800000000000000
+      internalID: 912558461586961926
+      vertices: []
+      indices: 
+      edges: []
+      weights: []
+    - serializedVersion: 2
+      name: pile-red-dry-colours__1_-removebg-preview_37
+      rect:
+        serializedVersion: 2
+        x: 54
+        y: 436
+        width: 7
+        height: 9
+      alignment: 0
+      pivot: {x: 0, y: 0}
+      border: {x: 0, y: 0, z: 0, w: 0}
+      customData: 
+      outline: []
+      physicsShape: []
+      tessellationDetail: -1
+      bones: []
+      spriteID: 1a095ed6e71b9b260800000000000000
+      internalID: 7113912242976166049
+      vertices: []
+      indices: 
+      edges: []
+      weights: []
+    - serializedVersion: 2
+      name: pile-red-dry-colours__1_-removebg-preview_38
+      rect:
+        serializedVersion: 2
+        x: 61
+        y: 435
+        width: 6
+        height: 6
+      alignment: 0
+      pivot: {x: 0, y: 0}
+      border: {x: 0, y: 0, z: 0, w: 0}
+      customData: 
+      outline: []
+      physicsShape: []
+      tessellationDetail: -1
+      bones: []
+      spriteID: ce77521bc2a3d9a10800000000000000
+      internalID: 1917752979954694124
+      vertices: []
+      indices: 
+      edges: []
+      weights: []
+    - serializedVersion: 2
+      name: pile-red-dry-colours__1_-removebg-preview_39
+      rect:
+        serializedVersion: 2
+        x: 125
+        y: 433
+        width: 9
+        height: 15
+      alignment: 0
+      pivot: {x: 0, y: 0}
+      border: {x: 0, y: 0, z: 0, w: 0}
+      customData: 
+      outline: []
+      physicsShape: []
+      tessellationDetail: -1
+      bones: []
+      spriteID: 254c334cef687a1d0800000000000000
+      internalID: -3339552169900391342
+      vertices: []
+      indices: 
+      edges: []
+      weights: []
+    - serializedVersion: 2
+      name: pile-red-dry-colours__1_-removebg-preview_40
+      rect:
+        serializedVersion: 2
+        x: 132
+        y: 430
+        width: 7
+        height: 7
+      alignment: 0
+      pivot: {x: 0, y: 0}
+      border: {x: 0, y: 0, z: 0, w: 0}
+      customData: 
+      outline: []
+      physicsShape: []
+      tessellationDetail: -1
+      bones: []
+      spriteID: da2c8d29f1d6af770800000000000000
+      internalID: 8645342417066181293
+      vertices: []
+      indices: 
+      edges: []
+      weights: []
+    - serializedVersion: 2
+      name: pile-red-dry-colours__1_-removebg-preview_41
+      rect:
+        serializedVersion: 2
+        x: 150
+        y: 434
+        width: 10
+        height: 15
+      alignment: 0
+      pivot: {x: 0, y: 0}
+      border: {x: 0, y: 0, z: 0, w: 0}
+      customData: 
+      outline: []
+      physicsShape: []
+      tessellationDetail: -1
+      bones: []
+      spriteID: 3ae4c20cce8000110800000000000000
+      internalID: 1224988911574208163
+      vertices: []
+      indices: 
+      edges: []
+      weights: []
+    - serializedVersion: 2
+      name: pile-red-dry-colours__1_-removebg-preview_42
+      rect:
+        serializedVersion: 2
+        x: 228
+        y: 431
+        width: 9
+        height: 9
+      alignment: 0
+      pivot: {x: 0, y: 0}
+      border: {x: 0, y: 0, z: 0, w: 0}
+      customData: 
+      outline: []
+      physicsShape: []
+      tessellationDetail: -1
+      bones: []
+      spriteID: bacd8f75876fd1150800000000000000
+      internalID: 5845098888129207467
+      vertices: []
+      indices: 
+      edges: []
+      weights: []
+    - serializedVersion: 2
+      name: pile-red-dry-colours__1_-removebg-preview_43
+      rect:
+        serializedVersion: 2
+        x: 245
+        y: 436
+        width: 6
+        height: 8
+      alignment: 0
+      pivot: {x: 0, y: 0}
+      border: {x: 0, y: 0, z: 0, w: 0}
+      customData: 
+      outline: []
+      physicsShape: []
+      tessellationDetail: -1
+      bones: []
+      spriteID: c6189076bd8661fa0800000000000000
+      internalID: -5830357376048725652
+      vertices: []
+      indices: 
+      edges: []
+      weights: []
+    - serializedVersion: 2
+      name: pile-red-dry-colours__1_-removebg-preview_44
+      rect:
+        serializedVersion: 2
+        x: 262
+        y: 404
+        width: 27
+        height: 38
+      alignment: 0
+      pivot: {x: 0, y: 0}
+      border: {x: 0, y: 0, z: 0, w: 0}
+      customData: 
+      outline: []
+      physicsShape: []
+      tessellationDetail: -1
+      bones: []
+      spriteID: c7eeddcfbb7f75ca0800000000000000
+      internalID: -6028077189438771588
+      vertices: []
+      indices: 
+      edges: []
+      weights: []
+    - serializedVersion: 2
+      name: pile-red-dry-colours__1_-removebg-preview_45
+      rect:
+        serializedVersion: 2
+        x: 300
+        y: 430
+        width: 11
+        height: 9
+      alignment: 0
+      pivot: {x: 0, y: 0}
+      border: {x: 0, y: 0, z: 0, w: 0}
+      customData: 
+      outline: []
+      physicsShape: []
+      tessellationDetail: -1
+      bones: []
+      spriteID: 832253aa7e5e5cc10800000000000000
+      internalID: 2073315986629796408
+      vertices: []
+      indices: 
+      edges: []
+      weights: []
+    - serializedVersion: 2
+      name: pile-red-dry-colours__1_-removebg-preview_46
+      rect:
+        serializedVersion: 2
+        x: 310
+        y: 429
+        width: 7
+        height: 12
+      alignment: 0
+      pivot: {x: 0, y: 0}
+      border: {x: 0, y: 0, z: 0, w: 0}
+      customData: 
+      outline: []
+      physicsShape: []
+      tessellationDetail: -1
+      bones: []
+      spriteID: 5d1afded0ce649a50800000000000000
+      internalID: 6526963534618665429
+      vertices: []
+      indices: 
+      edges: []
+      weights: []
+    - serializedVersion: 2
+      name: pile-red-dry-colours__1_-removebg-preview_47
+      rect:
+        serializedVersion: 2
+        x: 50
+        y: 409
+        width: 17
+        height: 13
+      alignment: 0
+      pivot: {x: 0, y: 0}
+      border: {x: 0, y: 0, z: 0, w: 0}
+      customData: 
+      outline: []
+      physicsShape: []
+      tessellationDetail: -1
+      bones: []
+      spriteID: 74e1300a6bc2f6810800000000000000
+      internalID: 1760675142205382215
+      vertices: []
+      indices: 
+      edges: []
+      weights: []
+    - serializedVersion: 2
+      name: pile-red-dry-colours__1_-removebg-preview_48
+      rect:
+        serializedVersion: 2
+        x: 81
+        y: 402
+        width: 19
+        height: 18
+      alignment: 0
+      pivot: {x: 0, y: 0}
+      border: {x: 0, y: 0, z: 0, w: 0}
+      customData: 
+      outline: []
+      physicsShape: []
+      tessellationDetail: -1
+      bones: []
+      spriteID: c6a7da8f3c39e6dd0800000000000000
+      internalID: -2490891073989281172
+      vertices: []
+      indices: 
+      edges: []
+      weights: []
+    - serializedVersion: 2
+      name: pile-red-dry-colours__1_-removebg-preview_49
+      rect:
+        serializedVersion: 2
+        x: 102
+        y: 395
+        width: 44
+        height: 36
+      alignment: 0
+      pivot: {x: 0, y: 0}
+      border: {x: 0, y: 0, z: 0, w: 0}
+      customData: 
+      outline: []
+      physicsShape: []
+      tessellationDetail: -1
+      bones: []
+      spriteID: 62c58f4bb1aea6e50800000000000000
+      internalID: 6803507591817747494
+      vertices: []
+      indices: 
+      edges: []
+      weights: []
+    - serializedVersion: 2
+      name: pile-red-dry-colours__1_-removebg-preview_50
+      rect:
+        serializedVersion: 2
+        x: 148
+        y: 403
+        width: 17
+        height: 14
+      alignment: 0
+      pivot: {x: 0, y: 0}
+      border: {x: 0, y: 0, z: 0, w: 0}
+      customData: 
+      outline: []
+      physicsShape: []
+      tessellationDetail: -1
+      bones: []
+      spriteID: 018537a91c1474070800000000000000
+      internalID: 8090507555370129424
+      vertices: []
+      indices: 
+      edges: []
+      weights: []
+    - serializedVersion: 2
+      name: pile-red-dry-colours__1_-removebg-preview_51
+      rect:
+        serializedVersion: 2
+        x: 152
+        y: 414
+        width: 14
+        height: 15
+      alignment: 0
+      pivot: {x: 0, y: 0}
+      border: {x: 0, y: 0, z: 0, w: 0}
+      customData: 
+      outline: []
+      physicsShape: []
+      tessellationDetail: -1
+      bones: []
+      spriteID: add913b87c33a7d90800000000000000
+      internalID: -7099304930469372454
+      vertices: []
+      indices: 
+      edges: []
+      weights: []
+    - serializedVersion: 2
+      name: pile-red-dry-colours__1_-removebg-preview_52
+      rect:
+        serializedVersion: 2
+        x: 163
+        y: 404
+        width: 7
+        height: 13
+      alignment: 0
+      pivot: {x: 0, y: 0}
+      border: {x: 0, y: 0, z: 0, w: 0}
+      customData: 
+      outline: []
+      physicsShape: []
+      tessellationDetail: -1
+      bones: []
+      spriteID: 844bd3dcd1de77ab0800000000000000
+      internalID: -5010275348173179832
+      vertices: []
+      indices: 
+      edges: []
+      weights: []
+    - serializedVersion: 2
+      name: pile-red-dry-colours__1_-removebg-preview_53
+      rect:
+        serializedVersion: 2
+        x: 179
+        y: 416
+        width: 9
+        height: 7
+      alignment: 0
+      pivot: {x: 0, y: 0}
+      border: {x: 0, y: 0, z: 0, w: 0}
+      customData: 
+      outline: []
+      physicsShape: []
+      tessellationDetail: -1
+      bones: []
+      spriteID: d1ce0cd8504eba480800000000000000
+      internalID: -8886758727181341667
+      vertices: []
+      indices: 
+      edges: []
+      weights: []
+    - serializedVersion: 2
+      name: pile-red-dry-colours__1_-removebg-preview_54
+      rect:
+        serializedVersion: 2
+        x: 187
+        y: 391
+        width: 23
+        height: 24
+      alignment: 0
+      pivot: {x: 0, y: 0}
+      border: {x: 0, y: 0, z: 0, w: 0}
+      customData: 
+      outline: []
+      physicsShape: []
+      tessellationDetail: -1
+      bones: []
+      spriteID: 4e15f475e6d7cf9e0800000000000000
+      internalID: -1586255055876566556
+      vertices: []
+      indices: 
+      edges: []
+      weights: []
+    - serializedVersion: 2
+      name: pile-red-dry-colours__1_-removebg-preview_55
+      rect:
+        serializedVersion: 2
+        x: 191
+        y: 415
+        width: 7
+        height: 9
+      alignment: 0
+      pivot: {x: 0, y: 0}
+      border: {x: 0, y: 0, z: 0, w: 0}
+      customData: 
+      outline: []
+      physicsShape: []
+      tessellationDetail: -1
+      bones: []
+      spriteID: 704fc253ae089f430800000000000000
+      internalID: 3817223902576047111
+      vertices: []
+      indices: 
+      edges: []
+      weights: []
+    - serializedVersion: 2
+      name: pile-red-dry-colours__1_-removebg-preview_56
+      rect:
+        serializedVersion: 2
+        x: 212
+        y: 411
+        width: 13
+        height: 12
+      alignment: 0
+      pivot: {x: 0, y: 0}
+      border: {x: 0, y: 0, z: 0, w: 0}
+      customData: 
+      outline: []
+      physicsShape: []
+      tessellationDetail: -1
+      bones: []
+      spriteID: 63549a304d9962fe0800000000000000
+      internalID: -1214113913656228554
+      vertices: []
+      indices: 
+      edges: []
+      weights: []
+    - serializedVersion: 2
+      name: pile-red-dry-colours__1_-removebg-preview_57
+      rect:
+        serializedVersion: 2
+        x: 212
+        y: 394
+        width: 11
+        height: 20
+      alignment: 0
+      pivot: {x: 0, y: 0}
+      border: {x: 0, y: 0, z: 0, w: 0}
+      customData: 
+      outline: []
+      physicsShape: []
+      tessellationDetail: -1
+      bones: []
+      spriteID: 645870aa5c16ca8a0800000000000000
+      internalID: -6292547077754354362
+      vertices: []
+      indices: 
+      edges: []
+      weights: []
+    - serializedVersion: 2
+      name: pile-red-dry-colours__1_-removebg-preview_58
+      rect:
+        serializedVersion: 2
+        x: 226
+        y: 415
+        width: 12
+        height: 13
+      alignment: 0
+      pivot: {x: 0, y: 0}
+      border: {x: 0, y: 0, z: 0, w: 0}
+      customData: 
+      outline: []
+      physicsShape: []
+      tessellationDetail: -1
+      bones: []
+      spriteID: 740d5e915343f78d0800000000000000
+      internalID: -2846499036802461625
+      vertices: []
+      indices: 
+      edges: []
+      weights: []
+    - serializedVersion: 2
+      name: pile-red-dry-colours__1_-removebg-preview_59
+      rect:
+        serializedVersion: 2
+        x: 243
+        y: 407
+        width: 9
+        height: 10
+      alignment: 0
+      pivot: {x: 0, y: 0}
+      border: {x: 0, y: 0, z: 0, w: 0}
+      customData: 
+      outline: []
+      physicsShape: []
+      tessellationDetail: -1
+      bones: []
+      spriteID: 550069a09ce0711b0800000000000000
+      internalID: -5686059747903143851
+      vertices: []
+      indices: 
+      edges: []
+      weights: []
+    - serializedVersion: 2
+      name: pile-red-dry-colours__1_-removebg-preview_60
+      rect:
+        serializedVersion: 2
+        x: 294
+        y: 414
+        width: 12
+        height: 15
+      alignment: 0
+      pivot: {x: 0, y: 0}
+      border: {x: 0, y: 0, z: 0, w: 0}
+      customData: 
+      outline: []
+      physicsShape: []
+      tessellationDetail: -1
+      bones: []
+      spriteID: 999b8177e381db230800000000000000
+      internalID: 3656105129059858841
+      vertices: []
+      indices: 
+      edges: []
+      weights: []
+    - serializedVersion: 2
+      name: pile-red-dry-colours__1_-removebg-preview_61
+      rect:
+        serializedVersion: 2
+        x: 155
+        y: 395
+        width: 11
+        height: 10
+      alignment: 0
+      pivot: {x: 0, y: 0}
+      border: {x: 0, y: 0, z: 0, w: 0}
+      customData: 
+      outline: []
+      physicsShape: []
+      tessellationDetail: -1
+      bones: []
+      spriteID: e882d0caf88f0b6e0800000000000000
+      internalID: -1823684553134495602
+      vertices: []
+      indices: 
+      edges: []
+      weights: []
+    - serializedVersion: 2
+      name: pile-red-dry-colours__1_-removebg-preview_62
+      rect:
+        serializedVersion: 2
+        x: 250
+        y: 393
+        width: 10
+        height: 8
+      alignment: 0
+      pivot: {x: 0, y: 0}
+      border: {x: 0, y: 0, z: 0, w: 0}
+      customData: 
+      outline: []
+      physicsShape: []
+      tessellationDetail: -1
+      bones: []
+      spriteID: ecabd58fc0b750190800000000000000
+      internalID: -7996850267689731378
+      vertices: []
+      indices: 
+      edges: []
+      weights: []
+    - serializedVersion: 2
+      name: pile-red-dry-colours__1_-removebg-preview_63
+      rect:
+        serializedVersion: 2
+        x: 269
+        y: 395
+        width: 11
+        height: 7
+      alignment: 0
+      pivot: {x: 0, y: 0}
+      border: {x: 0, y: 0, z: 0, w: 0}
+      customData: 
+      outline: []
+      physicsShape: []
+      tessellationDetail: -1
+      bones: []
+      spriteID: 73df66678b60a36d0800000000000000
+      internalID: -3010086011613545161
+      vertices: []
+      indices: 
+      edges: []
+      weights: []
+    - serializedVersion: 2
+      name: pile-red-dry-colours__1_-removebg-preview_64
+      rect:
+        serializedVersion: 2
+        x: 280
+        y: 387
+        width: 20
+        height: 21
+      alignment: 0
+      pivot: {x: 0, y: 0}
+      border: {x: 0, y: 0, z: 0, w: 0}
+      customData: 
+      outline: []
+      physicsShape: []
+      tessellationDetail: -1
+      bones: []
+      spriteID: 9d4fee38281b1f2b0800000000000000
+      internalID: -5552461691453770535
+      vertices: []
+      indices: 
+      edges: []
+      weights: []
+    - serializedVersion: 2
+      name: pile-red-dry-colours__1_-removebg-preview_65
+      rect:
+        serializedVersion: 2
+        x: 358
+        y: 398
+        width: 26
+        height: 13
+      alignment: 0
+      pivot: {x: 0, y: 0}
+      border: {x: 0, y: 0, z: 0, w: 0}
+      customData: 
+      outline: []
+      physicsShape: []
+      tessellationDetail: -1
+      bones: []
+      spriteID: b6cdd4b33a5c08040800000000000000
+      internalID: 4647932120311651435
+      vertices: []
+      indices: 
+      edges: []
+      weights: []
+    - serializedVersion: 2
+      name: pile-red-dry-colours__1_-removebg-preview_66
+      rect:
+        serializedVersion: 2
+        x: 63
+        y: 131
+        width: 259
+        height: 259
+      alignment: 0
+      pivot: {x: 0, y: 0}
+      border: {x: 0, y: 0, z: 0, w: 0}
+      customData: 
+      outline: []
+      physicsShape: []
+      tessellationDetail: -1
+      bones: []
+      spriteID: 2a21f355157da8190800000000000000
+      internalID: -7959312647101410654
+      vertices: []
+      indices: 
+      edges: []
+      weights: []
+    - serializedVersion: 2
+      name: pile-red-dry-colours__1_-removebg-preview_67
+      rect:
+        serializedVersion: 2
+        x: 124
+        y: 372
+        width: 21
+        height: 24
+      alignment: 0
+      pivot: {x: 0, y: 0}
+      border: {x: 0, y: 0, z: 0, w: 0}
+      customData: 
+      outline: []
+      physicsShape: []
+      tessellationDetail: -1
+      bones: []
+      spriteID: 1e4b4110c47353c40800000000000000
+      internalID: 5491356120223364321
+      vertices: []
+      indices: 
+      edges: []
+      weights: []
+    - serializedVersion: 2
+      name: pile-red-dry-colours__1_-removebg-preview_68
+      rect:
+        serializedVersion: 2
+        x: 158
+        y: 368
+        width: 17
+        height: 28
+      alignment: 0
+      pivot: {x: 0, y: 0}
+      border: {x: 0, y: 0, z: 0, w: 0}
+      customData: 
+      outline: []
+      physicsShape: []
+      tessellationDetail: -1
+      bones: []
+      spriteID: cc0a58b855526d690800000000000000
+      internalID: -7577828273661042484
+      vertices: []
+      indices: 
+      edges: []
+      weights: []
+    - serializedVersion: 2
+      name: pile-red-dry-colours__1_-removebg-preview_69
+      rect:
+        serializedVersion: 2
+        x: 175
+        y: 380
+        width: 11
+        height: 13
+      alignment: 0
+      pivot: {x: 0, y: 0}
+      border: {x: 0, y: 0, z: 0, w: 0}
+      customData: 
+      outline: []
+      physicsShape: []
+      tessellationDetail: -1
+      bones: []
+      spriteID: dc869533649adae30800000000000000
+      internalID: 4516452120296777933
+      vertices: []
+      indices: 
+      edges: []
+      weights: []
+    - serializedVersion: 2
+      name: pile-red-dry-colours__1_-removebg-preview_70
+      rect:
+        serializedVersion: 2
+        x: 187
+        y: 375
+        width: 12
+        height: 17
+      alignment: 0
+      pivot: {x: 0, y: 0}
+      border: {x: 0, y: 0, z: 0, w: 0}
+      customData: 
+      outline: []
+      physicsShape: []
+      tessellationDetail: -1
+      bones: []
+      spriteID: dc80e2356891a48f0800000000000000
+      internalID: -555603539314997043
+      vertices: []
+      indices: 
+      edges: []
+      weights: []
+    - serializedVersion: 2
+      name: pile-red-dry-colours__1_-removebg-preview_71
+      rect:
+        serializedVersion: 2
+        x: 217
+        y: 374
+        width: 14
+        height: 15
+      alignment: 0
+      pivot: {x: 0, y: 0}
+      border: {x: 0, y: 0, z: 0, w: 0}
+      customData: 
+      outline: []
+      physicsShape: []
+      tessellationDetail: -1
+      bones: []
+      spriteID: 8e779649bd5e62a50800000000000000
+      internalID: 6496132243779057640
+      vertices: []
+      indices: 
+      edges: []
+      weights: []
+    - serializedVersion: 2
+      name: pile-red-dry-colours__1_-removebg-preview_72
+      rect:
+        serializedVersion: 2
+        x: 239
+        y: 387
+        width: 13
+        height: 9
+      alignment: 0
+      pivot: {x: 0, y: 0}
+      border: {x: 0, y: 0, z: 0, w: 0}
+      customData: 
+      outline: []
+      physicsShape: []
+      tessellationDetail: -1
+      bones: []
+      spriteID: 180000aefc7a0f6d0800000000000000
+      internalID: -2958680443756478335
+      vertices: []
+      indices: 
+      edges: []
+      weights: []
+    - serializedVersion: 2
+      name: pile-red-dry-colours__1_-removebg-preview_73
+      rect:
+        serializedVersion: 2
+        x: 254
+        y: 387
+        width: 7
+        height: 8
+      alignment: 0
+      pivot: {x: 0, y: 0}
+      border: {x: 0, y: 0, z: 0, w: 0}
+      customData: 
+      outline: []
+      physicsShape: []
+      tessellationDetail: -1
+      bones: []
+      spriteID: bd77786ab51576fa0800000000000000
+      internalID: -5807583740393195557
+      vertices: []
+      indices: 
+      edges: []
+      weights: []
+    - serializedVersion: 2
+      name: pile-red-dry-colours__1_-removebg-preview_74
+      rect:
+        serializedVersion: 2
+        x: 278
+        y: 381
+        width: 10
+        height: 13
+      alignment: 0
+      pivot: {x: 0, y: 0}
+      border: {x: 0, y: 0, z: 0, w: 0}
+      customData: 
+      outline: []
+      physicsShape: []
+      tessellationDetail: -1
+      bones: []
+      spriteID: e074990a2cfb115e0800000000000000
+      internalID: -1940559121781012722
+      vertices: []
+      indices: 
+      edges: []
+      weights: []
+    - serializedVersion: 2
+      name: pile-red-dry-colours__1_-removebg-preview_75
+      rect:
+        serializedVersion: 2
+        x: 342
+        y: 377
+        width: 19
+        height: 12
+      alignment: 0
+      pivot: {x: 0, y: 0}
+      border: {x: 0, y: 0, z: 0, w: 0}
+      customData: 
+      outline: []
+      physicsShape: []
+      tessellationDetail: -1
+      bones: []
+      spriteID: 1bf21cd55211497e0800000000000000
+      internalID: -1759762702210617423
+      vertices: []
+      indices: 
+      edges: []
+      weights: []
+    - serializedVersion: 2
+      name: pile-red-dry-colours__1_-removebg-preview_76
+      rect:
+        serializedVersion: 2
+        x: 296
+        y: 373
+        width: 8
+        height: 6
+      alignment: 0
+      pivot: {x: 0, y: 0}
+      border: {x: 0, y: 0, z: 0, w: 0}
+      customData: 
+      outline: []
+      physicsShape: []
+      tessellationDetail: -1
+      bones: []
+      spriteID: c422d9f0e35378b40800000000000000
+      internalID: 5442377215366734412
+      vertices: []
+      indices: 
+      edges: []
+      weights: []
+    - serializedVersion: 2
+      name: pile-red-dry-colours__1_-removebg-preview_77
+      rect:
+        serializedVersion: 2
+        x: 306
+        y: 345
+        width: 38
+        height: 34
+      alignment: 0
+      pivot: {x: 0, y: 0}
+      border: {x: 0, y: 0, z: 0, w: 0}
+      customData: 
+      outline: []
+      physicsShape: []
+      tessellationDetail: -1
+      bones: []
+      spriteID: 40fce0f9a1c0fb760800000000000000
+      internalID: 7475707214935543556
+      vertices: []
+      indices: 
+      edges: []
+      weights: []
+    - serializedVersion: 2
+      name: pile-red-dry-colours__1_-removebg-preview_78
+      rect:
+        serializedVersion: 2
+        x: 329
+        y: 374
+        width: 14
+        height: 10
+      alignment: 0
+      pivot: {x: 0, y: 0}
+      border: {x: 0, y: 0, z: 0, w: 0}
+      customData: 
+      outline: []
+      physicsShape: []
+      tessellationDetail: -1
+      bones: []
+      spriteID: 6406f686d17bd1320800000000000000
+      internalID: 2530379902586150982
+      vertices: []
+      indices: 
+      edges: []
+      weights: []
+    - serializedVersion: 2
+      name: pile-red-dry-colours__1_-removebg-preview_79
+      rect:
+        serializedVersion: 2
+        x: 344
+        y: 371
+        width: 7
+        height: 6
+      alignment: 0
+      pivot: {x: 0, y: 0}
+      border: {x: 0, y: 0, z: 0, w: 0}
+      customData: 
+      outline: []
+      physicsShape: []
+      tessellationDetail: -1
+      bones: []
+      spriteID: 84cc17de7c375a640800000000000000
+      internalID: 5090602256331557960
+      vertices: []
+      indices: 
+      edges: []
+      weights: []
+    - serializedVersion: 2
+      name: pile-red-dry-colours__1_-removebg-preview_80
+      rect:
+        serializedVersion: 2
+        x: 11
+        y: 353
+        width: 16
+        height: 9
+      alignment: 0
+      pivot: {x: 0, y: 0}
+      border: {x: 0, y: 0, z: 0, w: 0}
+      customData: 
+      outline: []
+      physicsShape: []
+      tessellationDetail: -1
+      bones: []
+      spriteID: 255e02cffe830eab0800000000000000
+      internalID: -4980918584493415086
+      vertices: []
+      indices: 
+      edges: []
+      weights: []
+    - serializedVersion: 2
+      name: pile-red-dry-colours__1_-removebg-preview_81
+      rect:
+        serializedVersion: 2
+        x: 26
+        y: 351
+        width: 19
+        height: 7
+      alignment: 0
+      pivot: {x: 0, y: 0}
+      border: {x: 0, y: 0, z: 0, w: 0}
+      customData: 
+      outline: []
+      physicsShape: []
+      tessellationDetail: -1
+      bones: []
+      spriteID: 8c34202ff6220b6d0800000000000000
+      internalID: -2976841489494948920
+      vertices: []
+      indices: 
+      edges: []
+      weights: []
+    - serializedVersion: 2
+      name: pile-red-dry-colours__1_-removebg-preview_82
+      rect:
+        serializedVersion: 2
+        x: 302
+        y: 356
+        width: 6
+        height: 10
+      alignment: 0
+      pivot: {x: 0, y: 0}
+      border: {x: 0, y: 0, z: 0, w: 0}
+      customData: 
+      outline: []
+      physicsShape: []
+      tessellationDetail: -1
+      bones: []
+      spriteID: f394b2dcff6ce8670800000000000000
+      internalID: 8542984345129535807
+      vertices: []
+      indices: 
+      edges: []
+      weights: []
+    - serializedVersion: 2
+      name: pile-red-dry-colours__1_-removebg-preview_83
+      rect:
+        serializedVersion: 2
+        x: 12
+        y: 337
+        width: 6
+        height: 6
+      alignment: 0
+      pivot: {x: 0, y: 0}
+      border: {x: 0, y: 0, z: 0, w: 0}
+      customData: 
+      outline: []
+      physicsShape: []
+      tessellationDetail: -1
+      bones: []
+      spriteID: 7e9312a7acfafabe0800000000000000
+      internalID: -1463758069704869401
+      vertices: []
+      indices: 
+      edges: []
+      weights: []
+    - serializedVersion: 2
+      name: pile-red-dry-colours__1_-removebg-preview_84
+      rect:
+        serializedVersion: 2
+        x: 14
+        y: 313
+        width: 21
+        height: 25
+      alignment: 0
+      pivot: {x: 0, y: 0}
+      border: {x: 0, y: 0, z: 0, w: 0}
+      customData: 
+      outline: []
+      physicsShape: []
+      tessellationDetail: -1
+      bones: []
+      spriteID: 3413a07cb55dca290800000000000000
+      internalID: -7877687058019765949
+      vertices: []
+      indices: 
+      edges: []
+      weights: []
+    - serializedVersion: 2
+      name: pile-red-dry-colours__1_-removebg-preview_85
+      rect:
+        serializedVersion: 2
+        x: 299
+        y: 324
+        width: 6
+        height: 10
+      alignment: 0
+      pivot: {x: 0, y: 0}
+      border: {x: 0, y: 0, z: 0, w: 0}
+      customData: 
+      outline: []
+      physicsShape: []
+      tessellationDetail: -1
+      bones: []
+      spriteID: 1df6561fe27998e90800000000000000
+      internalID: -7022915916033331247
+      vertices: []
+      indices: 
+      edges: []
+      weights: []
+    - serializedVersion: 2
+      name: pile-red-dry-colours__1_-removebg-preview_86
+      rect:
+        serializedVersion: 2
+        x: 301
+        y: 332
+        width: 13
+        height: 19
+      alignment: 0
+      pivot: {x: 0, y: 0}
+      border: {x: 0, y: 0, z: 0, w: 0}
+      customData: 
+      outline: []
+      physicsShape: []
+      tessellationDetail: -1
+      bones: []
+      spriteID: c64c1e65fd9790250800000000000000
+      internalID: 5911389986042791020
+      vertices: []
+      indices: 
+      edges: []
+      weights: []
+    - serializedVersion: 2
+      name: pile-red-dry-colours__1_-removebg-preview_87
+      rect:
+        serializedVersion: 2
+        x: 321
+        y: 336
+        width: 13
+        height: 9
+      alignment: 0
+      pivot: {x: 0, y: 0}
+      border: {x: 0, y: 0, z: 0, w: 0}
+      customData: 
+      outline: []
+      physicsShape: []
+      tessellationDetail: -1
+      bones: []
+      spriteID: 8d1c247bbe957aa80800000000000000
+      internalID: -8455690906438024744
+      vertices: []
+      indices: 
+      edges: []
+      weights: []
+    - serializedVersion: 2
+      name: pile-red-dry-colours__1_-removebg-preview_88
+      rect:
+        serializedVersion: 2
+        x: 333
+        y: 325
+        width: 11
+        height: 9
+      alignment: 0
+      pivot: {x: 0, y: 0}
+      border: {x: 0, y: 0, z: 0, w: 0}
+      customData: 
+      outline: []
+      physicsShape: []
+      tessellationDetail: -1
+      bones: []
+      spriteID: d76bc0485ff1b3590800000000000000
+      internalID: -7693520399089486211
+      vertices: []
+      indices: 
+      edges: []
+      weights: []
+    - serializedVersion: 2
+      name: pile-red-dry-colours__1_-removebg-preview_89
+      rect:
+        serializedVersion: 2
+        x: 340
+        y: 331
+        width: 9
+        height: 6
+      alignment: 0
+      pivot: {x: 0, y: 0}
+      border: {x: 0, y: 0, z: 0, w: 0}
+      customData: 
+      outline: []
+      physicsShape: []
+      tessellationDetail: -1
+      bones: []
+      spriteID: 2eb235b55e174a0a0800000000000000
+      internalID: -6871241901566907422
+      vertices: []
+      indices: 
+      edges: []
+      weights: []
+    - serializedVersion: 2
+      name: pile-red-dry-colours__1_-removebg-preview_90
+      rect:
+        serializedVersion: 2
+        x: 353
+        y: 330
+        width: 34
+        height: 20
+      alignment: 0
+      pivot: {x: 0, y: 0}
+      border: {x: 0, y: 0, z: 0, w: 0}
+      customData: 
+      outline: []
+      physicsShape: []
+      tessellationDetail: -1
+      bones: []
+      spriteID: 51cace5d88f31af20800000000000000
+      internalID: 3432094247970188309
+      vertices: []
+      indices: 
+      edges: []
+      weights: []
+    - serializedVersion: 2
+      name: pile-red-dry-colours__1_-removebg-preview_91
+      rect:
+        serializedVersion: 2
+        x: 64
+        y: 323
+        width: 11
+        height: 7
+      alignment: 0
+      pivot: {x: 0, y: 0}
+      border: {x: 0, y: 0, z: 0, w: 0}
+      customData: 
+      outline: []
+      physicsShape: []
+      tessellationDetail: -1
+      bones: []
+      spriteID: 5c2b24b6d10aacb70800000000000000
+      internalID: 8920118060174717637
+      vertices: []
+      indices: 
+      edges: []
+      weights: []
+    - serializedVersion: 2
+      name: pile-red-dry-colours__1_-removebg-preview_92
+      rect:
+        serializedVersion: 2
+        x: 85
+        y: 318
+        width: 6
+        height: 7
+      alignment: 0
+      pivot: {x: 0, y: 0}
+      border: {x: 0, y: 0, z: 0, w: 0}
+      customData: 
+      outline: []
+      physicsShape: []
+      tessellationDetail: -1
+      bones: []
+      spriteID: f340402f6cafc0f30800000000000000
+      internalID: 4543281856480805951
+      vertices: []
+      indices: 
+      edges: []
+      weights: []
+    - serializedVersion: 2
+      name: pile-red-dry-colours__1_-removebg-preview_93
+      rect:
+        serializedVersion: 2
+        x: 71
+        y: 309
+        width: 6
+        height: 6
+      alignment: 0
+      pivot: {x: 0, y: 0}
+      border: {x: 0, y: 0, z: 0, w: 0}
+      customData: 
+      outline: []
+      physicsShape: []
+      tessellationDetail: -1
+      bones: []
+      spriteID: f2fa84b349c0483e0800000000000000
+      internalID: -2052501699384791249
+      vertices: []
+      indices: 
+      edges: []
+      weights: []
+    - serializedVersion: 2
+      name: pile-red-dry-colours__1_-removebg-preview_94
+      rect:
+        serializedVersion: 2
+        x: 313
+        y: 315
+        width: 7
+        height: 6
+      alignment: 0
+      pivot: {x: 0, y: 0}
+      border: {x: 0, y: 0, z: 0, w: 0}
+      customData: 
+      outline: []
+      physicsShape: []
+      tessellationDetail: -1
+      bones: []
+      spriteID: a4c97db6fd5b8a3e0800000000000000
+      internalID: -2042182459820893110
+      vertices: []
+      indices: 
+      edges: []
+      weights: []
+    - serializedVersion: 2
+      name: pile-red-dry-colours__1_-removebg-preview_95
+      rect:
+        serializedVersion: 2
+        x: 354
+        y: 299
+        width: 7
+        height: 8
+      alignment: 0
+      pivot: {x: 0, y: 0}
+      border: {x: 0, y: 0, z: 0, w: 0}
+      customData: 
+      outline: []
+      physicsShape: []
+      tessellationDetail: -1
+      bones: []
+      spriteID: 25b2354b69b094b50800000000000000
+      internalID: 6577801472649669458
+      vertices: []
+      indices: 
+      edges: []
+      weights: []
+    - serializedVersion: 2
+      name: pile-red-dry-colours__1_-removebg-preview_96
+      rect:
+        serializedVersion: 2
+        x: 355
+        y: 293
+        width: 10
+        height: 9
+      alignment: 0
+      pivot: {x: 0, y: 0}
+      border: {x: 0, y: 0, z: 0, w: 0}
+      customData: 
+      outline: []
+      physicsShape: []
+      tessellationDetail: -1
+      bones: []
+      spriteID: 03f7213db3f7fdb80800000000000000
+      internalID: -8367829687710089424
+      vertices: []
+      indices: 
+      edges: []
+      weights: []
+    - serializedVersion: 2
+      name: pile-red-dry-colours__1_-removebg-preview_97
+      rect:
+        serializedVersion: 2
+        x: 365
+        y: 295
+        width: 19
+        height: 11
+      alignment: 0
+      pivot: {x: 0, y: 0}
+      border: {x: 0, y: 0, z: 0, w: 0}
+      customData: 
+      outline: []
+      physicsShape: []
+      tessellationDetail: -1
+      bones: []
+      spriteID: 99a8a75ed09abd9f0800000000000000
+      internalID: -442574261216179559
+      vertices: []
+      indices: 
+      edges: []
+      weights: []
+    - serializedVersion: 2
+      name: pile-red-dry-colours__1_-removebg-preview_98
+      rect:
+        serializedVersion: 2
+        x: 32
+        y: 281
+        width: 6
+        height: 7
+      alignment: 0
+      pivot: {x: 0, y: 0}
+      border: {x: 0, y: 0, z: 0, w: 0}
+      customData: 
+      outline: []
+      physicsShape: []
+      tessellationDetail: -1
+      bones: []
+      spriteID: 0657f50ba92079910800000000000000
+      internalID: 1843945435838772576
+      vertices: []
+      indices: 
+      edges: []
+      weights: []
+    - serializedVersion: 2
+      name: pile-red-dry-colours__1_-removebg-preview_99
+      rect:
+        serializedVersion: 2
+        x: 37
+        y: 282
+        width: 15
+        height: 8
+      alignment: 0
+      pivot: {x: 0, y: 0}
+      border: {x: 0, y: 0, z: 0, w: 0}
+      customData: 
+      outline: []
+      physicsShape: []
+      tessellationDetail: -1
+      bones: []
+      spriteID: 23b0d3cc8e0fb4140800000000000000
+      internalID: 4705119118368246578
+      vertices: []
+      indices: 
+      edges: []
+      weights: []
+    - serializedVersion: 2
+      name: pile-red-dry-colours__1_-removebg-preview_100
+      rect:
+        serializedVersion: 2
+        x: 55
+        y: 281
+        width: 9
+        height: 8
+      alignment: 0
+      pivot: {x: 0, y: 0}
+      border: {x: 0, y: 0, z: 0, w: 0}
+      customData: 
+      outline: []
+      physicsShape: []
+      tessellationDetail: -1
+      bones: []
+      spriteID: 318509f5a67042560800000000000000
+      internalID: 7287958250443528211
+      vertices: []
+      indices: 
+      edges: []
+      weights: []
+    - serializedVersion: 2
+      name: pile-red-dry-colours__1_-removebg-preview_101
+      rect:
+        serializedVersion: 2
+        x: 63
+        y: 274
+        width: 32
+        height: 18
+      alignment: 0
+      pivot: {x: 0, y: 0}
+      border: {x: 0, y: 0, z: 0, w: 0}
+      customData: 
+      outline: []
+      physicsShape: []
+      tessellationDetail: -1
+      bones: []
+      spriteID: 440d4fe70ebbfeef0800000000000000
+      internalID: -76636095764967356
+      vertices: []
+      indices: 
+      edges: []
+      weights: []
+    - serializedVersion: 2
+      name: pile-red-dry-colours__1_-removebg-preview_102
+      rect:
+        serializedVersion: 2
+        x: 97
+        y: 284
+        width: 7
+        height: 7
+      alignment: 0
+      pivot: {x: 0, y: 0}
+      border: {x: 0, y: 0, z: 0, w: 0}
+      customData: 
+      outline: []
+      physicsShape: []
+      tessellationDetail: -1
+      bones: []
+      spriteID: 9de390ee840e7b750800000000000000
+      internalID: 6320767205873630937
+      vertices: []
+      indices: 
+      edges: []
+      weights: []
+    - serializedVersion: 2
+      name: pile-red-dry-colours__1_-removebg-preview_103
+      rect:
+        serializedVersion: 2
+        x: 298
+        y: 281
+        width: 9
+        height: 8
+      alignment: 0
+      pivot: {x: 0, y: 0}
+      border: {x: 0, y: 0, z: 0, w: 0}
+      customData: 
+      outline: []
+      physicsShape: []
+      tessellationDetail: -1
+      bones: []
+      spriteID: ad2aadd2a32f08700800000000000000
+      internalID: 540698286975787738
+      vertices: []
+      indices: 
+      edges: []
+      weights: []
+    - serializedVersion: 2
+      name: pile-red-dry-colours__1_-removebg-preview_104
+      rect:
+        serializedVersion: 2
+        x: 308
+        y: 288
+        width: 10
+        height: 7
+      alignment: 0
+      pivot: {x: 0, y: 0}
+      border: {x: 0, y: 0, z: 0, w: 0}
+      customData: 
+      outline: []
+      physicsShape: []
+      tessellationDetail: -1
+      bones: []
+      spriteID: 4fd430ac6190e1540800000000000000
+      internalID: 4980428231401491956
+      vertices: []
+      indices: 
+      edges: []
+      weights: []
+    - serializedVersion: 2
+      name: pile-red-dry-colours__1_-removebg-preview_105
+      rect:
+        serializedVersion: 2
+        x: 316
+        y: 286
+        width: 7
+        height: 6
+      alignment: 0
+      pivot: {x: 0, y: 0}
+      border: {x: 0, y: 0, z: 0, w: 0}
+      customData: 
+      outline: []
+      physicsShape: []
+      tessellationDetail: -1
+      bones: []
+      spriteID: c9bd1378108721f50800000000000000
+      internalID: 6850669931142437788
+      vertices: []
+      indices: 
+      edges: []
+      weights: []
+    - serializedVersion: 2
+      name: pile-red-dry-colours__1_-removebg-preview_106
+      rect:
+        serializedVersion: 2
+        x: 331
+        y: 280
+        width: 9
+        height: 8
+      alignment: 0
+      pivot: {x: 0, y: 0}
+      border: {x: 0, y: 0, z: 0, w: 0}
+      customData: 
+      outline: []
+      physicsShape: []
+      tessellationDetail: -1
+      bones: []
+      spriteID: da217d8fd1147e800800000000000000
+      internalID: 641553068908286637
+      vertices: []
+      indices: 
+      edges: []
+      weights: []
+    - serializedVersion: 2
+      name: pile-red-dry-colours__1_-removebg-preview_107
+      rect:
+        serializedVersion: 2
+        x: 339
+        y: 281
+        width: 12
+        height: 13
+      alignment: 0
+      pivot: {x: 0, y: 0}
+      border: {x: 0, y: 0, z: 0, w: 0}
+      customData: 
+      outline: []
+      physicsShape: []
+      tessellationDetail: -1
+      bones: []
+      spriteID: 0326a9ab8cd808d30800000000000000
+      internalID: 4431697926596223536
+      vertices: []
+      indices: 
+      edges: []
+      weights: []
+    - serializedVersion: 2
+      name: pile-red-dry-colours__1_-removebg-preview_108
+      rect:
+        serializedVersion: 2
+        x: 350
+        y: 278
+        width: 7
+        height: 12
+      alignment: 0
+      pivot: {x: 0, y: 0}
+      border: {x: 0, y: 0, z: 0, w: 0}
+      customData: 
+      outline: []
+      physicsShape: []
+      tessellationDetail: -1
+      bones: []
+      spriteID: cd396bed6ca9acb70800000000000000
+      internalID: 8920112190891398108
+      vertices: []
+      indices: 
+      edges: []
+      weights: []
+    - serializedVersion: 2
+      name: pile-red-dry-colours__1_-removebg-preview_109
+      rect:
+        serializedVersion: 2
+        x: 377
+        y: 288
+        width: 7
+        height: 6
+      alignment: 0
+      pivot: {x: 0, y: 0}
+      border: {x: 0, y: 0, z: 0, w: 0}
+      customData: 
+      outline: []
+      physicsShape: []
+      tessellationDetail: -1
+      bones: []
+      spriteID: 7c4acb911e89f9ad0800000000000000
+      internalID: -2693265959577410361
+      vertices: []
+      indices: 
+      edges: []
+      weights: []
+    - serializedVersion: 2
+      name: pile-red-dry-colours__1_-removebg-preview_110
+      rect:
+        serializedVersion: 2
+        x: 383
+        y: 277
+        width: 16
+        height: 15
+      alignment: 0
+      pivot: {x: 0, y: 0}
+      border: {x: 0, y: 0, z: 0, w: 0}
+      customData: 
+      outline: []
+      physicsShape: []
+      tessellationDetail: -1
+      bones: []
+      spriteID: 47e8029fe0fbe2580800000000000000
+      internalID: -8849926146706338188
+      vertices: []
+      indices: 
+      edges: []
+      weights: []
+    - serializedVersion: 2
+      name: pile-red-dry-colours__1_-removebg-preview_111
+      rect:
+        serializedVersion: 2
+        x: 10
+        y: 279
+        width: 18
+        height: 7
+      alignment: 0
+      pivot: {x: 0, y: 0}
+      border: {x: 0, y: 0, z: 0, w: 0}
+      customData: 
+      outline: []
+      physicsShape: []
+      tessellationDetail: -1
+      bones: []
+      spriteID: 80430a5f050e3f280800000000000000
+      internalID: -9010611791115308024
+      vertices: []
+      indices: 
+      edges: []
+      weights: []
+    - serializedVersion: 2
+      name: pile-red-dry-colours__1_-removebg-preview_112
+      rect:
+        serializedVersion: 2
+        x: 94
+        y: 274
+        width: 13
+        height: 11
+      alignment: 0
+      pivot: {x: 0, y: 0}
+      border: {x: 0, y: 0, z: 0, w: 0}
+      customData: 
+      outline: []
+      physicsShape: []
+      tessellationDetail: -1
+      bones: []
+      spriteID: 2e8328e5477b90fe0800000000000000
+      internalID: -1222244113424697118
+      vertices: []
+      indices: 
+      edges: []
+      weights: []
+    - serializedVersion: 2
+      name: pile-red-dry-colours__1_-removebg-preview_113
+      rect:
+        serializedVersion: 2
+        x: 312
+        y: 277
+        width: 9
+        height: 10
+      alignment: 0
+      pivot: {x: 0, y: 0}
+      border: {x: 0, y: 0, z: 0, w: 0}
+      customData: 
+      outline: []
+      physicsShape: []
+      tessellationDetail: -1
+      bones: []
+      spriteID: e8d56c12a1608e360800000000000000
+      internalID: 7199010713657302414
+      vertices: []
+      indices: 
+      edges: []
+      weights: []
+    - serializedVersion: 2
+      name: pile-red-dry-colours__1_-removebg-preview_114
+      rect:
+        serializedVersion: 2
+        x: 318
+        y: 269
+        width: 17
+        height: 11
+      alignment: 0
+      pivot: {x: 0, y: 0}
+      border: {x: 0, y: 0, z: 0, w: 0}
+      customData: 
+      outline: []
+      physicsShape: []
+      tessellationDetail: -1
+      bones: []
+      spriteID: c88b5f13d87c70970800000000000000
+      internalID: 8721158612668758156
+      vertices: []
+      indices: 
+      edges: []
+      weights: []
+    - serializedVersion: 2
+      name: pile-red-dry-colours__1_-removebg-preview_115
+      rect:
+        serializedVersion: 2
+        x: 358
+        y: 271
+        width: 19
+        height: 10
+      alignment: 0
+      pivot: {x: 0, y: 0}
+      border: {x: 0, y: 0, z: 0, w: 0}
+      customData: 
+      outline: []
+      physicsShape: []
+      tessellationDetail: -1
+      bones: []
+      spriteID: f2041c02f33818d00800000000000000
+      internalID: 973203301644451887
+      vertices: []
+      indices: 
+      edges: []
+      weights: []
+    - serializedVersion: 2
+      name: pile-red-dry-colours__1_-removebg-preview_116
+      rect:
+        serializedVersion: 2
+        x: 289
+        y: 257
+        width: 20
+        height: 17
+      alignment: 0
+      pivot: {x: 0, y: 0}
+      border: {x: 0, y: 0, z: 0, w: 0}
+      customData: 
+      outline: []
+      physicsShape: []
+      tessellationDetail: -1
+      bones: []
+      spriteID: afc18eb814ec78f70800000000000000
+      internalID: 9189540345588227322
+      vertices: []
+      indices: 
+      edges: []
+      weights: []
+    - serializedVersion: 2
+      name: pile-red-dry-colours__1_-removebg-preview_117
+      rect:
+        serializedVersion: 2
+        x: 332
+        y: 264
+        width: 17
+        height: 13
+      alignment: 0
+      pivot: {x: 0, y: 0}
+      border: {x: 0, y: 0, z: 0, w: 0}
+      customData: 
+      outline: []
+      physicsShape: []
+      tessellationDetail: -1
+      bones: []
+      spriteID: c8b0407cb17dd70a0800000000000000
+      internalID: -6882108141249229940
+      vertices: []
+      indices: 
+      edges: []
+      weights: []
+    - serializedVersion: 2
+      name: pile-red-dry-colours__1_-removebg-preview_118
+      rect:
+        serializedVersion: 2
+        x: 352
+        y: 263
+        width: 9
+        height: 13
+      alignment: 0
+      pivot: {x: 0, y: 0}
+      border: {x: 0, y: 0, z: 0, w: 0}
+      customData: 
+      outline: []
+      physicsShape: []
+      tessellationDetail: -1
+      bones: []
+      spriteID: 6f46461b893818340800000000000000
+      internalID: 4864313764371260662
+      vertices: []
+      indices: 
+      edges: []
+      weights: []
+    - serializedVersion: 2
+      name: pile-red-dry-colours__1_-removebg-preview_119
+      rect:
+        serializedVersion: 2
+        x: 386
+        y: 270
+        width: 7
+        height: 8
+      alignment: 0
+      pivot: {x: 0, y: 0}
+      border: {x: 0, y: 0, z: 0, w: 0}
+      customData: 
+      outline: []
+      physicsShape: []
+      tessellationDetail: -1
+      bones: []
+      spriteID: 406903579229f2890800000000000000
+      internalID: -7480599749281671676
+      vertices: []
+      indices: 
+      edges: []
+      weights: []
+    - serializedVersion: 2
+      name: pile-red-dry-colours__1_-removebg-preview_120
+      rect:
+        serializedVersion: 2
+        x: 76
+        y: 259
+        width: 16
+        height: 9
+      alignment: 0
+      pivot: {x: 0, y: 0}
+      border: {x: 0, y: 0, z: 0, w: 0}
+      customData: 
+      outline: []
+      physicsShape: []
+      tessellationDetail: -1
+      bones: []
+      spriteID: 06c254f18c4a730c0800000000000000
+      internalID: -4596023715283260320
+      vertices: []
+      indices: 
+      edges: []
+      weights: []
+    - serializedVersion: 2
+      name: pile-red-dry-colours__1_-removebg-preview_121
+      rect:
+        serializedVersion: 2
+        x: 101
+        y: 261
+        width: 6
+        height: 6
+      alignment: 0
+      pivot: {x: 0, y: 0}
+      border: {x: 0, y: 0, z: 0, w: 0}
+      customData: 
+      outline: []
+      physicsShape: []
+      tessellationDetail: -1
+      bones: []
+      spriteID: 99c623da49edacee0800000000000000
+      internalID: -1239934017244861287
+      vertices: []
+      indices: 
+      edges: []
+      weights: []
+    - serializedVersion: 2
+      name: pile-red-dry-colours__1_-removebg-preview_122
+      rect:
+        serializedVersion: 2
+        x: 321
+        y: 254
+        width: 6
+        height: 9
+      alignment: 0
+      pivot: {x: 0, y: 0}
+      border: {x: 0, y: 0, z: 0, w: 0}
+      customData: 
+      outline: []
+      physicsShape: []
+      tessellationDetail: -1
+      bones: []
+      spriteID: 841af28c194e34ed0800000000000000
+      internalID: -2430848059069980344
+      vertices: []
+      indices: 
+      edges: []
+      weights: []
+    - serializedVersion: 2
+      name: pile-red-dry-colours__1_-removebg-preview_123
+      rect:
+        serializedVersion: 2
+        x: 331
+        y: 247
+        width: 11
+        height: 16
+      alignment: 0
+      pivot: {x: 0, y: 0}
+      border: {x: 0, y: 0, z: 0, w: 0}
+      customData: 
+      outline: []
+      physicsShape: []
+      tessellationDetail: -1
+      bones: []
+      spriteID: d77729c009a247050800000000000000
+      internalID: 5797305418507253629
+      vertices: []
+      indices: 
+      edges: []
+      weights: []
+    - serializedVersion: 2
+      name: pile-red-dry-colours__1_-removebg-preview_124
+      rect:
+        serializedVersion: 2
+        x: 357
+        y: 257
+        width: 11
+        height: 11
+      alignment: 0
+      pivot: {x: 0, y: 0}
+      border: {x: 0, y: 0, z: 0, w: 0}
+      customData: 
+      outline: []
+      physicsShape: []
+      tessellationDetail: -1
+      bones: []
+      spriteID: 86b1dbd112d512f70800000000000000
+      internalID: 9160705513862536040
+      vertices: []
+      indices: 
+      edges: []
+      weights: []
+    - serializedVersion: 2
+      name: pile-red-dry-colours__1_-removebg-preview_125
+      rect:
+        serializedVersion: 2
+        x: 367
+        y: 249
+        width: 12
+        height: 16
+      alignment: 0
+      pivot: {x: 0, y: 0}
+      border: {x: 0, y: 0, z: 0, w: 0}
+      customData: 
+      outline: []
+      physicsShape: []
+      tessellationDetail: -1
+      bones: []
+      spriteID: 3823f32c3d5d27560800000000000000
+      internalID: 7310140250649473667
+      vertices: []
+      indices: 
+      edges: []
+      weights: []
+    - serializedVersion: 2
+      name: pile-red-dry-colours__1_-removebg-preview_126
+      rect:
+        serializedVersion: 2
+        x: 76
+        y: 254
+        width: 6
+        height: 6
+      alignment: 0
+      pivot: {x: 0, y: 0}
+      border: {x: 0, y: 0, z: 0, w: 0}
+      customData: 
+      outline: []
+      physicsShape: []
+      tessellationDetail: -1
+      bones: []
+      spriteID: 6204dff5a12a20690800000000000000
+      internalID: -7637363783903657946
+      vertices: []
+      indices: 
+      edges: []
+      weights: []
+    - serializedVersion: 2
+      name: pile-red-dry-colours__1_-removebg-preview_127
+      rect:
+        serializedVersion: 2
+        x: 299
+        y: 250
+        width: 8
+        height: 6
+      alignment: 0
+      pivot: {x: 0, y: 0}
+      border: {x: 0, y: 0, z: 0, w: 0}
+      customData: 
+      outline: []
+      physicsShape: []
+      tessellationDetail: -1
+      bones: []
+      spriteID: b6cb0daa4d98723a0800000000000000
+      internalID: -6690227174943703957
+      vertices: []
+      indices: 
+      edges: []
+      weights: []
+    - serializedVersion: 2
+      name: pile-red-dry-colours__1_-removebg-preview_128
+      rect:
+        serializedVersion: 2
+        x: 353
+        y: 248
+        width: 9
+        height: 7
+      alignment: 0
+      pivot: {x: 0, y: 0}
+      border: {x: 0, y: 0, z: 0, w: 0}
+      customData: 
+      outline: []
+      physicsShape: []
+      tessellationDetail: -1
+      bones: []
+      spriteID: 0cc265e3a78d16990800000000000000
+      internalID: -7394391093622199104
+      vertices: []
+      indices: 
+      edges: []
+      weights: []
+    - serializedVersion: 2
+      name: pile-red-dry-colours__1_-removebg-preview_129
+      rect:
+        serializedVersion: 2
+        x: 320
+        y: 239
+        width: 8
+        height: 8
+      alignment: 0
+      pivot: {x: 0, y: 0}
+      border: {x: 0, y: 0, z: 0, w: 0}
+      customData: 
+      outline: []
+      physicsShape: []
+      tessellationDetail: -1
+      bones: []
+      spriteID: 5ec0e2d13b1d89fe0800000000000000
+      internalID: -1181964334965846811
+      vertices: []
+      indices: 
+      edges: []
+      weights: []
+    - serializedVersion: 2
+      name: pile-red-dry-colours__1_-removebg-preview_130
+      rect:
+        serializedVersion: 2
+        x: 331
+        y: 237
+        width: 9
+        height: 7
+      alignment: 0
+      pivot: {x: 0, y: 0}
+      border: {x: 0, y: 0, z: 0, w: 0}
+      customData: 
+      outline: []
+      physicsShape: []
+      tessellationDetail: -1
+      bones: []
+      spriteID: a5ae48aff07cda8b0800000000000000
+      internalID: -5139232728318416294
+      vertices: []
+      indices: 
+      edges: []
+      weights: []
+    - serializedVersion: 2
+      name: pile-red-dry-colours__1_-removebg-preview_131
+      rect:
+        serializedVersion: 2
+        x: 336
+        y: 240
+        width: 6
+        height: 9
+      alignment: 0
+      pivot: {x: 0, y: 0}
+      border: {x: 0, y: 0, z: 0, w: 0}
+      customData: 
+      outline: []
+      physicsShape: []
+      tessellationDetail: -1
+      bones: []
+      spriteID: efaacd775923451c0800000000000000
+      internalID: -4515928908803298562
+      vertices: []
+      indices: 
+      edges: []
+      weights: []
+    - serializedVersion: 2
+      name: pile-red-dry-colours__1_-removebg-preview_132
+      rect:
+        serializedVersion: 2
+        x: 346
+        y: 244
+        width: 8
+        height: 8
+      alignment: 0
+      pivot: {x: 0, y: 0}
+      border: {x: 0, y: 0, z: 0, w: 0}
+      customData: 
+      outline: []
+      physicsShape: []
+      tessellationDetail: -1
+      bones: []
+      spriteID: a0c47562c38420250800000000000000
+      internalID: 5909365084242005002
+      vertices: []
+      indices: 
+      edges: []
+      weights: []
+    - serializedVersion: 2
+      name: pile-red-dry-colours__1_-removebg-preview_133
+      rect:
+        serializedVersion: 2
+        x: 350
+        y: 235
+        width: 9
+        height: 10
+      alignment: 0
+      pivot: {x: 0, y: 0}
+      border: {x: 0, y: 0, z: 0, w: 0}
+      customData: 
+      outline: []
+      physicsShape: []
+      tessellationDetail: -1
+      bones: []
+      spriteID: bcdb944fac464cec0800000000000000
+      internalID: -3547599783616463413
+      vertices: []
+      indices: 
+      edges: []
+      weights: []
+    - serializedVersion: 2
+      name: pile-red-dry-colours__1_-removebg-preview_134
+      rect:
+        serializedVersion: 2
+        x: 384
+        y: 231
+        width: 12
+        height: 14
+      alignment: 0
+      pivot: {x: 0, y: 0}
+      border: {x: 0, y: 0, z: 0, w: 0}
+      customData: 
+      outline: []
+      physicsShape: []
+      tessellationDetail: -1
+      bones: []
+      spriteID: 82e41d294e4dc01d0800000000000000
+      internalID: -3383095141881262552
+      vertices: []
+      indices: 
+      edges: []
+      weights: []
+    - serializedVersion: 2
+      name: pile-red-dry-colours__1_-removebg-preview_135
+      rect:
+        serializedVersion: 2
+        x: 88
+        y: 234
+        width: 6
+        height: 8
+      alignment: 0
+      pivot: {x: 0, y: 0}
+      border: {x: 0, y: 0, z: 0, w: 0}
+      customData: 
+      outline: []
+      physicsShape: []
+      tessellationDetail: -1
+      bones: []
+      spriteID: d06aac3a6f3fbf7e0800000000000000
+      internalID: -1730521391158352371
+      vertices: []
+      indices: 
+      edges: []
+      weights: []
+    - serializedVersion: 2
+      name: pile-red-dry-colours__1_-removebg-preview_136
+      rect:
+        serializedVersion: 2
+        x: 316
+        y: 230
+        width: 11
+        height: 8
+      alignment: 0
+      pivot: {x: 0, y: 0}
+      border: {x: 0, y: 0, z: 0, w: 0}
+      customData: 
+      outline: []
+      physicsShape: []
+      tessellationDetail: -1
+      bones: []
+      spriteID: 4285bb64cdae359d0800000000000000
+      internalID: -2786625512611817436
+      vertices: []
+      indices: 
+      edges: []
+      weights: []
+    - serializedVersion: 2
+      name: pile-red-dry-colours__1_-removebg-preview_137
+      rect:
+        serializedVersion: 2
+        x: 344
+        y: 224
+        width: 8
+        height: 13
+      alignment: 0
+      pivot: {x: 0, y: 0}
+      border: {x: 0, y: 0, z: 0, w: 0}
+      customData: 
+      outline: []
+      physicsShape: []
+      tessellationDetail: -1
+      bones: []
+      spriteID: a4cc83a9ec90801d0800000000000000
+      internalID: -3384444337013601206
+      vertices: []
+      indices: 
+      edges: []
+      weights: []
+    - serializedVersion: 2
+      name: pile-red-dry-colours__1_-removebg-preview_138
+      rect:
+        serializedVersion: 2
+        x: 358
+        y: 232
+        width: 8
+        height: 9
+      alignment: 0
+      pivot: {x: 0, y: 0}
+      border: {x: 0, y: 0, z: 0, w: 0}
+      customData: 
+      outline: []
+      physicsShape: []
+      tessellationDetail: -1
+      bones: []
+      spriteID: 64d04e7b18e0f6290800000000000000
+      internalID: -7895075671458443962
+      vertices: []
+      indices: 
+      edges: []
+      weights: []
+    - serializedVersion: 2
+      name: pile-red-dry-colours__1_-removebg-preview_139
+      rect:
+        serializedVersion: 2
+        x: 313
+        y: 210
+        width: 22
+        height: 21
+      alignment: 0
+      pivot: {x: 0, y: 0}
+      border: {x: 0, y: 0, z: 0, w: 0}
+      customData: 
+      outline: []
+      physicsShape: []
+      tessellationDetail: -1
+      bones: []
+      spriteID: 5df61f552ff35ac80800000000000000
+      internalID: -8312167227185860651
+      vertices: []
+      indices: 
+      edges: []
+      weights: []
+    - serializedVersion: 2
+      name: pile-red-dry-colours__1_-removebg-preview_140
+      rect:
+        serializedVersion: 2
+        x: 326
+        y: 221
+        width: 10
+        height: 10
+      alignment: 0
+      pivot: {x: 0, y: 0}
+      border: {x: 0, y: 0, z: 0, w: 0}
+      customData: 
+      outline: []
+      physicsShape: []
+      tessellationDetail: -1
+      bones: []
+      spriteID: ea40cbdbb7e3ca9c0800000000000000
+      internalID: -3914685274906688338
+      vertices: []
+      indices: 
+      edges: []
+      weights: []
+    - serializedVersion: 2
+      name: pile-red-dry-colours__1_-removebg-preview_141
+      rect:
+        serializedVersion: 2
+        x: 357
+        y: 222
+        width: 9
+        height: 11
+      alignment: 0
+      pivot: {x: 0, y: 0}
+      border: {x: 0, y: 0, z: 0, w: 0}
+      customData: 
+      outline: []
+      physicsShape: []
+      tessellationDetail: -1
+      bones: []
+      spriteID: 1902ecefa7e0489a0800000000000000
+      internalID: -6231840062950203247
+      vertices: []
+      indices: 
+      edges: []
+      weights: []
+    - serializedVersion: 2
+      name: pile-red-dry-colours__1_-removebg-preview_142
+      rect:
+        serializedVersion: 2
+        x: 360
+        y: 216
+        width: 10
+        height: 11
+      alignment: 0
+      pivot: {x: 0, y: 0}
+      border: {x: 0, y: 0, z: 0, w: 0}
+      customData: 
+      outline: []
+      physicsShape: []
+      tessellationDetail: -1
+      bones: []
+      spriteID: ddf9e98e45ee013c0800000000000000
+      internalID: -4390747588238860323
+      vertices: []
+      indices: 
+      edges: []
+      weights: []
+    - serializedVersion: 2
+      name: pile-red-dry-colours__1_-removebg-preview_143
+      rect:
+        serializedVersion: 2
+        x: 370
+        y: 203
+        width: 20
+        height: 20
+      alignment: 0
+      pivot: {x: 0, y: 0}
+      border: {x: 0, y: 0, z: 0, w: 0}
+      customData: 
+      outline: []
+      physicsShape: []
+      tessellationDetail: -1
+      bones: []
+      spriteID: cee59d7e80d343420800000000000000
+      internalID: 2608777192613175020
+      vertices: []
+      indices: 
+      edges: []
+      weights: []
+    - serializedVersion: 2
+      name: pile-red-dry-colours__1_-removebg-preview_144
+      rect:
+        serializedVersion: 2
+        x: 301
+        y: 199
+        width: 8
+        height: 7
+      alignment: 0
+      pivot: {x: 0, y: 0}
+      border: {x: 0, y: 0, z: 0, w: 0}
+      customData: 
+      outline: []
+      physicsShape: []
+      tessellationDetail: -1
+      bones: []
+      spriteID: fc057d65d07045020800000000000000
+      internalID: 2329494661130309839
+      vertices: []
+      indices: 
+      edges: []
+      weights: []
+    - serializedVersion: 2
+      name: pile-red-dry-colours__1_-removebg-preview_145
+      rect:
+        serializedVersion: 2
+        x: 310
+        y: 203
+        width: 6
+        height: 6
+      alignment: 0
+      pivot: {x: 0, y: 0}
+      border: {x: 0, y: 0, z: 0, w: 0}
+      customData: 
+      outline: []
+      physicsShape: []
+      tessellationDetail: -1
+      bones: []
+      spriteID: e279aa3ab7f5448b0800000000000000
+      internalID: -5168901487683004626
+      vertices: []
+      indices: 
+      edges: []
+      weights: []
+    - serializedVersion: 2
+      name: pile-red-dry-colours__1_-removebg-preview_146
+      rect:
+        serializedVersion: 2
+        x: 310
+        y: 195
+        width: 6
+        height: 6
+      alignment: 0
+      pivot: {x: 0, y: 0}
+      border: {x: 0, y: 0, z: 0, w: 0}
+      customData: 
+      outline: []
+      physicsShape: []
+      tessellationDetail: -1
+      bones: []
+      spriteID: 2dedc476bea32dc00800000000000000
+      internalID: 923865656289189586
+      vertices: []
+      indices: 
+      edges: []
+      weights: []
+    - serializedVersion: 2
+      name: pile-red-dry-colours__1_-removebg-preview_147
+      rect:
+        serializedVersion: 2
+        x: 315
+        y: 199
+        width: 12
+        height: 12
+      alignment: 0
+      pivot: {x: 0, y: 0}
+      border: {x: 0, y: 0, z: 0, w: 0}
+      customData: 
+      outline: []
+      physicsShape: []
+      tessellationDetail: -1
+      bones: []
+      spriteID: 9f187e9410d1c95b0800000000000000
+      internalID: -5360377565105651207
+      vertices: []
+      indices: 
+      edges: []
+      weights: []
+    - serializedVersion: 2
+      name: pile-red-dry-colours__1_-removebg-preview_148
+      rect:
+        serializedVersion: 2
+        x: 331
+        y: 197
+        width: 14
+        height: 8
+      alignment: 0
+      pivot: {x: 0, y: 0}
+      border: {x: 0, y: 0, z: 0, w: 0}
+      customData: 
+      outline: []
+      physicsShape: []
+      tessellationDetail: -1
+      bones: []
+      spriteID: eb9fdc55ba922cc70800000000000000
+      internalID: 8989793622040639934
+      vertices: []
+      indices: 
+      edges: []
+      weights: []
+    - serializedVersion: 2
+      name: pile-red-dry-colours__1_-removebg-preview_149
+      rect:
+        serializedVersion: 2
+        x: 339
+        y: 204
+        width: 9
+        height: 7
+      alignment: 0
+      pivot: {x: 0, y: 0}
+      border: {x: 0, y: 0, z: 0, w: 0}
+      customData: 
+      outline: []
+      physicsShape: []
+      tessellationDetail: -1
+      bones: []
+      spriteID: 45d341b51ccf64a20800000000000000
+      internalID: 3046400105349659988
+      vertices: []
+      indices: 
+      edges: []
+      weights: []
+    - serializedVersion: 2
+      name: pile-red-dry-colours__1_-removebg-preview_150
+      rect:
+        serializedVersion: 2
+        x: 394
+        y: 201
+        width: 7
+        height: 10
+      alignment: 0
+      pivot: {x: 0, y: 0}
+      border: {x: 0, y: 0, z: 0, w: 0}
+      customData: 
+      outline: []
+      physicsShape: []
+      tessellationDetail: -1
+      bones: []
+      spriteID: 3f63e988e7db31060800000000000000
+      internalID: 6923085403354183411
+      vertices: []
+      indices: 
+      edges: []
+      weights: []
+    - serializedVersion: 2
+      name: pile-red-dry-colours__1_-removebg-preview_151
+      rect:
+        serializedVersion: 2
+        x: 299
+        y: 184
+        width: 12
+        height: 7
+      alignment: 0
+      pivot: {x: 0, y: 0}
+      border: {x: 0, y: 0, z: 0, w: 0}
+      customData: 
+      outline: []
+      physicsShape: []
+      tessellationDetail: -1
+      bones: []
+      spriteID: cc58ea040af5f1bf0800000000000000
+      internalID: -351457104027023924
+      vertices: []
+      indices: 
+      edges: []
+      weights: []
+    - serializedVersion: 2
+      name: pile-red-dry-colours__1_-removebg-preview_152
+      rect:
+        serializedVersion: 2
+        x: 340
+        y: 178
+        width: 6
+        height: 9
+      alignment: 0
+      pivot: {x: 0, y: 0}
+      border: {x: 0, y: 0, z: 0, w: 0}
+      customData: 
+      outline: []
+      physicsShape: []
+      tessellationDetail: -1
+      bones: []
+      spriteID: 367077db862c09e00800000000000000
+      internalID: 1049552468288407395
+      vertices: []
+      indices: 
+      edges: []
+      weights: []
+    - serializedVersion: 2
+      name: pile-red-dry-colours__1_-removebg-preview_153
+      rect:
+        serializedVersion: 2
+        x: 387
+        y: 168
+        width: 20
+        height: 23
+      alignment: 0
+      pivot: {x: 0, y: 0}
+      border: {x: 0, y: 0, z: 0, w: 0}
+      customData: 
+      outline: []
+      physicsShape: []
+      tessellationDetail: -1
+      bones: []
+      spriteID: b4e90088a114cce50800000000000000
+      internalID: 6830906317020896843
+      vertices: []
+      indices: 
+      edges: []
+      weights: []
+    - serializedVersion: 2
+      name: pile-red-dry-colours__1_-removebg-preview_154
+      rect:
+        serializedVersion: 2
+        x: 300
+        y: 169
+        width: 7
+        height: 7
+      alignment: 0
+      pivot: {x: 0, y: 0}
+      border: {x: 0, y: 0, z: 0, w: 0}
+      customData: 
+      outline: []
+      physicsShape: []
+      tessellationDetail: -1
+      bones: []
+      spriteID: 07c7a016865d406f0800000000000000
+      internalID: -719215396191044496
+      vertices: []
+      indices: 
+      edges: []
+      weights: []
+    - serializedVersion: 2
+      name: pile-red-dry-colours__1_-removebg-preview_155
+      rect:
+        serializedVersion: 2
+        x: 353
+        y: 172
+        width: 6
+        height: 8
+      alignment: 0
+      pivot: {x: 0, y: 0}
+      border: {x: 0, y: 0, z: 0, w: 0}
+      customData: 
+      outline: []
+      physicsShape: []
+      tessellationDetail: -1
+      bones: []
+      spriteID: ddcf56fc11aa72410800000000000000
+      internalID: 1452316398321007837
+      vertices: []
+      indices: 
+      edges: []
+      weights: []
+    - serializedVersion: 2
+      name: pile-red-dry-colours__1_-removebg-preview_156
+      rect:
+        serializedVersion: 2
+        x: 110
+        y: 139
+        width: 15
+        height: 16
+      alignment: 0
+      pivot: {x: 0, y: 0}
+      border: {x: 0, y: 0, z: 0, w: 0}
+      customData: 
+      outline: []
+      physicsShape: []
+      tessellationDetail: -1
+      bones: []
+      spriteID: 527a36ab2bdd0f160800000000000000
+      internalID: 7057384375790577445
+      vertices: []
+      indices: 
+      edges: []
+      weights: []
+    - serializedVersion: 2
+      name: pile-red-dry-colours__1_-removebg-preview_157
+      rect:
+        serializedVersion: 2
+        x: 401
+        y: 144
+        width: 7
+        height: 7
+      alignment: 0
+      pivot: {x: 0, y: 0}
+      border: {x: 0, y: 0, z: 0, w: 0}
+      customData: 
+      outline: []
+      physicsShape: []
+      tessellationDetail: -1
+      bones: []
+      spriteID: 46e0a6013ffc16dc0800000000000000
+      internalID: -3647405580334002588
+      vertices: []
+      indices: 
+      edges: []
+      weights: []
+    - serializedVersion: 2
+      name: pile-red-dry-colours__1_-removebg-preview_158
+      rect:
+        serializedVersion: 2
+        x: 77
+        y: 85
+        width: 17
+        height: 15
+      alignment: 0
+      pivot: {x: 0, y: 0}
+      border: {x: 0, y: 0, z: 0, w: 0}
+      customData: 
+      outline: []
+      physicsShape: []
+      tessellationDetail: -1
+      bones: []
+      spriteID: 754774f1c5fd5d5f0800000000000000
+      internalID: -732433777623075753
+      vertices: []
+      indices: 
+      edges: []
+      weights: []
+    - serializedVersion: 2
+      name: pile-red-dry-colours__1_-removebg-preview_159
+      rect:
+        serializedVersion: 2
+        x: 232
+        y: 102
+        width: 6
+        height: 6
+      alignment: 0
+      pivot: {x: 0, y: 0}
+      border: {x: 0, y: 0, z: 0, w: 0}
+      customData: 
+      outline: []
+      physicsShape: []
+      tessellationDetail: -1
+      bones: []
+      spriteID: 4b67fac4b41409860800000000000000
+      internalID: 7534593968255760052
+      vertices: []
+      indices: 
+      edges: []
+      weights: []
+    - serializedVersion: 2
+      name: pile-red-dry-colours__1_-removebg-preview_160
+      rect:
+        serializedVersion: 2
+        x: 289
+        y: 109
+        width: 6
+        height: 6
+      alignment: 0
+      pivot: {x: 0, y: 0}
+      border: {x: 0, y: 0, z: 0, w: 0}
+      customData: 
+      outline: []
+      physicsShape: []
+      tessellationDetail: -1
+      bones: []
+      spriteID: 3633488cf82ce77c0800000000000000
+      internalID: -4071603090296130717
+      vertices: []
+      indices: 
+      edges: []
+      weights: []
+    - serializedVersion: 2
+      name: pile-red-dry-colours__1_-removebg-preview_161
+      rect:
+        serializedVersion: 2
+        x: 385
+        y: 83
+        width: 17
+        height: 37
+      alignment: 0
+      pivot: {x: 0, y: 0}
+      border: {x: 0, y: 0, z: 0, w: 0}
+      customData: 
+      outline: []
+      physicsShape: []
+      tessellationDetail: -1
+      bones: []
+      spriteID: fc63996ce3cb85810800000000000000
+      internalID: 1754359032666732239
+      vertices: []
+      indices: 
+      edges: []
+      weights: []
+    outline: []
+    customData: 
+    physicsShape: []
+    bones: []
+    spriteID: 
+    internalID: 0
+    vertices: []
+    indices: 
+    edges: []
+    weights: []
+    secondaryTextures: []
+    spriteCustomMetadata:
+      entries: []
+    nameFileIdTable: {}
+  mipmapLimitGroupName: 
+  pSDRemoveMatte: 0
+  userData: 
+  assetBundleName: 
+  assetBundleVariant: 

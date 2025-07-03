@@ -51,6 +51,10 @@ public class Player : MonoBehaviour
      public Transform target;
    
     public GameObject OpenDoorImg;
+
+    public int PlayerHealthCount;
+
+   
     // public bool isDeath;
 
     [Space]
