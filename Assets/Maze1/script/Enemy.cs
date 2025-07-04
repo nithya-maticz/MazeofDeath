@@ -40,10 +40,20 @@ public class Enemy : MonoBehaviour
     [Header("RAYCAST")]
     [SerializeField] Transform RaycastParent;
     [SerializeField] float rayLength;
-    [SerializeField]  int rayCount;
+    [SerializeField] int rayCount;
     [SerializeField] float coneAngle;
-    [SerializeField]  LayerMask raycastLayerMask;
+    [SerializeField] LayerMask raycastLayerMask;
     public int count = 1;
+
+
+    [Header("Patrolling")]
+    // public Transform[] patrolPoints;  // Set these in the inspector
+    public float speed = 3f;
+    public float reachThreshold = 0.1f;
+
+    private int currentPointIndex = 0;
+    private Transform targetPoint;
+
 
 
     void Start()
@@ -52,7 +62,20 @@ public class Enemy : MonoBehaviour
         Agent.updateRotation = false;
         Agent.updateUpAxis = false;
         currentHealth = enemyHealth;
+
+
+
+
+        ManagerMaze.instance.targetPoint = 0;
         target = Player.Instance.transform;
+
+
+        if (ManagerMaze.instance.partolPoints.Length > 0)
+        {
+            targetPoint = ManagerMaze.instance.partolPoints[currentPointIndex];
+        }
+
+        // target = ManagerMaze.instance.partolPoints[ManagerMaze.instance.targetPoint];
 
     }
 
@@ -61,47 +84,88 @@ public class Enemy : MonoBehaviour
         currentHealth -= damange;
         enemyHealthTxt.text = currentHealth.ToString();
     }
-    
+
     void Update()
     {
-       
-
-        if (target != null)
+        if (Player.Instance.playerDeath)
         {
-            Agent.SetDestination(target.position);
-
-            if (!Agent.pathPending && Agent.remainingDistance <= Agent.stoppingDistance)
-            {
-                
-                if (!Agent.hasPath || Agent.velocity.sqrMagnitude == 0f)
-                {
-                    Debug.Log("inside ");
-                    if (healthCoroutine == null)
-                    {
-                        healthCoroutine = StartCoroutine(ReducePlayerHealth(ManagerMaze.instance.playerRef));
-                    }
-                }
-            }
-            else
-            {
-                if (healthCoroutine!=null)
-                {
-                    StopCoroutine(healthCoroutine);
-                    healthCoroutine = null;
-                }
-            }
-
+            animator.SetTrigger("playerdeath");
+            return;
         }
 
-        if (ManagerMaze.instance.playerRef != null)
+
+        /*if(targetPoint== Player.Instance.transform)
         {
-            Vector2 direction = ManagerMaze.instance.playerRef.transform.position - transform.position;
+
+        }
+        else*/
+        {
+            if (targetPoint == null || ManagerMaze.instance.partolPoints.Length == 0) return;
+
+            // Set NavMesh destination
+            Agent.SetDestination(targetPoint.position);
+
+            // Rotate enemy toward movement direction
+            Vector2 direction = targetPoint.position - transform.position;
             float angle = Mathf.Atan2(direction.y, direction.x) * Mathf.Rad2Deg;
-
-            // Apply rotation only on Z-axis for 2D
             transform.rotation = Quaternion.Euler(0, 0, angle + 180);
+
+            // Check if enemy reached patrol point
+            if (Vector2.Distance(transform.position, targetPoint.position) < reachThreshold)
+            {
+                currentPointIndex = (currentPointIndex + 1) % ManagerMaze.instance.partolPoints.Length;
+                targetPoint = ManagerMaze.instance.partolPoints[currentPointIndex];
+            }
         }
+
+
+
+        /* if (target != null)
+         {
+             Agent.SetDestination(target.position);
+
+             if (target ==Player.Instance.transform)
+             {
+                 Agent.SetDestination(target.position);
+
+                 if (!Agent.pathPending && Agent.remainingDistance <= Agent.stoppingDistance)
+                 {
+                     if (!Agent.hasPath || Agent.velocity.sqrMagnitude == 0f)
+                     {
+                         Debug.Log("inside ");
+                         if (healthCoroutine == null)
+                         {
+                             healthCoroutine = StartCoroutine(ReducePlayerHealth(ManagerMaze.instance.playerRef));
+                         }
+                     }
+                 }
+                 else
+                 {
+                     if (healthCoroutine != null)
+                     {
+                         StopCoroutine(healthCoroutine);
+                         healthCoroutine = null;
+                     }
+                 }
+
+                 if (ManagerMaze.instance.playerRef != null)
+                 {
+                     Vector2 direction = ManagerMaze.instance.playerRef.transform.position - transform.position;
+                     float angle = Mathf.Atan2(direction.y, direction.x) * Mathf.Rad2Deg;
+
+                     // Apply rotation only on Z-axis for 2D
+                     transform.rotation = Quaternion.Euler(0, 0, angle + 180);
+                 }
+             }*/
+
+
+        //  }
+
+
+        // }
+
     }
+
 
     private void FixedUpdate()
     {
@@ -116,13 +180,13 @@ public class Enemy : MonoBehaviour
 
             if (hit.collider != null)
             {
-                
+
                 Debug.DrawRay(RaycastParent.position, dir * hit.distance, Color.green);
                 Debug.Log(hit.collider.gameObject.name);
             }
             else
             {
-                
+
                 Debug.DrawRay(RaycastParent.position, dir * rayLength, Color.red);
             }
         }
@@ -148,12 +212,12 @@ public class Enemy : MonoBehaviour
             float elapsed = 0f;
             float startHealth = player.playerHealth;
             float targetHealth = player.playerHealth - 0.1f;
-            ManagerMaze.instance.PlayerImage.GetComponent<SpriteRenderer>().color= Color.red;
-            
+            ManagerMaze.instance.PlayerImage.GetComponent<SpriteRenderer>().color = Color.red;
+
             // Clamp to avoid negative health
             targetHealth = Mathf.Max(0, targetHealth);
-           
-       
+
+
 
 
             while (elapsed < duration)
@@ -162,7 +226,7 @@ public class Enemy : MonoBehaviour
                 float t = elapsed / duration;
 
                 player.playerHealth = Mathf.Lerp(startHealth, targetHealth, t);
-               // Debug.Log(player.playerHealth);
+                // Debug.Log(player.playerHealth);
                 player.playerHealthFill.fillAmount = player.playerHealth;
                 yield return null;
             }
@@ -180,17 +244,26 @@ public class Enemy : MonoBehaviour
 
     private void OnTriggerEnter2D(Collider2D collision)
     {
-        if(collision.gameObject.tag == "PlayerRange")
+        if (collision.gameObject.tag == "PlayerRange")
         {
             target = null;
             animator.SetTrigger("enemyattack");
-            Attacfun();
+            // targetPoint =  Player.Instance.transform;
             Agent.ResetPath();
-           // Attacfun();
+
 
             if (healthCoroutine == null)
                 healthCoroutine = StartCoroutine(ReducePlayerHealth(ManagerMaze.instance.playerRef.GetComponent<Player>()));
         }
+
+        if (collision.gameObject.tag == "EnemyRange")
+        {
+            target = null;
+            // animator.SetTrigger("enemyattack");
+            targetPoint = Player.Instance.transform;
+            Agent.ResetPath();
+        }
+
 
         if (collision.gameObject.tag == "attack")
         {
@@ -217,16 +290,17 @@ public class Enemy : MonoBehaviour
                 ManagerMaze.instance.PlayerImage.GetComponent<SpriteRenderer>().color = Color.white;
                 StopCoroutine(healthCoroutine);
             }
-                
+
         }
+        else if (collision.gameObject.tag == "EnemyRange")
+        {
+            targetPoint = ManagerMaze.instance.partolPoints[currentPointIndex];
+            GetComponent<NavMeshAgent>().speed = 6f;
+            Agent.ResetPath();
+        }
+
     }
-    public void Attacfun()
-    {
-       
-        count++;
-        Debug.Log("Count" + count);
-        Debug.Log("ATTTTTTTTT");
-    }
+
     void DeleyPathReset()
     {
         Agent.ResetPath();

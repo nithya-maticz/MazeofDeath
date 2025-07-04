@@ -60,65 +60,69 @@ public class ManagerMaze : MonoBehaviour
 
     public Animator enemyAnimatorRef;
     public Image bloodImage;
+
+    public Transform[] partolPoints;
+    public int targetPoint;
+    public float enemySpeed;
     void Start()
     {
-       
+
         isPlayerGetKey = false;
         isGameOver = false;
         keyImg.SetActive(false);
-        
+
     }
 
     private void Awake()
     {
         instance = this;
     }
-   
+
     // Update is called once per frame
     void Update()
     {
-        
+
     }
-  
-  
+
+
     public void AttackEnemy()
     {
-        attackPlayer=true;
+        attackPlayer = true;
     }
     public void RestartFun()
     {
         SceneManager.LoadScene("Maze1");
     }
 
-   
 
-   public void GetTreasure(BoxObjects boxObjects)
-   {
-        if(boxObjects == BoxObjects.Key)
+
+    public void GetTreasure(BoxObjects boxObjects)
+    {
+        if (boxObjects == BoxObjects.Key)
         {
             TreasureAnimation.gameObject.SetActive(true);
             TreasureKey.SetActive(true);
             TreasureAnimation.SetTrigger("Key");
         }
-        else if(boxObjects == BoxObjects.MediKit)
+        else if (boxObjects == BoxObjects.MediKit)
         {
             TreasureAnimation.gameObject.SetActive(true);
             TreasureMedikit.SetActive(true);
             TreasureAnimation.SetTrigger("MediKit");
         }
-        else if(boxObjects == BoxObjects.Empty)
+        else if (boxObjects == BoxObjects.Empty)
         {
             return;
         }
-   }
+    }
 
     public void CheckLevelUp()
     {
         bool allclosed = true;
 
-        foreach(ZombieDoor door in ZombieDoors)
+        foreach (ZombieDoor door in ZombieDoors)
         {
-            if(!door.isClosed)
+            if (!door.isClosed)
                 allclosed = false;
         }
 
@@ -131,7 +135,7 @@ public class ManagerMaze : MonoBehaviour
 
     void LevelUP()
     {
-        foreach(Enemy enemy in Enemies)
+        foreach (Enemy enemy in Enemies)
         {
             Destroy(enemy);
         }
@@ -140,27 +144,34 @@ public class ManagerMaze : MonoBehaviour
 
     public void GameOver()
     {
+        foreach (Enemy enemy in Enemies)
+        {
+            Debug.Log("GameOver-----------");
+
+            Destroy(enemy.gameObject);
+        }
         Invoke("game_over", 1f);
     }
 
     void game_over()
     {
-        GameOverPage.SetActive(true);
 
+        GameOverPage.SetActive(true);
     }
 
     public void CheckBoxCount()
     {
         _boxCount = 0;
-        foreach(KeyBox box in KeyBoxes)
+        foreach (KeyBox box in KeyBoxes)
         {
-           if (box.IsOpened)
-           {
+            if (box.IsOpened)
+            {
                 _boxCount++;
-           }
+            }
         }
 
-        OpenedBoxText.text = _boxCount.ToString() + "/" +KeyBoxes.Count.ToString();
+        OpenedBoxText.text = _boxCount.ToString() + "/" + KeyBoxes.Count.ToString();
+
     }
 }
 
