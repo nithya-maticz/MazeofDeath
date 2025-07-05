@@ -22,57 +22,57 @@ AnimationClip:
     curve:
     - time: 0.06666667
       value: {fileID: 59496277162103779, guid: 851938f10a8996b4ca2dc472104804a8, type: 3}
-    - time: 0.11666667
+    - time: 0.1
       value: {fileID: -77088198152058341, guid: 851938f10a8996b4ca2dc472104804a8, type: 3}
-    - time: 0.18333334
+    - time: 0.15
       value: {fileID: 351054569875977647, guid: 851938f10a8996b4ca2dc472104804a8, type: 3}
-    - time: 0.23333333
+    - time: 0.18333334
       value: {fileID: 7769495776739795282, guid: 851938f10a8996b4ca2dc472104804a8, type: 3}
-    - time: 0.28333333
+    - time: 0.21666667
       value: {fileID: -2241941464180748742, guid: 851938f10a8996b4ca2dc472104804a8, type: 3}
-    - time: 0.35
+    - time: 0.25
       value: {fileID: -1954602517027510871, guid: 851938f10a8996b4ca2dc472104804a8, type: 3}
-    - time: 0.4
+    - time: 0.28333333
       value: {fileID: -6008079532025840091, guid: 851938f10a8996b4ca2dc472104804a8, type: 3}
-    - time: 0.45
+    - time: 0.31666666
       value: {fileID: -2582270081641035886, guid: 851938f10a8996b4ca2dc472104804a8, type: 3}
-    - time: 0.51666665
+    - time: 0.36666667
       value: {fileID: 6968435087522609639, guid: 851938f10a8996b4ca2dc472104804a8, type: 3}
-    - time: 0.56666666
+    - time: 0.4
       value: {fileID: -6660013841823054553, guid: 851938f10a8996b4ca2dc472104804a8, type: 3}
-    - time: 0.6166667
+    - time: 0.43333334
       value: {fileID: 2598808755005635815, guid: 851938f10a8996b4ca2dc472104804a8, type: 3}
-    - time: 0.68333334
+    - time: 0.48333332
       value: {fileID: 3002357151879841709, guid: 851938f10a8996b4ca2dc472104804a8, type: 3}
-    - time: 0.73333335
+    - time: 0.51666665
       value: {fileID: 7644914658858779907, guid: 851938f10a8996b4ca2dc472104804a8, type: 3}
-    - time: 0.78333336
+    - time: 0.55
       value: {fileID: 6224903866719780376, guid: 851938f10a8996b4ca2dc472104804a8, type: 3}
-    - time: 0.8333333
+    - time: 0.56666666
       value: {fileID: 2208118273229300006, guid: 851938f10a8996b4ca2dc472104804a8, type: 3}
-    - time: 0.8833333
+    - time: 0.6
       value: {fileID: 3606305426994000395, guid: 851938f10a8996b4ca2dc472104804a8, type: 3}
-    - time: 0.95
+    - time: 0.65
       value: {fileID: 8141569771280474629, guid: 851938f10a8996b4ca2dc472104804a8, type: 3}
-    - time: 1
+    - time: 0.68333334
       value: {fileID: -8259885444263376763, guid: 851938f10a8996b4ca2dc472104804a8, type: 3}
-    - time: 1.05
+    - time: 0.71666664
       value: {fileID: 4948734842784794236, guid: 851938f10a8996b4ca2dc472104804a8, type: 3}
-    - time: 1.1166667
+    - time: 0.76666665
       value: {fileID: 8021183440006089825, guid: 851938f10a8996b4ca2dc472104804a8, type: 3}
-    - time: 1.1666666
+    - time: 0.8
       value: {fileID: 592607464143830819, guid: 851938f10a8996b4ca2dc472104804a8, type: 3}
-    - time: 1.2166667
+    - time: 0.8333333
       value: {fileID: 1196736348042688278, guid: 851938f10a8996b4ca2dc472104804a8, type: 3}
-    - time: 1.2833333
+    - time: 0.8666667
       value: {fileID: 8784671667849258726, guid: 851938f10a8996b4ca2dc472104804a8, type: 3}
-    - time: 1.3333334
+    - time: 0.9
       value: {fileID: 4077633290694125868, guid: 851938f10a8996b4ca2dc472104804a8, type: 3}
-    - time: 1.3833333
+    - time: 0.93333334
       value: {fileID: 3659242110233156917, guid: 851938f10a8996b4ca2dc472104804a8, type: 3}
-    - time: 1.45
+    - time: 0.98333335
       value: {fileID: 6858947180353176158, guid: 851938f10a8996b4ca2dc472104804a8, type: 3}
-    - time: 1.5
+    - time: 1.0166667
       value: {fileID: -6139911281908302739, guid: 851938f10a8996b4ca2dc472104804a8, type: 3}
     attribute: m_Sprite
     path: 
@@ -128,7 +128,7 @@ AnimationClip:
     m_AdditiveReferencePoseClip: {fileID: 0}
     m_AdditiveReferencePoseTime: 0
     m_StartTime: 0
-    m_StopTime: 1.5833334
+    m_StopTime: 1.0333333
     m_OrientationOffsetY: 0
     m_Level: 0
     m_CycleOffset: 0
@@ -148,7 +148,7 @@ AnimationClip:
   m_HasGenericRootTransform: 0
   m_HasMotionFloatCurves: 0
   m_Events:
-  - time: 1.5833334
+  - time: 1.0333333
     functionName: EnemyAttackCount
     data: 
     objectReferenceParameter: {fileID: 0}

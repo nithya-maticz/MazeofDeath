@@ -6,6 +6,7 @@ public class ZombieDoor : MonoBehaviour
     public bool isClosed;
     public Transform SpawnPoint;
     public SpriteRenderer sprite;
+    public float waitTime;
    
     void Start()
     {
@@ -36,7 +37,7 @@ public class ZombieDoor : MonoBehaviour
                 }
             }
 
-            yield return new WaitForSeconds(20f);
+            yield return new WaitForSeconds(waitTime);
         }
 
 

@@ -237,7 +237,7 @@ public class Enemy : MonoBehaviour
             float elapsed = 0f;
             float startHealth = player.playerHealth;
             float targetHealth = player.playerHealth - 0.1f;
-           // ManagerMaze.instance.PlayerImage.GetComponent<SpriteRenderer>().color = Color.red;
+            ManagerMaze.instance.PlayerImage.GetComponent<SpriteRenderer>().color = Color.red;
 
             // Clamp to avoid negative health
             targetHealth = Mathf.Max(0, targetHealth);
@@ -273,6 +273,7 @@ public class Enemy : MonoBehaviour
         {
             target = null;
             animator.SetTrigger("enemyattack");
+            ManagerMaze.instance.PlayerImage.GetComponent<SpriteRenderer>().color = Color.red;
             // targetPoint =  Player.Instance.transform;
             Agent.ResetPath();
 
@@ -296,7 +297,7 @@ public class Enemy : MonoBehaviour
             if (healthCoroutine != null)
             {
                 StopCoroutine(healthCoroutine);
-              //  ManagerMaze.instance.PlayerImage.GetComponent<SpriteRenderer>().color = Color.white;
+                ManagerMaze.instance.PlayerImage.GetComponent<SpriteRenderer>().color = Color.white;
                 healthCoroutine = null;
                 Debug.Log("Coroutine stopped.");
             }
