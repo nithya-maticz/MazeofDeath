@@ -37,6 +37,9 @@ public class AnimationHandle : MonoBehaviour
     {
         ManagerMaze.instance.TreasureAnimation.gameObject.SetActive(false);
         ManagerMaze.instance.TreasureMedikit.SetActive(false);
+        ManagerMaze.instance.bloodImage.GetComponent<Image>().enabled = false;
+        Player.Instance.PlayerHealthCount=4;
+
         Player.Instance.IncreaseHealth();
     }
 
@@ -71,6 +74,7 @@ public class AnimationHandle : MonoBehaviour
             case 0:
                 ManagerMaze.instance.bloodImage.sprite = ManagerMaze.instance.damage4;
                 Debug.Log("Player dead");
+                ManagerMaze.instance.GameOver();
                 break;
 
 

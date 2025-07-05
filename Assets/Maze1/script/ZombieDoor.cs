@@ -36,7 +36,7 @@ public class ZombieDoor : MonoBehaviour
                 }
             }
 
-            yield return new WaitForSeconds(40f);
+            yield return new WaitForSeconds(20f);
         }
 
 

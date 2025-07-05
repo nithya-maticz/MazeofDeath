@@ -100,15 +100,40 @@ public class Enemy : MonoBehaviour
         }
         else*/
         {
+            /*if (targetPoint == null || ManagerMaze.instance.partolPoints.Length == 0) return;
+
+            // Set NavMesh destination
+            Agent.SetDestination(targetPoint.position);
+
+            // Rotate enemy smoothly toward movement direction
+            Vector2 direction = targetPoint.position - transform.position;
+            float angle = Mathf.Atan2(direction.y, direction.x) * Mathf.Rad2Deg;
+            Quaternion targetRotation = Quaternion.Euler(0, 0, angle + 180);
+
+            // Smoothly rotate toward the target
+            float rotationSpeed = 5f; // Adjust for faster/slower turning
+            transform.rotation = Quaternion.RotateTowards(transform.rotation, targetRotation, rotationSpeed * Time.deltaTime);
+
+            // Check if enemy reached patrol point
+            if (Vector2.Distance(transform.position, targetPoint.position) < reachThreshold)
+            {
+                currentPointIndex = (currentPointIndex + 1) % ManagerMaze.instance.partolPoints.Length;
+                targetPoint = ManagerMaze.instance.partolPoints[currentPointIndex];
+            }*/
+
             if (targetPoint == null || ManagerMaze.instance.partolPoints.Length == 0) return;
 
             // Set NavMesh destination
             Agent.SetDestination(targetPoint.position);
 
-            // Rotate enemy toward movement direction
+            // Calculate angle toward target
             Vector2 direction = targetPoint.position - transform.position;
-            float angle = Mathf.Atan2(direction.y, direction.x) * Mathf.Rad2Deg;
-            transform.rotation = Quaternion.Euler(0, 0, angle + 180);
+            float angle = Mathf.Atan2(direction.y, direction.x) * Mathf.Rad2Deg - 180f;
+            Quaternion targetRotation = Quaternion.Euler(0, 0, angle);
+
+            // Smoothly rotate toward the target
+            float rotationSpeed = 200f; // degrees per second, adjust as needed
+            transform.rotation = Quaternion.RotateTowards(transform.rotation, targetRotation, rotationSpeed * Time.deltaTime);
 
             // Check if enemy reached patrol point
             if (Vector2.Distance(transform.position, targetPoint.position) < reachThreshold)
@@ -212,7 +237,7 @@ public class Enemy : MonoBehaviour
             float elapsed = 0f;
             float startHealth = player.playerHealth;
             float targetHealth = player.playerHealth - 0.1f;
-            ManagerMaze.instance.PlayerImage.GetComponent<SpriteRenderer>().color = Color.red;
+           // ManagerMaze.instance.PlayerImage.GetComponent<SpriteRenderer>().color = Color.red;
 
             // Clamp to avoid negative health
             targetHealth = Mathf.Max(0, targetHealth);
@@ -256,10 +281,11 @@ public class Enemy : MonoBehaviour
                 healthCoroutine = StartCoroutine(ReducePlayerHealth(ManagerMaze.instance.playerRef.GetComponent<Player>()));
         }
 
-        if (collision.gameObject.tag == "EnemyRange")
+        if (collision.gameObject.tag == "enemyrange")
         {
             target = null;
-            // animator.SetTrigger("enemyattack");
+             animator.SetTrigger("enemyrun");
+            GetComponent<NavMeshAgent>().speed = 5f;
             targetPoint = Player.Instance.transform;
             Agent.ResetPath();
         }
@@ -270,7 +296,7 @@ public class Enemy : MonoBehaviour
             if (healthCoroutine != null)
             {
                 StopCoroutine(healthCoroutine);
-                ManagerMaze.instance.PlayerImage.GetComponent<SpriteRenderer>().color = Color.white;
+              //  ManagerMaze.instance.PlayerImage.GetComponent<SpriteRenderer>().color = Color.white;
                 healthCoroutine = null;
                 Debug.Log("Coroutine stopped.");
             }
@@ -292,10 +318,11 @@ public class Enemy : MonoBehaviour
             }
 
         }
-        else if (collision.gameObject.tag == "EnemyRange")
+        else if (collision.gameObject.tag == "enemyrange")
         {
             targetPoint = ManagerMaze.instance.partolPoints[currentPointIndex];
-            GetComponent<NavMeshAgent>().speed = 6f;
+            animator.SetTrigger("idle");
+            GetComponent<NavMeshAgent>().speed = 3.5f;
             Agent.ResetPath();
         }
 

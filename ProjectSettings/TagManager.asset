@@ -17,6 +17,7 @@ TagManager:
   - Target
   - PlayerRange
   - Box
+  - enemyrange
   layers:
   - Default
   - TransparentFX
