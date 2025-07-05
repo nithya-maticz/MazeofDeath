@@ -282,17 +282,18 @@ public class Enemy : MonoBehaviour
                 healthCoroutine = StartCoroutine(ReducePlayerHealth(ManagerMaze.instance.playerRef.GetComponent<Player>()));
         }
 
-        if (collision.gameObject.tag == "enemyrange")
+      else if (collision.gameObject.tag == "enemyrange")
         {
             target = null;
-             animator.SetTrigger("enemyrun");
+
+            animator.SetTrigger("enemyrun");
             GetComponent<NavMeshAgent>().speed = 5f;
             targetPoint = Player.Instance.transform;
             Agent.ResetPath();
         }
 
 
-        if (collision.gameObject.tag == "attack")
+       else  if (collision.gameObject.tag == "attack")
         {
             if (healthCoroutine != null)
             {
