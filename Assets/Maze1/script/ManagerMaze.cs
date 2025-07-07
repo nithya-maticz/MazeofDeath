@@ -144,13 +144,13 @@ public class ManagerMaze : MonoBehaviour
 
     public void GameOver()
     {
-        foreach (Enemy enemy in Enemies)
+       /* foreach (Enemy enemy in Enemies)
         {
             Debug.Log("GameOver-----------");
 
             Destroy(enemy.gameObject);
         }
-        Invoke("game_over", 1f);
+        Invoke("game_over", 1f);*/
     }
 
     void game_over()
