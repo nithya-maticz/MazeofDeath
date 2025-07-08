@@ -321,8 +321,11 @@ MonoBehaviour:
   coneAngle: 60
   raycastLayerMask:
     serializedVersion: 2
-    m_Bits: 192
+    m_Bits: 64
   count: 1
+  ligtColor: {fileID: 2139374674524484084}
+  speed: 10
+  reachThreshold: 0.1
 --- !u!114 &5247138977004330261
 MonoBehaviour:
   m_ObjectHideFlags: 0

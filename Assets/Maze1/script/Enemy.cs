@@ -4,6 +4,8 @@ using System;
 using UnityEngine.AI;
 using TMPro;
 using UnityEngine.UI;
+using UnityEngine.Rendering.Universal;
+using Unity.VisualScripting;
 
 
 
@@ -44,6 +46,7 @@ public class Enemy : MonoBehaviour
     [SerializeField] float coneAngle;
     [SerializeField] LayerMask raycastLayerMask;
     public int count = 1;
+    public GameObject ligtColor;
 
 
     [Header("Patrolling")]
@@ -87,11 +90,11 @@ public class Enemy : MonoBehaviour
 
     void Update()
     {
-        if (Player.Instance.playerDeath)
+       /* if (Player.Instance.playerDeath)
         {
             animator.SetTrigger("playerdeath");
             return;
-        }
+        }*/
 
 
         /*if(targetPoint== Player.Instance.transform)
@@ -141,54 +144,33 @@ public class Enemy : MonoBehaviour
                 currentPointIndex = (currentPointIndex + 1) % ManagerMaze.instance.partolPoints.Length;
                 targetPoint = ManagerMaze.instance.partolPoints[currentPointIndex];
             }
+           
+
         }
 
 
+       /* void FindNearestPatrolPoint()
+        {
+            float closestDistance = Mathf.Infinity;
+            int nearestIndex = 0;
+            Vector2 enemyPosition = transform.position;
 
-        /* if (target != null)
-         {
-             Agent.SetDestination(target.position);
+            for (int i = 0; i < ManagerMaze.instance.partolPoints.Length; i++)
+            {
+                float distance = Vector2.Distance(enemyPosition, ManagerMaze.instance.partolPoints[i].position);
+                if (distance < closestDistance)
+                {
+                    closestDistance = distance;
+                    nearestIndex = i;
+                }
+            }
 
-             if (target ==Player.Instance.transform)
-             {
-                 Agent.SetDestination(target.position);
-
-                 if (!Agent.pathPending && Agent.remainingDistance <= Agent.stoppingDistance)
-                 {
-                     if (!Agent.hasPath || Agent.velocity.sqrMagnitude == 0f)
-                     {
-                         Debug.Log("inside ");
-                         if (healthCoroutine == null)
-                         {
-                             healthCoroutine = StartCoroutine(ReducePlayerHealth(ManagerMaze.instance.playerRef));
-                         }
-                     }
-                 }
-                 else
-                 {
-                     if (healthCoroutine != null)
-                     {
-                         StopCoroutine(healthCoroutine);
-                         healthCoroutine = null;
-                     }
-                 }
-
-                 if (ManagerMaze.instance.playerRef != null)
-                 {
-                     Vector2 direction = ManagerMaze.instance.playerRef.transform.position - transform.position;
-                     float angle = Mathf.Atan2(direction.y, direction.x) * Mathf.Rad2Deg;
-
-                     // Apply rotation only on Z-axis for 2D
-                     transform.rotation = Quaternion.Euler(0, 0, angle + 180);
-                 }
-             }*/
+            currentPointIndex = nearestIndex;
+            targetPoint = ManagerMaze.instance.partolPoints[currentPointIndex];
+        }*/
 
 
-        //  }
-
-
-        // }
-
+       
     }
 
 
@@ -205,19 +187,44 @@ public class Enemy : MonoBehaviour
 
             if (hit.collider != null)
             {
-
                 Debug.DrawRay(RaycastParent.position, dir * hit.distance, Color.green);
-                Debug.Log(hit.collider.gameObject.name);
+                Debug.Log("Name    "+ hit.collider.gameObject.name);
+
+                if (hit.collider.gameObject.name == "Range"  || hit.collider.gameObject.name == "player")
+                {
+                    Debug.Log("Player detected by raycast!");
+                    ligtColor.GetComponent<Light2D>().color = Color.red;
+                    // Change target point to player's transform
+                    CancelInvoke("ChangeColor");
+                    targetPoint = Player.Instance.transform;
+
+                    // Optionally change speed or animation
+                    Agent.speed = 10f;
+                   // animator.SetTrigger("enemyrun");
+
+                    // Optional: reset the path to force recalculation
+                    Agent.ResetPath();
+                }
+               
             }
             else
             {
-
+                Debug.Log("ELSE ------");
+                Invoke("ChangeColor", 10f);
+                
                 Debug.DrawRay(RaycastParent.position, dir * rayLength, Color.red);
             }
         }
     }
 
-
+    public void ChangeColor()
+    {
+        Debug.Log("ChangeColor function");
+        Agent.speed = 5f;
+        ligtColor.GetComponent<Light2D>().color = Color.green;
+        targetPoint = ManagerMaze.instance.partolPoints[currentPointIndex];
+        Agent.ResetPath();
+    }
 
 
     public void idleFun()
@@ -241,9 +248,6 @@ public class Enemy : MonoBehaviour
 
             // Clamp to avoid negative health
             targetHealth = Mathf.Max(0, targetHealth);
-
-
-
 
             while (elapsed < duration)
             {
@@ -271,26 +275,24 @@ public class Enemy : MonoBehaviour
     {
         if (collision.gameObject.tag == "PlayerRange")
         {
-            target = null;
+          //  target = null;
             animator.SetTrigger("enemyattack");
             ManagerMaze.instance.PlayerImage.GetComponent<SpriteRenderer>().color = Color.red;
             // targetPoint =  Player.Instance.transform;
             Agent.ResetPath();
 
-
             if (healthCoroutine == null)
                 healthCoroutine = StartCoroutine(ReducePlayerHealth(ManagerMaze.instance.playerRef.GetComponent<Player>()));
         }
 
-      else if (collision.gameObject.tag == "enemyrange")
+      /*else if (collision.gameObject.tag == "enemyrange")
         {
             target = null;
-
             animator.SetTrigger("enemyrun");
             GetComponent<NavMeshAgent>().speed = 5f;
             targetPoint = Player.Instance.transform;
             Agent.ResetPath();
-        }
+        }*/
 
 
        else  if (collision.gameObject.tag == "attack")
@@ -323,9 +325,10 @@ public class Enemy : MonoBehaviour
         else if (collision.gameObject.tag == "enemyrange")
         {
             targetPoint = ManagerMaze.instance.partolPoints[currentPointIndex];
-            animator.SetTrigger("idle");
             GetComponent<NavMeshAgent>().speed = 3.5f;
+            animator.SetTrigger("idle");
             Agent.ResetPath();
+            
         }
 
     }
