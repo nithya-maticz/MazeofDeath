@@ -182,9 +182,7 @@ public class Enemy : MonoBehaviour
         {
             float angleOffset = Mathf.Lerp(-coneAngle / 2, coneAngle / 2, (float)i / (rayCount - 1));
             Vector2 dir = Quaternion.Euler(0, 0, angleOffset) * centerDir;
-
             RaycastHit2D hit = Physics2D.Raycast(RaycastParent.position, dir, rayLength, raycastLayerMask);
-
             if (hit.collider != null)
             {
                 Debug.DrawRay(RaycastParent.position, dir * hit.distance, Color.green);
@@ -200,7 +198,7 @@ public class Enemy : MonoBehaviour
 
                     // Optionally change speed or animation
                     Agent.speed = 10f;
-                   // animator.SetTrigger("enemyrun");
+                    animator.SetTrigger("enemyrun");
 
                     // Optional: reset the path to force recalculation
                     Agent.ResetPath();

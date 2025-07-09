@@ -6,6 +6,8 @@ using NUnit.Framework;
 using System.Collections.Generic;
 using TMPro;
 using UnityEngine.UI;
+using UnityEngine.Video;
+using TMPro;
 public class ManagerMaze : MonoBehaviour
 {
     public GameObject enemy;
@@ -64,6 +66,23 @@ public class ManagerMaze : MonoBehaviour
     public Transform[] partolPoints;
     public int targetPoint;
     public float enemySpeed;
+
+    
+    [Header("Videoplayer")]
+    public List<VideoControl> videoPlayer;
+
+    public int count = 0;
+
+    public Animator fadeAnimation;
+    public GameObject FadeImg;
+    public GameObject rawImage;
+    public bool gameStart;
+    public TextMeshProUGUI textMeshPro;
+    
+    public float typingSpeed = 0.05f;
+
+    private Coroutine typingCoroutine;
+
     void Start()
     {
 
@@ -71,16 +90,108 @@ public class ManagerMaze : MonoBehaviour
         isGameOver = false;
         keyImg.SetActive(false);
 
+        for(int i=0;i<videoPlayer.Count;i++)
+        {
+            videoPlayer[i].videoPlayer.Pause();
+        }
+       
+
+       
+
+
     }
 
+
+    public void StartTyping()
+    {
+       if(videoPlayer.Count>count && gameStart==false)
+        {
+            if (typingCoroutine != null)
+            {
+                StopCoroutine(typingCoroutine);
+            }
+            typingCoroutine = StartCoroutine(TypeText());
+        }
+       
+        
+    }
+
+    IEnumerator TypeText()
+    {
+        textMeshPro.text = "";
+        foreach (char c in videoPlayer[count].fullText)
+        {
+            textMeshPro.text += c;
+            yield return new WaitForSeconds(typingSpeed);
+        }
+        
+        Debug.Log("completed");
+        if( gameStart == false)
+        {
+            Invoke("playFun", 5f);
+        }
+       
+        
+
+
+    }
+
+    public void playFun()
+    {
+        Debug.Log("PLAYFUN-------------" + count);
+        if (count<3 && gameStart==false)
+        {
+            FadeImg.SetActive(true);
+            fadeAnimation.SetTrigger("fade");
+
+        }
+        else
+        {
+
+            Skipfun();
+        }
+
+    }
+
+
+    public void Skipfun()
+    {
+        gameStart = true;
+        StopCoroutine(typingCoroutine);
+        textMeshPro.text = "";
+        FadeImg.SetActive(false);
+        rawImage.SetActive(false);
+    }
+
+
+
+
+
+    public void LoadVideo()
+    {
+
+        videoPlayer[count].videoPlayer.Play();
+        StartTyping();
+
+      
+
+
+    }
+    
     private void Awake()
     {
         instance = this;
     }
 
     // Update is called once per frame
+
+
+   
+   
+
     void Update()
     {
+       
 
     }
 
@@ -197,3 +308,12 @@ public struct PatrolPoints
     public List<Transform> Points;
 }
 
+[Serializable]
+public class VideoControl
+{
+  
+    public VideoPlayer videoPlayer;
+    public RenderTexture videoTexture;
+
+    [TextArea] public string fullText;
+}

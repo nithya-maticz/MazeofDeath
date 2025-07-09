@@ -1,8 +1,11 @@
+using TMPro;
 using UnityEngine;
 using UnityEngine.UI;
+using UnityEngine.Video;
 
 public class AnimationHandle : MonoBehaviour
 {
+    public int VideoCount;
     // Start is called once before the first execution of Update after the MonoBehaviour is created
     public Player playerRef;
     void Start()
@@ -42,7 +45,33 @@ public class AnimationHandle : MonoBehaviour
 
         Player.Instance.IncreaseHealth();
     }
+    public void NextVideo()
+    {
+        Debug.Log("Next");
+        ManagerMaze.instance.textMeshPro.text = "";
+        ManagerMaze.instance.count++;
+        Debug.Log("COUNT  ---- " + ManagerMaze.instance.videoPlayer.Count);
+        Debug.Log("COUNT  ---- " + ManagerMaze.instance.count);
+        if (ManagerMaze.instance.videoPlayer.Count > ManagerMaze.instance.count && ManagerMaze.instance.gameStart==false )
+        {
 
+            ManagerMaze.instance.rawImage.GetComponent<RawImage>().texture = ManagerMaze.instance.videoPlayer[ManagerMaze.instance.count].videoTexture;
+            ManagerMaze.instance.videoPlayer[ManagerMaze.instance.count].videoPlayer.Play();
+        }
+            
+       
+       
+
+    }
+    public void nextTyping()
+    {
+        ManagerMaze.instance.FadeImg.SetActive(false);
+        if (ManagerMaze.instance.videoPlayer.Count > ManagerMaze.instance.count &&  ManagerMaze.instance.gameStart == false)
+        {
+            ManagerMaze.instance.StartTyping();
+        }
+
+    }
     public void EnemyAttackCount()
     {
         ManagerMaze.instance.bloodImage.GetComponent<Image>().enabled = true;

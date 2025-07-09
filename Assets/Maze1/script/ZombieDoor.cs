@@ -10,8 +10,8 @@ public class ZombieDoor : MonoBehaviour
    
     void Start()
     {
-        ManagerMaze.instance.ZombieDoors.Add(this);
-        StartCoroutine(SpawnEnemys());
+       // ManagerMaze.instance.ZombieDoors.Add(this);
+       // StartCoroutine(SpawnEnemys());
     }
 
     // Update is called once per frame
