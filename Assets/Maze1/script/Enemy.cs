@@ -186,11 +186,11 @@ public class Enemy : MonoBehaviour
             if (hit.collider != null)
             {
                 Debug.DrawRay(RaycastParent.position, dir * hit.distance, Color.green);
-                Debug.Log("Name    "+ hit.collider.gameObject.name);
+               // Debug.Log("Name    "+ hit.collider.gameObject.name);
 
                 if (hit.collider.gameObject.name == "Range"  || hit.collider.gameObject.name == "player")
                 {
-                    Debug.Log("Player detected by raycast!");
+                   // Debug.Log("Player detected by raycast!");
                     ligtColor.GetComponent<Light2D>().color = Color.red;
                     // Change target point to player's transform
                     CancelInvoke("ChangeColor");
@@ -198,7 +198,7 @@ public class Enemy : MonoBehaviour
 
                     // Optionally change speed or animation
                     Agent.speed = 10f;
-                    animator.SetTrigger("enemyrun");
+                   // animator.SetTrigger("enemyrun");
 
                     // Optional: reset the path to force recalculation
                     Agent.ResetPath();
@@ -207,7 +207,7 @@ public class Enemy : MonoBehaviour
             }
             else
             {
-                Debug.Log("ELSE ------");
+               // Debug.Log("ELSE ------");
                 Invoke("ChangeColor", 10f);
                 
                 Debug.DrawRay(RaycastParent.position, dir * rayLength, Color.red);
@@ -217,7 +217,7 @@ public class Enemy : MonoBehaviour
 
     public void ChangeColor()
     {
-        Debug.Log("ChangeColor function");
+       // Debug.Log("ChangeColor function");
         Agent.speed = 5f;
         ligtColor.GetComponent<Light2D>().color = Color.green;
         targetPoint = ManagerMaze.instance.partolPoints[currentPointIndex];
@@ -273,7 +273,8 @@ public class Enemy : MonoBehaviour
     {
         if (collision.gameObject.tag == "PlayerRange")
         {
-          //  target = null;
+            Debug.Log("TIGGERFUNNNNNNNNNNN");
+            target = null;
             animator.SetTrigger("enemyattack");
             ManagerMaze.instance.PlayerImage.GetComponent<SpriteRenderer>().color = Color.red;
             // targetPoint =  Player.Instance.transform;

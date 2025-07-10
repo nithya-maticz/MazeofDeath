@@ -7,13 +7,22 @@ public class ZombieDoor : MonoBehaviour
     public Transform SpawnPoint;
     public SpriteRenderer sprite;
     public float waitTime;
-   
+    public static ZombieDoor instance;
+
     void Start()
     {
-       // ManagerMaze.instance.ZombieDoors.Add(this);
-       // StartCoroutine(SpawnEnemys());
+        
     }
 
+    private void Awake()
+    {
+        instance = this;
+    }
+    public void StartGame()
+    {
+        ManagerMaze.instance.ZombieDoors.Add(this);
+        StartCoroutine(SpawnEnemys());
+    }
     // Update is called once per frame
     void Update()
     {

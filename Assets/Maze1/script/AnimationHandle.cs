@@ -77,7 +77,7 @@ public class AnimationHandle : MonoBehaviour
         ManagerMaze.instance.bloodImage.GetComponent<Image>().enabled = true;
         Player.Instance.PlayerHealthCount--;
         
-       // Debug.Log(Player.Instance.PlayerHealthCount);
+        Debug.Log(Player.Instance.PlayerHealthCount);
         switch (Player.Instance.PlayerHealthCount)
         {
             case 4:

@@ -139,7 +139,7 @@ public class ManagerMaze : MonoBehaviour
     public void playFun()
     {
         Debug.Log("PLAYFUN-------------" + count);
-        if (count<3 && gameStart==false)
+        if (count<4&& gameStart==false)
         {
             FadeImg.SetActive(true);
             fadeAnimation.SetTrigger("fade");
@@ -161,6 +161,7 @@ public class ManagerMaze : MonoBehaviour
         textMeshPro.text = "";
         FadeImg.SetActive(false);
         rawImage.SetActive(false);
+        ZombieDoor.instance.StartGame();
     }
 
 
