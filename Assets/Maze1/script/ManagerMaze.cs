@@ -137,7 +137,7 @@ public class ManagerMaze : MonoBehaviour
 
     public void playFun()
     {
-        Debug.Log("PLAYFUN-------------" + count);
+       
         if (count<5&& gameStart==false)
         {
             FadeImg.SetActive(true);
@@ -174,18 +174,11 @@ public class ManagerMaze : MonoBehaviour
 
     public void startgame()
     {
-        
-       
         FadeImg.SetActive(false);
-
-        Debug.Log(" --------------startfun------------------" + ZombieDoors.Count);
-
-        /*for (int i = 0; i < ZombieDoors.Count; i++)
+        for (int i = 0; i < ZombieDoors.Count; i++)
         {
-            Debug.Log("doorfun");
             ZombieDoors[i].StartGame();
-        }*/
-
+        }
 
     }
 

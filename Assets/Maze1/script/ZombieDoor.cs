@@ -11,7 +11,7 @@ public class ZombieDoor : MonoBehaviour
 
     void Start()
     {
-       
+        ManagerMaze.instance.ZombieDoors.Add(this);
     }
 
     private void Awake()
@@ -20,7 +20,7 @@ public class ZombieDoor : MonoBehaviour
     }
     public void StartGame()
     {
-        ManagerMaze.instance.ZombieDoors.Add(this);
+        print("Call 1");
         StartCoroutine(SpawnEnemys());
     }
     // Update is called once per frame
@@ -31,6 +31,7 @@ public class ZombieDoor : MonoBehaviour
 
     IEnumerator SpawnEnemys()
     {
+        print("Call 2");
         while (true)
         {
             if (!isClosed && !Player.Instance.playerDeath)

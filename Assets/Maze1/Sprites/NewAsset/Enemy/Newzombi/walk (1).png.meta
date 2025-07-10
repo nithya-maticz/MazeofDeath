@@ -230,6 +230,19 @@ TextureImporter:
     ignorePlatformSupport: 0
     androidETC2FallbackOverride: 0
     forceMaximumCompressionQuality_BC6H_BC7: 0
+  - serializedVersion: 4
+    buildTarget: iOS
+    maxTextureSize: 2048
+    resizeAlgorithm: 0
+    textureFormat: -1
+    textureCompression: 1
+    compressionQuality: 50
+    crunchedCompression: 0
+    allowsAlphaSplitting: 0
+    overridden: 0
+    ignorePlatformSupport: 0
+    androidETC2FallbackOverride: 0
+    forceMaximumCompressionQuality_BC6H_BC7: 0
   spriteSheet:
     serializedVersion: 2
     sprites:
@@ -1060,7 +1073,44 @@ TextureImporter:
     secondaryTextures: []
     spriteCustomMetadata:
       entries: []
-    nameFileIdTable: {}
+    nameFileIdTable:
+      walk (1)_0: 1711178491229162259
+      walk (1)_1: -3732711972447804
+      walk (1)_10: 3857261997813123764
+      walk (1)_11: 7736045558012857638
+      walk (1)_12: 8283341893662346872
+      walk (1)_13: -3776794583524769298
+      walk (1)_14: -6679649638097870701
+      walk (1)_15: 6264934463687343743
+      walk (1)_16: 7491142447870805991
+      walk (1)_17: -8552712790038177858
+      walk (1)_18: 5843769464850434976
+      walk (1)_19: 7184507317275371643
+      walk (1)_2: -1605446786928901471
+      walk (1)_20: 7415566926006515860
+      walk (1)_21: 9077537037290427576
+      walk (1)_22: 3372688618774272554
+      walk (1)_23: -8029300667208061675
+      walk (1)_24: 6554653282997800821
+      walk (1)_25: 154931169651029874
+      walk (1)_26: -5086204252089738555
+      walk (1)_27: -3915878003134776372
+      walk (1)_28: 2502086503588504108
+      walk (1)_29: -4020915550751048945
+      walk (1)_3: -7806120011118415276
+      walk (1)_30: 7967301918971089163
+      walk (1)_31: -5290808306619859275
+      walk (1)_32: -3917733628137898251
+      walk (1)_33: 4186375773661136715
+      walk (1)_34: -2395679935087836082
+      walk (1)_35: -4799732474342749811
+      walk (1)_36: 6656493933075612893
+      walk (1)_4: 6322746506103892308
+      walk (1)_5: -1117425675844805259
+      walk (1)_6: 5444557902697585425
+      walk (1)_7: -6748266858702293764
+      walk (1)_8: -6968995360500264403
+      walk (1)_9: -388443943698965397
   mipmapLimitGroupName: 
   pSDRemoveMatte: 0
   userData: 

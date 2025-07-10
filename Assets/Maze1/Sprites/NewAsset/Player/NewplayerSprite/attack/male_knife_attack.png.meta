@@ -155,6 +155,19 @@ TextureImporter:
     ignorePlatformSupport: 0
     androidETC2FallbackOverride: 0
     forceMaximumCompressionQuality_BC6H_BC7: 0
+  - serializedVersion: 4
+    buildTarget: iOS
+    maxTextureSize: 2048
+    resizeAlgorithm: 0
+    textureFormat: -1
+    textureCompression: 1
+    compressionQuality: 50
+    crunchedCompression: 0
+    allowsAlphaSplitting: 0
+    overridden: 0
+    ignorePlatformSupport: 0
+    androidETC2FallbackOverride: 0
+    forceMaximumCompressionQuality_BC6H_BC7: 0
   spriteSheet:
     serializedVersion: 2
     sprites:
@@ -435,7 +448,19 @@ TextureImporter:
     secondaryTextures: []
     spriteCustomMetadata:
       entries: []
-    nameFileIdTable: {}
+    nameFileIdTable:
+      male_knife_attack_0: -1986281818407889925
+      male_knife_attack_1: 8880339420958188451
+      male_knife_attack_10: -1995122678163867815
+      male_knife_attack_11: 3697126400969499545
+      male_knife_attack_2: 7465763668031616646
+      male_knife_attack_3: -1767680326727972183
+      male_knife_attack_4: 8634335466559614946
+      male_knife_attack_5: 9155936788403237252
+      male_knife_attack_6: -6189633370289407106
+      male_knife_attack_7: -4249047115164371400
+      male_knife_attack_8: 434974802233910208
+      male_knife_attack_9: -6033789621012404503
   mipmapLimitGroupName: 
   pSDRemoveMatte: 0
   userData: 
