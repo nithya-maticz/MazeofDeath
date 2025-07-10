@@ -7,16 +7,16 @@ public class ZombieDoor : MonoBehaviour
     public Transform SpawnPoint;
     public SpriteRenderer sprite;
     public float waitTime;
-    public static ZombieDoor instance;
+    //ZombieDoor instance;
 
     void Start()
     {
-        
+       
     }
 
     private void Awake()
     {
-        instance = this;
+        
     }
     public void StartGame()
     {

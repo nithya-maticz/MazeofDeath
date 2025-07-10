@@ -58,6 +58,7 @@ public class AnimationHandle : MonoBehaviour
             ManagerMaze.instance.rawImage.GetComponent<RawImage>().texture = ManagerMaze.instance.videoPlayer[ManagerMaze.instance.count].videoTexture;
             ManagerMaze.instance.videoPlayer[ManagerMaze.instance.count].videoPlayer.Play();
         }
+        
             
        
        

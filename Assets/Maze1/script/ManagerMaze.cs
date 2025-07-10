@@ -8,6 +8,7 @@ using TMPro;
 using UnityEngine.UI;
 using UnityEngine.Video;
 using TMPro;
+using NavMeshPlus.Components;
 public class ManagerMaze : MonoBehaviour
 {
     public GameObject enemy;
@@ -82,22 +83,20 @@ public class ManagerMaze : MonoBehaviour
     public float typingSpeed = 0.05f;
 
     private Coroutine typingCoroutine;
+    
 
     void Start()
     {
 
         isPlayerGetKey = false;
         isGameOver = false;
+        
         keyImg.SetActive(false);
 
         for(int i=0;i<videoPlayer.Count;i++)
         {
             videoPlayer[i].videoPlayer.Pause();
         }
-       
-
-       
-
 
     }
 
@@ -139,7 +138,7 @@ public class ManagerMaze : MonoBehaviour
     public void playFun()
     {
         Debug.Log("PLAYFUN-------------" + count);
-        if (count<4&& gameStart==false)
+        if (count<5&& gameStart==false)
         {
             FadeImg.SetActive(true);
             fadeAnimation.SetTrigger("fade");
@@ -156,12 +155,38 @@ public class ManagerMaze : MonoBehaviour
 
     public void Skipfun()
     {
-        gameStart = true;
-        StopCoroutine(typingCoroutine);
-        textMeshPro.text = "";
+        if(gameStart==false)
+        {
+            gameStart = true;
+            Debug.Log("Skifun");
+            FadeImg.SetActive(true);
+            fadeAnimation.SetTrigger("fade");
+            rawImage.SetActive(false);
+            StopCoroutine(typingCoroutine);
+            textMeshPro.text = "";
+            Invoke("startgame", 2f);
+        }
+        
+
+
+
+    }
+
+    public void startgame()
+    {
+        
+       
         FadeImg.SetActive(false);
-        rawImage.SetActive(false);
-        ZombieDoor.instance.StartGame();
+
+        Debug.Log(" --------------startfun------------------" + ZombieDoors.Count);
+
+        /*for (int i = 0; i < ZombieDoors.Count; i++)
+        {
+            Debug.Log("doorfun");
+            ZombieDoors[i].StartGame();
+        }*/
+
+
     }
 
 
@@ -182,6 +207,7 @@ public class ManagerMaze : MonoBehaviour
     private void Awake()
     {
         instance = this;
+       
     }
 
     // Update is called once per frame
