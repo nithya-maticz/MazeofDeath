@@ -1,0 +1,663 @@
+fileFormatVersion: 2
+guid: 1e19434a85bbbf649a7690a987c43bb4
+TextureImporter:
+  internalIDToNameTable:
+  - first:
+      213: -6283844246655748353
+    second: little wonders_logo1 (1)_0
+  - first:
+      213: -933357774442079841
+    second: little wonders_logo1 (1)_1
+  - first:
+      213: 2953866671240435510
+    second: little wonders_logo1 (1)_2
+  - first:
+      213: -8311786317095415659
+    second: little wonders_logo1 (1)_3
+  - first:
+      213: 4453817188594174788
+    second: little wonders_logo1 (1)_4
+  - first:
+      213: 5749437080317658769
+    second: little wonders_logo1 (1)_5
+  - first:
+      213: -4341014411306020038
+    second: little wonders_logo1 (1)_6
+  - first:
+      213: -3785544081351391125
+    second: little wonders_logo1 (1)_7
+  - first:
+      213: -1800471356405366196
+    second: little wonders_logo1 (1)_8
+  - first:
+      213: -2071126912135714753
+    second: little wonders_logo1 (1)_9
+  - first:
+      213: -8301428047800587275
+    second: little wonders_logo1 (1)_10
+  - first:
+      213: -5587199788164106357
+    second: little wonders_logo1 (1)_11
+  - first:
+      213: 7665234553513510830
+    second: little wonders_logo1 (1)_12
+  - first:
+      213: -950221926537364080
+    second: little wonders_logo1 (1)_13
+  - first:
+      213: 456879025872607976
+    second: little wonders_logo1 (1)_14
+  - first:
+      213: 3373475497062906850
+    second: little wonders_logo1 (1)_15
+  - first:
+      213: 2398683935555075378
+    second: little wonders_logo1 (1)_16
+  - first:
+      213: 3815136916176091665
+    second: little wonders_logo1 (1)_17
+  - first:
+      213: -2705646929531398547
+    second: little wonders_logo1 (1)_18
+  - first:
+      213: -9170943232096937839
+    second: little wonders_logo1 (1)_19
+  externalObjects: {}
+  serializedVersion: 13
+  mipmaps:
+    mipMapMode: 0
+    enableMipMap: 0
+    sRGBTexture: 1
+    linearTexture: 0
+    fadeOut: 0
+    borderMipMap: 0
+    mipMapsPreserveCoverage: 0
+    alphaTestReferenceValue: 0.5
+    mipMapFadeDistanceStart: 1
+    mipMapFadeDistanceEnd: 3
+  bumpmap:
+    convertToNormalMap: 0
+    externalNormalMap: 0
+    heightScale: 0.25
+    normalMapFilter: 0
+    flipGreenChannel: 0
+  isReadable: 0
+  streamingMipmaps: 0
+  streamingMipmapsPriority: 0
+  vTOnly: 0
+  ignoreMipmapLimit: 0
+  grayScaleToAlpha: 0
+  generateCubemap: 6
+  cubemapConvolution: 0
+  seamlessCubemap: 0
+  textureFormat: 1
+  maxTextureSize: 2048
+  textureSettings:
+    serializedVersion: 2
+    filterMode: 1
+    aniso: 1
+    mipBias: 0
+    wrapU: 1
+    wrapV: 1
+    wrapW: 1
+  nPOTScale: 0
+  lightmap: 0
+  compressionQuality: 50
+  spriteMode: 1
+  spriteExtrude: 1
+  spriteMeshType: 1
+  alignment: 0
+  spritePivot: {x: 0.5, y: 0.5}
+  spritePixelsToUnits: 100
+  spriteBorder: {x: 0, y: 0, z: 0, w: 0}
+  spriteGenerateFallbackPhysicsShape: 1
+  alphaUsage: 1
+  alphaIsTransparency: 1
+  spriteTessellationDetail: -1
+  textureType: 8
+  textureShape: 1
+  singleChannelComponent: 0
+  flipbookRows: 1
+  flipbookColumns: 1
+  maxTextureSizeSet: 0
+  compressionQualitySet: 0
+  textureFormatSet: 0
+  ignorePngGamma: 0
+  applyGammaDecoding: 0
+  swizzle: 50462976
+  cookieLightType: 0
+  platformSettings:
+  - serializedVersion: 4
+    buildTarget: DefaultTexturePlatform
+    maxTextureSize: 2048
+    resizeAlgorithm: 0
+    textureFormat: -1
+    textureCompression: 1
+    compressionQuality: 50
+    crunchedCompression: 0
+    allowsAlphaSplitting: 0
+    overridden: 0
+    ignorePlatformSupport: 0
+    androidETC2FallbackOverride: 0
+    forceMaximumCompressionQuality_BC6H_BC7: 0
+  - serializedVersion: 4
+    buildTarget: Standalone
+    maxTextureSize: 2048
+    resizeAlgorithm: 0
+    textureFormat: -1
+    textureCompression: 1
+    compressionQuality: 50
+    crunchedCompression: 0
+    allowsAlphaSplitting: 0
+    overridden: 0
+    ignorePlatformSupport: 0
+    androidETC2FallbackOverride: 0
+    forceMaximumCompressionQuality_BC6H_BC7: 0
+  - serializedVersion: 4
+    buildTarget: Android
+    maxTextureSize: 2048
+    resizeAlgorithm: 0
+    textureFormat: -1
+    textureCompression: 1
+    compressionQuality: 50
+    crunchedCompression: 0
+    allowsAlphaSplitting: 0
+    overridden: 0
+    ignorePlatformSupport: 0
+    androidETC2FallbackOverride: 0
+    forceMaximumCompressionQuality_BC6H_BC7: 0
+  - serializedVersion: 4
+    buildTarget: WebGL
+    maxTextureSize: 2048
+    resizeAlgorithm: 0
+    textureFormat: -1
+    textureCompression: 1
+    compressionQuality: 50
+    crunchedCompression: 0
+    allowsAlphaSplitting: 0
+    overridden: 0
+    ignorePlatformSupport: 0
+    androidETC2FallbackOverride: 0
+    forceMaximumCompressionQuality_BC6H_BC7: 0
+  spriteSheet:
+    serializedVersion: 2
+    sprites:
+    - serializedVersion: 2
+      name: little wonders_logo1 (1)_0
+      rect:
+        serializedVersion: 2
+        x: 0
+        y: 0
+        width: 277
+        height: 277
+      alignment: 0
+      pivot: {x: 0, y: 0}
+      border: {x: 0, y: 0, z: 0, w: 0}
+      customData: 
+      outline: []
+      physicsShape: []
+      tessellationDetail: -1
+      bones: []
+      spriteID: ff6b33e63fc4bc8a0800000000000000
+      internalID: -6283844246655748353
+      vertices: []
+      indices: 
+      edges: []
+      weights: []
+    - serializedVersion: 2
+      name: little wonders_logo1 (1)_1
+      rect:
+        serializedVersion: 2
+        x: 308
+        y: 165
+        width: 64
+        height: 88
+      alignment: 0
+      pivot: {x: 0, y: 0}
+      border: {x: 0, y: 0, z: 0, w: 0}
+      customData: 
+      outline: []
+      physicsShape: []
+      tessellationDetail: -1
+      bones: []
+      spriteID: f99d70e9c0c0c03f0800000000000000
+      internalID: -933357774442079841
+      vertices: []
+      indices: 
+      edges: []
+      weights: []
+    - serializedVersion: 2
+      name: little wonders_logo1 (1)_2
+      rect:
+        serializedVersion: 2
+        x: 381
+        y: 165
+        width: 47
+        height: 88
+      alignment: 0
+      pivot: {x: 0, y: 0}
+      border: {x: 0, y: 0, z: 0, w: 0}
+      customData: 
+      outline: []
+      physicsShape: []
+      tessellationDetail: -1
+      bones: []
+      spriteID: 637d625561e3ef820800000000000000
+      internalID: 2953866671240435510
+      vertices: []
+      indices: 
+      edges: []
+      weights: []
+    - serializedVersion: 2
+      name: little wonders_logo1 (1)_3
+      rect:
+        serializedVersion: 2
+        x: 436
+        y: 165
+        width: 78
+        height: 88
+      alignment: 0
+      pivot: {x: 0, y: 0}
+      border: {x: 0, y: 0, z: 0, w: 0}
+      customData: 
+      outline: []
+      physicsShape: []
+      tessellationDetail: -1
+      bones: []
+      spriteID: 5905390e16a96ac80800000000000000
+      internalID: -8311786317095415659
+      vertices: []
+      indices: 
+      edges: []
+      weights: []
+    - serializedVersion: 2
+      name: little wonders_logo1 (1)_4
+      rect:
+        serializedVersion: 2
+        x: 522
+        y: 165
+        width: 78
+        height: 88
+      alignment: 0
+      pivot: {x: 0, y: 0}
+      border: {x: 0, y: 0, z: 0, w: 0}
+      customData: 
+      outline: []
+      physicsShape: []
+      tessellationDetail: -1
+      bones: []
+      spriteID: 44b4facb2232fcd30800000000000000
+      internalID: 4453817188594174788
+      vertices: []
+      indices: 
+      edges: []
+      weights: []
+    - serializedVersion: 2
+      name: little wonders_logo1 (1)_5
+      rect:
+        serializedVersion: 2
+        x: 607
+        y: 165
+        width: 64
+        height: 88
+      alignment: 0
+      pivot: {x: 0, y: 0}
+      border: {x: 0, y: 0, z: 0, w: 0}
+      customData: 
+      outline: []
+      physicsShape: []
+      tessellationDetail: -1
+      bones: []
+      spriteID: 1960bce009a1acf40800000000000000
+      internalID: 5749437080317658769
+      vertices: []
+      indices: 
+      edges: []
+      weights: []
+    - serializedVersion: 2
+      name: little wonders_logo1 (1)_6
+      rect:
+        serializedVersion: 2
+        x: 678
+        y: 165
+        width: 69
+        height: 88
+      alignment: 0
+      pivot: {x: 0, y: 0}
+      border: {x: 0, y: 0, z: 0, w: 0}
+      customData: 
+      outline: []
+      physicsShape: []
+      tessellationDetail: -1
+      bones: []
+      spriteID: a33d041846e91c3c0800000000000000
+      internalID: -4341014411306020038
+      vertices: []
+      indices: 
+      edges: []
+      weights: []
+    - serializedVersion: 2
+      name: little wonders_logo1 (1)_7
+      rect:
+        serializedVersion: 2
+        x: 306
+        y: 75
+        width: 77
+        height: 60
+      alignment: 0
+      pivot: {x: 0, y: 0}
+      border: {x: 0, y: 0, z: 0, w: 0}
+      customData: 
+      outline: []
+      physicsShape: []
+      tessellationDetail: -1
+      bones: []
+      spriteID: b68c775f6bb077bc0800000000000000
+      internalID: -3785544081351391125
+      vertices: []
+      indices: 
+      edges: []
+      weights: []
+    - serializedVersion: 2
+      name: little wonders_logo1 (1)_8
+      rect:
+        serializedVersion: 2
+        x: 386
+        y: 74
+        width: 62
+        height: 62
+      alignment: 0
+      pivot: {x: 0, y: 0}
+      border: {x: 0, y: 0, z: 0, w: 0}
+      customData: 
+      outline: []
+      physicsShape: []
+      tessellationDetail: -1
+      bones: []
+      spriteID: c42413537d07307e0800000000000000
+      internalID: -1800471356405366196
+      vertices: []
+      indices: 
+      edges: []
+      weights: []
+    - serializedVersion: 2
+      name: little wonders_logo1 (1)_9
+      rect:
+        serializedVersion: 2
+        x: 456
+        y: 75
+        width: 55
+        height: 60
+      alignment: 0
+      pivot: {x: 0, y: 0}
+      border: {x: 0, y: 0, z: 0, w: 0}
+      customData: 
+      outline: []
+      physicsShape: []
+      tessellationDetail: -1
+      bones: []
+      spriteID: f382665fb01e143e0800000000000000
+      internalID: -2071126912135714753
+      vertices: []
+      indices: 
+      edges: []
+      weights: []
+    - serializedVersion: 2
+      name: little wonders_logo1 (1)_10
+      rect:
+        serializedVersion: 2
+        x: 519
+        y: 75
+        width: 55
+        height: 60
+      alignment: 0
+      pivot: {x: 0, y: 0}
+      border: {x: 0, y: 0, z: 0, w: 0}
+      customData: 
+      outline: []
+      physicsShape: []
+      tessellationDetail: -1
+      bones: []
+      spriteID: 5fba1626c276bcc80800000000000000
+      internalID: -8301428047800587275
+      vertices: []
+      indices: 
+      edges: []
+      weights: []
+    - serializedVersion: 2
+      name: little wonders_logo1 (1)_11
+      rect:
+        serializedVersion: 2
+        x: 582
+        y: 75
+        width: 47
+        height: 60
+      alignment: 0
+      pivot: {x: 0, y: 0}
+      border: {x: 0, y: 0, z: 0, w: 0}
+      customData: 
+      outline: []
+      physicsShape: []
+      tessellationDetail: -1
+      bones: []
+      spriteID: b87375915674672b0800000000000000
+      internalID: -5587199788164106357
+      vertices: []
+      indices: 
+      edges: []
+      weights: []
+    - serializedVersion: 2
+      name: little wonders_logo1 (1)_12
+      rect:
+        serializedVersion: 2
+        x: 635
+        y: 75
+        width: 54
+        height: 60
+      alignment: 0
+      pivot: {x: 0, y: 0}
+      border: {x: 0, y: 0, z: 0, w: 0}
+      customData: 
+      outline: []
+      physicsShape: []
+      tessellationDetail: -1
+      bones: []
+      spriteID: ea7093ad632606a60800000000000000
+      internalID: 7665234553513510830
+      vertices: []
+      indices: 
+      edges: []
+      weights: []
+    - serializedVersion: 2
+      name: little wonders_logo1 (1)_13
+      rect:
+        serializedVersion: 2
+        x: 693
+        y: 74
+        width: 52
+        height: 62
+      alignment: 0
+      pivot: {x: 0, y: 0}
+      border: {x: 0, y: 0, z: 0, w: 0}
+      customData: 
+      outline: []
+      physicsShape: []
+      tessellationDetail: -1
+      bones: []
+      spriteID: 09df3fa313220d2f0800000000000000
+      internalID: -950221926537364080
+      vertices: []
+      indices: 
+      edges: []
+      weights: []
+    - serializedVersion: 2
+      name: little wonders_logo1 (1)_14
+      rect:
+        serializedVersion: 2
+        x: 319
+        y: 15
+        width: 23
+        height: 34
+      alignment: 0
+      pivot: {x: 0, y: 0}
+      border: {x: 0, y: 0, z: 0, w: 0}
+      customData: 
+      outline: []
+      physicsShape: []
+      tessellationDetail: -1
+      bones: []
+      spriteID: 8ea967aad09275600800000000000000
+      internalID: 456879025872607976
+      vertices: []
+      indices: 
+      edges: []
+      weights: []
+    - serializedVersion: 2
+      name: little wonders_logo1 (1)_15
+      rect:
+        serializedVersion: 2
+        x: 396
+        y: 16
+        width: 23
+        height: 32
+      alignment: 0
+      pivot: {x: 0, y: 0}
+      border: {x: 0, y: 0, z: 0, w: 0}
+      customData: 
+      outline: []
+      physicsShape: []
+      tessellationDetail: -1
+      bones: []
+      spriteID: 2eb3be4571ef0de20800000000000000
+      internalID: 3373475497062906850
+      vertices: []
+      indices: 
+      edges: []
+      weights: []
+    - serializedVersion: 2
+      name: little wonders_logo1 (1)_16
+      rect:
+        serializedVersion: 2
+        x: 474
+        y: 15
+        width: 26
+        height: 33
+      alignment: 0
+      pivot: {x: 0, y: 0}
+      border: {x: 0, y: 0, z: 0, w: 0}
+      customData: 
+      outline: []
+      physicsShape: []
+      tessellationDetail: -1
+      bones: []
+      spriteID: 23d3233a456d94120800000000000000
+      internalID: 2398683935555075378
+      vertices: []
+      indices: 
+      edges: []
+      weights: []
+    - serializedVersion: 2
+      name: little wonders_logo1 (1)_17
+      rect:
+        serializedVersion: 2
+        x: 556
+        y: 16
+        width: 28
+        height: 32
+      alignment: 0
+      pivot: {x: 0, y: 0}
+      border: {x: 0, y: 0, z: 0, w: 0}
+      customData: 
+      outline: []
+      physicsShape: []
+      tessellationDetail: -1
+      bones: []
+      spriteID: 11ab722dfc612f430800000000000000
+      internalID: 3815136916176091665
+      vertices: []
+      indices: 
+      edges: []
+      weights: []
+    - serializedVersion: 2
+      name: little wonders_logo1 (1)_18
+      rect:
+        serializedVersion: 2
+        x: 639
+        y: 16
+        width: 7
+        height: 32
+      alignment: 0
+      pivot: {x: 0, y: 0}
+      border: {x: 0, y: 0, z: 0, w: 0}
+      customData: 
+      outline: []
+      physicsShape: []
+      tessellationDetail: -1
+      bones: []
+      spriteID: d6697a5e37c937ad0800000000000000
+      internalID: -2705646929531398547
+      vertices: []
+      indices: 
+      edges: []
+      weights: []
+    - serializedVersion: 2
+      name: little wonders_logo1 (1)_19
+      rect:
+        serializedVersion: 2
+        x: 701
+        y: 15
+        width: 33
+        height: 34
+      alignment: 0
+      pivot: {x: 0, y: 0}
+      border: {x: 0, y: 0, z: 0, w: 0}
+      customData: 
+      outline: []
+      physicsShape: []
+      tessellationDetail: -1
+      bones: []
+      spriteID: 198d69b58b34ab080800000000000000
+      internalID: -9170943232096937839
+      vertices: []
+      indices: 
+      edges: []
+      weights: []
+    outline: []
+    customData: 
+    physicsShape: []
+    bones: []
+    spriteID: 5e97eb03825dee720800000000000000
+    internalID: 0
+    vertices: []
+    indices: 
+    edges: []
+    weights: []
+    secondaryTextures: []
+    spriteCustomMetadata:
+      entries: []
+    nameFileIdTable:
+      little wonders_logo1 (1)_0: -6283844246655748353
+      little wonders_logo1 (1)_1: -933357774442079841
+      little wonders_logo1 (1)_10: -8301428047800587275
+      little wonders_logo1 (1)_11: -5587199788164106357
+      little wonders_logo1 (1)_12: 7665234553513510830
+      little wonders_logo1 (1)_13: -950221926537364080
+      little wonders_logo1 (1)_14: 456879025872607976
+      little wonders_logo1 (1)_15: 3373475497062906850
+      little wonders_logo1 (1)_16: 2398683935555075378
+      little wonders_logo1 (1)_17: 3815136916176091665
+      little wonders_logo1 (1)_18: -2705646929531398547
+      little wonders_logo1 (1)_19: -9170943232096937839
+      little wonders_logo1 (1)_2: 2953866671240435510
+      little wonders_logo1 (1)_3: -8311786317095415659
+      little wonders_logo1 (1)_4: 4453817188594174788
+      little wonders_logo1 (1)_5: 5749437080317658769
+      little wonders_logo1 (1)_6: -4341014411306020038
+      little wonders_logo1 (1)_7: -3785544081351391125
+      little wonders_logo1 (1)_8: -1800471356405366196
+      little wonders_logo1 (1)_9: -2071126912135714753
+  mipmapLimitGroupName: 
+  pSDRemoveMatte: 0
+  userData: 
+  assetBundleName: 
+  assetBundleVariant: 

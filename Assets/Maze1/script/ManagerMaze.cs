@@ -73,6 +73,7 @@ public class ManagerMaze : MonoBehaviour
     public List<VideoControl> videoPlayer;
 
     public int count = 0;
+    public  bool loadVideo;
 
     public Animator fadeAnimation;
     public GameObject FadeImg;
@@ -188,15 +189,13 @@ public class ManagerMaze : MonoBehaviour
 
     public void LoadVideo()
     {
-
-        videoPlayer[count].videoPlayer.Play();
-        StartTyping();
-
-      
-
+        FadeImg.SetActive(true);
+        fadeAnimation.SetTrigger("fade");
+        loadVideo = true;
+        
 
     }
-    
+
     private void Awake()
     {
         instance = this;

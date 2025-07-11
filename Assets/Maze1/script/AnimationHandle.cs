@@ -48,16 +48,27 @@ public class AnimationHandle : MonoBehaviour
     public void NextVideo()
     {
         Debug.Log("Next");
-        ManagerMaze.instance.textMeshPro.text = "";
-        ManagerMaze.instance.count++;
-        Debug.Log("COUNT  ---- " + ManagerMaze.instance.videoPlayer.Count);
-        Debug.Log("COUNT  ---- " + ManagerMaze.instance.count);
-        if (ManagerMaze.instance.videoPlayer.Count > ManagerMaze.instance.count && ManagerMaze.instance.gameStart==false )
+        if(ManagerMaze.instance.loadVideo)
         {
-
+            ManagerMaze.instance.loadVideo = false;
+            ManagerMaze.instance.textMeshPro.text = "";
             ManagerMaze.instance.rawImage.GetComponent<RawImage>().texture = ManagerMaze.instance.videoPlayer[ManagerMaze.instance.count].videoTexture;
             ManagerMaze.instance.videoPlayer[ManagerMaze.instance.count].videoPlayer.Play();
         }
+        else
+        {
+            ManagerMaze.instance.textMeshPro.text = "";
+            ManagerMaze.instance.count++;
+            Debug.Log("COUNT  ---- " + ManagerMaze.instance.videoPlayer.Count);
+            Debug.Log("COUNT  ---- " + ManagerMaze.instance.count);
+            if (ManagerMaze.instance.videoPlayer.Count > ManagerMaze.instance.count && ManagerMaze.instance.gameStart == false)
+            {
+
+                ManagerMaze.instance.rawImage.GetComponent<RawImage>().texture = ManagerMaze.instance.videoPlayer[ManagerMaze.instance.count].videoTexture;
+                ManagerMaze.instance.videoPlayer[ManagerMaze.instance.count].videoPlayer.Play();
+            }
+        }
+           
         
             
        

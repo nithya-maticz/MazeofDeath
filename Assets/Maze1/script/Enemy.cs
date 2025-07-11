@@ -90,87 +90,59 @@ public class Enemy : MonoBehaviour
 
     void Update()
     {
-       /* if (Player.Instance.playerDeath)
+        if (targetPoint == Player.Instance.transform)
         {
-            animator.SetTrigger("playerdeath");
-            return;
-        }*/
-
-
-        /*if(targetPoint== Player.Instance.transform)
-        {
-
-        }
-        else*/
-        {
-            /*if (targetPoint == null || ManagerMaze.instance.partolPoints.Length == 0) return;
-
-            // Set NavMesh destination
+            // Chase the player
             Agent.SetDestination(targetPoint.position);
 
-            // Rotate enemy smoothly toward movement direction
-            Vector2 direction = targetPoint.position - transform.position;
-            float angle = Mathf.Atan2(direction.y, direction.x) * Mathf.Rad2Deg;
-            Quaternion targetRotation = Quaternion.Euler(0, 0, angle + 180);
-
-            // Smoothly rotate toward the target
-            float rotationSpeed = 5f; // Adjust for faster/slower turning
-            transform.rotation = Quaternion.RotateTowards(transform.rotation, targetRotation, rotationSpeed * Time.deltaTime);
-
-            // Check if enemy reached patrol point
-            if (Vector2.Distance(transform.position, targetPoint.position) < reachThreshold)
-            {
-                currentPointIndex = (currentPointIndex + 1) % ManagerMaze.instance.partolPoints.Length;
-                targetPoint = ManagerMaze.instance.partolPoints[currentPointIndex];
-            }*/
-
-            if (targetPoint == null || ManagerMaze.instance.partolPoints.Length == 0) return;
-
-            // Set NavMesh destination
-            Agent.SetDestination(targetPoint.position);
-
-            // Calculate angle toward target
+            // Rotate towards player
             Vector2 direction = targetPoint.position - transform.position;
             float angle = Mathf.Atan2(direction.y, direction.x) * Mathf.Rad2Deg - 180f;
             Quaternion targetRotation = Quaternion.Euler(0, 0, angle);
+            transform.rotation = Quaternion.RotateTowards(transform.rotation, targetRotation, rotationSpeed * Time.deltaTime);
+        }
+        else
+        {
+            // Patrol logic
+            if (targetPoint == null || ManagerMaze.instance.partolPoints.Length == 0) return;
 
-            // Smoothly rotate toward the target
-            float rotationSpeed = 200f; // degrees per second, adjust as needed
+            Agent.SetDestination(targetPoint.position);
+
+            Vector2 direction = targetPoint.position - transform.position;
+            float angle = Mathf.Atan2(direction.y, direction.x) * Mathf.Rad2Deg - 180f;
+            Quaternion targetRotation = Quaternion.Euler(0, 0, angle);
             transform.rotation = Quaternion.RotateTowards(transform.rotation, targetRotation, rotationSpeed * Time.deltaTime);
 
-            // Check if enemy reached patrol point
             if (Vector2.Distance(transform.position, targetPoint.position) < reachThreshold)
             {
                 currentPointIndex = (currentPointIndex + 1) % ManagerMaze.instance.partolPoints.Length;
                 targetPoint = ManagerMaze.instance.partolPoints[currentPointIndex];
             }
-           
-
         }
 
 
-       /* void FindNearestPatrolPoint()
-        {
-            float closestDistance = Mathf.Infinity;
-            int nearestIndex = 0;
-            Vector2 enemyPosition = transform.position;
+        /* void FindNearestPatrolPoint()
+         {
+             float closestDistance = Mathf.Infinity;
+             int nearestIndex = 0;
+             Vector2 enemyPosition = transform.position;
 
-            for (int i = 0; i < ManagerMaze.instance.partolPoints.Length; i++)
-            {
-                float distance = Vector2.Distance(enemyPosition, ManagerMaze.instance.partolPoints[i].position);
-                if (distance < closestDistance)
-                {
-                    closestDistance = distance;
-                    nearestIndex = i;
-                }
-            }
+             for (int i = 0; i < ManagerMaze.instance.partolPoints.Length; i++)
+             {
+                 float distance = Vector2.Distance(enemyPosition, ManagerMaze.instance.partolPoints[i].position);
+                 if (distance < closestDistance)
+                 {
+                     closestDistance = distance;
+                     nearestIndex = i;
+                 }
+             }
 
-            currentPointIndex = nearestIndex;
-            targetPoint = ManagerMaze.instance.partolPoints[currentPointIndex];
-        }*/
+             currentPointIndex = nearestIndex;
+             targetPoint = ManagerMaze.instance.partolPoints[currentPointIndex];
+         }*/
 
 
-       
+
     }
 
 
