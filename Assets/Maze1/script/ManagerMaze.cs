@@ -84,10 +84,14 @@ public class ManagerMaze : MonoBehaviour
     public GameObject rawImage;
     public bool gameStart;
     public TextMeshProUGUI textMeshPro;
+    public TextMeshProUGUI textMeshPro1;
     
     public float typingSpeed = 0.05f;
 
     private Coroutine typingCoroutine;
+
+
+    public GameObject blackScreen;
     
 
     void Start()
@@ -152,8 +156,8 @@ public class ManagerMaze : MonoBehaviour
         }
         else
         {
-
-            Skipfun();
+            blackScreen.SetActive(true);
+            StartTyping1("His routine night on the job had transformed into something far more sinister, and now every shadow could be his last.");
         }
 
     }
@@ -163,7 +167,9 @@ public class ManagerMaze : MonoBehaviour
     {
         if(gameStart==false)
         {
+
             gameStart = true;
+            blackScreen.SetActive(false);
             Debug.Log("Skifun");
             FadeImg.SetActive(true);
             fadeAnimation.SetTrigger("fade");
@@ -346,6 +352,42 @@ public class ManagerMaze : MonoBehaviour
         OpenedBoxText.text = _boxCount.ToString() + "/" + KeyBoxes.Count.ToString();
 
     }
+
+
+    public void StartTyping1(string text)
+    {
+        if (videoPlayer.Count > count && gameStart == false)
+        {
+            if (typingCoroutine != null)
+            {
+                StopCoroutine(typingCoroutine);
+            }
+            typingCoroutine = StartCoroutine(TypeText1(text));
+        }
+
+
+    }
+
+    IEnumerator TypeText1(string text)
+    {
+        textMeshPro1.text = "";
+        foreach (char c in text)
+        {
+            textMeshPro1.text += c;
+            yield return new WaitForSeconds(typingSpeed);
+        }
+
+        Debug.Log("completed");
+        if (gameStart == false)
+        {
+            Invoke("Skipfun", 5f);
+        }
+
+
+
+
+    }
+
 }
 
 
