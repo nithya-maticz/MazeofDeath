@@ -6,6 +6,7 @@ using TMPro;
 using UnityEngine.UI;
 using UnityEngine.Rendering.Universal;
 using Unity.VisualScripting;
+using System.Collections.Generic;
 
 
 
@@ -55,7 +56,12 @@ public class Enemy : MonoBehaviour
     public float reachThreshold = 0.1f;
 
     private int currentPointIndex = 0;
-    private Transform targetPoint;
+    public Transform targetPoint;
+
+    [Header("Door Patrol")]
+    public bool isPatrolDoor;
+    public List<Transform> doorPatrolPoints;
+    public int currentPoint;
 
 
 
@@ -67,16 +73,28 @@ public class Enemy : MonoBehaviour
         currentHealth = enemyHealth;
 
 
-
-
-        ManagerMaze.instance.targetPoint = 0;
-        target = Player.Instance.transform;
-
-
-        if (ManagerMaze.instance.partolPoints.Length > 0)
+        if(isPatrolDoor)
         {
-            targetPoint = ManagerMaze.instance.partolPoints[currentPointIndex];
+            if (doorPatrolPoints.Count != 0)
+            {
+                currentPoint = 0;
+                targetPoint = doorPatrolPoints[currentPoint];
+            }
+               
         }
+        else
+        {
+            ManagerMaze.instance.targetPoint = 0;
+            target = Player.Instance.transform;
+
+
+            if (ManagerMaze.instance.partolPoints.Length > 0)
+            {
+                targetPoint = ManagerMaze.instance.partolPoints[currentPointIndex];
+            }
+        }
+
+       
 
         // target = ManagerMaze.instance.partolPoints[ManagerMaze.instance.targetPoint];
 
@@ -104,22 +122,46 @@ public class Enemy : MonoBehaviour
         }
         else
         {
-            if (targetPoint == null || ManagerMaze.instance.partolPoints.Length == 0) return;
 
-            Agent.SetDestination(targetPoint.position);
-
-            if (Agent.velocity.sqrMagnitude > 0.01f)
+            if(isPatrolDoor)
             {
-                Vector2 moveDirection = Agent.velocity.normalized;
-                float angle = Mathf.Atan2(moveDirection.y, moveDirection.x) * Mathf.Rad2Deg - 180f;
-                Quaternion targetRotation = Quaternion.Euler(0, 0, angle);
-                transform.rotation = Quaternion.RotateTowards(transform.rotation, targetRotation, rotationSpeed * Time.deltaTime);
+                if (targetPoint == null || doorPatrolPoints.Count == 0) return;
+
+                Agent.SetDestination(targetPoint.position);
+
+                if (Agent.velocity.sqrMagnitude > 0.01f)
+                {
+                    Vector2 moveDirection = Agent.velocity.normalized;
+                    float angle = Mathf.Atan2(moveDirection.y, moveDirection.x) * Mathf.Rad2Deg - 180f;
+                    Quaternion targetRotation = Quaternion.Euler(0, 0, angle);
+                    transform.rotation = Quaternion.RotateTowards(transform.rotation, targetRotation, rotationSpeed * Time.deltaTime);
+                }
+
+                if (Vector2.Distance(transform.position, targetPoint.position) < reachThreshold)
+                {
+                    currentPoint  = (currentPoint + 1) % doorPatrolPoints.Count;
+                    targetPoint = doorPatrolPoints[currentPoint];
+                }
             }
-
-            if (Vector2.Distance(transform.position, targetPoint.position) < reachThreshold)
+            else
             {
-                currentPointIndex = (currentPointIndex + 1) % ManagerMaze.instance.partolPoints.Length;
-                targetPoint = ManagerMaze.instance.partolPoints[currentPointIndex];
+                if (targetPoint == null || ManagerMaze.instance.partolPoints.Length == 0) return;
+
+                Agent.SetDestination(targetPoint.position);
+
+                if (Agent.velocity.sqrMagnitude > 0.01f)
+                {
+                    Vector2 moveDirection = Agent.velocity.normalized;
+                    float angle = Mathf.Atan2(moveDirection.y, moveDirection.x) * Mathf.Rad2Deg - 180f;
+                    Quaternion targetRotation = Quaternion.Euler(0, 0, angle);
+                    transform.rotation = Quaternion.RotateTowards(transform.rotation, targetRotation, rotationSpeed * Time.deltaTime);
+                }
+
+                if (Vector2.Distance(transform.position, targetPoint.position) < reachThreshold)
+                {
+                    currentPointIndex = (currentPointIndex + 1) % ManagerMaze.instance.partolPoints.Length;
+                    targetPoint = ManagerMaze.instance.partolPoints[currentPointIndex];
+                }
             }
         }
     }
@@ -138,11 +180,11 @@ public class Enemy : MonoBehaviour
             if (hit.collider != null)
             {
                 Debug.DrawRay(RaycastParent.position, dir * hit.distance, Color.green);
-               // Debug.Log("Name    "+ hit.collider.gameObject.name);
+                // Debug.Log("Name    "+ hit.collider.gameObject.name);
 
-                if (hit.collider.gameObject.name == "Range"  || hit.collider.gameObject.name == "player")
+                if (hit.collider.gameObject.name == "Range" || hit.collider.gameObject.name == "player")
                 {
-                   // Debug.Log("Player detected by raycast!");
+                    // Debug.Log("Player detected by raycast!");
                     ligtColor.GetComponent<Light2D>().color = Color.red;
                     // Change target point to player's transform
                     CancelInvoke("ChangeColor");
@@ -150,18 +192,18 @@ public class Enemy : MonoBehaviour
 
                     // Optionally change speed or animation
                     Agent.speed = 10f;
-                   // animator.SetTrigger("enemyrun");
+                    // animator.SetTrigger("enemyrun");
 
                     // Optional: reset the path to force recalculation
                     Agent.ResetPath();
                 }
-               
+
             }
             else
             {
-               // Debug.Log("ELSE ------");
+                // Debug.Log("ELSE ------");
                 Invoke("ChangeColor", 10f);
-                
+
                 Debug.DrawRay(RaycastParent.position, dir * rayLength, Color.red);
             }
         }
@@ -171,9 +213,19 @@ public class Enemy : MonoBehaviour
     {
        // Debug.Log("ChangeColor function");
         Agent.speed = 5f;
-        ligtColor.GetComponent<Light2D>().color = Color.green;
-        targetPoint = ManagerMaze.instance.partolPoints[currentPointIndex];
-        Agent.ResetPath();
+        ligtColor.GetComponent<Light2D>().color = new Color(0f, 0.443f, 0.031f, 1f);
+
+        if (isPatrolDoor)
+        {
+            targetPoint = doorPatrolPoints[currentPoint];
+            Agent.ResetPath();
+        }
+        else
+        {
+            targetPoint = ManagerMaze.instance.partolPoints[currentPointIndex];
+            Agent.ResetPath();
+        }
+        
     }
 
 

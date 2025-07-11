@@ -321,11 +321,15 @@ MonoBehaviour:
   coneAngle: 60
   raycastLayerMask:
     serializedVersion: 2
-    m_Bits: 64
+    m_Bits: 192
   count: 1
   ligtColor: {fileID: 2139374674524484084}
   speed: 10
   reachThreshold: 0.1
+  targetPoint: {fileID: 0}
+  isPatrolDoor: 0
+  doorPatrolPoints: []
+  currentPoint: 0
 --- !u!114 &5247138977004330261
 MonoBehaviour:
   m_ObjectHideFlags: 0
@@ -338,6 +342,7 @@ MonoBehaviour:
   m_Script: {fileID: 11500000, guid: e91c22f8593e3be44b32a5fd1e2685b7, type: 3}
   m_Name: 
   m_EditorClassIdentifier: 
+  VideoCount: 0
   playerRef: {fileID: 0}
 --- !u!61 &3230393094503908530
 BoxCollider2D:
@@ -377,7 +382,7 @@ BoxCollider2D:
   m_SpriteTilingProperty:
     border: {x: 0, y: 0, z: 0, w: 0}
     pivot: {x: 0.5, y: 0.5}
-    oldSize: {x: 1.64, y: 1.2}
+    oldSize: {x: 2.8802302, y: 2.39}
     newSize: {x: 1.53, y: 1.39}
     adaptiveTilingThreshold: 0.5
     drawMode: 0
@@ -429,7 +434,7 @@ SpriteRenderer:
   m_SortingLayerID: 0
   m_SortingLayer: 0
   m_SortingOrder: 3
-  m_Sprite: {fileID: 4375140917434487601, guid: b88e1c74641bcbb4590e2c8231c2ee76, type: 3}
+  m_Sprite: {fileID: 59496277162103779, guid: 851938f10a8996b4ca2dc472104804a8, type: 3}
   m_Color: {r: 0.9811321, g: 0.9780468, b: 0.9780468, a: 1}
   m_FlipX: 0
   m_FlipY: 0
