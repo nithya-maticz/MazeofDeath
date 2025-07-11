@@ -23,7 +23,7 @@ public class ManagerMaze : MonoBehaviour
 
     public static ManagerMaze instance;
     public bool CreateEnemy;
-    public List<Enemy> Enemies;
+    public List<GameObject> Enemies;
     public int EnemyCount;
     public SpriteRenderer EnemyDoorSprite;
     public SpriteRenderer PlayerDoorSprite;
@@ -34,6 +34,10 @@ public class ManagerMaze : MonoBehaviour
     int _boxCount;
     public TMP_Text OpenedBoxText;
 
+    public TMP_Text enemyCountText;
+    public TMP_Text zombieDoorCount;
+    public GameObject SplashScreen;
+    public GameObject videoRawImage;
     [Header("SPRITES")]
     public Sprite SpriteBoxOpen;
     public Sprite SpriteBoxClose;
@@ -88,7 +92,7 @@ public class ManagerMaze : MonoBehaviour
 
     void Start()
     {
-
+        Invoke("LoadVideo", 3f);
         isPlayerGetKey = false;
         isGameOver = false;
         
@@ -98,7 +102,8 @@ public class ManagerMaze : MonoBehaviour
         {
             videoPlayer[i].videoPlayer.Pause();
         }
-
+        EnemiesCount();
+        DoorClosedCount();
     }
 
 
@@ -189,6 +194,9 @@ public class ManagerMaze : MonoBehaviour
 
     public void LoadVideo()
     {
+        SplashScreen.SetActive(false);
+        videoRawImage.SetActive(true);
+        Debug.Log("lOADvIDEO");
         FadeImg.SetActive(true);
         fadeAnimation.SetTrigger("fade");
         loadVideo = true;
@@ -196,6 +204,33 @@ public class ManagerMaze : MonoBehaviour
 
     }
 
+    public void DelayCountEnemies()
+    {
+        Invoke("EnemiesCount", 0.5f);
+    }
+
+    public void EnemiesCount()
+    {
+        Enemies.Clear();
+        Enemies = new List<GameObject>(GameObject.FindGameObjectsWithTag("enemy"));
+        enemyCountText.text =  Enemies.Count.ToString();
+        CheckLevelUp();
+    }
+
+
+    public void DoorClosedCount()
+    {
+        int count = 0;
+        foreach(ZombieDoor door in ZombieDoors)
+        {
+            if(!door.isClosed)
+            {
+                count++;
+            }
+        }
+
+        zombieDoorCount.text = count.ToString();
+    }
     private void Awake()
     {
         instance = this;
@@ -210,7 +245,15 @@ public class ManagerMaze : MonoBehaviour
 
     void Update()
     {
-       
+        if (Input.GetKeyDown(KeyCode.Space))
+        {
+           Player.Instance.PlayerAttackButton();
+        }
+
+        if (Input.GetKeyDown(KeyCode.Z))
+        {
+           LoadVideo();
+        }
 
     }
 
@@ -249,14 +292,14 @@ public class ManagerMaze : MonoBehaviour
     public void CheckLevelUp()
     {
         bool allclosed = true;
-
+        
         foreach (ZombieDoor door in ZombieDoors)
         {
             if (!door.isClosed)
                 allclosed = false;
         }
 
-        if (allclosed)
+        if (allclosed && Enemies.Count == 0)
             Invoke("LevelUP", 1f);
         else
             return;
@@ -265,7 +308,7 @@ public class ManagerMaze : MonoBehaviour
 
     void LevelUP()
     {
-        foreach (Enemy enemy in Enemies)
+        foreach (GameObject enemy in Enemies)
         {
             Destroy(enemy);
         }

@@ -8,7 +8,7 @@ public class ZombieDoor : MonoBehaviour
     public SpriteRenderer sprite;
     public float waitTime;
     //ZombieDoor instance;
-
+    public GameObject light;
     void Start()
     {
         ManagerMaze.instance.ZombieDoors.Add(this);
@@ -38,12 +38,14 @@ public class ZombieDoor : MonoBehaviour
             {
                 if(ManagerMaze.instance.CreateEnemy)
                 {
-                    if (ManagerMaze.instance.Enemies.Count < ManagerMaze.instance.EnemyCount)
+                    GameObject enemyPrefab = Instantiate(ManagerMaze.instance.enemy, SpawnPoint);
+                    enemyPrefab.GetComponent<Enemy>().target = Player.Instance.transform;
+                    ManagerMaze.instance.EnemiesCount();
+                   // ManagerMaze.instance.Enemies.Add(enemyPrefab.GetComponent<Enemy>());
+                    /*if (ManagerMaze.instance.Enemies.Count < ManagerMaze.instance.EnemyCount)
                     {
-                        GameObject enemyPrefab = Instantiate(ManagerMaze.instance.enemy, SpawnPoint);
-                        enemyPrefab.GetComponent<Enemy>().target = Player.Instance.transform;
-                        ManagerMaze.instance.Enemies.Add(enemyPrefab.GetComponent<Enemy>());
-                    }
+                       
+                    }*/
                 }
             }
 

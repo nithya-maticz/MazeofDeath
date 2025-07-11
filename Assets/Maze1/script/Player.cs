@@ -53,7 +53,7 @@ public class Player : MonoBehaviour
     public GameObject OpenDoorImg;
 
     public int PlayerHealthCount;
-
+    public GameObject light;
    
     // public bool isDeath;
 
@@ -63,6 +63,7 @@ public class Player : MonoBehaviour
     public float playerHealth;
 
     public Transform TargetMovement;
+    private Coroutine closeDoorCoroutine;
     // Start is called before the first frame update
     void Start()
     {
@@ -90,39 +91,64 @@ public class Player : MonoBehaviour
           Vector2 moveDir = new Vector2(moveH, moveV);
           rb.linearVelocity = moveDir * speed;
        
-
+        
     }
 
-    
+
+
 
   
+
     private void OnTriggerEnter2D(Collider2D collision)
     {
-      
-        if (collision.gameObject.tag == "EnemyDoor" && ManagerMaze.instance.isPlayerGetKey)
+        if (collision.CompareTag("EnemyDoor") && ManagerMaze.instance.isPlayerGetKey)
         {
-            Debug.Log("Enemy Door Closed!");
+            Debug.Log("Enemy Door trigger entered!");
+
             var zombieDoor = collision.GetComponent<ZombieDoor>();
-            zombieDoor.isClosed = true;
-            zombieDoor.sprite.sprite = ManagerMaze.instance.DoorClose;
-            ManagerMaze.instance.CheckLevelUp();
+
+           
+            closeDoorCoroutine = StartCoroutine(CloseDoorAfterDelay(zombieDoor, 2f));
         }
-      /*  else if (collision.gameObject.tag == "door" && manager.isEnemyDoorOpen == false && manager.isPlayerGetKey)
-        {
-            Debug.Log("LEVEL UP!");
-            ManagerMaze.instance.PlayerDoorSprite.sprite = ManagerMaze.instance.DoorOpen;
-           // LevelUp();
-            Invoke("LevelUp", 1f);
-        }*/
     }
+
     private void OnTriggerExit2D(Collider2D collision)
     {
-      
-       
-           
-      
-           
+        if (collision.CompareTag("EnemyDoor") && closeDoorCoroutine != null)
+        {
+            // Player left before 2 seconds, stop the coroutine
+            StopCoroutine(closeDoorCoroutine);
+            closeDoorCoroutine = null;
+            var zombieDoor = collision.GetComponent<ZombieDoor>();
+            zombieDoor.light.SetActive(false);
+            light.SetActive(true);
+            Debug.Log("Player left before door closed!");
+        }
     }
+
+    private IEnumerator CloseDoorAfterDelay(ZombieDoor zombieDoor, float delay)
+    {
+        zombieDoor.light.SetActive(true);
+        yield return new WaitForSeconds(delay);
+        light.SetActive(false);
+        CloseDoor(zombieDoor);
+    }
+
+    public void CloseDoor(ZombieDoor zombieDoor)
+    {
+        if (zombieDoor != null)
+        {
+            zombieDoor.isClosed = true;
+            zombieDoor.sprite.sprite = ManagerMaze.instance.DoorClose;
+            zombieDoor.light.SetActive(false);
+            light.SetActive(true);
+            Debug.Log("Door closed!");
+            zombieDoor.gameObject.GetComponent<BoxCollider2D>().enabled = false;
+            ManagerMaze.instance.DoorClosedCount();
+            ManagerMaze.instance.CheckLevelUp();
+        }
+    }
+
 
     public void PlayerAttackButton()
     {

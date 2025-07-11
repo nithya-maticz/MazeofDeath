@@ -333,7 +333,6 @@ public class Enemy : MonoBehaviour
             Agent.ResetPath();
             
         }
-
     }
 
     void DeleyPathReset()
@@ -341,12 +340,16 @@ public class Enemy : MonoBehaviour
         Agent.ResetPath();
     }
 
+    
+
     void DestryInstance()
     {
         GameObject blood = Instantiate(ManagerMaze.instance.BloodPrefab.gameObject, transform);
         blood.transform.SetParent(ManagerMaze.instance.BloodTransform);
         blood.transform.localScale = Vector3.one;
+        ManagerMaze.instance.DelayCountEnemies();
         Destroy(this.gameObject);
+        
     }
 }
 

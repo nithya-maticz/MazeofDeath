@@ -317,8 +317,8 @@ MonoBehaviour:
   newAlpha: 0.5
   RaycastParent: {fileID: 4247497052178503581}
   rayLength: 14
-  rayCount: 7
-  coneAngle: 60
+  rayCount: 15
+  coneAngle: 180
   raycastLayerMask:
     serializedVersion: 2
     m_Bits: 192
