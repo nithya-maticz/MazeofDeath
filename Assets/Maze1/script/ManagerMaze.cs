@@ -102,10 +102,10 @@ public class ManagerMaze : MonoBehaviour
         
         keyImg.SetActive(false);
 
-        for(int i=0;i<videoPlayer.Count;i++)
+        /*for(int i=0;i<videoPlayer.Count;i++)
         {
             videoPlayer[i].videoPlayer.Pause();
-        }
+        }*/
         EnemiesCount();
         DoorClosedCount();
     }
