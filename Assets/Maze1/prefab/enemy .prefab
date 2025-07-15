@@ -307,12 +307,10 @@ MonoBehaviour:
   enemyHealthTxt: {fileID: 5704630904886692369}
   enemyHealth: 10
   animator: {fileID: 1943847410867850066}
-  attackPlayer: 0
-  Door: 0
-  playerDeath: 0
-  temp: 0
   rotationSpeed: 360
   checkInterval: 1
+  pathUpdateInterval: 0.2
+  ligtColor: {fileID: 2139374674524484084}
   newSprite: {fileID: 0}
   newAlpha: 0.5
   RaycastParent: {fileID: 4247497052178503581}
@@ -322,14 +320,11 @@ MonoBehaviour:
   raycastLayerMask:
     serializedVersion: 2
     m_Bits: 192
-  count: 1
-  ligtColor: {fileID: 2139374674524484084}
-  speed: 10
+  speed: 5
   reachThreshold: 0.1
   targetPoint: {fileID: 0}
   isPatrolDoor: 0
   doorPatrolPoints: []
-  currentPoint: 0
 --- !u!114 &5247138977004330261
 MonoBehaviour:
   m_ObjectHideFlags: 0

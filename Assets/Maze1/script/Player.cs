@@ -4,111 +4,99 @@ using UnityEngine;
 using UnityEngine.UI;
 using UnityEngine.AI;
 
-
 public class Player : MonoBehaviour
 {
     public static Player Instance;
-    public ManagerMaze manager;
-   
-    public float speed = 5.0f;
 
-    
-  
+    [Header("References")]
+    public ManagerMaze manager;
+    public Rigidbody2D rb;
+    public Joystick joystick;
+    public Animator animatorRef;
+    public healthbarscript healthBar;
+    public NavMeshAgent agent;
+
+    [Header("UI")]
+    public TMP_Text playerLifeTxt;
+    public Image playerHealthFill;
+    public GameObject gameoverPage;
+    public GameObject winPage;
+    public GameObject openDoorImg;
+
+    [Header("Gameplay")]
     public GameObject door;
     public GameObject enemy;
     public GameObject keyRef;
-    public bool keyTaken;
+    public GameObject keyHead;
+    public GameObject playerCollider;
+    public GameObject bullet;
+    public Transform bulletTransform;
+    public float bulletSpeed = 10f;
+    public Sprite boxOpen;
+    public GameObject light;
+
+    [Header("Stats")]
+    public float speed = 5f;
+    public float playerHealth = 1f;
+    public int damage = 1;
+    public int playerHealthCount;
     public int keyCount;
-    
+    public bool keyTaken;
     public bool openDoor;
     public bool playerDeath;
-    public bool reach;
-    public GameObject keyHead;
-    public Animator animatorRef;
-   // public int maxhealth = 10;
-   // public int health;
-    public int damage;
     public bool attackEnemy;
-    public bool spaceClick;
-    public Joystick joystick;
-    public Rigidbody2D rb;
-    public float timer = 10f;
-    public float remainTime;
-    public TMP_Text playerLifeTxt;
-    public healthbarscript healthBar;
-    public Animator enemyAnimator;
-    public GameObject playerCollider;
-    public GameObject gameoverpage;
-    public GameObject winpage;
-    public GameObject player;
-    public ManagerMaze managerRef;
-    public bool attackButtonClick;
-    public Transform bulletTrnsform;
-    public GameObject bullet;
-    public float bulletpeed;
-    public Sprite boxOpen;
-    NavMeshAgent Agent;
-     public Transform target;
-   
-    public GameObject OpenDoorImg;
-
     public int PlayerHealthCount;
-    public GameObject light;
-   
-    // public bool isDeath;
 
-    [Space]
-    [Header("HEALTH")]
-    public Image playerHealthFill;
-    public float playerHealth;
-
-    public Transform TargetMovement;
     private Coroutine closeDoorCoroutine;
-    // Start is called before the first frame update
-    void Start()
-    {
-        Agent = GetComponent<NavMeshAgent>();
-        Agent.updateRotation = false;
-        Agent.updateUpAxis = false;
+    private WaitForSeconds waitFor2Sec; // reuse WaitForSeconds to reduce GC
 
-
-
-        //  health = maxhealth;
-        // healthBar = GetComponent<healthbarscript>();
-    }
-
-    private void Awake()
+    void Awake()
     {
         Instance = this;
+        waitFor2Sec = new WaitForSeconds(2f);
+        if (agent == null) agent = GetComponent<NavMeshAgent>();
+        agent.updateRotation = false;
+        agent.updateUpAxis = false;
     }
 
-    // Update is called once per frame
     void Update()
     {
-
-          float moveH = joystick.Horizontal;
-          float moveV = joystick.Vertical;
-          Vector2 moveDir = new Vector2(moveH, moveV);
-          rb.linearVelocity = moveDir * speed;
-       
-        
+        HandleMovement();
     }
 
+    void HandleMovement()
+    {
+        float moveH = joystick.Horizontal;
+        float moveV = joystick.Vertical;
 
+        // Only apply movement if joystick is not idle
+        if (moveH != 0f || moveV != 0f)
+        {
+            Vector2 moveDir = new Vector2(moveH, moveV);
+            rb.linearVelocity = moveDir * speed;
 
-
-  
+            // Optional: Add facing direction animation
+          /*  animatorRef.SetFloat("MoveX", moveH);
+            animatorRef.SetFloat("MoveY", moveV);*/
+            //animatorRef.SetBool("IsMoving", true);
+        }
+        else
+        {
+            rb.linearVelocity = Vector2.zero;
+            //animatorRef.SetBool("IsMoving", false);
+        }
+    }
 
     private void OnTriggerEnter2D(Collider2D collision)
     {
         if (collision.CompareTag("EnemyDoor") && ManagerMaze.instance.isPlayerGetKey)
         {
-            Debug.Log("Enemy Door trigger entered!");
-
-            var zombieDoor = collision.GetComponent<ZombieDoor>();
-
-           
-            closeDoorCoroutine = StartCoroutine(CloseDoorAfterDelay(zombieDoor, 2f));
+            ZombieDoor zombieDoor = collision.GetComponent<ZombieDoor>();
+            if (zombieDoor != null)
+            {
+                zombieDoor.light.SetActive(true);
+                closeDoorCoroutine = StartCoroutine(CloseDoorAfterDelay(zombieDoor));
+            }
         }
     }
 
@@ -116,56 +104,52 @@ public class Player : MonoBehaviour
     {
         if (collision.CompareTag("EnemyDoor") && closeDoorCoroutine != null)
         {
-            // Player left before 2 seconds, stop the coroutine
             StopCoroutine(closeDoorCoroutine);
             closeDoorCoroutine = null;
-            var zombieDoor = collision.GetComponent<ZombieDoor>();
-            zombieDoor.light.SetActive(false);
-            light.SetActive(true);
-            Debug.Log("Player left before door closed!");
+
+            ZombieDoor zombieDoor = collision.GetComponent<ZombieDoor>();
+            if (zombieDoor != null)
+            {
+                zombieDoor.light.SetActive(false);
+                light.SetActive(true);
+            }
         }
     }
 
-    private IEnumerator CloseDoorAfterDelay(ZombieDoor zombieDoor, float delay)
+    private IEnumerator CloseDoorAfterDelay(ZombieDoor zombieDoor)
     {
-        zombieDoor.light.SetActive(true);
-        yield return new WaitForSeconds(delay);
+        yield return waitFor2Sec;
         light.SetActive(false);
         CloseDoor(zombieDoor);
     }
 
-    public void CloseDoor(ZombieDoor zombieDoor)
+    void CloseDoor(ZombieDoor zombieDoor)
     {
-        if (zombieDoor != null)
-        {
-            zombieDoor.isClosed = true;
-            zombieDoor.sprite.sprite = ManagerMaze.instance.DoorClose;
-            zombieDoor.light.SetActive(false);
-            light.SetActive(true);
-            Debug.Log("Door closed!");
-            zombieDoor.gameObject.GetComponent<BoxCollider2D>().enabled = false;
-            ManagerMaze.instance.DoorClosedCount();
-            ManagerMaze.instance.CheckLevelUp();
-        }
-    }
+        if (zombieDoor == null) return;
 
+        zombieDoor.isClosed = true;
+        zombieDoor.sprite.sprite = ManagerMaze.instance.DoorClose;
+        zombieDoor.light.SetActive(false);
+        light.SetActive(true);
+        zombieDoor.GetComponent<BoxCollider2D>().enabled = false;
+
+        Debug.Log("Door closed!");
+        ManagerMaze.instance.DoorClosedCount();
+        ManagerMaze.instance.CheckLevelUp();
+    }
 
     public void PlayerAttackButton()
     {
-        Debug.Log("Attackkk");
-        if(!playerDeath)
+        if (!playerDeath)
         {
-            attackButtonClick = true;
             animatorRef.SetTrigger("playerattack");
+            // You can handle bullet shooting here if needed
         }
     }
-    
-
-   
 
     public void IncreaseHealth()
     {
-        playerHealth = 1;
-        playerHealthFill.fillAmount = 1;
+        playerHealth = 1f;
+        playerHealthFill.fillAmount = 1f;
     }
 }
