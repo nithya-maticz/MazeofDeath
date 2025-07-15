@@ -2,7 +2,7 @@
 - Project name: MazeofDeath
 - Unity version: Unity 6000.0.34f1
 - Active game object:
-  - Name: Black Screen
-  - Tag: Untagged
-  - Layer: UI
+  - Name: enemy door (1)
+  - Tag: enemy
+  - Layer: Default
 <!-- UNITY CODE ASSIST INSTRUCTIONS END -->
