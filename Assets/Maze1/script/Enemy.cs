@@ -100,7 +100,12 @@ public class Enemy : MonoBehaviour
         {
             float angleOffset = Mathf.Lerp(-coneAngle / 2, coneAngle / 2, (float)i / (rayCount - 1));
             Vector2 dir = Quaternion.Euler(0, 0, angleOffset) * centerDir;
+
             RaycastHit2D hit = Physics2D.Raycast(RaycastParent.position, dir, rayLength, raycastLayerMask);
+
+            // Draw green line if nothing hit, red if hit
+            Color debugColor = (hit.collider != null) ? Color.red : Color.green;
+            Debug.DrawLine(RaycastParent.position, RaycastParent.position + (Vector3)(dir * rayLength), debugColor);
 
             if (hit.collider != null && (hit.collider.CompareTag("Player") || hit.collider.name == "Range"))
             {
@@ -110,13 +115,12 @@ public class Enemy : MonoBehaviour
                 if (targetPoint != Player.Instance.transform)
                 {
                     targetPoint = Player.Instance.transform;
-                    agent.speed = 10f;
+                    agent.speed = 5f;
                     agent.SetDestination(targetPoint.position);
                 }
                 break;
             }
         }
-
         if (!playerDetected && !isChangingColorBack)
         {
             StartCoroutine(ResetColorAfterDelay(10f));
@@ -184,8 +188,12 @@ public class Enemy : MonoBehaviour
     {
         if (collision.CompareTag("PlayerRange"))
         {
+            Vector2 directionToEnemy = (transform.position - collision.transform.position).normalized;
+            float angle = Mathf.Atan2(directionToEnemy.y, directionToEnemy.x) * Mathf.Rad2Deg;
+            collision.transform.rotation = Quaternion.Euler(0, 0, angle);
             animator.SetTrigger("enemyattack");
             ManagerMaze.instance.PlayerImage.GetComponent<SpriteRenderer>().color = Color.red;
+            
 
             if (healthCoroutine == null)
                 healthCoroutine = StartCoroutine(ReducePlayerHealth(ManagerMaze.instance.playerRef.GetComponent<Player>()));

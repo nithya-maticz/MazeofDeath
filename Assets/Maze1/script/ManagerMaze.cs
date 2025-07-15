@@ -92,6 +92,7 @@ public class ManagerMaze : MonoBehaviour
 
 
     public GameObject blackScreen;
+    public GameObject miniMap;
     
 
     void Start()
@@ -156,7 +157,7 @@ public class ManagerMaze : MonoBehaviour
         }
         else
         {
-            if(count > 5)
+            if(count == 5)
             {
                 blackScreen.SetActive(true);
                 StartTyping1("His routine night on the job had transformed into something far more sinister, and now every shadow could be his last.");
@@ -180,6 +181,7 @@ public class ManagerMaze : MonoBehaviour
             rawImage.SetActive(false);
             StopCoroutine(typingCoroutine);
             textMeshPro.text = "";
+            miniMap.SetActive(true);
             Invoke("startgame", 2f);
         }
         
@@ -191,6 +193,7 @@ public class ManagerMaze : MonoBehaviour
     public void startgame()
     {
         FadeImg.SetActive(false);
+        
         for (int i = 0; i < ZombieDoors.Count; i++)
         {
             ZombieDoors[i].StartGame();
