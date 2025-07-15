@@ -156,8 +156,12 @@ public class ManagerMaze : MonoBehaviour
         }
         else
         {
-            blackScreen.SetActive(true);
-            StartTyping1("His routine night on the job had transformed into something far more sinister, and now every shadow could be his last.");
+            if(count > 5)
+            {
+                blackScreen.SetActive(true);
+                StartTyping1("His routine night on the job had transformed into something far more sinister, and now every shadow could be his last.");
+            }
+            
         }
 
     }
