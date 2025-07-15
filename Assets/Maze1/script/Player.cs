@@ -152,6 +152,7 @@ public class Player : MonoBehaviour
 
     public void PlayerAttackButton()
     {
+        Debug.Log("Attackkk");
         if(!playerDeath)
         {
             attackButtonClick = true;

@@ -102,10 +102,10 @@ public class ManagerMaze : MonoBehaviour
         
         keyImg.SetActive(false);
 
-        /*for(int i=0;i<videoPlayer.Count;i++)
+        for (int i = 0; i < videoPlayer.Count; i++)
         {
             videoPlayer[i].videoPlayer.Pause();
-        }*/
+        }
         EnemiesCount();
         DoorClosedCount();
     }
@@ -253,7 +253,15 @@ public class ManagerMaze : MonoBehaviour
     {
         if (Input.GetKeyDown(KeyCode.Space))
         {
-           Player.Instance.PlayerAttackButton();
+            try
+            {
+                Debug.Log("Space key pressed");
+                Player.Instance.PlayerAttackButton();
+            }
+            catch (Exception e)
+            {
+                Debug.LogError("Error: " + e.Message);
+            }
         }
 
         if (Input.GetKeyDown(KeyCode.Z))
@@ -271,6 +279,7 @@ public class ManagerMaze : MonoBehaviour
     public void RestartFun()
     {
         SceneManager.LoadScene("Maze1");
+        
     }
 
 

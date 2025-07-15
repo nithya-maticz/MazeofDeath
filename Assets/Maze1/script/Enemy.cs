@@ -191,7 +191,7 @@ public class Enemy : MonoBehaviour
                     targetPoint = Player.Instance.transform;
 
                     // Optionally change speed or animation
-                    Agent.speed = 10f;
+                    Agent.speed = 7f;
                     // animator.SetTrigger("enemyrun");
 
                     // Optional: reset the path to force recalculation
