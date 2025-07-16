@@ -39,7 +39,7 @@ public class ZombieDoor : MonoBehaviour
                 if(ManagerMaze.instance.CreateEnemy)
                 {
                     GameObject enemyPrefab = Instantiate(ManagerMaze.instance.enemy, SpawnPoint);
-                    enemyPrefab.GetComponent<Enemy>().target = Player.Instance.transform;
+                    enemyPrefab.GetComponent<Enemy>().targetPoint = Player.Instance.transform;
                     ManagerMaze.instance.EnemiesCount();
                    // ManagerMaze.instance.Enemies.Add(enemyPrefab.GetComponent<Enemy>());
                     /*if (ManagerMaze.instance.Enemies.Count < ManagerMaze.instance.EnemyCount)

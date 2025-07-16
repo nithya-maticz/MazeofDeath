@@ -8,7 +8,7 @@ using UnityEngine.Rendering.Universal;
 public class Enemy : MonoBehaviour
 {
     [Header("Data")]
-    public Transform target;
+   // public Transform target;
     private NavMeshAgent agent;
     public Animator animator;
     public float rotationSpeed = 360f;
@@ -39,6 +39,7 @@ public class Enemy : MonoBehaviour
     public bool isPatrolDoor;
     public List<Transform> doorPatrolPoints;
     private int currentPoint;
+    private bool inRange;
 
     private Coroutine healthCoroutine;
     private Coroutine resetColorCoroutine;
@@ -69,10 +70,12 @@ public class Enemy : MonoBehaviour
 
     private void Start()
     {
+        animator.SetTrigger("idle");
         agent = GetComponent<NavMeshAgent>();
         agent.updateRotation = false;
         agent.updateUpAxis = false;
         agent.speed = speed;
+
 
         
 
@@ -131,14 +134,22 @@ public class Enemy : MonoBehaviour
             if (hit.collider != null && (hit.collider.CompareTag("Player") || hit.collider.name == "Range"))
             {
                 playerDetected = true;
+                targetPoint = Player.Instance.transform;
+                agent.speed = 5f;
+                agent.SetDestination(targetPoint.position);
                 ligtColor.GetComponent<Light2D>().color = Color.red;
-
-                if (targetPoint != Player.Instance.transform)
+                if(inRange==false)
                 {
-                    targetPoint = Player.Instance.transform;
-                    agent.speed = 10f;
-                    agent.SetDestination(targetPoint.position);
+                    animator.SetTrigger("enemyrun");
                 }
+                
+
+
+
+                /*if (targetPoint != Player.Instance.transform)
+                {
+                    
+                }*/
 
                 // Reset and restart the 10-second timer
                 if (resetColorCoroutine != null)
@@ -163,6 +174,8 @@ public class Enemy : MonoBehaviour
         yield return new WaitForSeconds(delay);
 
         agent.speed = speed;
+       
+        
         ligtColor.GetComponent<Light2D>().color = new Color(0f, 0.443f, 0.031f, 1f);
 
         if (isPatrolDoor && doorPatrolPoints.Count > 0)
@@ -217,9 +230,11 @@ public class Enemy : MonoBehaviour
     {
         if (collision.CompareTag("PlayerRange"))
         {
+            Debug.Log("RANGE-----------------");
+            inRange = true;
             Vector2 directionToEnemy = (transform.position - collision.transform.position).normalized;
             float angle = Mathf.Atan2(directionToEnemy.y, directionToEnemy.x) * Mathf.Rad2Deg;
-            collision.transform.rotation = Quaternion.Euler(0, 0, angle);
+            collision.transform.rotation = transform.rotation;
             animator.SetTrigger("enemyattack");
             ManagerMaze.instance.PlayerImage.GetComponent<SpriteRenderer>().color = Color.red;
             
@@ -244,7 +259,9 @@ public class Enemy : MonoBehaviour
         if (collision.CompareTag("PlayerRange"))
         {
             animator.SetTrigger("idle");
+            inRange = false;
 
+            ManagerMaze.instance.PlayerImage.GetComponent<SpriteRenderer>().color = Color.white;
             if (healthCoroutine != null)
             {
                 StopCoroutine(healthCoroutine);
