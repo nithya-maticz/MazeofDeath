@@ -230,12 +230,13 @@ public class Enemy : MonoBehaviour
     {
         if (collision.CompareTag("PlayerRange"))
         {
-            Debug.Log("RANGE-----------------");
+            //Debug.Log("RANGE-----------------");
             inRange = true;
+            animator.SetTrigger("enemyattack");
             Vector2 directionToEnemy = (transform.position - collision.transform.position).normalized;
             float angle = Mathf.Atan2(directionToEnemy.y, directionToEnemy.x) * Mathf.Rad2Deg;
             collision.transform.rotation = transform.rotation;
-            animator.SetTrigger("enemyattack");
+           
             ManagerMaze.instance.PlayerImage.GetComponent<SpriteRenderer>().color = Color.red;
             
 
