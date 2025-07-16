@@ -9,13 +9,10 @@ public class Enemy : MonoBehaviour
 {
     [Header("Data")]
     public Transform target;
-    public TMP_Text enemyHealthTxt;
-    public int enemyHealth;
-    private int currentHealth;
     private NavMeshAgent agent;
     public Animator animator;
     public float rotationSpeed = 360f;
-    public float checkInterval = 0.2f; // Raycast every 0.2s
+    public float checkInterval;
     public float pathUpdateInterval = 0.2f;
     private float pathUpdateTimer;
 
@@ -44,15 +41,17 @@ public class Enemy : MonoBehaviour
     private int currentPoint;
 
     private Coroutine healthCoroutine;
+    private Coroutine resetColorCoroutine;
 
-    private void Start()
+    private void Awake()
     {
-        agent = GetComponent<NavMeshAgent>();
-        agent.updateRotation = false;
-        agent.updateUpAxis = false;
-        agent.speed = speed;
-
-        currentHealth = enemyHealth;
+        if(agent == null)
+        {
+            agent = GetComponent<NavMeshAgent>();
+            agent.updateRotation = false;
+            agent.updateUpAxis = false;
+            agent.speed = speed;
+        }
 
         if (isPatrolDoor && doorPatrolPoints.Count > 0)
         {
@@ -66,6 +65,29 @@ public class Enemy : MonoBehaviour
         }
 
         StartCoroutine(CheckRaycastRoutine());
+    }
+
+    private void Start()
+    {
+        agent = GetComponent<NavMeshAgent>();
+        agent.updateRotation = false;
+        agent.updateUpAxis = false;
+        agent.speed = speed;
+
+        
+
+        if (isPatrolDoor && doorPatrolPoints.Count > 0)
+        {
+            currentPoint = 0;
+            targetPoint = doorPatrolPoints[currentPoint];
+        }
+        else if (ManagerMaze.instance.partolPoints.Length > 0)
+        {
+            currentPointIndex = 0;
+            targetPoint = ManagerMaze.instance.partolPoints[currentPointIndex];
+        }
+
+        
     }
 
     private void Update()
@@ -103,7 +125,6 @@ public class Enemy : MonoBehaviour
 
             RaycastHit2D hit = Physics2D.Raycast(RaycastParent.position, dir, rayLength, raycastLayerMask);
 
-            // Draw green line if nothing hit, red if hit
             Color debugColor = (hit.collider != null) ? Color.red : Color.green;
             Debug.DrawLine(RaycastParent.position, RaycastParent.position + (Vector3)(dir * rayLength), debugColor);
 
@@ -115,17 +136,26 @@ public class Enemy : MonoBehaviour
                 if (targetPoint != Player.Instance.transform)
                 {
                     targetPoint = Player.Instance.transform;
-                    agent.speed = 5f;
+                    agent.speed = 10f;
                     agent.SetDestination(targetPoint.position);
                 }
+
+                // Reset and restart the 10-second timer
+                if (resetColorCoroutine != null)
+                    StopCoroutine(resetColorCoroutine);
+                resetColorCoroutine = StartCoroutine(ResetColorAfterDelay(10f));
+
                 break;
             }
         }
-        if (!playerDetected && !isChangingColorBack)
+
+        // Only start timer if player was NOT detected and there is no running coroutine
+        if (!playerDetected && resetColorCoroutine == null)
         {
-            StartCoroutine(ResetColorAfterDelay(10f));
+            resetColorCoroutine = StartCoroutine(ResetColorAfterDelay(10f));
         }
     }
+
 
     private IEnumerator ResetColorAfterDelay(float delay)
     {
@@ -145,8 +175,11 @@ public class Enemy : MonoBehaviour
         }
 
         agent.SetDestination(targetPoint.position);
+
         isChangingColorBack = false;
+        resetColorCoroutine = null; // mark coroutine finished
     }
+
 
     private void RotateTowardsMoveDirection()
     {
@@ -178,11 +211,7 @@ public class Enemy : MonoBehaviour
         }
     }
 
-    public void damageEnemy(int damage)
-    {
-        currentHealth -= damage;
-        enemyHealthTxt.text = currentHealth.ToString();
-    }
+   
 
     private void OnTriggerEnter2D(Collider2D collision)
     {

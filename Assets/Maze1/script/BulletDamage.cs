@@ -19,8 +19,6 @@ public class BulletDamage : MonoBehaviour
     {
         if(collision.gameObject.tag=="enemy")
         {
-            Debug.Log("DDDDDDDDDDDDDDDDDDDDDDDDDDDDDDDDDDDD");
-            collision.gameObject.GetComponent<Enemy>().damageEnemy(bulletDamage);
             Destroy(gameObject);
         }
     }

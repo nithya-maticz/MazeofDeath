@@ -23,6 +23,11 @@ public class KeyBox : MonoBehaviour
 
     void Start()
     {
+       
+    }
+
+    private void Awake()
+    {
         _circleCollider = GetComponent<CircleCollider2D>();
         ManagerMaze.instance.KeyBoxes.Add(this);
         ManagerMaze.instance.CheckBoxCount();

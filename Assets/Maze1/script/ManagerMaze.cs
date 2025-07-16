@@ -2,13 +2,12 @@ using System.Collections;
 using UnityEngine;
 using UnityEngine.SceneManagement;
 using System;
-using NUnit.Framework;
 using System.Collections.Generic;
 using TMPro;
 using UnityEngine.UI;
 using UnityEngine.Video;
-using TMPro;
-using NavMeshPlus.Components;
+
+
 public class ManagerMaze : MonoBehaviour
 {
     public GameObject enemy;
@@ -109,6 +108,7 @@ public class ManagerMaze : MonoBehaviour
         }
         EnemiesCount();
         DoorClosedCount();
+        AssignRandomContents();
     }
 
 
@@ -339,13 +339,7 @@ public class ManagerMaze : MonoBehaviour
 
     public void GameOver()
     {
-       /* foreach (Enemy enemy in Enemies)
-        {
-            Debug.Log("GameOver-----------");
-
-            Destroy(enemy.gameObject);
-        }
-        Invoke("game_over", 1f);*/
+       
     }
 
     void game_over()
@@ -402,6 +396,42 @@ public class ManagerMaze : MonoBehaviour
 
 
 
+    }
+
+    void AssignRandomContents()
+    {
+        // Step 1: create a list of indices
+        List<int> indices = new List<int>();
+        for (int i = 0; i < KeyBoxes.Count; i++)
+        {
+            indices.Add(i);
+        }
+
+        // Step 2: shuffle indices
+        ShuffleList(indices);
+
+        // Step 3: assign contents
+        for (int i = 0; i < KeyBoxes.Count; i++)
+        {
+            if (i == 0)
+                KeyBoxes[indices[i]].SelectedObject  = BoxObjects.Key;
+            else if (i == 1 || i == 2)
+                KeyBoxes[indices[i]].SelectedObject = BoxObjects.MediKit;
+            else
+                KeyBoxes[indices[i]].SelectedObject = BoxObjects.Empty;
+        }
+    }
+
+    // Fisher-Yates shuffle
+    void ShuffleList<T>(List<T> list)
+    {
+        for (int i = list.Count - 1; i > 0; i--)
+        {
+            int randIndex = UnityEngine.Random.Range(0, i + 1);
+            T temp = list[i];
+            list[i] = list[randIndex];
+            list[randIndex] = temp;
+        }
     }
 
 }

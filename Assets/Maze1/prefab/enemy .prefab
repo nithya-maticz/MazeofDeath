@@ -305,11 +305,9 @@ MonoBehaviour:
   m_Name: 
   m_EditorClassIdentifier: 
   target: {fileID: 0}
-  enemyHealthTxt: {fileID: 5704630904886692369}
-  enemyHealth: 10
   animator: {fileID: 1943847410867850066}
   rotationSpeed: 360
-  checkInterval: 0.2
+  checkInterval: 0.1
   pathUpdateInterval: 0.2
   ligtColor: {fileID: 2139374674524484084}
   newSprite: {fileID: 0}
@@ -473,7 +471,7 @@ NavMeshAgent:
   m_Enabled: 1
   m_AgentTypeID: 0
   m_Radius: 0.82
-  m_Speed: 3.5
+  m_Speed: 5
   m_Acceleration: 8
   avoidancePriority: 50
   m_AngularSpeed: 120
