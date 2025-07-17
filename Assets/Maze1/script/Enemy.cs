@@ -35,6 +35,9 @@ public class Enemy : MonoBehaviour
     private int currentPointIndex = 0;
     public Transform targetPoint;
 
+    [Header("Normal Patrol")]
+    public Transform[] partolPoints;
+
     [Header("Door Patrol")]
     public bool isPatrolDoor;
     public List<Transform> doorPatrolPoints;
@@ -44,9 +47,12 @@ public class Enemy : MonoBehaviour
     private Coroutine healthCoroutine;
     private Coroutine resetColorCoroutine;
 
-    private void Awake()
+   /* private void Awake()
     {
-        if(agent == null)
+        
+       
+
+        if (agent == null)
         {
             agent = GetComponent<NavMeshAgent>();
             agent.updateRotation = false;
@@ -54,23 +60,29 @@ public class Enemy : MonoBehaviour
             agent.speed = speed;
         }
 
+
+        partolPoints = new Transform[ManagerMaze.instance.partolPoints.Length];
+        ManagerMaze.instance.partolPoints.CopyTo(partolPoints, 0);
+        ShuffleArray(partolPoints);
+
+
         if (isPatrolDoor && doorPatrolPoints.Count > 0)
         {
             currentPoint = 0;
             targetPoint = doorPatrolPoints[currentPoint];
         }
-        else if (ManagerMaze.instance.partolPoints.Length > 0)
+        else if (partolPoints.Length > 0)
         {
             currentPointIndex = 0;
-            targetPoint = ManagerMaze.instance.partolPoints[currentPointIndex];
+            targetPoint = partolPoints[currentPointIndex];
         }
 
         StartCoroutine(CheckRaycastRoutine());
-    }
+    }*/
 
     private void Start()
     {
-        animator.SetTrigger("idle");
+        /*animator.SetTrigger("idle");
         agent = GetComponent<NavMeshAgent>();
         agent.updateRotation = false;
         agent.updateUpAxis = false;
@@ -84,13 +96,44 @@ public class Enemy : MonoBehaviour
             currentPoint = 0;
             targetPoint = doorPatrolPoints[currentPoint];
         }
-        else if (ManagerMaze.instance.partolPoints.Length > 0)
+        else if (partolPoints.Length > 0)
         {
             currentPointIndex = 0;
-            targetPoint = ManagerMaze.instance.partolPoints[currentPointIndex];
+            targetPoint = partolPoints[currentPointIndex];
+        }*/
+        animator.SetTrigger("idle");
+        if (agent == null)
+        {
+            agent = GetComponent<NavMeshAgent>();
+            agent.updateRotation = false;
+            agent.updateUpAxis = false;
+            agent.speed = speed;
         }
 
-        
+        if (ManagerMaze.instance == null || ManagerMaze.instance.partolPoints == null)
+        {
+            Debug.LogError("ManagerMaze or partolPoints not initialized");
+            return;
+        }
+
+        partolPoints = new Transform[ManagerMaze.instance.partolPoints.Length];
+        ManagerMaze.instance.partolPoints.CopyTo(partolPoints, 0);
+        ShuffleArray(partolPoints);
+
+        if (isPatrolDoor && doorPatrolPoints.Count > 0)
+        {
+            currentPoint = 0;
+            targetPoint = doorPatrolPoints[currentPoint];
+        }
+        else if (partolPoints.Length > 0)
+        {
+            currentPointIndex = 0;
+            targetPoint = partolPoints[currentPointIndex];
+        }
+
+        StartCoroutine(CheckRaycastRoutine());
+
+
     }
 
     private void Update()
@@ -116,6 +159,16 @@ public class Enemy : MonoBehaviour
         }
     }
 
+    void ShuffleArray(Transform[] array)
+    {
+        for (int i = 0; i < array.Length; i++)
+        {
+            int randIndex = Random.Range(i, array.Length);
+            Transform temp = array[i];
+            array[i] = array[randIndex];
+            array[randIndex] = temp;
+        }
+    }
     private void DoRaycastLogic()
     {
         Vector2 centerDir = -RaycastParent.up;
@@ -182,9 +235,9 @@ public class Enemy : MonoBehaviour
         {
             targetPoint = doorPatrolPoints[currentPoint];
         }
-        else if (ManagerMaze.instance.partolPoints.Length > 0)
+        else if (partolPoints.Length > 0)
         {
-            targetPoint = ManagerMaze.instance.partolPoints[currentPointIndex];
+            targetPoint = partolPoints[currentPointIndex];
         }
 
         agent.SetDestination(targetPoint.position);
@@ -216,10 +269,10 @@ public class Enemy : MonoBehaviour
                 currentPoint = (currentPoint + 1) % doorPatrolPoints.Count;
                 targetPoint = doorPatrolPoints[currentPoint];
             }
-            else if (ManagerMaze.instance.partolPoints.Length > 0)
+            else if (partolPoints.Length > 0)
             {
-                currentPointIndex = (currentPointIndex + 1) % ManagerMaze.instance.partolPoints.Length;
-                targetPoint = ManagerMaze.instance.partolPoints[currentPointIndex];
+                currentPointIndex = (currentPointIndex + 1) % partolPoints.Length;
+                targetPoint = partolPoints[currentPointIndex];
             }
         }
     }
@@ -273,9 +326,9 @@ public class Enemy : MonoBehaviour
             {
                 targetPoint = doorPatrolPoints[currentPoint];
             }
-            else if (ManagerMaze.instance.partolPoints.Length > 0)
+            else if (partolPoints.Length > 0)
             {
-                targetPoint = ManagerMaze.instance.partolPoints[currentPointIndex];
+                targetPoint = partolPoints[currentPointIndex];
             }
             agent.speed = speed;
         }
