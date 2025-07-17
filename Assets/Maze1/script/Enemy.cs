@@ -8,12 +8,11 @@ using UnityEngine.Rendering.Universal;
 public class Enemy : MonoBehaviour
 {
     [Header("Data")]
-   // public Transform target;
     private NavMeshAgent agent;
     public Animator animator;
     public float rotationSpeed = 360f;
-    public float checkInterval;
-    public float pathUpdateInterval = 0.2f;
+    public float checkInterval = 0.2f;
+    public float pathUpdateInterval = 0.1f;
     private float pathUpdateTimer;
 
     public GameObject ligtColor;
@@ -28,6 +27,7 @@ public class Enemy : MonoBehaviour
     [SerializeField] LayerMask raycastLayerMask;
 
     private bool isChangingColorBack = false;
+    private bool isChasingPlayer = false;
 
     [Header("Patrolling")]
     public float reachThreshold = 0.1f;
@@ -41,22 +41,20 @@ public class Enemy : MonoBehaviour
     public bool isPatrolDoor;
     public List<Transform> doorPatrolPoints;
     private int currentPoint;
-   
 
-    private Coroutine healthCoroutine;
     private Coroutine resetColorCoroutine;
-
 
     private void Start()
     {
         animator.SetTrigger("idle");
-        if (agent == null)
-        {
-            agent = GetComponent<NavMeshAgent>();
-            agent.updateRotation = false;
-            agent.updateUpAxis = false;
-            agent.speed = 5f;
-        }
+
+        agent = GetComponent<NavMeshAgent>();
+        agent.updateRotation = false;
+        agent.updateUpAxis = false;
+        agent.speed = 5f;
+        agent.angularSpeed = 999f;
+        agent.acceleration = 100f;
+        agent.autoBraking = false;
 
         if (ManagerMaze.instance == null || ManagerMaze.instance.partolPoints == null)
         {
@@ -80,27 +78,29 @@ public class Enemy : MonoBehaviour
         }
 
         StartCoroutine(CheckRaycastRoutine());
-
-
-    }
-
-    private void Update()
-    {
-       
     }
 
     private void FixedUpdate()
     {
         pathUpdateTimer -= Time.deltaTime;
-        if (pathUpdateTimer <= 0f && targetPoint != null)
+        if (pathUpdateTimer <= 0f)
         {
-            agent.SetDestination(targetPoint.position);
+            if (isChasingPlayer && Player.Instance != null)
+            {
+                agent.SetDestination(Player.Instance.transform.position);
+            }
+            else if (targetPoint != null)
+            {
+                agent.SetDestination(targetPoint.position);
+            }
+
             pathUpdateTimer = pathUpdateInterval;
         }
 
-        //RotateTowardsMoveDirection();
+        RotateTowardsMoveDirection();
         CheckReachTarget();
     }
+
     private IEnumerator CheckRaycastRoutine()
     {
         var wait = new WaitForSeconds(checkInterval);
@@ -121,6 +121,7 @@ public class Enemy : MonoBehaviour
             array[randIndex] = temp;
         }
     }
+
     private void DoRaycastLogic()
     {
         Vector2 centerDir = -RaycastParent.up;
@@ -132,45 +133,39 @@ public class Enemy : MonoBehaviour
             Vector2 dir = Quaternion.Euler(0, 0, angleOffset) * centerDir;
 
             RaycastHit2D hit = Physics2D.Raycast(RaycastParent.position, dir, rayLength, raycastLayerMask);
-
             Color debugColor = (hit.collider != null) ? Color.red : Color.green;
             Debug.DrawLine(RaycastParent.position, RaycastParent.position + (Vector3)(dir * rayLength), debugColor);
 
             if (hit.collider != null && (hit.collider.CompareTag("Player") || hit.collider.name == "Range"))
             {
                 playerDetected = true;
-                targetPoint = Player.Instance.transform;
-                agent.speed = 13f;
-                
-                agent.SetDestination(targetPoint.position);
-                ligtColor.GetComponent<Light2D>().color = Color.red;
-                //animator.SetTrigger("enemyrun");
+                isChasingPlayer = true;
+                agent.speed = 10f;
 
-                // Reset and restart the 10-second timer
+                ligtColor.GetComponent<Light2D>().color = Color.red;
+
                 if (resetColorCoroutine != null)
                     StopCoroutine(resetColorCoroutine);
-                resetColorCoroutine = StartCoroutine(ResetColorAfterDelay(10f));
 
+                resetColorCoroutine = StartCoroutine(ResetColorAfterDelay(10f));
                 break;
             }
         }
 
-        // Only start timer if player was NOT detected and there is no running coroutine
         if (!playerDetected && resetColorCoroutine == null)
         {
             resetColorCoroutine = StartCoroutine(ResetColorAfterDelay(10f));
         }
     }
 
-
     private IEnumerator ResetColorAfterDelay(float delay)
     {
         isChangingColorBack = true;
         yield return new WaitForSeconds(delay);
 
+        isChasingPlayer = false;
         agent.speed = 5f;
-       
-        
+
         ligtColor.GetComponent<Light2D>().color = new Color(0f, 0.443f, 0.031f, 1f);
 
         if (isPatrolDoor && doorPatrolPoints.Count > 0)
@@ -183,11 +178,9 @@ public class Enemy : MonoBehaviour
         }
 
         agent.SetDestination(targetPoint.position);
-
         isChangingColorBack = false;
-        resetColorCoroutine = null; // mark coroutine finished
+        resetColorCoroutine = null;
     }
-
 
     private void RotateTowardsMoveDirection()
     {
@@ -202,7 +195,7 @@ public class Enemy : MonoBehaviour
 
     private void CheckReachTarget()
     {
-        if (targetPoint == null) return;
+        if (isChasingPlayer || targetPoint == null) return;
 
         if (Vector2.Distance(transform.position, targetPoint.position) < reachThreshold)
         {
@@ -219,23 +212,13 @@ public class Enemy : MonoBehaviour
         }
     }
 
-   
-
     private void OnTriggerEnter2D(Collider2D collision)
     {
         if (collision.CompareTag("PlayerRange"))
         {
-            //Debug.Log("RANGE-----------------");
-            
             animator.SetTrigger("enemyattack");
-            Vector2 directionToEnemy = (transform.position - collision.transform.position).normalized;
-            float angle = Mathf.Atan2(directionToEnemy.y, directionToEnemy.x) * Mathf.Rad2Deg;
             collision.transform.rotation = transform.rotation;
-           
             Player.Instance.playerSprite.color = Color.red;
-            
-
-           
         }
         else if (collision.CompareTag("attack"))
         {
@@ -249,15 +232,9 @@ public class Enemy : MonoBehaviour
         if (collision.CompareTag("PlayerRange"))
         {
             animator.SetTrigger("idle");
-            
-
             Player.Instance.playerSprite.color = Color.white;
-          
-          
         }
     }
-
-   
 
     private void DestroySelf()
     {
