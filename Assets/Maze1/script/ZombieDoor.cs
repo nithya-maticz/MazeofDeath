@@ -1,4 +1,5 @@
 using System.Collections;
+using System.Collections.Generic;
 using UnityEngine;
 
 public class ZombieDoor : MonoBehaviour
@@ -9,9 +10,14 @@ public class ZombieDoor : MonoBehaviour
     public float waitTime;
     //ZombieDoor instance;
     public GameObject light;
+    public List<Transform> doorPatrolPoints;
     void Start()
     {
         ManagerMaze.instance.ZombieDoors.Add(this);
+        GameObject enemyPrefab = Instantiate(ManagerMaze.instance.enemy, SpawnPoint);
+        enemyPrefab.GetComponent<Enemy>().isPatrolDoor = true;
+        enemyPrefab.GetComponent<Enemy>().doorPatrolPoints = doorPatrolPoints;
+
     }
 
     private void Awake()
