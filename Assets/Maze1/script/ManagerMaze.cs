@@ -456,7 +456,13 @@ public class ManagerMaze : MonoBehaviour
         }
     }
 
-
+    public void Attack()
+    {
+        if(Player.Instance != null)
+        {
+            Player.Instance.PlayerAttackButton();
+        }
+    }
 
 }
 
