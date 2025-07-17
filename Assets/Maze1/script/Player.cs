@@ -9,50 +9,30 @@ public class Player : MonoBehaviour
     public static Player Instance;
 
     [Header("References")]
-    public ManagerMaze manager;
     public Rigidbody2D rb;
-    public Joystick joystick;
     public Animator animatorRef;
-    public healthbarscript healthBar;
     public NavMeshAgent agent;
 
     [Header("UI")]
-    public TMP_Text playerLifeTxt;
-    public Image playerHealthFill;
-    public GameObject gameoverPage;
-    public GameObject winPage;
-    public GameObject openDoorImg;
-
+    //public Image playerHealthFill;
+   
     [Header("Gameplay")]
-    public GameObject door;
-    public GameObject enemy;
-    public GameObject keyRef;
-    public GameObject keyHead;
     public GameObject playerCollider;
-    public GameObject bullet;
-    public Transform bulletTransform;
-    public float bulletSpeed = 10f;
-    public Sprite boxOpen;
     public GameObject light;
 
     [Header("Stats")]
     public float speed = 5f;
-    public float playerHealth = 1f;
-    public int damage = 1;
-    public int playerHealthCount;
-    public int keyCount;
-    public bool keyTaken;
-    public bool openDoor;
     public bool playerDeath;
-    public bool attackEnemy;
     public int PlayerHealthCount;
 
     private Coroutine closeDoorCoroutine;
-    private WaitForSeconds waitFor2Sec; // reuse WaitForSeconds to reduce GC
+    private WaitForSeconds waitFor2Sec; 
 
     void Awake()
     {
         Instance = this;
+       
+        rb = GetComponent<Rigidbody2D>();
         waitFor2Sec = new WaitForSeconds(2f);
         if (agent == null) agent = GetComponent<NavMeshAgent>();
         agent.updateRotation = false;
@@ -66,8 +46,8 @@ public class Player : MonoBehaviour
 
     void HandleMovement()
     {
-        float moveH = joystick.Horizontal;
-        float moveV = joystick.Vertical;
+        float moveH = ManagerMaze.instance.joystick.Horizontal;
+        float moveV = ManagerMaze.instance.joystick.Vertical;
 
         // Only apply movement if joystick is not idle
         if (moveH != 0f || moveV != 0f)
@@ -147,9 +127,4 @@ public class Player : MonoBehaviour
         }
     }
 
-    public void IncreaseHealth()
-    {
-        playerHealth = 1f;
-        playerHealthFill.fillAmount = 1f;
-    }
 }

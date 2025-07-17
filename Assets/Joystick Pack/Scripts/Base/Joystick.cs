@@ -42,8 +42,13 @@ public class Joystick : MonoBehaviour, IPointerDownHandler, IDragHandler, IPoint
 
     protected virtual void Start()
     {
-        Animator1 = FindObjectOfType<Player>().animatorRef;
-        playerTransform = FindObjectOfType<ManagerMaze>().playerRef.transform;
+        
+    }
+
+    public void StartJoystick()
+    {
+        Animator1 = Player.Instance.animatorRef;
+        playerTransform = Player.Instance.transform;
 
         HandleRange = handleRange;
         DeadZone = deadZone;
