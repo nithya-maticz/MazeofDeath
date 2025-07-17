@@ -240,8 +240,7 @@ public class Enemy : MonoBehaviour
             ManagerMaze.instance.PlayerImage.GetComponent<SpriteRenderer>().color = Color.red;
             
 
-            if (healthCoroutine == null)
-                healthCoroutine = StartCoroutine(ReducePlayerHealth(ManagerMaze.instance.playerRef.GetComponent<Player>()));
+           
         }
         else if (collision.CompareTag("attack"))
         {
@@ -282,33 +281,7 @@ public class Enemy : MonoBehaviour
         }
     }
 
-    private IEnumerator ReducePlayerHealth(Player player)
-    {
-        while (player.playerHealth > 0)
-        {
-            float duration = 2f;
-            float elapsed = 0f;
-            float startHealth = player.playerHealth;
-            float targetHealth = Mathf.Max(0, startHealth - 0.1f);
-
-            while (elapsed < duration)
-            {
-                elapsed += Time.deltaTime;
-                float t = elapsed / duration;
-                player.playerHealth = Mathf.Lerp(startHealth, targetHealth, t);
-                player.playerHealthFill.fillAmount = player.playerHealth;
-                yield return null;
-            }
-
-            if (player.playerHealth <= 0.1f)
-            {
-                player.playerHealth = 0;
-                player.playerHealthFill.fillAmount = 0;
-                ManagerMaze.instance.GameOver();
-                yield break;
-            }
-        }
-    }
+   
 
     private void DestroySelf()
     {

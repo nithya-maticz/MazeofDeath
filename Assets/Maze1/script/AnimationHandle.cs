@@ -43,7 +43,7 @@ public class AnimationHandle : MonoBehaviour
         ManagerMaze.instance.bloodImage.GetComponent<Image>().enabled = false;
         Player.Instance.PlayerHealthCount=4;
 
-        Player.Instance.IncreaseHealth();
+        
     }
     public void NextVideo()
     {

@@ -2,7 +2,7 @@ using UnityEngine;
 
 public class MinimapFollowPlayer : MonoBehaviour
 {
-    public Transform player;          // Assign your player Transform
+    // Transform player;          // Assign your player Transform
     public BoxCollider2D boundary;    // Assign your BoxCollider2D in inspector
 
     private Vector2 minLimits;
@@ -34,12 +34,16 @@ public class MinimapFollowPlayer : MonoBehaviour
 
     private void FixedUpdate()
     {
-        Vector3 targetPos = player.position;
+        if(Player.Instance != null)
+        {
+            Vector3 targetPos = Player.Instance.transform.position;
 
-        // Clamp X and Y (for 2D)
-        float clampedX = Mathf.Clamp(targetPos.x, minLimits.x + cameraHalfWidth, maxLimits.x - cameraHalfWidth);
-        float clampedY = Mathf.Clamp(targetPos.y, minLimits.y + cameraHalfHeight, maxLimits.y - cameraHalfHeight);
+            // Clamp X and Y (for 2D)
+            float clampedX = Mathf.Clamp(targetPos.x, minLimits.x + cameraHalfWidth, maxLimits.x - cameraHalfWidth);
+            float clampedY = Mathf.Clamp(targetPos.y, minLimits.y + cameraHalfHeight, maxLimits.y - cameraHalfHeight);
 
-        transform.position = new Vector3(clampedX, clampedY, transform.position.z);
+            transform.position = new Vector3(clampedX, clampedY, transform.position.z);
+        }
+        
     }
 }

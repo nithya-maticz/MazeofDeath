@@ -6,6 +6,8 @@ using System.Collections.Generic;
 using TMPro;
 using UnityEngine.UI;
 using UnityEngine.Video;
+using Unity.Cinemachine;
+
 
 
 public class ManagerMaze : MonoBehaviour
@@ -13,7 +15,7 @@ public class ManagerMaze : MonoBehaviour
     public GameObject enemy;
     public Transform spawnPosition;
 
-    public Player playerRef;
+    //public Player playerRef;
     public bool attackPlayer;
     public bool isPlayerGetKey;
     public GameObject keyImg;
@@ -37,6 +39,8 @@ public class ManagerMaze : MonoBehaviour
     public TMP_Text zombieDoorCount;
     public GameObject SplashScreen;
     public GameObject videoRawImage;
+    public Joystick joystick;
+
     [Header("SPRITES")]
     public Sprite SpriteBoxOpen;
     public Sprite SpriteBoxClose;
@@ -95,7 +99,10 @@ public class ManagerMaze : MonoBehaviour
 
     [Header("CHARACTER SELECTION")]
     public GameObject characterSelectionPage;
-
+    public Player malePlayer;
+    public Player femalePlayer;
+    public Transform playerSpawnPoint;
+    public CinemachineCamera cineCam;
 
     void Start()
     {
@@ -434,17 +441,28 @@ public class ManagerMaze : MonoBehaviour
     {
         if(selectedAvatar == "Male")
         {
-            //
+
+            GameObject player = Instantiate(malePlayer.gameObject, playerSpawnPoint.position, Quaternion.identity);
+            joystick.StartJoystick();
+            cineCam.Target.TrackingTarget = player.transform;
             Startgame();
         }
         else if(selectedAvatar == "Female")
         {
-            //
+            GameObject player = Instantiate(femalePlayer.gameObject, playerSpawnPoint.position, Quaternion.identity);
+            joystick.StartJoystick();
+            cineCam.Target.TrackingTarget = player.transform;
             Startgame();
         }
     }
 
-
+    public void Attack()
+    {
+        if(Player.Instance != null)
+        {
+            Player.Instance.PlayerAttackButton();
+        }
+    }
 
 }
 
