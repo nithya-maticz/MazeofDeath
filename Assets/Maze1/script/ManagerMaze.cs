@@ -92,7 +92,10 @@ public class ManagerMaze : MonoBehaviour
 
     public GameObject blackScreen;
     public GameObject miniMap;
-    
+
+    [Header("CHARACTER SELECTION")]
+    public GameObject characterSelectionPage;
+
 
     void Start()
     {
@@ -170,35 +173,30 @@ public class ManagerMaze : MonoBehaviour
 
     public void Skipfun()
     {
-        if(gameStart==false)
+        if(!gameStart)
         {
-
             gameStart = true;
             blackScreen.SetActive(false);
-            Debug.Log("Skifun");
             FadeImg.SetActive(true);
             fadeAnimation.SetTrigger("fade");
             rawImage.SetActive(false);
             StopCoroutine(typingCoroutine);
             textMeshPro.text = "";
-            miniMap.SetActive(true);
-            Invoke("startgame", 2f);
+            characterSelectionPage.SetActive(true);
+            //Invoke("startgame", 2f);
         }
-        
-
-
-
     }
 
-    public void startgame()
+    public void Startgame()
     {
+        characterSelectionPage.SetActive(false);
         FadeImg.SetActive(false);
-        
+        miniMap.SetActive(true);
+
         for (int i = 0; i < ZombieDoors.Count; i++)
         {
-            ZombieDoors[i].StartGame();
+            ZombieDoors[i].SpawnEnemyFromDoor();
         }
-
     }
 
 
@@ -213,8 +211,6 @@ public class ManagerMaze : MonoBehaviour
         FadeImg.SetActive(true);
         fadeAnimation.SetTrigger("fade");
         loadVideo = true;
-        
-
     }
 
     public void DelayCountEnemies()
@@ -433,6 +429,22 @@ public class ManagerMaze : MonoBehaviour
             list[randIndex] = temp;
         }
     }
+
+    public void CharacterSelection(string selectedAvatar)
+    {
+        if(selectedAvatar == "Male")
+        {
+            //
+            Startgame();
+        }
+        else if(selectedAvatar == "Female")
+        {
+            //
+            Startgame();
+        }
+    }
+
+
 
 }
 
