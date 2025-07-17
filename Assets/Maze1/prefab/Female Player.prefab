@@ -441,6 +441,7 @@ MonoBehaviour:
   rb: {fileID: 2601034072731614633}
   animatorRef: {fileID: 8625276405182429869}
   agent: {fileID: 0}
+  playerSprite: {fileID: 5538611695503903178}
   playerCollider: {fileID: 5713313185891636363}
   light: {fileID: 1751082710721361404}
   speed: 15

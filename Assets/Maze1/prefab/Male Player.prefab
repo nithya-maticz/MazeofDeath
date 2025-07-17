@@ -127,6 +127,7 @@ MonoBehaviour:
   rb: {fileID: 4871064626054311779}
   animatorRef: {fileID: 5412036802045086139}
   agent: {fileID: 0}
+  playerSprite: {fileID: 7376619368823538988}
   playerCollider: {fileID: 7838982957830422396}
   light: {fileID: 4187652121502048987}
   speed: 15
@@ -808,7 +809,7 @@ CircleCollider2D:
   m_CompositeOperation: 0
   m_CompositeOrder: 0
   m_Offset: {x: 0.114184774, y: 0.02777467}
-  m_Radius: 0.7
+  m_Radius: 1
 --- !u!1 &1616769356615416545
 GameObject:
   m_ObjectHideFlags: 0

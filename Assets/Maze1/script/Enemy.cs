@@ -30,7 +30,6 @@ public class Enemy : MonoBehaviour
     private bool isChangingColorBack = false;
 
     [Header("Patrolling")]
-    public float speed = 3f;
     public float reachThreshold = 0.1f;
     private int currentPointIndex = 0;
     public Transform targetPoint;
@@ -42,72 +41,21 @@ public class Enemy : MonoBehaviour
     public bool isPatrolDoor;
     public List<Transform> doorPatrolPoints;
     private int currentPoint;
-    private bool inRange;
+   
 
     private Coroutine healthCoroutine;
     private Coroutine resetColorCoroutine;
 
-   /* private void Awake()
-    {
-        
-       
-
-        if (agent == null)
-        {
-            agent = GetComponent<NavMeshAgent>();
-            agent.updateRotation = false;
-            agent.updateUpAxis = false;
-            agent.speed = speed;
-        }
-
-
-        partolPoints = new Transform[ManagerMaze.instance.partolPoints.Length];
-        ManagerMaze.instance.partolPoints.CopyTo(partolPoints, 0);
-        ShuffleArray(partolPoints);
-
-
-        if (isPatrolDoor && doorPatrolPoints.Count > 0)
-        {
-            currentPoint = 0;
-            targetPoint = doorPatrolPoints[currentPoint];
-        }
-        else if (partolPoints.Length > 0)
-        {
-            currentPointIndex = 0;
-            targetPoint = partolPoints[currentPointIndex];
-        }
-
-        StartCoroutine(CheckRaycastRoutine());
-    }*/
 
     private void Start()
     {
-        /*animator.SetTrigger("idle");
-        agent = GetComponent<NavMeshAgent>();
-        agent.updateRotation = false;
-        agent.updateUpAxis = false;
-        agent.speed = speed;
-
-
-        
-
-        if (isPatrolDoor && doorPatrolPoints.Count > 0)
-        {
-            currentPoint = 0;
-            targetPoint = doorPatrolPoints[currentPoint];
-        }
-        else if (partolPoints.Length > 0)
-        {
-            currentPointIndex = 0;
-            targetPoint = partolPoints[currentPointIndex];
-        }*/
         animator.SetTrigger("idle");
         if (agent == null)
         {
             agent = GetComponent<NavMeshAgent>();
             agent.updateRotation = false;
             agent.updateUpAxis = false;
-            agent.speed = speed;
+            agent.speed = 5f;
         }
 
         if (ManagerMaze.instance == null || ManagerMaze.instance.partolPoints == null)
@@ -138,6 +86,11 @@ public class Enemy : MonoBehaviour
 
     private void Update()
     {
+       
+    }
+
+    private void FixedUpdate()
+    {
         pathUpdateTimer -= Time.deltaTime;
         if (pathUpdateTimer <= 0f && targetPoint != null)
         {
@@ -145,10 +98,9 @@ public class Enemy : MonoBehaviour
             pathUpdateTimer = pathUpdateInterval;
         }
 
-        RotateTowardsMoveDirection();
+        //RotateTowardsMoveDirection();
         CheckReachTarget();
     }
-
     private IEnumerator CheckRaycastRoutine()
     {
         var wait = new WaitForSeconds(checkInterval);
@@ -188,21 +140,11 @@ public class Enemy : MonoBehaviour
             {
                 playerDetected = true;
                 targetPoint = Player.Instance.transform;
-                agent.speed = 5f;
+                agent.speed = 13f;
+                
                 agent.SetDestination(targetPoint.position);
                 ligtColor.GetComponent<Light2D>().color = Color.red;
-                if(inRange==false)
-                {
-                    animator.SetTrigger("enemyrun");
-                }
-                
-
-
-
-                /*if (targetPoint != Player.Instance.transform)
-                {
-                    
-                }*/
+                //animator.SetTrigger("enemyrun");
 
                 // Reset and restart the 10-second timer
                 if (resetColorCoroutine != null)
@@ -226,7 +168,7 @@ public class Enemy : MonoBehaviour
         isChangingColorBack = true;
         yield return new WaitForSeconds(delay);
 
-        agent.speed = speed;
+        agent.speed = 5f;
        
         
         ligtColor.GetComponent<Light2D>().color = new Color(0f, 0.443f, 0.031f, 1f);
@@ -284,25 +226,20 @@ public class Enemy : MonoBehaviour
         if (collision.CompareTag("PlayerRange"))
         {
             //Debug.Log("RANGE-----------------");
-            inRange = true;
+            
             animator.SetTrigger("enemyattack");
             Vector2 directionToEnemy = (transform.position - collision.transform.position).normalized;
             float angle = Mathf.Atan2(directionToEnemy.y, directionToEnemy.x) * Mathf.Rad2Deg;
             collision.transform.rotation = transform.rotation;
            
-            ManagerMaze.instance.PlayerImage.GetComponent<SpriteRenderer>().color = Color.red;
+            Player.Instance.playerSprite.color = Color.red;
             
 
            
         }
         else if (collision.CompareTag("attack"))
         {
-            if (healthCoroutine != null)
-            {
-                StopCoroutine(healthCoroutine);
-                ManagerMaze.instance.PlayerImage.GetComponent<SpriteRenderer>().color = Color.white;
-                healthCoroutine = null;
-            }
+            Player.Instance.playerSprite.color = Color.white;
             Invoke(nameof(DestroySelf), 0.5f);
         }
     }
@@ -312,25 +249,11 @@ public class Enemy : MonoBehaviour
         if (collision.CompareTag("PlayerRange"))
         {
             animator.SetTrigger("idle");
-            inRange = false;
+            
 
-            ManagerMaze.instance.PlayerImage.GetComponent<SpriteRenderer>().color = Color.white;
-            if (healthCoroutine != null)
-            {
-                StopCoroutine(healthCoroutine);
-                ManagerMaze.instance.PlayerImage.GetComponent<SpriteRenderer>().color = Color.white;
-                healthCoroutine = null;
-            }
-
-            if (isPatrolDoor && doorPatrolPoints.Count > 0)
-            {
-                targetPoint = doorPatrolPoints[currentPoint];
-            }
-            else if (partolPoints.Length > 0)
-            {
-                targetPoint = partolPoints[currentPointIndex];
-            }
-            agent.speed = speed;
+            Player.Instance.playerSprite.color = Color.white;
+          
+          
         }
     }
 

@@ -63,7 +63,7 @@ public class ManagerMaze : MonoBehaviour
     [Header("GAMEOVER")]
     public GameObject GameOverPage;
 
-    public GameObject PlayerImage;
+   
 
     [Header("PATROL POINTS")]
     public List<PatrolPoints> PatrolAreas;

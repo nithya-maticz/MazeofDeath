@@ -12,6 +12,7 @@ public class Player : MonoBehaviour
     public Rigidbody2D rb;
     public Animator animatorRef;
     public NavMeshAgent agent;
+    public SpriteRenderer playerSprite;
 
     [Header("UI")]
     //public Image playerHealthFill;
