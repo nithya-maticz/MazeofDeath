@@ -87,17 +87,33 @@ public class AnimationHandle : MonoBehaviour
     public void EnemyAttackCount()
     {
         ManagerMaze.instance.bloodImage.GetComponent<Image>().enabled = true;
-        Player.Instance.PlayerHealthCount--;
-        
+       
+
+
+        int index = Player.Instance.PlayerHealthCount-1 ;
+        Player.Instance.PlayerHealthCount = index;
+        if (index >= 0 && index < ManagerMaze.instance.bloodSprite.Count)
+        {
+            Debug.Log("Setting sprite based on health");
+            ManagerMaze.instance.bloodImage.sprite = ManagerMaze.instance.bloodSprite[index];
+            if(index==0)
+            {
+                Debug.Log("gameOver");
+               // ManagerMaze.instance.GameOver();
+            }
+
+        }
+
         Debug.Log(Player.Instance.PlayerHealthCount);
-        switch (Player.Instance.PlayerHealthCount)
+
+       /* switch (Player.Instance.PlayerHealthCount)
         {
             case 4:
-               // ManagerMaze.instance.bloodImage.sprite = ManagerMaze.instance.damage1;
+                // ManagerMaze.instance.bloodImage.sprite = ManagerMaze.instance.damage1;
                 Debug.Log("Health is between  4");
                 break;
             case 3:
-                ManagerMaze.instance.bloodImage.sprite = ManagerMaze.instance.damage1;
+                ManagerMaze.instance.bloodImage.sprite = ManagerMaze.instance.bloodSprite[0];
                 // Handle case when health is 3 or 4
                 Debug.Log("Health is between 3 and 4");
                 break;
@@ -119,7 +135,7 @@ public class AnimationHandle : MonoBehaviour
                 break;
 
 
-        }
+        }*/
 
 
     }

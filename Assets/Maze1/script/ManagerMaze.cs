@@ -103,6 +103,7 @@ public class ManagerMaze : MonoBehaviour
     public Player femalePlayer;
     public Transform playerSpawnPoint;
     public CinemachineCamera cineCam;
+    public List<Sprite> bloodSprite;
 
     void Start()
     {
