@@ -104,6 +104,7 @@ public class ManagerMaze : MonoBehaviour
     public Transform playerSpawnPoint;
     public CinemachineCamera cineCam;
     public List<Sprite> bloodSprite;
+    public GameObject VideoRef;
 
     void Start()
     {
@@ -201,6 +202,7 @@ public class ManagerMaze : MonoBehaviour
     public void Startgame()
     {
         characterSelectionPage.SetActive(false);
+        VideoRef.SetActive(false);
         FadeImg.SetActive(false);
       //  miniMap.SetActive(true);
 

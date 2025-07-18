@@ -219,11 +219,13 @@ public class Enemy : MonoBehaviour
             animator.SetTrigger("enemyattack");
             collision.transform.rotation = transform.rotation;
             Player.Instance.playerSprite.color = Color.red;
+            targetPoint = null;
+            agent.isStopped = true;
         }
         else if (collision.CompareTag("attack"))
         {
             Player.Instance.playerSprite.color = Color.white;
-            Invoke(nameof(DestroySelf), 0.5f);
+            Invoke(nameof(DestroySelf), 0.2f);
         }
     }
 
@@ -233,9 +235,14 @@ public class Enemy : MonoBehaviour
         {
             animator.SetTrigger("idle");
             Player.Instance.playerSprite.color = Color.white;
+            targetPoint = Player.Instance.transform;
+            agent.isStopped = false;
         }
     }
 
+
+
+   
     private void DestroySelf()
     {
         GameObject blood = Instantiate(ManagerMaze.instance.BloodPrefab.gameObject, transform);
