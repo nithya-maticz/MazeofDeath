@@ -190,8 +190,11 @@ public class ManagerMaze : MonoBehaviour
             rawImage.SetActive(false);
             StopCoroutine(typingCoroutine);
             textMeshPro.text = "";
-            characterSelectionPage.SetActive(true);
-            //Invoke("startgame", 2f);
+
+            // characterSelectionPage.SetActive(true);
+            CharacterSelection("Male");
+
+           // Invoke("startgame", 2f);
         }
     }
 
@@ -199,7 +202,7 @@ public class ManagerMaze : MonoBehaviour
     {
         characterSelectionPage.SetActive(false);
         FadeImg.SetActive(false);
-        miniMap.SetActive(true);
+      //  miniMap.SetActive(true);
 
         for (int i = 0; i < ZombieDoors.Count; i++)
         {
@@ -446,7 +449,8 @@ public class ManagerMaze : MonoBehaviour
             GameObject player = Instantiate(malePlayer.gameObject, playerSpawnPoint.position, Quaternion.identity);
             joystick.StartJoystick();
             cineCam.Target.TrackingTarget = player.transform;
-            Startgame();
+           // Startgame();
+            Invoke("Startgame", 2f);
         }
         else if(selectedAvatar == "Female")
         {
