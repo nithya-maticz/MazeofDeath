@@ -67,14 +67,40 @@ public class Joystick : MonoBehaviour, IPointerDownHandler, IDragHandler, IPoint
         targetRotation = playerTransform.localRotation;
     }
 
+    public void StartStoryJoystick()
+    {
+        Animator1 = StoryPlayer.Instance.animatorRef;
+        playerTransform = StoryPlayer.Instance.transform;
+
+        HandleRange = handleRange;
+        DeadZone = deadZone;
+        baseRect = GetComponent<RectTransform>();
+        canvas = GetComponentInParent<Canvas>();
+        if (canvas == null)
+            Debug.LogError("The Joystick is not placed inside a canvas");
+
+        Vector2 center = new Vector2(0.5f, 0.5f);
+        background.pivot = center;
+        handle.anchorMin = center;
+        handle.anchorMax = center;
+        handle.pivot = center;
+        handle.anchoredPosition = Vector2.zero;
+
+        targetRotation = playerTransform.localRotation;
+    }
+
+
     public virtual void OnPointerDown(PointerEventData eventData)
     {
+
         playerMovement = FindObjectOfType<Player>().playerDeath;
         if (!playerMovement)
         {
             Animator1.SetBool("run", true);
             OnDrag(eventData);
         }
+
+        
     }
 
     public void OnDrag(PointerEventData eventData)

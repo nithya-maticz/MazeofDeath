@@ -8,6 +8,7 @@ public class AnimationHandle : MonoBehaviour
     public int VideoCount;
     // Start is called once before the first execution of Update after the MonoBehaviour is created
     public Player playerRef;
+    public StoryPlayer storyPlayer;
     void Start()
     {
         
@@ -21,11 +22,18 @@ public class AnimationHandle : MonoBehaviour
 
     public void ColliderVisibleFun()
     {
-        playerRef.playerCollider.SetActive(true);
+
+        if(playerRef != null)
+            playerRef.playerCollider.SetActive(true);
+        else if(storyPlayer != null)
+            storyPlayer.playerCollider.SetActive(true);
     }
     public void ColliderInvisibleFun()
     {
-        playerRef.playerCollider.SetActive(false);
+        if (playerRef != null)
+            playerRef.playerCollider.SetActive(false);
+        else if (storyPlayer != null)
+            storyPlayer.playerCollider.SetActive(false);
     }
 
     void Key()
@@ -106,36 +114,7 @@ public class AnimationHandle : MonoBehaviour
 
         Debug.Log(Player.Instance.PlayerHealthCount);
 
-       /* switch (Player.Instance.PlayerHealthCount)
-        {
-            case 4:
-                // ManagerMaze.instance.bloodImage.sprite = ManagerMaze.instance.damage1;
-                Debug.Log("Health is between  4");
-                break;
-            case 3:
-                ManagerMaze.instance.bloodImage.sprite = ManagerMaze.instance.bloodSprite[0];
-                // Handle case when health is 3 or 4
-                Debug.Log("Health is between 3 and 4");
-                break;
-
-            case 2:
-                ManagerMaze.instance.bloodImage.sprite = ManagerMaze.instance.damage2;
-                Debug.Log("Health is 2");
-                break;
-
-            case 1:
-                ManagerMaze.instance.bloodImage.sprite = ManagerMaze.instance.damage3;
-                Debug.Log("Health is 1");
-                break;
-
-            case 0:
-                ManagerMaze.instance.bloodImage.sprite = ManagerMaze.instance.damage4;
-                Debug.Log("Player dead");
-                ManagerMaze.instance.GameOver();
-                break;
-
-
-        }*/
+      
 
 
     }
