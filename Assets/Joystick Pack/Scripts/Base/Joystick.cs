@@ -92,13 +92,14 @@ public class Joystick : MonoBehaviour, IPointerDownHandler, IDragHandler, IPoint
 
     public virtual void OnPointerDown(PointerEventData eventData)
     {
+        Animator1.SetBool("run", true);
+        OnDrag(eventData);
 
-        playerMovement = FindObjectOfType<Player>().playerDeath;
+       /* playerMovement = FindObjectOfType<Player>().playerDeath;
         if (!playerMovement)
         {
-            Animator1.SetBool("run", true);
-            OnDrag(eventData);
-        }
+            
+        }*/
 
         
     }
