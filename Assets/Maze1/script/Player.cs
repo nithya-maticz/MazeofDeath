@@ -11,7 +11,7 @@ public class Player : MonoBehaviour
     [Header("References")]
     public Rigidbody2D rb;
     public Animator animatorRef;
-    public NavMeshAgent agent;
+    // NavMeshAgent agent;
     public SpriteRenderer playerSprite;
 
     [Header("UI")]
@@ -35,9 +35,9 @@ public class Player : MonoBehaviour
        
         rb = GetComponent<Rigidbody2D>();
         waitFor2Sec = new WaitForSeconds(2f);
-        if (agent == null) agent = GetComponent<NavMeshAgent>();
+      /*  if (agent == null) agent = GetComponent<NavMeshAgent>();
         agent.updateRotation = false;
-        agent.updateUpAxis = false;
+        agent.updateUpAxis = false;*/
     }
 
     void Update()

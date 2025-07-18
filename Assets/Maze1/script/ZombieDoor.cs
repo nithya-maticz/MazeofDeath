@@ -26,7 +26,7 @@ public class ZombieDoor : MonoBehaviour
     }
     public void SpawnEnemyFromDoor()
     {
-        StartCoroutine(SpawnEnemys());
+      //  StartCoroutine(SpawnEnemys());
     }
     // Update is called once per frame
     void Update()
