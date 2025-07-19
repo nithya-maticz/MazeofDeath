@@ -2,7 +2,7 @@
 - Project name: MazeofDeath
 - Unity version: Unity 6000.0.34f1
 - Active game object:
-  - Name: Light 2D
+  - Name: Player
   - Tag: Untagged
   - Layer: Player
 <!-- UNITY CODE ASSIST INSTRUCTIONS END -->
