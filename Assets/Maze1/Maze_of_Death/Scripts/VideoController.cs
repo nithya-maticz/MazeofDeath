@@ -156,7 +156,7 @@ public class VideoController : MonoBehaviour
         {
             if (skipRequested) yield break;
             textComponent.text += letter;
-            yield return new WaitForSeconds(0.05f);
+            yield return new WaitForSeconds(0.075f);
         }
     }
 
