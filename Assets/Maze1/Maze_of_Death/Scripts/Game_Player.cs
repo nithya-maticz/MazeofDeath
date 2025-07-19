@@ -10,10 +10,14 @@ public class Game_Player : MonoBehaviour
     [Header("Rotation Settings")]
     public float rotationSensitivity = 0.2f;
 
+    [Header("Animations")]
+    public Animator _Animator;
+
     private Vector2 moveInput;
     private float rotationInput = 0f;
     private Vector2 lastTouchPosition;
     private bool isRotating = false;
+    private bool wasWalking = false;
 
     void Update()
     {
@@ -33,12 +37,15 @@ public class Game_Player : MonoBehaviour
         {
             moveInput = new Vector2(movementJoystick.Vertical, movementJoystick.Horizontal);
         }
-/*#if UNITY_EDITOR
-        else
+
+        bool isWalking = moveInput.sqrMagnitude > 0.01f;
+
+        // Update animation only if changed
+        if (isWalking != wasWalking)
         {
-            moveInput = new Vector2(Input.GetAxisRaw("Horizontal"), Input.GetAxisRaw("Vertical"));
+            _Animator.SetBool("isWalking", isWalking);
+            wasWalking = isWalking;
         }
-#endif*/
     }
 
     // -------------------------------------
