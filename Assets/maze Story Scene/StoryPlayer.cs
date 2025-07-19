@@ -35,7 +35,7 @@ public class StoryPlayer : MonoBehaviour
     void Awake()
     {
         Instance = this;
-        joystick.StartStoryJoystick();
+        //joystick.StartStoryJoystick();
         rb = GetComponent<Rigidbody2D>();
         waitFor2Sec = new WaitForSeconds(2f);
         if (agent == null) agent = GetComponent<NavMeshAgent>();

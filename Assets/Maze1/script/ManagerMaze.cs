@@ -447,7 +447,7 @@ public class ManagerMaze : MonoBehaviour
         {
 
             GameObject player = Instantiate(malePlayer.gameObject, playerSpawnPoint.position, Quaternion.identity);
-            joystick.StartJoystick();
+            //joystick.StartJoystick();
             cineCam.Target.TrackingTarget = player.transform;
            // Startgame();
             Invoke("Startgame", 2f);
@@ -455,7 +455,7 @@ public class ManagerMaze : MonoBehaviour
         else if(selectedAvatar == "Female")
         {
             GameObject player = Instantiate(femalePlayer.gameObject, playerSpawnPoint.position, Quaternion.identity);
-            joystick.StartJoystick();
+           // joystick.StartJoystick();
             cineCam.Target.TrackingTarget = player.transform;
             Startgame();
         }

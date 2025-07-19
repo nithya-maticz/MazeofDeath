@@ -21,11 +21,11 @@ public class Game_Manager : MonoBehaviour
 
     void Start()
     {
-        if (!OnTutorial)
+        /*if (!OnTutorial)
         {
             LoadingPage.SetActive(true);
             StartCoroutine(LoadLobbyWithDelay());
-        }
+        }*/
     }
 
     private IEnumerator LoadLobbyWithDelay()
