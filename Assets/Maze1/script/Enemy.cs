@@ -217,7 +217,8 @@ public class Enemy : MonoBehaviour
         if (collision.CompareTag("PlayerRange"))
         {
             animator.SetTrigger("enemyattack");
-            collision.transform.rotation = transform.rotation;
+            //collision.transform.rotation = transform.rotation;
+          Player.Instance.animatorRef.SetTrigger("playerattack");
             Player.Instance.playerSprite.color = Color.red;
             targetPoint = null;
             agent.isStopped = true;

@@ -79,6 +79,11 @@ public class Player : MonoBehaviour
                 closeDoorCoroutine = StartCoroutine(CloseDoorAfterDelay(zombieDoor));
             }
         }
+       else  if (collision.CompareTag("enemy"))
+        {
+            Debug.Log("Inside---------");
+            animatorRef.SetTrigger("playerattack");
+        }
     }
 
     private void OnTriggerExit2D(Collider2D collision)

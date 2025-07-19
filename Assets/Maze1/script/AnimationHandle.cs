@@ -76,11 +76,11 @@ public class AnimationHandle : MonoBehaviour
                 ManagerMaze.instance.videoPlayer[ManagerMaze.instance.count].videoPlayer.Play();
             }
         }
-           
-        
-            
-       
-       
+
+
+
+
+
 
     }
     public void nextTyping()
