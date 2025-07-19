@@ -1,4 +1,4 @@
-using System.Collections;
+﻿using System.Collections;
 using System.Collections.Generic;
 using UnityEngine;
 using UnityEngine.Tilemaps;
@@ -66,7 +66,20 @@ public class TilemapPathfinding : MonoBehaviour
             foreach (Vector3Int dir in GetNeighbourDirections())
             {
                 Vector3Int neighbourPos = currentNode.cellPosition + dir;
-                if (closedSet.Contains(neighbourPos) || !IsWalkable(neighbourPos)) continue;
+
+                // Skip if not walkable or already evaluated
+                if (closedSet.Contains(neighbourPos) || !IsWalkable(neighbourPos))
+                    continue;
+
+                // ❌ Prevent corner cutting
+                if (Mathf.Abs(dir.x) == 1 && Mathf.Abs(dir.y) == 1)
+                {
+                    Vector3Int horizontal = new Vector3Int(currentNode.cellPosition.x + dir.x, currentNode.cellPosition.y, 0);
+                    Vector3Int vertical = new Vector3Int(currentNode.cellPosition.x, currentNode.cellPosition.y + dir.y, 0);
+
+                    if (!IsWalkable(horizontal) || !IsWalkable(vertical))
+                        continue;
+                }
 
                 int tentativeG = currentNode.gCost + GetDistance(currentNode.cellPosition, neighbourPos);
 
