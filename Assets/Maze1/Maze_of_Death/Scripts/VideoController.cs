@@ -13,17 +13,14 @@ public class VideoController : MonoBehaviour
     [Header("Video Components")]
     [SerializeField] private VideoPlayer _videoPlayer;
     public RawImage VideoImage;
-    public Image ScreenFader;
     public TMP_Text SubtitleText;
     public List<VideoData> Videos;
-
-    [Header("Fade Settings")]
-    public float fadeDuration = 0.5f;
 
     private int currentIndex = 0;
     private bool isPlaying = false;
     private bool skipRequested = false;
     private Coroutine currentRoutine;
+    private Coroutine subtitleRoutine;
 
     private void Awake()
     {
@@ -32,7 +29,7 @@ public class VideoController : MonoBehaviour
 
     void Start()
     {
-        PlayNextVideo();
+        // PlayNextVideo(); // optional
     }
 
     public void PlayNextVideo()
@@ -41,14 +38,58 @@ public class VideoController : MonoBehaviour
         {
             if (currentIndex >= Videos.Count)
             {
-                Debug.Log("✅ All videos and subtitles are completed.");
+                StartCoroutine(FinalCompleteRoutine());
             }
             return;
         }
 
+        
         currentRoutine = StartCoroutine(PlayVideoRoutine(Videos[currentIndex]));
     }
 
+    private IEnumerator FinalCompleteRoutine()
+    {
+        Game_Manager.Instance.Fade();
+        //yield return new WaitForSeconds(0.15f);
+
+        Game_Manager.Instance.StoryPage.SetActive(false);
+        Game_Manager.Instance.LoadingPage.SetActive(false);
+        Debug.Log("✨ All videos finished.");
+        yield return null;
+    }
+
+    public void SkipAll()
+    {
+        if (!isPlaying && currentIndex >= Videos.Count)
+            return;
+
+        if (_videoPlayer.isPlaying)
+            _videoPlayer.Stop();
+
+        if (currentRoutine != null)
+            StopCoroutine(currentRoutine);
+
+        if (subtitleRoutine != null)
+            StopCoroutine(subtitleRoutine);
+
+        SubtitleText.text = "";
+        VideoImage.gameObject.SetActive(false);
+
+        foreach (var video in Videos)
+        {
+            if (video.TypeText != null)
+                video.TypeText.text = "";
+            if (video.BackGround != null)
+                video.BackGround.gameObject.SetActive(false);
+            video.IsPlayed = true;
+        }
+
+        currentIndex = Videos.Count;
+        isPlaying = false;
+        skipRequested = false;
+
+        StartCoroutine(FinalCompleteRoutine());
+    }
 
     public void Skip()
     {
@@ -62,24 +103,37 @@ public class VideoController : MonoBehaviour
         if (currentRoutine != null)
             StopCoroutine(currentRoutine);
 
+        if (subtitleRoutine != null)
+            StopCoroutine(subtitleRoutine);
+
         SubtitleText.text = "";
+        if (Videos[currentIndex].TypeText != null)
+            Videos[currentIndex].TypeText.text = "";
+
         Videos[currentIndex].IsPlayed = true;
         currentIndex++;
         isPlaying = false;
         skipRequested = false;
+
         PlayNextVideo();
     }
 
     private IEnumerator PlayVideoRoutine(VideoData data)
     {
+       
+        Game_Manager.Instance.Fade();
+
+        if (!Game_Manager.Instance.StoryPage.activeSelf)
+            Game_Manager.Instance.StoryPage.SetActive(true);
+
+        if (Game_Manager.Instance.LoadingPage.activeSelf)
+            Game_Manager.Instance.LoadingPage.SetActive(false);
+
         isPlaying = true;
         SubtitleText.text = "";
         if (data.TypeText != null) data.TypeText.text = "";
 
-        // 🔸 Step 1: Fade out
-        yield return StartCoroutine(FadeScreen(false));
-
-        // 🔸 Step 2: Prepare content
+        // 🔸 Prepare content
         VideoImage.gameObject.SetActive(false);
         if (data.BackGround != null)
             data.BackGround.gameObject.SetActive(false);
@@ -104,7 +158,7 @@ public class VideoController : MonoBehaviour
             }
         }
 
-        // 🔸 Step 3: Activate content
+        // 🔸 Activate content
         if (data.OnlyType)
         {
             data.BackGround.gameObject.SetActive(true);
@@ -121,17 +175,16 @@ public class VideoController : MonoBehaviour
             data.BackGround.gameObject.SetActive(true);
         }
 
-        // 🔸 Step 4: Fade in
-        yield return StartCoroutine(FadeScreen(true));
-
-        // 🔸 Step 5: Auto-type subtitle
+        // 🔸 Subtitle typing
         if (data.OnlyType && data.TypeText != null)
         {
-            yield return StartCoroutine(TypeSubtitle(data.SubTitle, data.TypeText));
+            subtitleRoutine = StartCoroutine(TypeSubtitle(data.SubTitle, data.TypeText));
+            yield return subtitleRoutine;
         }
         else
         {
-            yield return StartCoroutine(TypeSubtitle(data.SubTitle, SubtitleText));
+            subtitleRoutine = StartCoroutine(TypeSubtitle(data.SubTitle, SubtitleText));
+            yield return subtitleRoutine;
         }
 
         if (skipRequested) yield break;
@@ -144,8 +197,11 @@ public class VideoController : MonoBehaviour
         currentIndex++;
         isPlaying = false;
         skipRequested = false;
+
         SubtitleText.text = "";
         if (data.TypeText != null) data.TypeText.text = "";
+
+        
         PlayNextVideo();
     }
 
@@ -159,27 +215,6 @@ public class VideoController : MonoBehaviour
             yield return new WaitForSeconds(0.075f);
         }
     }
-
-    private IEnumerator FadeScreen(bool fadeIn)
-    {
-        float elapsed = 0f;
-        Color color = ScreenFader.color;
-        float startAlpha = fadeIn ? 1f : 0f;
-        float endAlpha = fadeIn ? 0f : 1f;
-
-        while (elapsed < fadeDuration)
-        {
-            float t = elapsed / fadeDuration;
-            t = t * t * (3f - 2f * t); // smooth easing
-            color.a = Mathf.Lerp(startAlpha, endAlpha, t);
-            ScreenFader.color = color;
-            elapsed += Time.deltaTime;
-            yield return null;
-        }
-
-        color.a = endAlpha;
-        ScreenFader.color = color;
-    }
 }
 
 [Serializable]
@@ -190,5 +225,5 @@ public class VideoData
     public bool OnlyType;
     public Image BackGround;
     public string SubTitle;
-    public TMP_Text TypeText; // only used when OnlyType = true
+    public TMP_Text TypeText;
 }

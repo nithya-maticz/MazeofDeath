@@ -11,6 +11,9 @@ public class Game_Manager : MonoBehaviour
     public GameObject LoadingPage;
     public GameObject StoryPage;
 
+    [Header("Fader")]
+    public Animator Fader;
+
     private void Awake()
     {
         Instance = this;
@@ -33,12 +36,23 @@ public class Game_Manager : MonoBehaviour
 
     void OnLoadLobby()
     {
-        //LoadingPage.SetActive(false);
+       
 
         if (IsNewUser)
         {
-            StoryPage.SetActive(true);
+            LoadingPage.SetActive(false);
             VideoController.Instance.PlayNextVideo();
         }
+        else
+        {
+            Fade();
+            LoadingPage.SetActive(false);
+        }
+    }
+
+    public void Fade()
+    {
+        Fader.gameObject.SetActive(true);
+        Fader.SetTrigger("Fade");
     }
 }
