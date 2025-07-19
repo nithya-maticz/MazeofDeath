@@ -18,6 +18,12 @@ public class Game_Player : MonoBehaviour
     private Vector2 lastTouchPosition;
     private bool isRotating = false;
     private bool wasWalking = false;
+    private Rigidbody2D rb;
+
+    private void Start()
+    {
+        rb = GetComponent<Rigidbody2D>();
+    }
 
     void Update()
     {
@@ -121,4 +127,20 @@ public class Game_Player : MonoBehaviour
         float rotationDelta = rotationInput * rotationSensitivity;
         transform.Rotate(Vector3.forward, rotationDelta);
     }
+
+   
+    private void OnCollisionEnter2D(Collision2D collision)
+    {
+        Debug.Log("Collide : " + collision.gameObject.name);
+        if (collision.gameObject.tag == "enemy")
+        {
+
+            rb.linearVelocity = Vector2.zero;
+
+            // Freeze to stop further motion
+            rb.constraints = RigidbodyConstraints2D.FreezePosition;
+        }
+    }
+
+
 }
