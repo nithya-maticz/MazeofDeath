@@ -19,10 +19,11 @@ public class Game_Player : MonoBehaviour
     {
         HandleMovementInput();
         HandleRotationInput();
-        HandleMovement();     // Manual transform-based movement
-        HandleRotation();     // Manual rotation
+        HandleMovement();
+        HandleRotation();
     }
 
+    // -------------------------------------
     void HandleMovementInput()
     {
         moveInput = Vector2.zero;
@@ -30,21 +31,23 @@ public class Game_Player : MonoBehaviour
         if (movementJoystick != null &&
             (Mathf.Abs(movementJoystick.Horizontal) > 0.1f || Mathf.Abs(movementJoystick.Vertical) > 0.1f))
         {
-            moveInput = new Vector2(movementJoystick.Horizontal, movementJoystick.Vertical);
+            moveInput = new Vector2(movementJoystick.Vertical, movementJoystick.Horizontal);
         }
-#if UNITY_EDITOR
+/*#if UNITY_EDITOR
         else
         {
             moveInput = new Vector2(Input.GetAxisRaw("Horizontal"), Input.GetAxisRaw("Vertical"));
         }
-#endif
+#endif*/
     }
 
+    // -------------------------------------
     void HandleRotationInput()
     {
         rotationInput = 0f;
 
 #if UNITY_EDITOR
+        // Right mouse drag for rotation in editor
         if (Input.GetMouseButtonDown(1))
         {
             lastTouchPosition = Input.mousePosition;
@@ -61,13 +64,14 @@ public class Game_Player : MonoBehaviour
             isRotating = false;
         }
 #else
+        // Right-side screen drag for rotation on mobile
         foreach (Touch touch in Input.touches)
         {
             if (EventSystem.current != null && EventSystem.current.IsPointerOverGameObject(touch.fingerId))
                 continue;
 
             if (touch.position.x < Screen.width / 2f)
-                continue;
+                continue; // Left side = movement only
 
             if (touch.phase == TouchPhase.Began)
             {
@@ -88,16 +92,20 @@ public class Game_Player : MonoBehaviour
 #endif
     }
 
+    // -------------------------------------
     void HandleMovement()
     {
         if (moveInput.sqrMagnitude < 0.01f)
             return;
 
-        // Move in local space (forward = transform.up)
-        Vector3 moveDir = transform.up * moveInput.y + transform.right * moveInput.x;
+        // Convert joystick input to rotated movement
+        Vector3 moveDir = new Vector3(-moveInput.x, moveInput.y, 0f);
+        moveDir = Quaternion.Euler(0, 0, transform.eulerAngles.z) * moveDir;
+
         transform.position += moveDir.normalized * moveSpeed * Time.deltaTime;
     }
 
+    // -------------------------------------
     void HandleRotation()
     {
         if (Mathf.Abs(rotationInput) < 0.1f)

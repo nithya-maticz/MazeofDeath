@@ -2,7 +2,7 @@
 - Project name: MazeofDeath
 - Unity version: Unity 6000.0.34f1
 - Active game object:
-  - Name: Player
-  - Tag: Untagged
-  - Layer: Player
+  - Name: Main Camera
+  - Tag: MainCamera
+  - Layer: Default
 <!-- UNITY CODE ASSIST INSTRUCTIONS END -->
