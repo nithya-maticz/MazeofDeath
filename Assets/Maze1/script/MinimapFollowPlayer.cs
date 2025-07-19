@@ -37,13 +37,10 @@ public class MinimapFollowPlayer : MonoBehaviour
         if(Player.Instance != null)
         {
             Vector3 targetPos = Player.Instance.transform.position;
-
             // Clamp X and Y (for 2D)
             float clampedX = Mathf.Clamp(targetPos.x, minLimits.x + cameraHalfWidth, maxLimits.x - cameraHalfWidth);
             float clampedY = Mathf.Clamp(targetPos.y, minLimits.y + cameraHalfHeight, maxLimits.y - cameraHalfHeight);
-
             transform.position = new Vector3(clampedX, clampedY, transform.position.z);
         }
-        
     }
 }

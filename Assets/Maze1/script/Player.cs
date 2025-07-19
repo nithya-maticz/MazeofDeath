@@ -49,6 +49,8 @@ public class Player : MonoBehaviour
     {
         float moveH = ManagerMaze.instance.joystick.Horizontal;
         float moveV = ManagerMaze.instance.joystick.Vertical;
+        Vector2 mousePosition = Input.mousePosition;
+        mousePosition = Camera.main.ScreenToWorldPoint(mousePosition);
 
         // Only apply movement if joystick is not idle
         if (moveH != 0f || moveV != 0f)
@@ -57,8 +59,8 @@ public class Player : MonoBehaviour
             rb.linearVelocity = moveDir * speed;
 
             // Optional: Add facing direction animation
-          /*  animatorRef.SetFloat("MoveX", moveH);
-            animatorRef.SetFloat("MoveY", moveV);*/
+            animatorRef.SetFloat("MoveX", moveH);
+            animatorRef.SetFloat("MoveY", moveV);
             //animatorRef.SetBool("IsMoving", true);
         }
         else
