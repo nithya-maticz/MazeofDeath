@@ -14,16 +14,16 @@ public class KeyFrameFunctions : MonoBehaviour
         
     }
 
-    void FadeOff()
+  /*  void FadeOff()
     {
         LobbyManager.Instance.Fader.gameObject.SetActive(false);
     }
-
-    void MysteryBox()
+*/
+    void MysteryEnd()
     {
         Game_Manager.Instance.GetMysteryPage.gameObject.SetActive(false);
         Game_Manager.Instance.GetMysteryImage.gameObject.SetActive(false);
         Game_Manager.Instance.GetMysteryImage.gameObject.transform.localScale = new Vector3(2f, 2f, 2f);
-        
+        Game_Manager.Instance.curretTreasure.GetTreasure();
     }
 }

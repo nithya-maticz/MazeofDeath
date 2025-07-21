@@ -1,8 +1,9 @@
 using System.Collections;
+using Unity.VisualScripting;
 using UnityEngine;
 using UnityEngine.UI;
 
-public class KeyBox : MonoBehaviour,IGetTreasure
+public class MediBox : MonoBehaviour, IGetTreasure
 {
     [SerializeField] SpriteRenderer _sprite;
     int TotalSeconds = 5;
@@ -17,21 +18,21 @@ public class KeyBox : MonoBehaviour,IGetTreasure
 
     void Start()
     {
-       
+
     }
 
     private void Awake()
     {
-       
-        Game_Manager.Instance.Boxes.Add(this);
+        
+        //Game_Manager.Instance.Boxes.Add(this);
     }
 
     void Update()
     {
-        
+
     }
 
-    
+
     private void OnTriggerEnter2D(Collider2D collision)
     {
         if (collision.gameObject.CompareTag("PlayerRange") && !IsOpened)
@@ -43,7 +44,7 @@ public class KeyBox : MonoBehaviour,IGetTreasure
         }
     }
 
-    
+
     private void OnTriggerExit2D(Collider2D collision)
     {
         if (collision.gameObject.CompareTag("PlayerRange"))
@@ -54,25 +55,27 @@ public class KeyBox : MonoBehaviour,IGetTreasure
                 CollideCircle.SetActive(false);
                 StopCoroutine(currentCoroutine);
                 currentCoroutine = null;
-                
+
                 fillImage.fillAmount = 0;
                 FillSeconds = 0;
             }
         }
     }
 
+  
+
     IEnumerator OpenBox()
     {
-       
+
         FillCanvas.SetActive(true);
         CollideCircle.SetActive(true);
         float timer = 0f;
         while (timer < TotalSeconds)
         {
             timer += Time.deltaTime;
-            
+
             FillSeconds = Mathf.FloorToInt(timer);
-            
+
             fillImage.fillAmount = Mathf.Clamp01(timer / TotalSeconds);
             yield return null;
         }
@@ -81,26 +84,26 @@ public class KeyBox : MonoBehaviour,IGetTreasure
         currentCoroutine = null;
     }
 
-    
+
 
     public void GetTreasure()
     {
-        Game_Manager.Instance.IsGetKey = true;
-        Game_Manager.Instance.KeyImage.SetActive(true);
-       
+
+        Game_Manager.Instance.MedikitCount += 1;
+        Game_Manager.Instance.MedikitCountText.text = Game_Manager.Instance.MedikitCount.ToString();
     }
 
-   public void BoxOpened()
-   {
+    public void BoxOpened()
+    {
         IsOpened = true;
         _sprite.sprite = Game_Manager.Instance.SpriteBoxOpen;
-        Game_Manager.Instance.GetMysteryImage.sprite = Game_Manager.Instance.KeySprite;
-        Game_Manager.Instance.GetMysteryImage.SetNativeSize();
+        Game_Manager.Instance.GetMysteryImage.sprite = Game_Manager.Instance.MedikitSprite;
         Game_Manager.Instance.curretTreasure = this;
         Game_Manager.Instance.GetMysteryImage.gameObject.SetActive(true);
         Game_Manager.Instance.GetMysteryPage.gameObject.SetActive(true);
         Game_Manager.Instance.GetMysteryPage.SetTrigger("Play");
         FillCanvas.SetActive(false);
         CollideCircle.SetActive(false);
+        
     }
 }
