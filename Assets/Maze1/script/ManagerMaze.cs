@@ -105,6 +105,12 @@ public class ManagerMaze : MonoBehaviour
     public CinemachineCamera cineCam;
     public List<Sprite> bloodSprite;
     public GameObject VideoRef;
+    public int charSelect;
+    public List<Sprite> charSprite;
+    public List<GameObject> Char;
+    public Image CharImg;
+    public GameObject nextBtn;
+    public GameObject previousBtn;
 
     void Start()
     {
@@ -219,8 +225,50 @@ public class ManagerMaze : MonoBehaviour
         }
     }
 
-
-
+    public void CharacterSelectionNext()
+    {
+       
+       
+            if(charSelect==1)
+            {
+                previousBtn.SetActive(true);
+                nextBtn.SetActive(false);
+            }
+            else
+            {
+                charSelect++;
+                Debug.Log(charSelect);
+           // Char[charSelect].SetActive(true);
+                CharImg.sprite = charSprite[charSelect];
+            if (charSelect == 1)
+            {
+                previousBtn.SetActive(true);
+                nextBtn.SetActive(false);
+            }
+        }
+                
+        
+       
+    }
+    public void CharacterSelectionPrevious()
+    {
+        if(charSelect==0)
+        {
+            previousBtn.SetActive(false);
+            nextBtn.SetActive(true);
+        }
+        else
+        {
+            charSelect--;
+            CharImg.sprite = charSprite[charSelect];
+            if (charSelect == 0)
+            {
+                previousBtn.SetActive(false);
+                nextBtn.SetActive(true);
+            }
+        }
+       
+    }
 
 
     public void LoadVideo()
