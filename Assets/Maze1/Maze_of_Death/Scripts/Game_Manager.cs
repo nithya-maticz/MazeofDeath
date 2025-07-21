@@ -12,7 +12,6 @@ public class Game_Manager : MonoBehaviour
     
     public IGetTreasure curretTreasure;
 
-   
 
     [Header("Sprites")]
     public Sprite SpriteBoxOpen;
@@ -28,10 +27,13 @@ public class Game_Manager : MonoBehaviour
     public Image GetMysteryImage;
 
 
-    [Header("Game Top UI")]
+    [Header("Player Attributes")]
+    public bool IsGetKey;
     public GameObject KeyImage;
-   
-    
+
+    public int MedikitCount;
+    public TMP_Text MedikitCountText;
+
 
     private void Awake()
     {
@@ -40,34 +42,9 @@ public class Game_Manager : MonoBehaviour
 
     void Start()
     {
-        /*if (!OnTutorial)
-        {
-            LoadingPage.SetActive(true);
-            StartCoroutine(LoadLobbyWithDelay());
-        }*/
+       
     }
 
-
-
-    
-
-
-    public void BoxOpenAnimation()
-    {
-        GetMysteryPage.gameObject.SetActive(true);
-
-    }
-    
-
-   
-    
 }
 
 
-
-[Serializable]
-public class Bag
-{
-    public int MedikitCount;
-    public TMP_Text MedikitCountText;
-}
