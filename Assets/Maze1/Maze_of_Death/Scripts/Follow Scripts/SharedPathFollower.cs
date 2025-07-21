@@ -15,25 +15,34 @@ public class SharedPathFollower : MonoBehaviour
     private bool isFollowing = false;
 
     private Vector3 lastTargetPosition;
-    private WaitForSeconds wait;
 
     private void Start()
     {
         if (target != null)
             lastTargetPosition = target.position;
 
-        wait = new WaitForSeconds(pathUpdateInterval);
+        StartCoroutine(DelayedStartPathRoutine());
+    }
+
+    private IEnumerator DelayedStartPathRoutine()
+    {
+        yield return new WaitForSeconds(Random.Range(0f, 0.5f));
         StartCoroutine(UpdatePathRoutine());
     }
 
     private IEnumerator UpdatePathRoutine()
     {
+        WaitForSeconds wait = new WaitForSeconds(pathUpdateInterval);
+
         while (true)
         {
-            if (target != null && (!isFollowing || Vector3.Distance(target.position, lastTargetPosition) > repathThreshold))
+            if (target != null)
             {
-                lastTargetPosition = target.position;
-                PathManager.Instance.RequestPath(transform.position, target.position, OnPathFound);
+                if (!isFollowing || (target.position - lastTargetPosition).sqrMagnitude > repathThreshold * repathThreshold)
+                {
+                    lastTargetPosition = target.position;
+                    PathManager.Instance.RequestPath(transform.position, target.position, OnPathFound);
+                }
             }
             yield return wait;
         }
@@ -49,21 +58,27 @@ public class SharedPathFollower : MonoBehaviour
         isFollowing = true;
     }
 
+    public void SetSharedPath(List<Vector3> sharedPath)
+    {
+        path = sharedPath;
+        currentIndex = 0;
+        isFollowing = true;
+    }
+
     private void Update()
     {
         if (!isFollowing || path == null || currentIndex >= path.Count)
             return;
 
         Vector3 targetPoint = path[currentIndex];
-        Vector3 direction = (targetPoint - transform.position);
+        Vector3 direction = targetPoint - transform.position;
 
+        // Avoid small movement cost
         if (direction.sqrMagnitude < stopThreshold * stopThreshold)
         {
             currentIndex++;
             if (currentIndex >= path.Count)
-            {
                 isFollowing = false;
-            }
             return;
         }
 
@@ -78,7 +93,7 @@ public class SharedPathFollower : MonoBehaviour
         }
     }
 
-   /* private void OnDrawGizmos()
+    private void OnDrawGizmos()
     {
         if (path == null || path.Count == 0) return;
 
@@ -88,5 +103,5 @@ public class SharedPathFollower : MonoBehaviour
             Gizmos.DrawLine(path[i], path[i + 1]);
             Gizmos.DrawSphere(path[i], 0.1f);
         }
-    }*/
+    }
 }
