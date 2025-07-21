@@ -5,6 +5,7 @@ using System.Collections;
 using System.Collections.Generic;
 using System;
 using TMPro;
+using UnityEngine.SceneManagement;
 
 public class VideoController : MonoBehaviour
 {
@@ -21,6 +22,9 @@ public class VideoController : MonoBehaviour
     private bool skipRequested = false;
     private Coroutine currentRoutine;
     private Coroutine subtitleRoutine;
+
+    public GameObject lobbyPage;
+
 
     private void Awake()
     {
@@ -54,6 +58,7 @@ public class VideoController : MonoBehaviour
 
         LobbyManager.Instance.StoryPage.SetActive(false);
         LobbyManager.Instance.LoadingPage.SetActive(false);
+        LobbyManager.Instance.LobbyPage.SetActive(true);
         Debug.Log("✨ All videos finished.");
         yield return null;
     }
@@ -117,6 +122,8 @@ public class VideoController : MonoBehaviour
 
         PlayNextVideo();
     }
+
+   
 
     private IEnumerator PlayVideoRoutine(VideoData data)
     {

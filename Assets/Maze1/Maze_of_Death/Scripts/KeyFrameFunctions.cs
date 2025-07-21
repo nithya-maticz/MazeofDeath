@@ -14,10 +14,7 @@ public class KeyFrameFunctions : MonoBehaviour
         
     }
 
-    void FadeOff()
-    {
-        LobbyManager.Instance.Fader.gameObject.SetActive(false);
-    }
+    
 
     void MysteryBox()
     {

@@ -1,5 +1,6 @@
 using System.Collections;
 using UnityEngine;
+using UnityEngine.SceneManagement;
 
 public class LobbyManager : MonoBehaviour
 {
@@ -60,4 +61,12 @@ public class LobbyManager : MonoBehaviour
         Fader.gameObject.SetActive(true);
         Fader.SetTrigger("Fade");
     }
+    public void PlayGame()
+    {
+        Fade();
+        SceneManager.LoadScene("Game");
+       
+        
+    }
+   
 }
