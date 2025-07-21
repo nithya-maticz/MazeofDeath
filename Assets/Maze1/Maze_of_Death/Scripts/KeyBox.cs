@@ -1,25 +1,20 @@
-using System;
 using System.Collections;
 using UnityEngine;
 using UnityEngine.UI;
 
-public class KeyBox : MonoBehaviour
+public class KeyBox : MonoBehaviour,IGetTreasure
 {
-    public SpriteRenderer boxsprite;
+    [SerializeField] SpriteRenderer _sprite;
     CircleCollider2D _circleCollider;
-
-  
-    public int TotalSeconds = 5;
-    
-    public int FillSeconds = 0;
-
-    public BoxObjects SelectedObject;
+    int TotalSeconds = 5;
+    int FillSeconds = 0;
     public Image fillImage;
 
     private Coroutine currentCoroutine = null;
     public GameObject CollideCircle;
     public GameObject FillCanvas;
-    public bool IsOpened;
+
+    public bool IsOpened { get; set; } = false;
 
     void Start()
     {
@@ -29,8 +24,7 @@ public class KeyBox : MonoBehaviour
     private void Awake()
     {
         _circleCollider = GetComponent<CircleCollider2D>();
-        ManagerMaze.instance.KeyBoxes.Add(this);
-        ManagerMaze.instance.CheckBoxCount();
+        Game_Manager.Instance.Boxes.Add(this);
     }
 
     void Update()
@@ -43,7 +37,6 @@ public class KeyBox : MonoBehaviour
     {
         if (collision.gameObject.CompareTag("PlayerRange"))
         {
-            Debug.Log("eNTER");
             if (currentCoroutine == null)
             {
                 currentCoroutine = StartCoroutine(OpenBox());
@@ -71,7 +64,7 @@ public class KeyBox : MonoBehaviour
 
     IEnumerator OpenBox()
     {
-        IsOpened = true;
+       
         FillCanvas.SetActive(true);
         CollideCircle.SetActive(true);
         float timer = 0f;
@@ -88,25 +81,27 @@ public class KeyBox : MonoBehaviour
         Debug.Log("Filled");
         BoxOpened();
         currentCoroutine = null;
-        ManagerMaze.instance.CheckBoxCount();
+       
     }
 
-    void BoxOpened()
+    
+
+    public void GetTreasure(int count)
     {
-        FillCanvas.SetActive(false);
-        CollideCircle.SetActive(false);
-        boxsprite.sprite = ManagerMaze.instance.SpriteBoxOpen;
-        _circleCollider.enabled = false;
-        ManagerMaze.instance.GetTreasure(SelectedObject);
+        PlayerAttributes.Instance.IsGetKey = true;
+        Game_Manager.Instance.KeyImage.SetActive(true);
+       
     }
 
+   public void BoxOpened()
+   {
+        IsOpened = true;
+        _sprite.sprite = Game_Manager.Instance.SpriteBoxOpen;
+        Game_Manager.Instance.GetMysteryImage.sprite = Game_Manager.Instance.KeySprite;
+        Game_Manager.Instance.curretTreasure = this;
+        Game_Manager.Instance.GetMysteryImage.gameObject.SetActive(true);
+        Game_Manager.Instance.GetMysteryPage.gameObject.SetActive(true);
+        Game_Manager.Instance.GetMysteryPage.SetTrigger("Play");
 
-}
-
-[Serializable]
-public enum BoxObjects
-{
-    Key,
-    MediKit,
-    Empty
+   }
 }

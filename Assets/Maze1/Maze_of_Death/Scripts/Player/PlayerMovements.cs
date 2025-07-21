@@ -1,10 +1,10 @@
 using UnityEngine;
 using UnityEngine.EventSystems;
 
-public class Game_Player : MonoBehaviour
+public class PlayerMovements : MonoBehaviour
 {
     [Header("Joystick Movement")]
-    public VariableJoystick movementJoystick;
+    private VariableJoystick movementJoystick;
     public float moveSpeed = 5f;
 
     [Header("Rotation Settings")]
@@ -12,7 +12,6 @@ public class Game_Player : MonoBehaviour
 
     [Header("Animations")]
     public Animator _Animator;
-
     private Vector2 moveInput;
     private float rotationInput = 0f;
     private Vector2 lastTouchPosition;
@@ -20,8 +19,11 @@ public class Game_Player : MonoBehaviour
     private bool wasWalking = false;
     private Rigidbody2D rb;
 
+
+
     private void Start()
     {
+        movementJoystick = Game_Manager.Instance.movementJoystick;
         rb = GetComponent<Rigidbody2D>();
     }
 
@@ -127,20 +129,4 @@ public class Game_Player : MonoBehaviour
         float rotationDelta = rotationInput * rotationSensitivity;
         transform.Rotate(Vector3.forward, rotationDelta);
     }
-
-   
-    private void OnCollisionEnter2D(Collision2D collision)
-    {
-        Debug.Log("Collide : " + collision.gameObject.name);
-        if (collision.gameObject.tag == "enemy")
-        {
-
-            rb.linearVelocity = Vector2.zero;
-
-            // Freeze to stop further motion
-            rb.constraints = RigidbodyConstraints2D.FreezePosition;
-        }
-    }
-
-
 }

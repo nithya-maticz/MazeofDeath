@@ -16,6 +16,14 @@ public class KeyFrameFunctions : MonoBehaviour
 
     void FadeOff()
     {
-        Game_Manager.Instance.Fader.gameObject.SetActive(false);
+        LobbyManager.Instance.Fader.gameObject.SetActive(false);
+    }
+
+    void MysteryBox()
+    {
+        Game_Manager.Instance.GetMysteryPage.gameObject.SetActive(false);
+        Game_Manager.Instance.GetMysteryImage.gameObject.SetActive(false);
+        Game_Manager.Instance.GetMysteryImage.gameObject.transform.localScale = new Vector3(2f, 2f, 2f);
+        
     }
 }

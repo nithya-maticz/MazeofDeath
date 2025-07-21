@@ -49,11 +49,11 @@ public class VideoController : MonoBehaviour
 
     private IEnumerator FinalCompleteRoutine()
     {
-        Game_Manager.Instance.Fade();
+        LobbyManager.Instance.Fade();
         //yield return new WaitForSeconds(0.15f);
 
-        Game_Manager.Instance.StoryPage.SetActive(false);
-        Game_Manager.Instance.LoadingPage.SetActive(false);
+        LobbyManager.Instance.StoryPage.SetActive(false);
+        LobbyManager.Instance.LoadingPage.SetActive(false);
         Debug.Log("✨ All videos finished.");
         yield return null;
     }
@@ -121,13 +121,13 @@ public class VideoController : MonoBehaviour
     private IEnumerator PlayVideoRoutine(VideoData data)
     {
        
-        Game_Manager.Instance.Fade();
+        LobbyManager.Instance.Fade();
 
-        if (!Game_Manager.Instance.StoryPage.activeSelf)
-            Game_Manager.Instance.StoryPage.SetActive(true);
+        if (!LobbyManager.Instance.StoryPage.activeSelf)
+            LobbyManager.Instance.StoryPage.SetActive(true);
 
-        if (Game_Manager.Instance.LoadingPage.activeSelf)
-            Game_Manager.Instance.LoadingPage.SetActive(false);
+        if (LobbyManager.Instance.LoadingPage.activeSelf)
+            LobbyManager.Instance.LoadingPage.SetActive(false);
 
         isPlaying = true;
         SubtitleText.text = "";

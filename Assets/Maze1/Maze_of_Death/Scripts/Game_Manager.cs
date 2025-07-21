@@ -1,18 +1,37 @@
 using UnityEngine;
 using System.Collections;
+using System.Collections.Generic;
+using TMPro;
+using UnityEngine.UI;
+using System;
 
 public class Game_Manager : MonoBehaviour
 {
     public static Game_Manager Instance;
-    public static bool OnTutorial;
-    public bool IsNewUser;
+    public VariableJoystick movementJoystick;
+    
+    public IGetTreasure curretTreasure;
 
-    [Header("Pages")]
-    public GameObject LoadingPage;
-    public GameObject StoryPage;
+   
 
-    [Header("Fader")]
-    public Animator Fader;
+    [Header("Sprites")]
+    public Sprite SpriteBoxOpen;
+    public Sprite KeySprite;
+    public Sprite MedikitSprite;
+
+
+    [Header("Mystery Box")]
+    public List<IGetTreasure> Boxes;
+    int _boxCount;
+    public TMP_Text OpenedBoxText;
+    public Animator GetMysteryPage;
+    public Image GetMysteryImage;
+
+
+    [Header("Game Top UI")]
+    public GameObject KeyImage;
+   
+    
 
     private void Awake()
     {
@@ -28,31 +47,27 @@ public class Game_Manager : MonoBehaviour
         }*/
     }
 
-    private IEnumerator LoadLobbyWithDelay()
-    {
-        yield return new WaitForSeconds(2f);
-        OnLoadLobby();
-    }
 
-    void OnLoadLobby()
-    {
-       
 
-        if (IsNewUser)
-        {
-            LoadingPage.SetActive(false);
-            VideoController.Instance.PlayNextVideo();
-        }
-        else
-        {
-            Fade();
-            LoadingPage.SetActive(false);
-        }
-    }
+    
 
-    public void Fade()
+
+    public void BoxOpenAnimation()
     {
-        Fader.gameObject.SetActive(true);
-        Fader.SetTrigger("Fade");
+        GetMysteryPage.gameObject.SetActive(true);
+
     }
+    
+
+   
+    
+}
+
+
+
+[Serializable]
+public class Bag
+{
+    public int MedikitCount;
+    public TMP_Text MedikitCountText;
 }

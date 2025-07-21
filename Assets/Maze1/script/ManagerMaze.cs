@@ -298,7 +298,7 @@ public class ManagerMaze : MonoBehaviour
 
 
 
-    public void GetTreasure(BoxObjects boxObjects)
+   /* public void GetTreasure(BoxObjects boxObjects)
     {
         if (boxObjects == BoxObjects.Key)
         {
@@ -316,7 +316,7 @@ public class ManagerMaze : MonoBehaviour
         {
             return;
         }
-    }
+    }*/
 
     public void CheckLevelUp()
     {
@@ -418,7 +418,7 @@ public class ManagerMaze : MonoBehaviour
         ShuffleList(indices);
 
         // Step 3: assign contents
-        for (int i = 0; i < KeyBoxes.Count; i++)
+      /*  for (int i = 0; i < KeyBoxes.Count; i++)
         {
             if (i == 0)
                 KeyBoxes[indices[i]].SelectedObject  = BoxObjects.Key;
@@ -426,7 +426,7 @@ public class ManagerMaze : MonoBehaviour
                 KeyBoxes[indices[i]].SelectedObject = BoxObjects.MediKit;
             else
                 KeyBoxes[indices[i]].SelectedObject = BoxObjects.Empty;
-        }
+        }*/
     }
 
     // Fisher-Yates shuffle
