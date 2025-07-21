@@ -57,30 +57,24 @@ public class SharedPathFollower : MonoBehaviour
             return;
 
         Vector3 targetPoint = path[currentIndex];
-        Vector3 direction = (targetPoint - transform.position).normalized;
+        transform.position = Vector3.MoveTowards(transform.position, targetPoint, speed * Time.deltaTime);
 
-        // Move toward current path point
-        transform.position += direction * speed * Time.deltaTime;
-
-        // Face movement direction (with smooth rotation)
-        if (direction != Vector3.zero)
+        Vector3 direction = targetPoint - transform.position;
+        if (direction.sqrMagnitude > 0.01f)
         {
             float angle = Mathf.Atan2(direction.y, direction.x) * Mathf.Rad2Deg - 180f;
             Quaternion targetRotation = Quaternion.Euler(0f, 0f, angle);
             transform.rotation = Quaternion.Lerp(transform.rotation, targetRotation, Time.deltaTime * 10f);
         }
 
-        // Advance to next point if close enough
         if (Vector3.Distance(transform.position, targetPoint) < stopThreshold)
         {
             currentIndex++;
-
             if (currentIndex >= path.Count)
-            {
                 isFollowing = false;
-            }
         }
     }
+
 
     private void OnDrawGizmos()
     {
