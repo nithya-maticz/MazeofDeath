@@ -7,7 +7,7 @@ public class SharedPathFollower : MonoBehaviour
     public Transform target;
     public float speed = 3f;
     public float stopThreshold = 0.1f;
-    public float repathThreshold = 0.5f;  // Minimum distance target must move to trigger repath
+    public float repathThreshold = 0.5f;
     public float pathUpdateInterval = 0.25f;
 
     private List<Vector3> path;
@@ -15,12 +15,14 @@ public class SharedPathFollower : MonoBehaviour
     private bool isFollowing = false;
 
     private Vector3 lastTargetPosition;
+    private WaitForSeconds wait;
 
     private void Start()
     {
         if (target != null)
             lastTargetPosition = target.position;
 
+        wait = new WaitForSeconds(pathUpdateInterval);
         StartCoroutine(UpdatePathRoutine());
     }
 
@@ -28,16 +30,12 @@ public class SharedPathFollower : MonoBehaviour
     {
         while (true)
         {
-            if (target != null)
+            if (target != null && (!isFollowing || Vector3.Distance(target.position, lastTargetPosition) > repathThreshold))
             {
-                if (!isFollowing || Vector3.Distance(target.position, lastTargetPosition) > repathThreshold)
-                {
-                    lastTargetPosition = target.position;
-                    PathManager.Instance.RequestPath(transform.position, target.position, OnPathFound);
-                }
+                lastTargetPosition = target.position;
+                PathManager.Instance.RequestPath(transform.position, target.position, OnPathFound);
             }
-
-            yield return new WaitForSeconds(pathUpdateInterval);
+            yield return wait;
         }
     }
 
@@ -57,32 +55,30 @@ public class SharedPathFollower : MonoBehaviour
             return;
 
         Vector3 targetPoint = path[currentIndex];
-        Vector3 direction = (targetPoint - transform.position).normalized;
+        Vector3 direction = (targetPoint - transform.position);
 
-        // Move toward current path point
+        if (direction.sqrMagnitude < stopThreshold * stopThreshold)
+        {
+            currentIndex++;
+            if (currentIndex >= path.Count)
+            {
+                isFollowing = false;
+            }
+            return;
+        }
+
+        direction.Normalize();
         transform.position += direction * speed * Time.deltaTime;
 
-        // Face movement direction (with smooth rotation)
         if (direction != Vector3.zero)
         {
             float angle = Mathf.Atan2(direction.y, direction.x) * Mathf.Rad2Deg - 180f;
             Quaternion targetRotation = Quaternion.Euler(0f, 0f, angle);
             transform.rotation = Quaternion.Lerp(transform.rotation, targetRotation, Time.deltaTime * 10f);
         }
-
-        // Advance to next point if close enough
-        if (Vector3.Distance(transform.position, targetPoint) < stopThreshold)
-        {
-            currentIndex++;
-
-            if (currentIndex >= path.Count)
-            {
-                isFollowing = false;
-            }
-        }
     }
 
-    private void OnDrawGizmos()
+   /* private void OnDrawGizmos()
     {
         if (path == null || path.Count == 0) return;
 
@@ -92,5 +88,5 @@ public class SharedPathFollower : MonoBehaviour
             Gizmos.DrawLine(path[i], path[i + 1]);
             Gizmos.DrawSphere(path[i], 0.1f);
         }
-    }
+    }*/
 }

@@ -23,7 +23,7 @@ public class KeyBox : MonoBehaviour,IGetTreasure
     private void Awake()
     {
        
-        Game_Manager.Instance.Boxes.Add(this);
+       // Game_Manager.Instance.Boxes.Add(this);
     }
 
     void Update()

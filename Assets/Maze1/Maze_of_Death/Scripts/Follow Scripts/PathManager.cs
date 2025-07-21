@@ -6,8 +6,10 @@ public class PathManager : MonoBehaviour
 {
     public TilemapPathfinding pathfinder;
 
-    // ✅ Updated to cache using both start and end positions
     private Dictionary<(Vector3Int start, Vector3Int end), List<Vector3>> cachedPaths = new();
+
+    private Queue<PathRequest> requestQueue = new();
+    private bool isProcessing = false;
 
     public static PathManager Instance;
 
@@ -26,24 +28,50 @@ public class PathManager : MonoBehaviour
         }
         else
         {
-            StartCoroutine(GeneratePath(startWorld, targetWorld, key, callback));
+            requestQueue.Enqueue(new PathRequest(startWorld, targetWorld, key, callback));
+            if (!isProcessing)
+                StartCoroutine(ProcessQueue());
         }
     }
 
-    private IEnumerator GeneratePath(Vector3 startWorld, Vector3 targetWorld, (Vector3Int start, Vector3Int end) key, System.Action<List<Vector3>> callback)
+    private IEnumerator ProcessQueue()
     {
-        List<Vector3> path = null;
-        yield return StartCoroutine(pathfinder.FindPathAsync(startWorld, targetWorld, result => path = result));
+        isProcessing = true;
 
-        // ✅ Cache only if a valid path was found
-        if (path != null && path.Count > 0)
-            cachedPaths[key] = path;
+        while (requestQueue.Count > 0)
+        {
+            var request = requestQueue.Dequeue();
+            List<Vector3> path = null;
+            yield return StartCoroutine(pathfinder.FindPathAsync(request.startWorld, request.targetWorld, result => path = result));
 
-        callback?.Invoke(path);
+            if (path != null && path.Count > 0)
+                cachedPaths[request.key] = path;
+
+            request.callback?.Invoke(path);
+            yield return null; // prevent frame spike
+        }
+
+        isProcessing = false;
     }
 
     public void ClearCache()
     {
         cachedPaths.Clear();
+    }
+
+    private struct PathRequest
+    {
+        public Vector3 startWorld;
+        public Vector3 targetWorld;
+        public (Vector3Int, Vector3Int) key;
+        public System.Action<List<Vector3>> callback;
+
+        public PathRequest(Vector3 s, Vector3 t, (Vector3Int, Vector3Int) k, System.Action<List<Vector3>> c)
+        {
+            startWorld = s;
+            targetWorld = t;
+            key = k;
+            callback = c;
+        }
     }
 }
