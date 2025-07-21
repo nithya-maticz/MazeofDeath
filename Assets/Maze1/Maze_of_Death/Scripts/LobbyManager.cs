@@ -65,8 +65,6 @@ public class LobbyManager : MonoBehaviour
     {
         Fade();
         SceneManager.LoadScene("Game");
-       
-        
     }
    
 }
