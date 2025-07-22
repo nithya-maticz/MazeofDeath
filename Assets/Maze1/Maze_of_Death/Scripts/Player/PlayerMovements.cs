@@ -30,12 +30,13 @@ public class PlayerMovements : MonoBehaviour
     {
         HandleMovementInput();
         HandleRotationInput();
-        HandleRotation();
+       ;
     }
 
     private void FixedUpdate()
     {
         HandleMovement(); // Do movement in FixedUpdate for better physics stability
+        HandleRotation();
     }
 
     void HandleMovementInput()
