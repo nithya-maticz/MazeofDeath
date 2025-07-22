@@ -4,145 +4,52 @@ using UnityEngine;
 
 public class SharedPathFollower : MonoBehaviour
 {
-    [Header("Path Settings")]
+    public Transform target;
     public float speed = 3f;
     public float stopThreshold = 0.1f;
+    public float repathThreshold = 0.5f;
+    public float pathUpdateInterval = 0.25f;
+    public float rotationSpeed = 720f; // Degrees per second
 
-    [Header("Patrol Settings")]
-    public List<Transform> patrolPoints;
-    public float rotateDuration = 1f;
-
-    [Header("Debug Info (Read Only)")]
-    [SerializeField] private Transform currentPatrolTarget;
-    [SerializeField] private Vector3 currentTargetPosition;
-
-    private int currentPointIndex = 0;
     private List<Vector3> path;
     private int currentIndex = 0;
     private bool isFollowing = false;
 
-    private Animator animator;
+    private Vector3 lastTargetPosition;
 
     private void Start()
     {
-        StartCoroutine(PatrolRoutine());
-        animator = GetComponent<Animator>();
+        if (target != null)
+            lastTargetPosition = target.position;
+
+        StartCoroutine(UpdatePathRoutine());
     }
 
-    private IEnumerator PatrolRoutine()
+    private IEnumerator UpdatePathRoutine()
     {
-        yield return new WaitForSeconds(Random.Range(0f, 0.3f)); // Staggered start
-
         while (true)
         {
-            currentPatrolTarget = patrolPoints[currentPointIndex];
-
-            Vector3 start = transform.position;
-            Vector3 end = currentPatrolTarget.position;
-
-            bool pathSet = false;
-
-            PathManager.Instance.RequestPath(start, end, (result) =>
+            if (target != null)
             {
-                if (result != null && result.Count > 0)
+                if (!isFollowing || Vector3.Distance(target.position, lastTargetPosition) > repathThreshold)
                 {
-                    SetSharedPath(result);
-                    pathSet = true;
+                    lastTargetPosition = target.position;
+                    PathManager.Instance.RequestPath(transform.position, target.position, OnPathFound);
                 }
-                else
-                {
-                    Debug.LogWarning($"Path not found from {start} to {end}.");
-                }
-            });
+            }
 
-            yield return new WaitUntil(() => pathSet);
-
-            // Wait until movement completes
-            yield return new WaitUntil(() => !isFollowing);
-
-            // Rotate 180°
-            // yield return Rotate180();
-            yield return RotateWatchSequence();
-
-            // Next patrol point
-            currentPointIndex = (currentPointIndex + 1) % patrolPoints.Count;
+            yield return new WaitForSeconds(pathUpdateInterval);
         }
     }
 
-    private IEnumerator Rotate180()
+    private void OnPathFound(List<Vector3> newPath)
     {
-        Quaternion startRot = transform.rotation;
-        Quaternion endRot = startRot * Quaternion.Euler(0f, 0f, 180f);
-        float elapsed = 0f;
+        if (newPath == null || newPath.Count == 0)
+            return;
 
-        while (elapsed < rotateDuration)
-        {
-            transform.rotation = Quaternion.Slerp(startRot, endRot, elapsed / rotateDuration);
-            elapsed += Time.deltaTime;
-            yield return null;
-        }
-
-        transform.rotation = endRot;
-    }
-
-    private IEnumerator RotateWatchSequence()
-    {
-        Quaternion originalRotation = transform.rotation;
-        Quaternion leftLook = originalRotation * Quaternion.Euler(0f, 0f, -90f);
-        Quaternion rightLook = originalRotation * Quaternion.Euler(0f, 0f, 90f);
-
-        float elapsed;
-
-        // 🔄 Trigger Watch animation (Any State)
-        if (animator) animator.SetTrigger("Watch");
-
-        // Step 1: Look Left
-        elapsed = 0f;
-        while (elapsed < rotateDuration)
-        {
-            transform.rotation = Quaternion.Slerp(originalRotation, leftLook, elapsed / rotateDuration);
-            elapsed += Time.deltaTime;
-            yield return null;
-        }
-        transform.rotation = leftLook;
-
-        // Optional delay after left
-        yield return new WaitForSeconds(0.1f);
-
-        // Step 2: Look Right
-        elapsed = 0f;
-        while (elapsed < rotateDuration * 2f)
-        {
-            transform.rotation = Quaternion.Slerp(leftLook, rightLook, elapsed / (rotateDuration * 2f));
-            elapsed += Time.deltaTime;
-            yield return null;
-        }
-        transform.rotation = rightLook;
-
-        // Optional delay after right
-        yield return new WaitForSeconds(0.1f);
-
-        // Step 3: Return to Original
-        elapsed = 0f;
-        while (elapsed < rotateDuration)
-        {
-            transform.rotation = Quaternion.Slerp(rightLook, originalRotation, elapsed / rotateDuration);
-            elapsed += Time.deltaTime;
-            yield return null;
-        }
-        transform.rotation = originalRotation;
-
-        // ✅ Back to Walk animation
-        if (animator) animator.SetTrigger("Walk");
-    }
-
-
-    public void SetSharedPath(List<Vector3> sharedPath)
-    {
-        path = sharedPath;
+        path = newPath;
         currentIndex = 0;
         isFollowing = true;
-        currentTargetPosition = (path != null && path.Count > 0) ? path[0] : Vector3.zero;
     }
 
     private void Update()
@@ -151,28 +58,28 @@ public class SharedPathFollower : MonoBehaviour
             return;
 
         Vector3 targetPoint = path[currentIndex];
-        currentTargetPosition = targetPoint; // Update debug info
+        Vector3 direction = (targetPoint - transform.position).normalized;
 
-        Vector3 direction = targetPoint - transform.position;
+        // Move towards target point
+        transform.position += direction * speed * Time.deltaTime;
 
-        if (direction.sqrMagnitude < stopThreshold * stopThreshold)
+        // Rotate towards direction (for 2D)
+        if (direction != Vector3.zero)
+        {
+            float angle = Mathf.Atan2(direction.y, direction.x) * Mathf.Rad2Deg;
+            Quaternion targetRotation = Quaternion.Euler(0, 0, angle + 180f);
+            transform.rotation = Quaternion.RotateTowards(transform.rotation, targetRotation, rotationSpeed * Time.deltaTime);
+        }
+
+        // Check if reached current path point
+        if (Vector3.Distance(transform.position, targetPoint) < stopThreshold)
         {
             currentIndex++;
+
             if (currentIndex >= path.Count)
             {
                 isFollowing = false;
-                return;
             }
-        }
-
-        direction.Normalize();
-        transform.position += direction * speed * Time.deltaTime;
-
-        if (direction != Vector3.zero)
-        {
-            float angle = Mathf.Atan2(direction.y, direction.x) * Mathf.Rad2Deg - 180f;
-            Quaternion targetRotation = Quaternion.Euler(0f, 0f, angle);
-            transform.rotation = Quaternion.Lerp(transform.rotation, targetRotation, Time.deltaTime * 10f);
         }
     }
 
