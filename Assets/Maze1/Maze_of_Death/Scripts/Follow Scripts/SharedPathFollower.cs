@@ -21,9 +21,12 @@ public class SharedPathFollower : MonoBehaviour
     private int currentIndex = 0;
     private bool isFollowing = false;
 
+    private Animator animator;
+
     private void Start()
     {
         StartCoroutine(PatrolRoutine());
+        animator = GetComponent<Animator>();
     }
 
     private IEnumerator PatrolRoutine()
@@ -88,9 +91,13 @@ public class SharedPathFollower : MonoBehaviour
         Quaternion leftLook = originalRotation * Quaternion.Euler(0f, 0f, -90f);
         Quaternion rightLook = originalRotation * Quaternion.Euler(0f, 0f, 90f);
 
-        float elapsed = 0f;
+        float elapsed;
 
-        // Step 1: Look Left (-90°)
+        // 🔄 Trigger Watch animation (Any State)
+        if (animator) animator.SetTrigger("Watch");
+
+        // Step 1: Look Left
+        elapsed = 0f;
         while (elapsed < rotateDuration)
         {
             transform.rotation = Quaternion.Slerp(originalRotation, leftLook, elapsed / rotateDuration);
@@ -99,11 +106,12 @@ public class SharedPathFollower : MonoBehaviour
         }
         transform.rotation = leftLook;
 
-        yield return null;
-        elapsed = 0f;
+        // Optional delay after left
+        yield return new WaitForSeconds(0.1f);
 
-        // Step 2: Look Right (+90°)
-        while (elapsed < rotateDuration * 2f) // longer turn
+        // Step 2: Look Right
+        elapsed = 0f;
+        while (elapsed < rotateDuration * 2f)
         {
             transform.rotation = Quaternion.Slerp(leftLook, rightLook, elapsed / (rotateDuration * 2f));
             elapsed += Time.deltaTime;
@@ -111,10 +119,11 @@ public class SharedPathFollower : MonoBehaviour
         }
         transform.rotation = rightLook;
 
-        yield return null;
-        elapsed = 0f;
+        // Optional delay after right
+        yield return new WaitForSeconds(0.1f);
 
         // Step 3: Return to Original
+        elapsed = 0f;
         while (elapsed < rotateDuration)
         {
             transform.rotation = Quaternion.Slerp(rightLook, originalRotation, elapsed / rotateDuration);
@@ -122,7 +131,11 @@ public class SharedPathFollower : MonoBehaviour
             yield return null;
         }
         transform.rotation = originalRotation;
+
+        // ✅ Back to Walk animation
+        if (animator) animator.SetTrigger("Walk");
     }
+
 
     public void SetSharedPath(List<Vector3> sharedPath)
     {
