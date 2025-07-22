@@ -4,58 +4,81 @@ using UnityEngine;
 
 public class SharedPathFollower : MonoBehaviour
 {
-    public Transform target;
+    [Header("Path Settings")]
     public float speed = 3f;
     public float stopThreshold = 0.1f;
-    public float repathThreshold = 0.5f;
-    public float pathUpdateInterval = 0.25f;
 
+    [Header("Patrol Settings")]
+    public List<Transform> patrolPoints;
+    public float rotateDuration = 1f;
+
+    [Header("Debug Info (Read Only)")]
+    [SerializeField] private Transform currentPatrolTarget;
+    [SerializeField] private Vector3 currentTargetPosition;
+
+    private int currentPointIndex = 0;
     private List<Vector3> path;
     private int currentIndex = 0;
     private bool isFollowing = false;
 
-    private Vector3 lastTargetPosition;
-
     private void Start()
     {
-        if (target != null)
-            lastTargetPosition = target.position;
-
-        StartCoroutine(DelayedStartPathRoutine());
+        StartCoroutine(PatrolRoutine());
     }
 
-    private IEnumerator DelayedStartPathRoutine()
+    private IEnumerator PatrolRoutine()
     {
-        yield return new WaitForSeconds(Random.Range(0f, 0.5f));
-        StartCoroutine(UpdatePathRoutine());
-    }
-
-    private IEnumerator UpdatePathRoutine()
-    {
-        WaitForSeconds wait = new WaitForSeconds(pathUpdateInterval);
+        yield return new WaitForSeconds(Random.Range(0f, 0.3f)); // Staggered start
 
         while (true)
         {
-            if (target != null)
+            currentPatrolTarget = patrolPoints[currentPointIndex];
+
+            Vector3 start = transform.position;
+            Vector3 end = currentPatrolTarget.position;
+
+            bool pathSet = false;
+
+            PathManager.Instance.RequestPath(start, end, (result) =>
             {
-                if (!isFollowing || (target.position - lastTargetPosition).sqrMagnitude > repathThreshold * repathThreshold)
+                if (result != null && result.Count > 0)
                 {
-                    lastTargetPosition = target.position;
-                    PathManager.Instance.RequestPath(transform.position, target.position, OnPathFound);
+                    SetSharedPath(result);
+                    pathSet = true;
                 }
-            }
-            yield return wait;
+                else
+                {
+                    Debug.LogWarning($"Path not found from {start} to {end}.");
+                }
+            });
+
+            yield return new WaitUntil(() => pathSet);
+
+            // Wait until movement completes
+            yield return new WaitUntil(() => !isFollowing);
+
+            // Rotate 180°
+            yield return Rotate180();
+
+            // Next patrol point
+            currentPointIndex = (currentPointIndex + 1) % patrolPoints.Count;
         }
     }
 
-    private void OnPathFound(List<Vector3> newPath)
+    private IEnumerator Rotate180()
     {
-        if (newPath == null || newPath.Count == 0)
-            return;
+        Quaternion startRot = transform.rotation;
+        Quaternion endRot = startRot * Quaternion.Euler(0f, 0f, 180f);
+        float elapsed = 0f;
 
-        path = newPath;
-        currentIndex = 0;
-        isFollowing = true;
+        while (elapsed < rotateDuration)
+        {
+            transform.rotation = Quaternion.Slerp(startRot, endRot, elapsed / rotateDuration);
+            elapsed += Time.deltaTime;
+            yield return null;
+        }
+
+        transform.rotation = endRot;
     }
 
     public void SetSharedPath(List<Vector3> sharedPath)
@@ -63,6 +86,7 @@ public class SharedPathFollower : MonoBehaviour
         path = sharedPath;
         currentIndex = 0;
         isFollowing = true;
+        currentTargetPosition = (path != null && path.Count > 0) ? path[0] : Vector3.zero;
     }
 
     private void Update()
@@ -71,15 +95,18 @@ public class SharedPathFollower : MonoBehaviour
             return;
 
         Vector3 targetPoint = path[currentIndex];
+        currentTargetPosition = targetPoint; // Update debug info
+
         Vector3 direction = targetPoint - transform.position;
 
-        // Avoid small movement cost
         if (direction.sqrMagnitude < stopThreshold * stopThreshold)
         {
             currentIndex++;
             if (currentIndex >= path.Count)
+            {
                 isFollowing = false;
-            return;
+                return;
+            }
         }
 
         direction.Normalize();
