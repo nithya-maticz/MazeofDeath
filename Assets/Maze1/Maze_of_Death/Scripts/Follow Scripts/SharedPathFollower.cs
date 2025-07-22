@@ -1,6 +1,8 @@
 ﻿using System.Collections;
 using System.Collections.Generic;
+using UnityEditor;
 using UnityEngine;
+using UnityEngine.Tilemaps;
 
 public class SharedPathFollower : MonoBehaviour
 {
@@ -15,9 +17,14 @@ public class SharedPathFollower : MonoBehaviour
     public List<Transform> patrolPoints;
     private int patrolIndex = 0;
 
+    [Header("Detection Settings")]
+    public Transform player;
+    public Tilemap obstacleTilemap;
+
     private List<Vector3> path;
     private int currentIndex = 0;
     private bool isFollowing = false;
+    private bool isChasingPlayer = false;
 
     private Vector3 lastTargetPosition;
 
@@ -31,17 +38,35 @@ public class SharedPathFollower : MonoBehaviour
     {
         while (true)
         {
-            Transform destination = patrolPoints[patrolIndex];
+            Vector3 destination;
 
-            if (!isFollowing || Vector3.Distance(destination.position, lastTargetPosition) > repathThreshold)
+            if (IsPlayerVisibleInBack())
             {
-                lastTargetPosition = destination.position;
-                PathManager.Instance.RequestPath(transform.position, destination.position, OnPathFound);
+                isChasingPlayer = true;
+                destination = player.position;
+            }
+            else
+            {
+                isChasingPlayer = false;
+                destination = patrolPoints[patrolIndex].position;
+            }
+
+            if (!isFollowing || Vector3.Distance(destination, lastTargetPosition) > repathThreshold)
+            {
+                lastTargetPosition = destination;
+                PathManager.Instance.RequestPath(transform.position, destination, OnPathFound);
             }
 
             yield return new WaitForSeconds(pathUpdateInterval);
         }
     }
+
+   
+
+
+
+
+
 
     private void OnPathFound(List<Vector3> newPath)
     {
@@ -80,14 +105,57 @@ public class SharedPathFollower : MonoBehaviour
             {
                 isFollowing = false;
 
-                // Move to next patrol point
-                patrolIndex = (patrolIndex + 1) % patrolPoints.Count;
+                if (!isChasingPlayer)
+                    patrolIndex = (patrolIndex + 1) % patrolPoints.Count;
             }
         }
     }
 
+    private bool IsPlayerVisibleInBack()
+    {
+        if (player == null || obstacleTilemap == null)
+            return false;
+
+        Vector3Int enemyCell = obstacleTilemap.WorldToCell(transform.position);
+        Vector3 direction = transform.right.normalized;
+        Vector3Int forward = new Vector3Int(Mathf.RoundToInt(direction.x), Mathf.RoundToInt(direction.y), 0);
+        Vector3 perpendicular = Vector3.Cross(direction, Vector3.forward).normalized;
+        Vector3Int side = new Vector3Int(Mathf.RoundToInt(perpendicular.x), Mathf.RoundToInt(perpendicular.y), 0);
+
+        Vector3Int playerCell = obstacleTilemap.WorldToCell(player.position);
+
+        // Check only rows: 0, -1, -2 (behind the enemy)
+        for (int depth = 0; depth <= 2; depth++)
+        {
+            Vector3Int rowOffset = -forward * depth;
+
+            for (int i = -1; i <= 1; i++) // left (-1), center (0), right (+1)
+            {
+                Vector3Int checkCell = enemyCell + rowOffset + side * i;
+
+                // Skip if blocked (not green)
+                if (obstacleTilemap.HasTile(checkCell))
+                    continue;
+
+                // ✅ Only detect if player is on green cell
+                if (checkCell == playerCell)
+                    return true;
+            }
+        }
+
+        return false;
+    }
+
+
+
+
+
+
+
+
     private void OnDrawGizmosSelected()
     {
+        // Draw path
         if (path != null && path.Count > 0)
         {
             Gizmos.color = Color.cyan;
@@ -98,11 +166,54 @@ public class SharedPathFollower : MonoBehaviour
             }
         }
 
+        // Draw patrol points
         Gizmos.color = Color.green;
         foreach (Transform point in patrolPoints)
         {
             if (point != null)
                 Gizmos.DrawWireSphere(point.position, 0.2f);
         }
+
+        // Draw 3 back rows of grid (rows 0, -1, -2)
+        if (obstacleTilemap != null)
+        {
+            Vector3Int enemyCell = obstacleTilemap.WorldToCell(transform.position);
+            Vector3 direction = transform.right.normalized;
+            Vector3Int forward = new Vector3Int(Mathf.RoundToInt(direction.x), Mathf.RoundToInt(direction.y), 0);
+            Vector3 perpendicular = Vector3.Cross(direction, Vector3.forward).normalized;
+            Vector3Int side = new Vector3Int(Mathf.RoundToInt(perpendicular.x), Mathf.RoundToInt(perpendicular.y), 0);
+
+            for (int depth = 0; depth <= 2; depth++)
+            {
+                Vector3Int rowOffset = -forward * depth; // rows: 0, -1, -2
+
+                for (int i = -1; i <= 1; i++)
+                {
+                    Vector3Int cell = enemyCell + rowOffset + side * i;
+                    Vector3 center = obstacleTilemap.GetCellCenterWorld(cell);
+
+                    // Color based on obstacle presence
+                    if (obstacleTilemap.HasTile(cell))
+                        Gizmos.color = Color.red;
+                    else
+                        Gizmos.color = Color.green;
+
+                    Gizmos.DrawWireCube(center, Vector3.one * 0.9f);
+
+#if UNITY_EDITOR
+                    // Draw cell coordinate
+                    Handles.color = Color.white;
+                    Handles.Label(center + Vector3.up * 0.2f, cell.ToString());
+#endif
+                }
+            }
+        }
     }
+
+
+
+
+
+
+
 }
