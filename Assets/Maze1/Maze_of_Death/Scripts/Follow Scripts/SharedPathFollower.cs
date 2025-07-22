@@ -58,7 +58,8 @@ public class SharedPathFollower : MonoBehaviour
             yield return new WaitUntil(() => !isFollowing);
 
             // Rotate 180°
-            yield return Rotate180();
+            // yield return Rotate180();
+            yield return RotateWatchSequence();
 
             // Next patrol point
             currentPointIndex = (currentPointIndex + 1) % patrolPoints.Count;
@@ -79,6 +80,48 @@ public class SharedPathFollower : MonoBehaviour
         }
 
         transform.rotation = endRot;
+    }
+
+    private IEnumerator RotateWatchSequence()
+    {
+        Quaternion originalRotation = transform.rotation;
+        Quaternion leftLook = originalRotation * Quaternion.Euler(0f, 0f, -90f);
+        Quaternion rightLook = originalRotation * Quaternion.Euler(0f, 0f, 90f);
+
+        float elapsed = 0f;
+
+        // Step 1: Look Left (-90°)
+        while (elapsed < rotateDuration)
+        {
+            transform.rotation = Quaternion.Slerp(originalRotation, leftLook, elapsed / rotateDuration);
+            elapsed += Time.deltaTime;
+            yield return null;
+        }
+        transform.rotation = leftLook;
+
+        yield return null;
+        elapsed = 0f;
+
+        // Step 2: Look Right (+90°)
+        while (elapsed < rotateDuration * 2f) // longer turn
+        {
+            transform.rotation = Quaternion.Slerp(leftLook, rightLook, elapsed / (rotateDuration * 2f));
+            elapsed += Time.deltaTime;
+            yield return null;
+        }
+        transform.rotation = rightLook;
+
+        yield return null;
+        elapsed = 0f;
+
+        // Step 3: Return to Original
+        while (elapsed < rotateDuration)
+        {
+            transform.rotation = Quaternion.Slerp(rightLook, originalRotation, elapsed / rotateDuration);
+            elapsed += Time.deltaTime;
+            yield return null;
+        }
+        transform.rotation = originalRotation;
     }
 
     public void SetSharedPath(List<Vector3> sharedPath)
