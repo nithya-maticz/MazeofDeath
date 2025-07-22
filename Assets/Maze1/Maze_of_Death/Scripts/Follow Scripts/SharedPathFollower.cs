@@ -4,12 +4,16 @@ using UnityEngine;
 
 public class SharedPathFollower : MonoBehaviour
 {
-    public Transform target;
+    [Header("Movement Settings")]
     public float speed = 3f;
     public float stopThreshold = 0.1f;
     public float repathThreshold = 0.5f;
     public float pathUpdateInterval = 0.25f;
-    public float rotationSpeed = 720f; // Degrees per second
+    public float rotationSpeed = 720f;
+
+    [Header("Patrol Settings")]
+    public List<Transform> patrolPoints;
+    private int patrolIndex = 0;
 
     private List<Vector3> path;
     private int currentIndex = 0;
@@ -19,9 +23,7 @@ public class SharedPathFollower : MonoBehaviour
 
     private void Start()
     {
-        if (target != null)
-            lastTargetPosition = target.position;
-
+        lastTargetPosition = patrolPoints[patrolIndex].position;
         StartCoroutine(UpdatePathRoutine());
     }
 
@@ -29,13 +31,12 @@ public class SharedPathFollower : MonoBehaviour
     {
         while (true)
         {
-            if (target != null)
+            Transform destination = patrolPoints[patrolIndex];
+
+            if (!isFollowing || Vector3.Distance(destination.position, lastTargetPosition) > repathThreshold)
             {
-                if (!isFollowing || Vector3.Distance(target.position, lastTargetPosition) > repathThreshold)
-                {
-                    lastTargetPosition = target.position;
-                    PathManager.Instance.RequestPath(transform.position, target.position, OnPathFound);
-                }
+                lastTargetPosition = destination.position;
+                PathManager.Instance.RequestPath(transform.position, destination.position, OnPathFound);
             }
 
             yield return new WaitForSeconds(pathUpdateInterval);
@@ -60,10 +61,10 @@ public class SharedPathFollower : MonoBehaviour
         Vector3 targetPoint = path[currentIndex];
         Vector3 direction = (targetPoint - transform.position).normalized;
 
-        // Move towards target point
+        // Move
         transform.position += direction * speed * Time.deltaTime;
 
-        // Rotate towards direction (for 2D)
+        // Rotate (2D)
         if (direction != Vector3.zero)
         {
             float angle = Mathf.Atan2(direction.y, direction.x) * Mathf.Rad2Deg;
@@ -71,27 +72,37 @@ public class SharedPathFollower : MonoBehaviour
             transform.rotation = Quaternion.RotateTowards(transform.rotation, targetRotation, rotationSpeed * Time.deltaTime);
         }
 
-        // Check if reached current path point
+        // Reached current path point
         if (Vector3.Distance(transform.position, targetPoint) < stopThreshold)
         {
             currentIndex++;
-
             if (currentIndex >= path.Count)
             {
                 isFollowing = false;
+
+                // Move to next patrol point
+                patrolIndex = (patrolIndex + 1) % patrolPoints.Count;
             }
         }
     }
 
-    private void OnDrawGizmos()
+    private void OnDrawGizmosSelected()
     {
-        if (path == null || path.Count == 0) return;
-
-        Gizmos.color = Color.cyan;
-        for (int i = 0; i < path.Count - 1; i++)
+        if (path != null && path.Count > 0)
         {
-            Gizmos.DrawLine(path[i], path[i + 1]);
-            Gizmos.DrawSphere(path[i], 0.1f);
+            Gizmos.color = Color.cyan;
+            for (int i = 0; i < path.Count - 1; i++)
+            {
+                Gizmos.DrawLine(path[i], path[i + 1]);
+                Gizmos.DrawSphere(path[i], 0.1f);
+            }
+        }
+
+        Gizmos.color = Color.green;
+        foreach (Transform point in patrolPoints)
+        {
+            if (point != null)
+                Gizmos.DrawWireSphere(point.position, 0.2f);
         }
     }
 }
