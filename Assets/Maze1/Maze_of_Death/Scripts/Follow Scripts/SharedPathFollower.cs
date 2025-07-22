@@ -8,7 +8,7 @@ public class SharedPathFollower : MonoBehaviour
     public float speed = 3f;
     public float stopThreshold = 0.1f;
     public float repathThreshold = 0.5f;
-    public float pathUpdateInterval = 0.25f;
+    public float pathUpdateInterval = 0.5f;
 
     private List<Vector3> path;
     private int currentIndex = 0;
@@ -26,7 +26,7 @@ public class SharedPathFollower : MonoBehaviour
 
     private IEnumerator DelayedStartPathRoutine()
     {
-        yield return new WaitForSeconds(Random.Range(0f, 0.5f));
+        yield return new WaitForSeconds(Random.Range(0f, 0.5f)); // staggered update
         StartCoroutine(UpdatePathRoutine());
     }
 
@@ -50,8 +50,7 @@ public class SharedPathFollower : MonoBehaviour
 
     private void OnPathFound(List<Vector3> newPath)
     {
-        if (newPath == null || newPath.Count == 0)
-            return;
+        if (newPath == null || newPath.Count == 0) return;
 
         path = newPath;
         currentIndex = 0;
@@ -73,7 +72,6 @@ public class SharedPathFollower : MonoBehaviour
         Vector3 targetPoint = path[currentIndex];
         Vector3 direction = targetPoint - transform.position;
 
-        // Avoid small movement cost
         if (direction.sqrMagnitude < stopThreshold * stopThreshold)
         {
             currentIndex++;
@@ -85,7 +83,7 @@ public class SharedPathFollower : MonoBehaviour
         direction.Normalize();
         transform.position += direction * speed * Time.deltaTime;
 
-        if (direction != Vector3.zero)
+        if (direction.sqrMagnitude > 0.01f)
         {
             float angle = Mathf.Atan2(direction.y, direction.x) * Mathf.Rad2Deg - 180f;
             Quaternion targetRotation = Quaternion.Euler(0f, 0f, angle);

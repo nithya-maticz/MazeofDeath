@@ -12,6 +12,7 @@ public class PlayerMovements : MonoBehaviour
 
     [Header("Animations")]
     public Animator _Animator;
+
     private Vector2 moveInput;
     private float rotationInput = 0f;
     private Vector2 lastTouchPosition;
@@ -19,23 +20,24 @@ public class PlayerMovements : MonoBehaviour
     private bool wasWalking = false;
     private Rigidbody2D rb;
 
-
-
     private void Start()
     {
         movementJoystick = Game_Manager.Instance.movementJoystick;
         rb = GetComponent<Rigidbody2D>();
     }
 
-    void Update()
+    private void Update()
     {
         HandleMovementInput();
         HandleRotationInput();
-        HandleMovement();
         HandleRotation();
     }
 
-    // -------------------------------------
+    private void FixedUpdate()
+    {
+        HandleMovement(); // Do movement in FixedUpdate for better physics stability
+    }
+
     void HandleMovementInput()
     {
         moveInput = Vector2.zero;
@@ -47,8 +49,6 @@ public class PlayerMovements : MonoBehaviour
         }
 
         bool isWalking = moveInput.sqrMagnitude > 0.01f;
-
-        // Update animation only if changed
         if (isWalking != wasWalking)
         {
             _Animator.SetBool("isWalking", isWalking);
@@ -56,13 +56,11 @@ public class PlayerMovements : MonoBehaviour
         }
     }
 
-    // -------------------------------------
     void HandleRotationInput()
     {
         rotationInput = 0f;
 
 #if UNITY_EDITOR
-        // Right mouse drag for rotation in editor
         if (Input.GetMouseButtonDown(1))
         {
             lastTouchPosition = Input.mousePosition;
@@ -79,14 +77,10 @@ public class PlayerMovements : MonoBehaviour
             isRotating = false;
         }
 #else
-        // Right-side screen drag for rotation on mobile
         foreach (Touch touch in Input.touches)
         {
-            if (EventSystem.current != null && EventSystem.current.IsPointerOverGameObject(touch.fingerId))
-                continue;
-
-            if (touch.position.x < Screen.width / 2f)
-                continue; // Left side = movement only
+            if (EventSystem.current != null && EventSystem.current.IsPointerOverGameObject(touch.fingerId)) continue;
+            if (touch.position.x < Screen.width / 2f) continue;
 
             if (touch.phase == TouchPhase.Began)
             {
@@ -107,24 +101,19 @@ public class PlayerMovements : MonoBehaviour
 #endif
     }
 
-    // -------------------------------------
     void HandleMovement()
     {
-        if (moveInput.sqrMagnitude < 0.01f)
-            return;
+        if (moveInput.sqrMagnitude < 0.01f) return;
 
-        // Convert joystick input to rotated movement
         Vector3 moveDir = new Vector3(-moveInput.x, moveInput.y, 0f);
         moveDir = Quaternion.Euler(0, 0, transform.eulerAngles.z) * moveDir;
 
-        transform.position += moveDir.normalized * moveSpeed * Time.deltaTime;
+        rb.MovePosition(rb.position + (Vector2)(moveDir.normalized * moveSpeed * Time.fixedDeltaTime));
     }
 
-    // -------------------------------------
     void HandleRotation()
     {
-        if (Mathf.Abs(rotationInput) < 0.1f)
-            return;
+        if (Mathf.Abs(rotationInput) < 0.1f) return;
 
         float rotationDelta = rotationInput * rotationSensitivity;
         transform.Rotate(Vector3.forward, rotationDelta);

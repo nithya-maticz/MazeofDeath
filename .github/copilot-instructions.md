@@ -2,7 +2,7 @@
 - Project name: MazeofDeath
 - Unity version: Unity 6000.0.34f1
 - Active game object:
-  - Name: Player
-  - Tag: Untagged
-  - Layer: Player
+  - Name: Enemy (3)
+  - Tag: enemy
+  - Layer: Default
 <!-- UNITY CODE ASSIST INSTRUCTIONS END -->
