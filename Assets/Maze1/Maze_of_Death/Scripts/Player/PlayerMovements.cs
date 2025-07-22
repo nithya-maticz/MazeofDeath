@@ -30,7 +30,7 @@ public class PlayerMovements : MonoBehaviour
     {
         HandleMovementInput();
         HandleRotationInput();
-       ;
+       
     }
 
     private void FixedUpdate()
