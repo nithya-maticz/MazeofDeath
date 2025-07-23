@@ -35,6 +35,7 @@ public class SharedPathFollower : MonoBehaviour
 
     private Animator animator;
     private Rigidbody2D rb;
+    private bool isCollidingWithPlayer = false;
 
     private void Start()
     {
@@ -61,12 +62,18 @@ public class SharedPathFollower : MonoBehaviour
                 playerDetected = false;
             }
 
-            if (playerDetected)
+            if (isCollidingWithPlayer)
+            {
+                destination = transform.position;
+                isFollowing = false;
+                speed = 0f;
+            }
+            else if (playerDetected)
             {
                 isChasingPlayer = true;
                 destination = player.position;
-                speed = 2f;
-                pathUpdateInterval = 0.1f;
+                speed = 1f;
+                pathUpdateInterval = 0.15f;
             }
             else
             {
@@ -96,6 +103,7 @@ public class SharedPathFollower : MonoBehaviour
 
     private void Update()
     {
+        if (isCollidingWithPlayer) return;
         if (!isFollowing || path == null || currentIndex >= path.Count) return;
 
         Vector3 targetPoint = path[currentIndex];
@@ -147,6 +155,7 @@ public class SharedPathFollower : MonoBehaviour
     {
         if (collision.collider.CompareTag("Player"))
         {
+            isCollidingWithPlayer = true;
             rb.constraints = RigidbodyConstraints2D.FreezeAll;
             animator.SetTrigger("Attack");
         }
@@ -156,6 +165,7 @@ public class SharedPathFollower : MonoBehaviour
     {
         if (collision.collider.CompareTag("Player"))
         {
+            isCollidingWithPlayer = false;
             rb.constraints = RigidbodyConstraints2D.FreezeRotation;
             animator.SetTrigger("Walk");
         }
