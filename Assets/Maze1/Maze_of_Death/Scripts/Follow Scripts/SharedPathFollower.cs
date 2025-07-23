@@ -36,15 +36,17 @@ public class SharedPathFollower : MonoBehaviour
     private Animator animator;
     private Rigidbody2D rb;
     private bool isCollidingWithPlayer = false;
+    private CircleCollider2D myCollider;
 
     private void Start()
     {
-        patrolPoints = new List<Transform>(Game_Manager.Instance.PatrolPoints);
-        ShuffleList(patrolPoints);
+        /*patrolPoints = new List<Transform>(Game_Manager.Instance.PatrolPoints);
+        ShuffleList(patrolPoints);*/
 
         lastTargetPosition = patrolPoints[patrolIndex].position;
         animator = GetComponent<Animator>();
         rb = GetComponent<Rigidbody2D>();
+        myCollider = GetComponent<CircleCollider2D>();
         StartCoroutine(UpdatePathRoutine());
     }
 
@@ -91,6 +93,15 @@ public class SharedPathFollower : MonoBehaviour
                 lastTargetPosition = destination;
                 PathManager.Instance.RequestPath(transform.position, destination, OnPathFound);
             }
+
+            /*if (isChasingPlayer)
+            {
+                myCollider.isTrigger = false; // Solid for all
+            }
+            else
+            {
+                myCollider.isTrigger = true; // Triggerable for other agents
+            }*/
 
             yield return new WaitForSeconds(pathUpdateInterval);
         }
@@ -164,6 +175,11 @@ public class SharedPathFollower : MonoBehaviour
             rb.constraints = RigidbodyConstraints2D.FreezeAll;
             animator.SetTrigger("Attack");
         }
+
+        if (!isChasingPlayer && collision.gameObject.CompareTag("enemy"))
+        {
+            myCollider.isTrigger = true;
+        }
     }
 
     private void OnCollisionExit2D(Collision2D collision)
@@ -173,6 +189,16 @@ public class SharedPathFollower : MonoBehaviour
             isCollidingWithPlayer = false;
             rb.constraints = RigidbodyConstraints2D.FreezeRotation;
             animator.SetTrigger("Walk");
+        }
+
+        
+    }
+
+    private void OnTriggerExit2D(Collider2D collision)
+    {
+        if (!isChasingPlayer && collision.gameObject.CompareTag("enemy"))
+        {
+            myCollider.isTrigger = false;
         }
     }
 
@@ -209,4 +235,23 @@ public class SharedPathFollower : MonoBehaviour
             list[randomIndex] = temp;
         }
     }
+
+   /* private void OnTriggerEnter2D(Collider2D other)
+    {
+        if (!isChasingPlayer && other.CompareTag("enemy"))
+        {
+            // Optional: you can avoid physics bounce or interaction here
+            Physics2D.IgnoreCollision(myCollider, other, true);
+        }
+    }
+
+    private void OnTriggerExit2D(Collider2D other)
+    {
+        if (!isChasingPlayer && other.CompareTag("enemy"))
+        {
+            Physics2D.IgnoreCollision(myCollider, other, false);
+        }
+    }*/
+
+
 }
