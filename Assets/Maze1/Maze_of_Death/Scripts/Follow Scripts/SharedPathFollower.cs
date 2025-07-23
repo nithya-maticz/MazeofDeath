@@ -39,6 +39,9 @@ public class SharedPathFollower : MonoBehaviour
 
     private void Start()
     {
+        patrolPoints = new List<Transform>(Game_Manager.Instance.PatrolPoints);
+        ShuffleList(patrolPoints);
+
         lastTargetPosition = patrolPoints[patrolIndex].position;
         animator = GetComponent<Animator>();
         rb = GetComponent<Rigidbody2D>();
@@ -194,5 +197,16 @@ public class SharedPathFollower : MonoBehaviour
         Vector3 toPlayer = player.position - origin;
         if (toPlayer.magnitude <= detectionRange)
             Gizmos.DrawRay(origin, toPlayer.normalized * toPlayer.magnitude);
+    }
+
+    void ShuffleList(List<Transform> list)
+    {
+        for (int i = 0; i < list.Count; i++)
+        {
+            int randomIndex = Random.Range(i, list.Count);
+            Transform temp = list[i];
+            list[i] = list[randomIndex];
+            list[randomIndex] = temp;
+        }
     }
 }

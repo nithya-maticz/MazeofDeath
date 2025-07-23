@@ -37,6 +37,7 @@ public class Game_Manager : MonoBehaviour
     [Header("Enemy Attributes")]
     public GameObject BloodPrefab;
     public GameObject EnemyPrefab;
+    public List<Transform> PatrolPoints;
 
 
     private void Awake()
