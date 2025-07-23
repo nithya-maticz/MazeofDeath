@@ -19,7 +19,7 @@ public class SharedPathFollower : MonoBehaviour
 
     [Header("Detection Settings")]
     public Transform player;
-    public Tilemap obstacleTilemap;
+   // public Tilemap obstacleTilemap;
     public float detectionRange = 5f;
     public float rearViewAngle = 90f;
     public LayerMask obstacleMask;
@@ -38,10 +38,20 @@ public class SharedPathFollower : MonoBehaviour
     private bool isCollidingWithPlayer = false;
     private CircleCollider2D myCollider;
 
+    public bool isPatrolDoor;
+
     private void Start()
     {
-        /*patrolPoints = new List<Transform>(Game_Manager.Instance.PatrolPoints);
-        ShuffleList(patrolPoints);*/
+        if (PlayerMovements.Instance != null)
+            player = PlayerMovements.Instance.transform;
+
+
+        if (!isPatrolDoor)
+        {
+            patrolPoints = new List<Transform>(Game_Manager.Instance.PatrolPoints);
+            ShuffleList(patrolPoints);
+        }
+       
 
         lastTargetPosition = patrolPoints[patrolIndex].position;
         animator = GetComponent<Animator>();
@@ -77,7 +87,7 @@ public class SharedPathFollower : MonoBehaviour
             {
                 isChasingPlayer = true;
                 destination = player.position;
-                speed = 1f;
+                speed = 1.5f;
                 pathUpdateInterval = 0.15f;
             }
             else
@@ -93,15 +103,6 @@ public class SharedPathFollower : MonoBehaviour
                 lastTargetPosition = destination;
                 PathManager.Instance.RequestPath(transform.position, destination, OnPathFound);
             }
-
-            /*if (isChasingPlayer)
-            {
-                myCollider.isTrigger = false; // Solid for all
-            }
-            else
-            {
-                myCollider.isTrigger = true; // Triggerable for other agents
-            }*/
 
             yield return new WaitForSeconds(pathUpdateInterval);
         }
@@ -182,6 +183,14 @@ public class SharedPathFollower : MonoBehaviour
         }
     }
 
+    private void OnCollisionStay2D(Collision2D collision)
+    {
+        if (!isChasingPlayer && collision.gameObject.CompareTag("enemy"))
+        {
+            myCollider.isTrigger = true;
+        }
+    }
+
     private void OnCollisionExit2D(Collision2D collision)
     {
         if (collision.collider.CompareTag("Player"))
@@ -236,22 +245,6 @@ public class SharedPathFollower : MonoBehaviour
         }
     }
 
-   /* private void OnTriggerEnter2D(Collider2D other)
-    {
-        if (!isChasingPlayer && other.CompareTag("enemy"))
-        {
-            // Optional: you can avoid physics bounce or interaction here
-            Physics2D.IgnoreCollision(myCollider, other, true);
-        }
-    }
-
-    private void OnTriggerExit2D(Collider2D other)
-    {
-        if (!isChasingPlayer && other.CompareTag("enemy"))
-        {
-            Physics2D.IgnoreCollision(myCollider, other, false);
-        }
-    }*/
-
+   
 
 }

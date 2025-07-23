@@ -17,7 +17,7 @@ public class Game_Manager : MonoBehaviour
     public Sprite SpriteBoxOpen;
     public Sprite KeySprite;
     public Sprite MedikitSprite;
-
+    public Sprite DoorCloseSprite;
 
     [Header("Mystery Box")]
     public List<IGetTreasure> Boxes;
@@ -38,6 +38,9 @@ public class Game_Manager : MonoBehaviour
     public GameObject BloodPrefab;
     public GameObject EnemyPrefab;
     public List<Transform> PatrolPoints;
+    public List<ZombieDoor> ZombieDoors;
+    public List<SharedPathFollower> Enemies;
+    public TMP_Text EnemyCountText;
 
 
     private void Awake()
@@ -49,6 +52,12 @@ public class Game_Manager : MonoBehaviour
     {
        
     }
+
+    public void EnemyCount()
+    {
+        EnemyCountText.text = Enemies.Count.ToString();
+    }
+
 
 }
 

@@ -12,10 +12,14 @@ public class ZombieDoor : MonoBehaviour
     public List<Transform> doorPatrolPoints;
     void Start()
     {
-        ManagerMaze.instance.ZombieDoors.Add(this);
-        GameObject enemyPrefab = Instantiate(ManagerMaze.instance.enemy, SpawnPoint);
-        enemyPrefab.GetComponent<Enemy>().isPatrolDoor = true;
-        enemyPrefab.GetComponent<Enemy>().doorPatrolPoints = doorPatrolPoints;
+        Game_Manager.Instance.ZombieDoors.Add(this);
+        GameObject enemyPrefab = Instantiate(Game_Manager.Instance.EnemyPrefab, SpawnPoint);
+        enemyPrefab.GetComponent<SharedPathFollower>().isPatrolDoor = true;
+        enemyPrefab.GetComponent<SharedPathFollower>().patrolPoints = doorPatrolPoints;
+        Game_Manager.Instance.Enemies.Add(enemyPrefab.GetComponent<SharedPathFollower>());
+        Game_Manager.Instance.EnemyCount();
+        SpawnEnemyFromDoor();
+       
 
     }
 
@@ -35,25 +39,22 @@ public class ZombieDoor : MonoBehaviour
 
     IEnumerator SpawnEnemys()
     {
-        print("Call 2");
+        
         while (true)
         {
-            if (!isClosed && !Player.Instance.playerDeath)
+            yield return new WaitForSeconds(waitTime / 2);
+           
+            if (!isClosed)
             {
-                if(ManagerMaze.instance.CreateEnemy)
+                if(Game_Manager.Instance.Enemies.Count <= 8)
                 {
-                    GameObject enemyPrefab = Instantiate(ManagerMaze.instance.enemy, SpawnPoint);
-                    enemyPrefab.GetComponent<Enemy>().targetPoint = Player.Instance.transform;
-                    ManagerMaze.instance.EnemiesCount();
-                   // ManagerMaze.instance.Enemies.Add(enemyPrefab.GetComponent<Enemy>());
-                    /*if (ManagerMaze.instance.Enemies.Count < ManagerMaze.instance.EnemyCount)
-                    {
-                       
-                    }*/
+                    GameObject enemyPrefab = Instantiate(Game_Manager.Instance.EnemyPrefab, SpawnPoint);
+                    Game_Manager.Instance.Enemies.Add(enemyPrefab.GetComponent<SharedPathFollower>());
+                    Game_Manager.Instance.EnemyCount();
                 }
             }
 
-            yield return new WaitForSeconds(waitTime);
+            yield return new WaitForSeconds(waitTime/2);
         }
 
 
