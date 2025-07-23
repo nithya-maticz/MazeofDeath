@@ -19,8 +19,6 @@ public class ZombieDoor : MonoBehaviour
         Game_Manager.Instance.Enemies.Add(enemyPrefab.GetComponent<SharedPathFollower>());
         Game_Manager.Instance.EnemyCount();
         SpawnEnemyFromDoor();
-       
-
     }
 
     private void Awake()
