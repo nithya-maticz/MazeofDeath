@@ -151,6 +151,8 @@ public class SharedPathFollower : MonoBehaviour
         return hit.collider != null && hit.collider.CompareTag("Player");
     }
 
+
+    
     private void OnCollisionEnter2D(Collision2D collision)
     {
         if (collision.collider.CompareTag("Player"))

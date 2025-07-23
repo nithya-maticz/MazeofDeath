@@ -8,7 +8,6 @@ public class ZombieDoor : MonoBehaviour
     public Transform SpawnPoint;
     public SpriteRenderer sprite;
     public float waitTime;
-    //ZombieDoor instance;
     public GameObject light;
     public List<Transform> doorPatrolPoints;
     void Start()

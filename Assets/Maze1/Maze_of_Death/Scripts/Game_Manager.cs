@@ -34,6 +34,10 @@ public class Game_Manager : MonoBehaviour
     public int MedikitCount;
     public TMP_Text MedikitCountText;
 
+    [Header("Enemy Attributes")]
+    public GameObject BloodPrefab;
+    public GameObject EnemyPrefab;
+
 
     private void Awake()
     {

@@ -20,6 +20,9 @@ public class PlayerMovements : MonoBehaviour
     private bool wasWalking = false;
     private Rigidbody2D rb;
 
+    [Header("Knife Attack Controller")]
+    public KnifeAttack knifeAttack;
+
     private void Start()
     {
         movementJoystick = Game_Manager.Instance.movementJoystick;
@@ -118,5 +121,19 @@ public class PlayerMovements : MonoBehaviour
 
         float rotationDelta = rotationInput * rotationSensitivity;
         transform.Rotate(Vector3.forward, rotationDelta);
+    }
+
+    void AttackEnd()
+    {
+        if(knifeAttack._currentEnemy != null)
+        {
+            if (knifeAttack.IsStayEnemy)
+            {
+                Debug.Log("Destroy...");
+                GameObject blood = Instantiate(Game_Manager.Instance.BloodPrefab, knifeAttack._currentEnemy.gameObject.transform.position, Quaternion.identity);
+                Destroy(knifeAttack._currentEnemy.gameObject);
+            }
+        }    
+        
     }
 }
