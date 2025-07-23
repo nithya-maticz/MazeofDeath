@@ -1,9 +1,9 @@
 ﻿using System.Collections;
 using System.Collections.Generic;
-using UnityEditor;
 using UnityEngine;
 using UnityEngine.Tilemaps;
 
+[RequireComponent(typeof(Animator))]
 public class SharedPathFollower : MonoBehaviour
 {
     [Header("Movement Settings")]
@@ -20,17 +20,27 @@ public class SharedPathFollower : MonoBehaviour
     [Header("Detection Settings")]
     public Transform player;
     public Tilemap obstacleTilemap;
+    public float detectionRange = 5f;
+    public float rearViewAngle = 90f;
+    public LayerMask obstacleMask;
+    public LayerMask playerMask;
 
     private List<Vector3> path;
     private int currentIndex = 0;
     private bool isFollowing = false;
     private bool isChasingPlayer = false;
-
     private Vector3 lastTargetPosition;
+    private float playerLostTime;
+    [SerializeField] bool playerDetected = false;
+
+    private Animator animator;
+    private Rigidbody2D rb;
 
     private void Start()
     {
         lastTargetPosition = patrolPoints[patrolIndex].position;
+        animator = GetComponent<Animator>();
+        rb = GetComponent<Rigidbody2D>();
         StartCoroutine(UpdatePathRoutine());
     }
 
@@ -39,16 +49,31 @@ public class SharedPathFollower : MonoBehaviour
         while (true)
         {
             Vector3 destination;
+            bool visible = IsPlayerVisibleInBack();
 
-            if (IsPlayerVisibleInBack())
+            if (visible)
+            {
+                playerDetected = true;
+                playerLostTime = Time.time + 10f;
+            }
+            else if (Time.time > playerLostTime)
+            {
+                playerDetected = false;
+            }
+
+            if (playerDetected)
             {
                 isChasingPlayer = true;
                 destination = player.position;
+                speed = 2f;
+                pathUpdateInterval = 0.1f;
             }
             else
             {
                 isChasingPlayer = false;
                 destination = patrolPoints[patrolIndex].position;
+                speed = 0.5f;
+                pathUpdateInterval = 0.25f;
             }
 
             if (!isFollowing || Vector3.Distance(destination, lastTargetPosition) > repathThreshold)
@@ -61,18 +86,9 @@ public class SharedPathFollower : MonoBehaviour
         }
     }
 
-   
-
-
-
-
-
-
     private void OnPathFound(List<Vector3> newPath)
     {
-        if (newPath == null || newPath.Count == 0)
-            return;
-
+        if (newPath == null || newPath.Count == 0) return;
         path = newPath;
         currentIndex = 0;
         isFollowing = true;
@@ -80,8 +96,7 @@ public class SharedPathFollower : MonoBehaviour
 
     private void Update()
     {
-        if (!isFollowing || path == null || currentIndex >= path.Count)
-            return;
+        if (!isFollowing || path == null || currentIndex >= path.Count) return;
 
         Vector3 targetPoint = path[currentIndex];
         Vector3 direction = (targetPoint - transform.position).normalized;
@@ -97,199 +112,75 @@ public class SharedPathFollower : MonoBehaviour
             transform.rotation = Quaternion.RotateTowards(transform.rotation, targetRotation, rotationSpeed * Time.deltaTime);
         }
 
-        // Reached current path point
         if (Vector3.Distance(transform.position, targetPoint) < stopThreshold)
         {
             currentIndex++;
             if (currentIndex >= path.Count)
             {
                 isFollowing = false;
-
                 if (!isChasingPlayer)
                     patrolIndex = (patrolIndex + 1) % patrolPoints.Count;
             }
         }
     }
 
-    private bool IsPlayerVisibleInBack()
+    public bool IsPlayerVisibleInBack()
     {
-        if (player == null || obstacleTilemap == null)
-            return false;
+        if (player == null) return false;
 
-        Vector3Int enemyCell = obstacleTilemap.WorldToCell(transform.position);
-        Vector3 direction = transform.right.normalized;
-        Vector3Int forward = new Vector3Int(Mathf.RoundToInt(direction.x), Mathf.RoundToInt(direction.y), 0);
-        Vector3 perpendicular = Vector3.Cross(direction, Vector3.forward).normalized;
-        Vector3Int side = new Vector3Int(Mathf.RoundToInt(perpendicular.x), Mathf.RoundToInt(perpendicular.y), 0);
+        Vector3 origin = transform.position;
+        Vector3 toPlayer = player.position - origin;
+        float distanceToPlayer = toPlayer.magnitude;
 
-        Vector3Int playerCell = obstacleTilemap.WorldToCell(player.position);
+        if (distanceToPlayer > detectionRange) return false;
 
-        // Build 3x3 grid from top (row 0) to bottom (row 2)
-        Vector3Int[] grid = new Vector3Int[9];
-        int index = 0;
-        for (int depth = 0; depth <= 2; depth++)
-        {
-            Vector3Int rowOffset = -forward * depth;
-            for (int i = -1; i <= 1; i++)
-            {
-                grid[index++] = enemyCell + rowOffset + side * i;
-            }
-        }
+        Vector3 dirToPlayer = toPlayer.normalized;
+        Vector3 back = -transform.right;
+        float angle = Vector3.Angle(back, dirToPlayer);
+        if (angle > rearViewAngle * 0.5f) return false;
 
-        // Build blocked list based on updated rules
-        HashSet<Vector3Int> blocked = new HashSet<Vector3Int>();
-
-        if (obstacleTilemap.HasTile(grid[0])) // 1
-            blocked.Add(grid[0]);
-
-        if (obstacleTilemap.HasTile(grid[1])) // 2 (player cell)
-            blocked.Add(grid[1]);
-
-        if (obstacleTilemap.HasTile(grid[2])) // 3
-            blocked.Add(grid[2]);
-
-        if (obstacleTilemap.HasTile(grid[3])) // 4
-        {
-            blocked.Add(grid[3]);
-            blocked.Add(grid[6]); // 7
-        }
-
-        if (obstacleTilemap.HasTile(grid[4])) // 5
-        {
-            blocked.Add(grid[4]);
-            blocked.Add(grid[6]); // 7
-            blocked.Add(grid[7]); // 8
-            blocked.Add(grid[8]); // 9
-        }
-
-        if (obstacleTilemap.HasTile(grid[5])) // 6
-        {
-            blocked.Add(grid[5]);
-            blocked.Add(grid[8]); // 9
-        }
-
-        if (obstacleTilemap.HasTile(grid[6])) // 7
-            blocked.Add(grid[6]);
-
-        if (obstacleTilemap.HasTile(grid[7])) // 8
-            blocked.Add(grid[7]);
-
-        if (obstacleTilemap.HasTile(grid[8])) // 9
-            blocked.Add(grid[8]);
-
-        // Check if player is on a visible tile
-        for (int i = 0; i < 9; i++)
-        {
-            if (grid[i] == playerCell && !blocked.Contains(grid[i]))
-                return true;
-        }
-
-        return false;
+        RaycastHit2D hit = Physics2D.Raycast(origin, dirToPlayer, detectionRange, playerMask | obstacleMask);
+        return hit.collider != null && hit.collider.CompareTag("Player");
     }
 
+    private void OnCollisionEnter2D(Collision2D collision)
+    {
+        if (collision.collider.CompareTag("Player"))
+        {
+            rb.constraints = RigidbodyConstraints2D.FreezeAll;
+            animator.SetTrigger("Attack");
+        }
+    }
 
-
-
-
-
-
-
-
+    private void OnCollisionExit2D(Collision2D collision)
+    {
+        if (collision.collider.CompareTag("Player"))
+        {
+            rb.constraints = RigidbodyConstraints2D.FreezeRotation;
+            animator.SetTrigger("Walk");
+        }
+    }
 
     private void OnDrawGizmosSelected()
     {
-#if UNITY_EDITOR
-        if (obstacleTilemap == null)
-            return;
+        if (player == null) return;
 
-        Vector3Int enemyCell = obstacleTilemap.WorldToCell(transform.position);
-        Vector3 direction = transform.right.normalized;
-        Vector3Int forward = new Vector3Int(Mathf.RoundToInt(direction.x), Mathf.RoundToInt(direction.y), 0);
-        Vector3 perpendicular = Vector3.Cross(direction, Vector3.forward).normalized;
-        Vector3Int side = new Vector3Int(Mathf.RoundToInt(perpendicular.x), Mathf.RoundToInt(perpendicular.y), 0);
+        Vector3 origin = transform.position;
+        Vector3 back = -transform.right;
 
-        Vector3Int playerCell = player != null ? obstacleTilemap.WorldToCell(player.position) : Vector3Int.zero;
+        Gizmos.color = Color.yellow;
+        Quaternion leftLimit = Quaternion.Euler(0, 0, rearViewAngle * 0.5f);
+        Quaternion rightLimit = Quaternion.Euler(0, 0, -rearViewAngle * 0.5f);
 
-        // Build 3x3 grid (row-wise)
-        Vector3Int[] grid = new Vector3Int[9];
-        int index = 0;
-        for (int depth = 0; depth <= 2; depth++)
-        {
-            Vector3Int rowOffset = -forward * depth;
-            for (int i = -1; i <= 1; i++)
-            {
-                Vector3Int checkCell = enemyCell + rowOffset + side * i;
-                grid[index++] = checkCell;
-            }
-        }
+        Vector3 leftDir = leftLimit * back;
+        Vector3 rightDir = rightLimit * back;
 
-        // Blocking propagation based on new logic
-        HashSet<Vector3Int> blocked = new HashSet<Vector3Int>();
+        Gizmos.DrawRay(origin, leftDir * detectionRange);
+        Gizmos.DrawRay(origin, rightDir * detectionRange);
 
-        if (obstacleTilemap.HasTile(grid[0])) // 1
-            blocked.Add(grid[0]);
-
-        if (obstacleTilemap.HasTile(grid[1])) // 2 (player cell)
-            blocked.Add(grid[1]);
-
-        if (obstacleTilemap.HasTile(grid[2])) // 3
-            blocked.Add(grid[2]);
-
-        if (obstacleTilemap.HasTile(grid[3])) // 4
-        {
-            blocked.Add(grid[3]);
-            blocked.Add(grid[6]); // 7
-        }
-
-        if (obstacleTilemap.HasTile(grid[4])) // 5
-        {
-            blocked.Add(grid[4]);
-            blocked.Add(grid[6]); // 7
-            blocked.Add(grid[7]); // 8
-            blocked.Add(grid[8]); // 9
-        }
-
-        if (obstacleTilemap.HasTile(grid[5])) // 6
-        {
-            blocked.Add(grid[5]);
-            blocked.Add(grid[8]); // 9
-        }
-
-        if (obstacleTilemap.HasTile(grid[6])) // 7
-            blocked.Add(grid[6]);
-
-        if (obstacleTilemap.HasTile(grid[7])) // 8
-            blocked.Add(grid[7]);
-
-        if (obstacleTilemap.HasTile(grid[8])) // 9
-            blocked.Add(grid[8]);
-
-        // Draw each cell
-        for (int i = 0; i < 9; i++)
-        {
-            Vector3Int cell = grid[i];
-            Vector3 center = obstacleTilemap.GetCellCenterWorld(cell);
-
-            if (cell == playerCell)
-                Gizmos.color = Color.blue;
-            else if (blocked.Contains(cell))
-                Gizmos.color = Color.red;
-            else
-                Gizmos.color = Color.green;
-
-            Gizmos.DrawWireCube(center, Vector3.one * 0.9f);
-            Handles.Label(center + Vector3.up * 0.2f, $"[{i + 1}] {cell}");
-        }
-#endif
+        Gizmos.color = Color.cyan;
+        Vector3 toPlayer = player.position - origin;
+        if (toPlayer.magnitude <= detectionRange)
+            Gizmos.DrawRay(origin, toPlayer.normalized * toPlayer.magnitude);
     }
-
-
-
-
-
-
-
-
-
-
 }
