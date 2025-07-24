@@ -27,7 +27,7 @@ public class KnifeAttack : MonoBehaviour
                 Debug.Log("Enter...");
                 _currentEnemy = collision.GetComponent<SharedPathFollower>();
                 IsStayEnemy = true;
-                _animator.SetTrigger("Attack");
+                //_animator.SetTrigger("Attack");
             }
         }
     }
@@ -41,7 +41,7 @@ public class KnifeAttack : MonoBehaviour
                 Debug.Log("Stay...");
                 _currentEnemy = collision.GetComponent<SharedPathFollower>();
                 IsStayEnemy = true;
-                _animator.SetTrigger("Attack");
+               // _animator.SetTrigger("Attack");
             }
         }
     }

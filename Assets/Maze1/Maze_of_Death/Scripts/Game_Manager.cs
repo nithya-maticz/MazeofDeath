@@ -3,8 +3,7 @@ using System.Collections;
 using System.Collections.Generic;
 using TMPro;
 using UnityEngine.UI;
-using System;
-using System.Security.Cryptography;
+
 
 public class Game_Manager : MonoBehaviour
 {
@@ -203,6 +202,11 @@ public class Game_Manager : MonoBehaviour
         {
             WinPage.SetActive(true);
         }
+    }
+
+    public void Attack()
+    {
+        PlayerMovements.Instance._Animator.SetTrigger("Attack");
     }
 }
 
