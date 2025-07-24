@@ -2,7 +2,7 @@
 - Project name: MazeofDeath
 - Unity version: Unity 6000.0.34f1
 - Active game object:
-  - Name: Door (1)
+  - Name: Light 2D
   - Tag: Untagged
   - Layer: Default
 <!-- UNITY CODE ASSIST INSTRUCTIONS END -->
