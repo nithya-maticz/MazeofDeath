@@ -33,6 +33,8 @@ public class StoryPlayer : MonoBehaviour
     public Joystick joystick;
     public bool attack;
     public GameObject doorLight;
+    public GameObject closeDoor;
+    public GameObject openDoor;
 
     void Awake()
     {
@@ -127,6 +129,8 @@ public class StoryPlayer : MonoBehaviour
     public void doorclose()
     {
         doorLight.SetActive(false);
+        closeDoor.SetActive(true);
+        openDoor.SetActive(false);
     }
 
 
