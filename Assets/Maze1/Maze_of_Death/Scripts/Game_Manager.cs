@@ -58,7 +58,10 @@ public class Game_Manager : MonoBehaviour
     public TMP_Text MedikitCountText;
     private bool isFilling = false;
 
-
+    [Header("Shoot")]
+    public AutoAimOnly AutoAim;
+    public Transform BulletSpawner;
+    public Bullet BulletPrefab;
 
     private void Awake()
     {
@@ -207,6 +210,17 @@ public class Game_Manager : MonoBehaviour
     public void Attack()
     {
         PlayerMovements.Instance._Animator.SetTrigger("Attack");
+    }
+
+    public void Shoot()
+    {
+        if(AutoAim.currentTarget != null)
+        {
+            Bullet bullet = Instantiate(BulletPrefab, BulletSpawner);
+            bullet.transform.localPosition = Vector3.zero;
+            bullet.Target = AutoAim.currentTarget.transform;
+            bullet.GO = true;
+        }
     }
 }
 

@@ -40,6 +40,8 @@ public class SharedPathFollower : MonoBehaviour
 
     public bool isPatrolDoor;
 
+    public GameObject TargetLocked;
+
     private void Start()
     {
         if (PlayerMovements.Instance != null)
@@ -203,6 +205,15 @@ public class SharedPathFollower : MonoBehaviour
         
     }
 
+
+    private void OnTriggerEnter2D(Collider2D collision)
+    {
+        if(collision.tag == "Bullet")
+        {
+            Destroy(collision.gameObject);
+            Destroy(gameObject);
+        }
+    }
     private void OnTriggerExit2D(Collider2D collision)
     {
         if (!isChasingPlayer && collision.gameObject.CompareTag("enemy"))
