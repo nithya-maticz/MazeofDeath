@@ -38,7 +38,7 @@ public class StoryManager : MonoBehaviour
     {
         CollideCircle.SetActive(false);
         FillCanvas.SetActive(false);
-        FindObjectOfType<KeyBox>().EndAnimation();
+        //FindObjectOfType<KeyBox>().EndAnimation();
             
     }
     public void SecondBox()

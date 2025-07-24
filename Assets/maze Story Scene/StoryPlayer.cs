@@ -70,16 +70,16 @@ public class StoryPlayer : MonoBehaviour
             // Apply velocity
             rb.linearVelocity = moveDir * speed;
 
-            if (FindObjectOfType<KeyBox>().knifeTaken)
+            /*if (FindObjectOfType<KeyBox>().knifeTaken)
                 animatorRef.SetTrigger("knifewalk");
             else
-                animatorRef.SetTrigger("walk");
+                animatorRef.SetTrigger("walk");*/
         }
         else
         {
             rb.linearVelocity = Vector2.zero;
 
-            if (FindObjectOfType<KeyBox>().knifeTaken)
+            /*if (FindObjectOfType<KeyBox>().knifeTaken)
             {
                 if (attack)
                     animatorRef.SetTrigger("attack");
@@ -89,7 +89,7 @@ public class StoryPlayer : MonoBehaviour
             else
             {
                 animatorRef.SetTrigger("idle");
-            }
+            }*/
         }
     }
 
