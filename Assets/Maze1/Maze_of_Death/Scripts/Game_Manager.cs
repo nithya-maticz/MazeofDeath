@@ -4,6 +4,7 @@ using System.Collections.Generic;
 using TMPro;
 using UnityEngine.UI;
 using System;
+using System.Security.Cryptography;
 
 public class Game_Manager : MonoBehaviour
 {
@@ -11,7 +12,9 @@ public class Game_Manager : MonoBehaviour
     public VariableJoystick movementJoystick;
     
     public IGetTreasure curretTreasure;
-    
+    public GameObject LostPage;
+    public GameObject WinPage;
+
 
     [Header("Sprites")]
     public Sprite SpriteBoxOpen;
@@ -32,8 +35,7 @@ public class Game_Manager : MonoBehaviour
     public bool IsGetKey;
     public GameObject KeyImage;
 
-    public int MedikitCount;
-    public TMP_Text MedikitCountText;
+    
 
     [Header("Enemy Attributes")]
     public GameObject BloodPrefab;
@@ -43,11 +45,20 @@ public class Game_Manager : MonoBehaviour
     public TMP_Text ZombieDoorCountText;
     public List<SharedPathFollower> Enemies;
     public TMP_Text EnemyCountText;
+    public int ZombieDoorCountInt;
 
     [Header("PLAYER Health")]
     public int PlayerHealthCount;
     public List<Sprite> HealthSprites;
     public Image HealthImage;
+    
+
+    public Image MedikitFillImage;
+    public Button UseMediKit;
+    public int MedikitCount;
+    public TMP_Text MedikitCountText;
+    private bool isFilling = false;
+
 
 
     private void Awake()
@@ -65,12 +76,15 @@ public class Game_Manager : MonoBehaviour
 
     public void EnemyCount()
     {
+
         EnemyCountText.text = Enemies.Count.ToString();
+        LevelUP();
     }
 
     public void BoxCount()
     {
         RemainingBoxText.text = BoxCountInt.ToString(); 
+
     }
 
     public void ZombieDoorCount()
@@ -86,7 +100,9 @@ public class Game_Manager : MonoBehaviour
             
         }
 
+        ZombieDoorCountInt = a;
         ZombieDoorCountText.text = a.ToString();
+        LevelUP();
     }
 
     public void UpdatePlayerHealth()
@@ -95,6 +111,7 @@ public class Game_Manager : MonoBehaviour
         {
             HealthImage.gameObject.SetActive(true);
             HealthImage.sprite = HealthSprites[2];
+            LostPage.SetActive(true);
             //Game Over
         }
         else
@@ -121,6 +138,66 @@ public class Game_Manager : MonoBehaviour
 
             }
 
+        }
+    }
+
+    public void OnUseMediKit()
+    {
+        if (MedikitCount > 0 && !isFilling)
+        {
+            MedikitCount--;
+            UpdateMedikitUI();
+            StartCoroutine(FillMedikit());
+        }
+    }
+
+    void UpdateMedikitUI()
+    {
+        if(MedikitCount <= 0)
+        {
+            UseMediKit.interactable = false;
+        }
+        MedikitCountText.text = MedikitCount.ToString();
+    }
+
+    IEnumerator FillMedikit()
+    {
+        isFilling = true;
+
+        // Set full opacity
+        SetImageAlpha(MedikitFillImage, 1f);
+
+        float duration = 2f;
+        float elapsed = 0f;
+
+        while (elapsed < duration)
+        {
+            elapsed += Time.deltaTime;
+            MedikitFillImage.fillAmount = Mathf.Clamp01(elapsed / duration);
+            yield return null;
+        }
+
+        // Done filling
+        Debug.Log("Filled!");
+        PlayerHealthCount = 4;
+        UpdatePlayerHealth();
+        SetImageAlpha(MedikitFillImage, 0.2f);
+
+        isFilling = false;
+    }
+
+    void SetImageAlpha(Image img, float alpha)
+    {
+        Color c = img.color;
+        c.a = alpha;
+        img.color = c;
+    }
+
+    public void LevelUP()
+    {
+        if(Enemies.Count == 0 && ZombieDoorCountInt == 0)
+        {
+            WinPage.SetActive(true);
         }
     }
 }

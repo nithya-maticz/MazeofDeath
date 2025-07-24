@@ -89,6 +89,7 @@ public class MediBox : MonoBehaviour, IGetTreasure
     {
 
         Game_Manager.Instance.MedikitCount += 1;
+        Game_Manager.Instance.UseMediKit.interactable = true;
         Game_Manager.Instance.MedikitCountText.text = Game_Manager.Instance.MedikitCount.ToString();
     }
 
