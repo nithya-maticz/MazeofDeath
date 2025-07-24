@@ -6,7 +6,7 @@ using System.Collections.Generic;
 using TMPro;
 using UnityEngine.UI;
 using UnityEngine.Video;
-using Unity.Cinemachine;
+
 
 
 
@@ -102,7 +102,7 @@ public class ManagerMaze : MonoBehaviour
     public Player malePlayer;
     public Player femalePlayer;
     public Transform playerSpawnPoint;
-    public CinemachineCamera cineCam;
+    
     public List<Sprite> bloodSprite;
 
     void Start()
