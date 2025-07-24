@@ -2,7 +2,7 @@ using UnityEngine;
 
 public class SmoothFollowCamera : MonoBehaviour
 {
-    [Header("Target Settings")]
+    /*[Header("Target Settings")]
     public Transform target;
     public Vector3 offset = new Vector3(0, 0, -10f);
 
@@ -34,7 +34,7 @@ public class SmoothFollowCamera : MonoBehaviour
 
     void LateUpdate()
     {
-        /*if (target == null) return;
+        *//*if (target == null) return;
 
         // ----- Smooth position -----
         Vector3 targetPosition = target.position + offset;
@@ -49,7 +49,7 @@ public class SmoothFollowCamera : MonoBehaviour
         float targetZ = (target.eulerAngles.z + rotationOffset) % 360f;
         float currentZ = transform.eulerAngles.z;
         float newZ = Mathf.SmoothDampAngle(currentZ, targetZ, ref rotationVelocity, rotationSmoothTime);
-        transform.rotation = Quaternion.Euler(0f, 0f, newZ);*/
+        transform.rotation = Quaternion.Euler(0f, 0f, newZ);*//*
     }
 
     private void FixedUpdate()
@@ -70,5 +70,31 @@ public class SmoothFollowCamera : MonoBehaviour
         float currentZ = transform.eulerAngles.z;
         float newZ = Mathf.SmoothDampAngle(currentZ, targetZ, ref rotationVelocity, rotationSmoothTime);
         transform.rotation = Quaternion.Euler(0f, 0f, newZ);
+    }*/
+
+    [Header("Target to Follow")]
+    public Transform target;
+
+    [Header("Position Settings")]
+    public Vector3 offset = new Vector3(0, 0, -10f);
+    public float positionFollowSpeed = 8f;  // Higher = snappier
+
+    [Header("Rotation Settings")]
+    public float rotationOffset = 90f; // Adjust based on your sprite's forward direction
+    public float rotationFollowSpeed = 10f;
+
+    void LateUpdate()
+    {
+        if (target == null) return;
+
+        // ----- Smooth Position -----
+        Vector3 desiredPosition = target.position + offset;
+        transform.position = Vector3.Lerp(transform.position, desiredPosition, positionFollowSpeed * Time.deltaTime);
+
+        // ----- Smooth Rotation -----
+        float desiredZ = target.eulerAngles.z + rotationOffset;
+        float smoothedZ = Mathf.LerpAngle(transform.eulerAngles.z, desiredZ, rotationFollowSpeed * Time.deltaTime);
+        transform.rotation = Quaternion.Euler(0f, 0f, smoothedZ);
     }
 }
+
