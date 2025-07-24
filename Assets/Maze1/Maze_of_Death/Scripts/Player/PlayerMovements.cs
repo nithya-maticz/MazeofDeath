@@ -29,6 +29,7 @@ public class PlayerMovements : MonoBehaviour
     private Coroutine closeDoorCoroutine;
     private WaitForSeconds waitFor2Sec;
 
+    
 
     private void Awake()
     {
@@ -36,6 +37,7 @@ public class PlayerMovements : MonoBehaviour
     }
     private void Start()
     {
+       
         movementJoystick = Game_Manager.Instance.movementJoystick;
         rb = GetComponent<Rigidbody2D>();
     }

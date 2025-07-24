@@ -44,6 +44,11 @@ public class Game_Manager : MonoBehaviour
     public List<SharedPathFollower> Enemies;
     public TMP_Text EnemyCountText;
 
+    [Header("PLAYER Health")]
+    public int PlayerHealthCount;
+    public List<Sprite> HealthSprites;
+    public Image HealthImage;
+
 
     private void Awake()
     {
@@ -52,6 +57,7 @@ public class Game_Manager : MonoBehaviour
 
     IEnumerator Start()
     {
+        PlayerHealthCount = 4;
         yield return new WaitForSeconds(0.5f);
         BoxCount();
         ZombieDoorCount();
@@ -81,6 +87,41 @@ public class Game_Manager : MonoBehaviour
         }
 
         ZombieDoorCountText.text = a.ToString();
+    }
+
+    public void UpdatePlayerHealth()
+    {
+        if(PlayerHealthCount <= 0)
+        {
+            HealthImage.gameObject.SetActive(true);
+            HealthImage.sprite = HealthSprites[2];
+            //Game Over
+        }
+        else
+        {
+            switch (PlayerHealthCount)
+            {
+                case 1:
+                    HealthImage.gameObject.SetActive(true);
+                    HealthImage.sprite = HealthSprites[1];
+                    break;
+
+                case 2:
+                    HealthImage.gameObject.SetActive(true);
+                    HealthImage.sprite = HealthSprites[0];
+                    break;
+
+                case 3:
+                    HealthImage.gameObject.SetActive(false);
+                    break;
+
+                case 4:
+                    HealthImage.gameObject.SetActive(false);
+                    break;
+
+            }
+
+        }
     }
 }
 

@@ -245,6 +245,13 @@ public class SharedPathFollower : MonoBehaviour
         }
     }
 
-   
+    void Attack()
+    {
+        if(isCollidingWithPlayer)
+        {
+            Game_Manager.Instance.PlayerHealthCount -= 1;
+            Game_Manager.Instance.UpdatePlayerHealth();
+        }
+    }
 
 }

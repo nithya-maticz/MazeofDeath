@@ -1,10 +1,10 @@
 fileFormatVersion: 2
-guid: cee8ff9f8f9fba14ea68cee132196421
+guid: 271b5dad650668e49b6b286da9546400
 TextureImporter:
   internalIDToNameTable:
   - first:
-      213: 6450605946063965566
-    second: hit 3_0
+      213: 6545827203223200153
+    second: hit 2_0
   externalObjects: {}
   serializedVersion: 13
   mipmaps:
@@ -122,11 +122,24 @@ TextureImporter:
     ignorePlatformSupport: 0
     androidETC2FallbackOverride: 0
     forceMaximumCompressionQuality_BC6H_BC7: 0
+  - serializedVersion: 4
+    buildTarget: iOS
+    maxTextureSize: 2048
+    resizeAlgorithm: 0
+    textureFormat: -1
+    textureCompression: 1
+    compressionQuality: 50
+    crunchedCompression: 0
+    allowsAlphaSplitting: 0
+    overridden: 0
+    ignorePlatformSupport: 0
+    androidETC2FallbackOverride: 0
+    forceMaximumCompressionQuality_BC6H_BC7: 0
   spriteSheet:
     serializedVersion: 2
     sprites:
     - serializedVersion: 2
-      name: hit 3_0
+      name: hit 2_0
       rect:
         serializedVersion: 2
         x: 0
@@ -141,8 +154,8 @@ TextureImporter:
       physicsShape: []
       tessellationDetail: -1
       bones: []
-      spriteID: e7d4a216ee7258950800000000000000
-      internalID: 6450605946063965566
+      spriteID: 9912539f82377da50800000000000000
+      internalID: 6545827203223200153
       vertices: []
       indices: 
       edges: []
@@ -161,7 +174,7 @@ TextureImporter:
     spriteCustomMetadata:
       entries: []
     nameFileIdTable:
-      hit 3_0: 6450605946063965566
+      hit 2_0: 6545827203223200153
   mipmapLimitGroupName: 
   pSDRemoveMatte: 0
   userData: 
