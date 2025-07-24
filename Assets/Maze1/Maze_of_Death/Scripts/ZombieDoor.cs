@@ -12,8 +12,9 @@ public class ZombieDoor : MonoBehaviour
     public List<Transform> doorPatrolPoints;
     void Start()
     {
-        Game_Manager.Instance.ZombieDoors.Add(this);
+       
         GameObject enemyPrefab = Instantiate(Game_Manager.Instance.EnemyPrefab, SpawnPoint);
+        Game_Manager.Instance.ZombieDoors.Add(this);
         enemyPrefab.GetComponent<SharedPathFollower>().isPatrolDoor = true;
         enemyPrefab.GetComponent<SharedPathFollower>().patrolPoints = doorPatrolPoints;
         Game_Manager.Instance.Enemies.Add(enemyPrefab.GetComponent<SharedPathFollower>());

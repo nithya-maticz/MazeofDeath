@@ -196,7 +196,9 @@ public class PlayerMovements : MonoBehaviour
         zombieDoor.GetComponent<BoxCollider2D>().enabled = false;
 
         Debug.Log("Door closed!");
-        
+        Game_Manager.Instance.ZombieDoorCount();
+
+
     }
 
    

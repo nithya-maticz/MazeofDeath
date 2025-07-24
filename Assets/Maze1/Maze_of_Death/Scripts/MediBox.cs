@@ -1,5 +1,4 @@
 using System.Collections;
-using Unity.VisualScripting;
 using UnityEngine;
 using UnityEngine.UI;
 
@@ -18,13 +17,13 @@ public class MediBox : MonoBehaviour, IGetTreasure
 
     void Start()
     {
-
+        Game_Manager.Instance.BoxCountInt += 1;
     }
 
     private void Awake()
     {
+
         
-        //Game_Manager.Instance.Boxes.Add(this);
     }
 
     void Update()
@@ -97,7 +96,11 @@ public class MediBox : MonoBehaviour, IGetTreasure
     {
         IsOpened = true;
         _sprite.sprite = Game_Manager.Instance.SpriteBoxOpen;
-        Game_Manager.Instance.GetMysteryImage.sprite = Game_Manager.Instance.MedikitSprite;
+        Game_Manager.Instance.BoxCountInt -= 1;
+        Game_Manager.Instance.BoxCount();
+
+       Game_Manager.Instance.GetMysteryImage.sprite = Game_Manager.Instance.MedikitSprite;
+        Game_Manager.Instance.GetMysteryImage.SetNativeSize();
         Game_Manager.Instance.curretTreasure = this;
         Game_Manager.Instance.GetMysteryImage.gameObject.SetActive(true);
         Game_Manager.Instance.GetMysteryPage.gameObject.SetActive(true);

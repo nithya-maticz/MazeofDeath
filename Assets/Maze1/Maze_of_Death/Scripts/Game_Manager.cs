@@ -11,7 +11,7 @@ public class Game_Manager : MonoBehaviour
     public VariableJoystick movementJoystick;
     
     public IGetTreasure curretTreasure;
-
+    
 
     [Header("Sprites")]
     public Sprite SpriteBoxOpen;
@@ -20,7 +20,8 @@ public class Game_Manager : MonoBehaviour
     public Sprite DoorCloseSprite;
 
     [Header("Mystery Box")]
-    public List<IGetTreasure> Boxes;
+    public int BoxCountInt;
+    public TMP_Text RemainingBoxText;
     int _boxCount;
     public TMP_Text OpenedBoxText;
     public Animator GetMysteryPage;
@@ -39,6 +40,7 @@ public class Game_Manager : MonoBehaviour
     public GameObject EnemyPrefab;
     public List<Transform> PatrolPoints;
     public List<ZombieDoor> ZombieDoors;
+    public TMP_Text ZombieDoorCountText;
     public List<SharedPathFollower> Enemies;
     public TMP_Text EnemyCountText;
 
@@ -48,9 +50,11 @@ public class Game_Manager : MonoBehaviour
         Instance = this;
     }
 
-    void Start()
+    IEnumerator Start()
     {
-       
+        yield return new WaitForSeconds(0.5f);
+        BoxCount();
+        ZombieDoorCount();
     }
 
     public void EnemyCount()
@@ -58,7 +62,26 @@ public class Game_Manager : MonoBehaviour
         EnemyCountText.text = Enemies.Count.ToString();
     }
 
+    public void BoxCount()
+    {
+        RemainingBoxText.text = BoxCountInt.ToString(); 
+    }
 
+    public void ZombieDoorCount()
+    {
+        int a = 0;
+
+        foreach(ZombieDoor door in ZombieDoors)
+        {
+            if(!door.isClosed)
+            {
+                a++;
+            }
+            
+        }
+
+        ZombieDoorCountText.text = a.ToString();
+    }
 }
 
 
