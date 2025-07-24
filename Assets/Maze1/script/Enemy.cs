@@ -214,9 +214,9 @@ public class Enemy : MonoBehaviour
 
     private void OnTriggerEnter2D(Collider2D collision)
     {
-        if (collision.CompareTag("PlayerRange"))
+        if (collision.CompareTag("Player"))
         {
-            animator.SetTrigger("enemyattack");
+           // animator.SetTrigger("enemyattack");
             collision.transform.rotation = transform.rotation;
             Player.Instance.playerSprite.color = Color.red;
         }

@@ -1,4 +1,6 @@
+using JetBrains.Annotations;
 using TMPro;
+using Unity.VisualScripting;
 using UnityEngine;
 using UnityEngine.UI;
 using UnityEngine.Video;
@@ -22,18 +24,25 @@ public class AnimationHandle : MonoBehaviour
 
     public void ColliderVisibleFun()
     {
+       // storyPlayer.playerCollider.SetActive(true);
+       // storyPlayer.playerCollider.SetActive(true);
+        /* if(playerRef != null)
+             playerRef.playerCollider.SetActive(true);
+         else if(storyPlayer != null)
+         {
+             Debug.Log("dfdfd");
+             storyPlayer.playerCollider.SetActive(true);
+         }*/
 
-        if(playerRef != null)
-            playerRef.playerCollider.SetActive(true);
-        else if(storyPlayer != null)
-            storyPlayer.playerCollider.SetActive(true);
     }
+   
     public void ColliderInvisibleFun()
     {
-        if (playerRef != null)
+       // storyPlayer.playerCollider.SetActive(false);
+        /*if (playerRef != null)
             playerRef.playerCollider.SetActive(false);
         else if (storyPlayer != null)
-            storyPlayer.playerCollider.SetActive(false);
+            storyPlayer.playerCollider.SetActive(false);*/
     }
 
     void Key()
@@ -78,10 +87,22 @@ public class AnimationHandle : MonoBehaviour
         }
            
         
-            
+           
        
        
 
+    }
+
+    public void heartImage()
+    {
+      
+        StoryManager.Instance.FirstBox();
+
+    }
+    public void keyImage()
+    {
+        
+        StoryManager.Instance.SecondBox();
     }
     public void nextTyping()
     {

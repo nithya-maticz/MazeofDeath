@@ -22,7 +22,7 @@ public class StoryPlayer : MonoBehaviour
     public GameObject light;
 
     [Header("Stats")]
-    public float speed = 5f;
+    public float speed = 2f;
     public bool playerDeath;
     public int PlayerHealthCount;
 
@@ -31,6 +31,7 @@ public class StoryPlayer : MonoBehaviour
 
     [Header("Modules")]
     public Joystick joystick;
+    public bool attack;
 
     void Awake()
     {
@@ -38,14 +39,15 @@ public class StoryPlayer : MonoBehaviour
         //joystick.StartStoryJoystick();
         rb = GetComponent<Rigidbody2D>();
         waitFor2Sec = new WaitForSeconds(2f);
-        if (agent == null) agent = GetComponent<NavMeshAgent>();
-        agent.updateRotation = false;
-        agent.updateUpAxis = false;
+      //  if (agent == null) agent = GetComponent<NavMeshAgent>();
+      //  agent.updateRotation = false;
+       // agent.updateUpAxis = false;
     }
 
     void Update()
     {
         HandleMovement();
+        //HandleMovement();
     }
 
     void HandleMovement()
@@ -53,22 +55,47 @@ public class StoryPlayer : MonoBehaviour
         float moveH = joystick.Horizontal;
         float moveV =joystick.Vertical;
 
-        
+
         if (moveH != 0f || moveV != 0f)
         {
-            Vector2 moveDir = new Vector2(moveH, moveV);
+           
+            Vector2 moveDir = new Vector2(moveH, moveV).normalized;
+
+            // Rotate
+            if (moveDir.x > 0f)
+                transform.rotation = Quaternion.Euler(0f, 180f, 0f); // Face left
+            else if (moveDir.x < 0f)
+                transform.rotation = Quaternion.Euler(0f, 0f, 0f);   // Face right
+
+            // Apply velocity
             rb.linearVelocity = moveDir * speed;
+
+            if (FindObjectOfType<KeyBox>().knifeTaken)
+                animatorRef.SetTrigger("knifewalk");
+            else
+                animatorRef.SetTrigger("walk");
         }
         else
         {
             rb.linearVelocity = Vector2.zero;
-            //animatorRef.SetBool("IsMoving", false);
+
+            if (FindObjectOfType<KeyBox>().knifeTaken)
+            {
+                if (attack)
+                    animatorRef.SetTrigger("attack");
+                else
+                    animatorRef.SetTrigger("knifeidle");
+            }
+            else
+            {
+                animatorRef.SetTrigger("idle");
+            }
         }
     }
 
     private void OnTriggerEnter2D(Collider2D collision)
     {
-        if (collision.CompareTag("EnemyDoor") && ManagerMaze.instance.isPlayerGetKey)
+        if (collision.CompareTag("EnemyDoor") )
         {
             ZombieDoor zombieDoor = collision.GetComponent<ZombieDoor>();
             if (zombieDoor != null)
@@ -76,6 +103,13 @@ public class StoryPlayer : MonoBehaviour
                 zombieDoor.light.SetActive(true);
                 closeDoorCoroutine = StartCoroutine(CloseDoorAfterDelay(zombieDoor));
             }
+        }
+        if(collision.CompareTag("enemy"))
+        {
+            Debug.Log("Enemyyyyyyyyyy");
+            attack = true;
+            
+           
         }
     }
 
@@ -92,6 +126,13 @@ public class StoryPlayer : MonoBehaviour
                 zombieDoor.light.SetActive(false);
                 light.SetActive(true);
             }
+        }
+        if (collision.CompareTag("enemy"))
+        {
+            Debug.Log("Enemyyyyyyyyyy");
+            attack = false;
+
+
         }
     }
 
@@ -124,5 +165,10 @@ public class StoryPlayer : MonoBehaviour
             animatorRef.SetTrigger("playerattack");
             
         }
+    }
+
+    public void changeAnimation()
+    {
+        
     }
 }

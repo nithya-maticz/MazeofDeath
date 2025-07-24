@@ -8,16 +8,24 @@ public class KeyBox : MonoBehaviour,IGetTreasure
     int TotalSeconds = 5;
     int FillSeconds = 0;
     [SerializeField] Image fillImage;
+    public GameObject blackImage;
 
     private Coroutine currentCoroutine = null;
     [SerializeField] GameObject CollideCircle;
     [SerializeField] GameObject FillCanvas;
+    public GameObject Box;
+    public bool knifeTaken;
+   
+
+    public Animator animatorRef;
+    public GameObject textImg;
+   
 
     public bool IsOpened { get; set; } = false;
 
     void Start()
     {
-       
+        blackImage.SetActive(false);
     }
 
     private void Awake()
@@ -36,6 +44,7 @@ public class KeyBox : MonoBehaviour,IGetTreasure
     {
         if (collision.gameObject.CompareTag("PlayerRange") && !IsOpened)
         {
+            textImg.SetActive(true);
             if (currentCoroutine == null)
             {
                 currentCoroutine = StartCoroutine(OpenBox());
@@ -87,20 +96,27 @@ public class KeyBox : MonoBehaviour,IGetTreasure
     {
         Game_Manager.Instance.IsGetKey = true;
         Game_Manager.Instance.KeyImage.SetActive(true);
+        Game_Manager.Instance.KeyImage.SetActive(true);
        
     }
 
    public void BoxOpened()
    {
+        textImg.SetActive(false);
         IsOpened = true;
-        _sprite.sprite = Game_Manager.Instance.SpriteBoxOpen;
-        Game_Manager.Instance.GetMysteryImage.sprite = Game_Manager.Instance.KeySprite;
-        Game_Manager.Instance.GetMysteryImage.SetNativeSize();
-        Game_Manager.Instance.curretTreasure = this;
-        Game_Manager.Instance.GetMysteryImage.gameObject.SetActive(true);
-        Game_Manager.Instance.GetMysteryPage.gameObject.SetActive(true);
-        Game_Manager.Instance.GetMysteryPage.SetTrigger("Play");
-        FillCanvas.SetActive(false);
-        CollideCircle.SetActive(false);
+       
+        blackImage.SetActive(true);
+        knifeTaken = true; ;
+        animatorRef.SetTrigger("heart");
+    }
+
+    public void EndAnimation()
+    {
+        if(knifeTaken)
+        {
+            Box.SetActive(true);
+        }
+       
+        //box.sprite = boxbroke;
     }
 }
