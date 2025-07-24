@@ -63,6 +63,10 @@ public class Game_Manager : MonoBehaviour
     public Transform BulletSpawner;
     public Bullet BulletPrefab;
 
+    [Header("Auto Controls")]
+    public bool IsAutoAim;
+    public bool IsAutoAttck;
+
     private void Awake()
     {
         Instance = this;

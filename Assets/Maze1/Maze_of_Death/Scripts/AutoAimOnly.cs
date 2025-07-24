@@ -1,4 +1,4 @@
-using UnityEngine;
+﻿using UnityEngine;
 
 public class AutoAimOnly : MonoBehaviour
 {
@@ -11,14 +11,44 @@ public class AutoAimOnly : MonoBehaviour
     public LayerMask enemyLayer;
     public LayerMask obstacleLayer;
 
+    [Header("Shooting Settings")]
+    public float fireCooldown = 1f;
+
     public SharedPathFollower currentTarget;
+    private float fireTimer = 0f;
 
     private void Update()
     {
         FindTargetInCone();
+        HandleAutoShoot();
     }
 
-    
+    void HandleAutoShoot()
+    {
+        if (Game_Manager.Instance.IsAutoAttck)
+        {
+            if (currentTarget != null)
+            {
+                if (fireTimer <= 0f)
+                {
+                    Game_Manager.Instance.Shoot(); // 🔫 Shoot immediately
+                    fireTimer = fireCooldown;      // ⏳ Start cooldown
+                }
+                else
+                {
+                    fireTimer -= Time.deltaTime;
+                }
+            }
+            else
+            {
+                fireTimer = 0f; // Reset timer when no target
+            }
+        }
+        else
+        {
+            fireTimer = 0f;
+        }
+    }
 
     void FindTargetInCone()
     {
@@ -58,8 +88,6 @@ public class AutoAimOnly : MonoBehaviour
         }
     }
 
-
-
     private void OnDrawGizmos()
     {
         if (weaponPivot == null) return;
@@ -71,7 +99,7 @@ public class AutoAimOnly : MonoBehaviour
         Gizmos.DrawLine(weaponPivot.position, weaponPivot.position + left * visionDistance);
         Gizmos.DrawLine(weaponPivot.position, weaponPivot.position + right * visionDistance);
 
-        // Ray to target
+        // Ray to current target
         if (currentTarget != null)
         {
             Vector2 dir = (currentTarget.transform.position - weaponPivot.position).normalized;
