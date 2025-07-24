@@ -32,6 +32,7 @@ public class StoryPlayer : MonoBehaviour
     [Header("Modules")]
     public Joystick joystick;
     public bool attack;
+    public GameObject doorLight;
 
     void Awake()
     {
@@ -39,9 +40,9 @@ public class StoryPlayer : MonoBehaviour
         //joystick.StartStoryJoystick();
         rb = GetComponent<Rigidbody2D>();
         waitFor2Sec = new WaitForSeconds(2f);
-      //  if (agent == null) agent = GetComponent<NavMeshAgent>();
-      //  agent.updateRotation = false;
-       // agent.updateUpAxis = false;
+        //  if (agent == null) agent = GetComponent<NavMeshAgent>();
+        //  agent.updateRotation = false;
+        // agent.updateUpAxis = false;
     }
 
     void Update()
@@ -53,12 +54,12 @@ public class StoryPlayer : MonoBehaviour
     void HandleMovement()
     {
         float moveH = joystick.Horizontal;
-        float moveV =joystick.Vertical;
+        float moveV = joystick.Vertical;
 
 
         if (moveH != 0f || moveV != 0f)
         {
-           
+
             Vector2 moveDir = new Vector2(moveH, moveV).normalized;
 
             // Rotate
@@ -70,16 +71,16 @@ public class StoryPlayer : MonoBehaviour
             // Apply velocity
             rb.linearVelocity = moveDir * speed;
 
-            /*if (FindObjectOfType<KeyBox>().knifeTaken)
+            if (FindObjectOfType<knifeBox>().knifeTaken)
                 animatorRef.SetTrigger("knifewalk");
             else
-                animatorRef.SetTrigger("walk");*/
+                animatorRef.SetTrigger("walk");
         }
         else
         {
             rb.linearVelocity = Vector2.zero;
 
-            /*if (FindObjectOfType<KeyBox>().knifeTaken)
+            if (FindObjectOfType<knifeBox>().knifeTaken)
             {
                 if (attack)
                     animatorRef.SetTrigger("attack");
@@ -89,76 +90,49 @@ public class StoryPlayer : MonoBehaviour
             else
             {
                 animatorRef.SetTrigger("idle");
-            }*/
+            }
         }
     }
 
     private void OnTriggerEnter2D(Collider2D collision)
     {
-        if (collision.CompareTag("EnemyDoor") )
+        if (collision.CompareTag("EnemyDoor"))
         {
-                light.SetActive(true);
-                closeDoorCoroutine = StartCoroutine(CloseDoorAfterDelay());
-            
+            doorLight.SetActive(true);
+            light.SetActive(true);
+            Invoke("doorclose", 3f);
+
         }
-        if(collision.CompareTag("enemy"))
+        if (collision.CompareTag("enemy"))
         {
             Debug.Log("Enemyyyyyyyyyy");
             attack = true;
-            
-           
+
+
         }
     }
 
     private void OnTriggerExit2D(Collider2D collision)
     {
-        if (collision.CompareTag("EnemyDoor") && closeDoorCoroutine != null)
+        if (collision.CompareTag("EnemyDoor") )
         {
-            StopCoroutine(closeDoorCoroutine);
-            closeDoorCoroutine = null;
 
-            ZombieDoor zombieDoor = collision.GetComponent<ZombieDoor>();
-            if (zombieDoor != null)
-            {
-                zombieDoor.light.SetActive(false);
-                light.SetActive(true);
-            }
         }
         if (collision.CompareTag("enemy"))
         {
             Debug.Log("Enemyyyyyyyyyy");
             attack = false;
-
-
         }
     }
-
-    private IEnumerator CloseDoorAfterDelay()
+    public void doorclose()
     {
-        yield return waitFor2Sec;
-        light.SetActive(false);
-        CloseDoor();
+        doorLight.SetActive(false);
     }
 
-    void CloseDoor()
-    {
-        
 
-       
-        ManagerMaze.instance.CheckLevelUp();
-    }
 
-    public void PlayerAttackButton()
-    {
-        if (!playerDeath)
-        {
-            animatorRef.SetTrigger("playerattack");
-            
-        }
-    }
-
-    public void changeAnimation()
-    {
-        
-    }
 }
+
+   
+  
+

@@ -1,4 +1,4 @@
-using Unity.Cinemachine;
+
 using UnityEngine;
 
 public class StoryManager : MonoBehaviour
@@ -7,7 +7,7 @@ public class StoryManager : MonoBehaviour
     public Player femalePlayer;
     public Transform playerSpawnPoint;*/
 
-    public CinemachineCamera cineCam;
+    
     public Joystick joystick;
     public GameObject enemy;
     public static StoryManager Instance;
@@ -38,7 +38,7 @@ public class StoryManager : MonoBehaviour
     {
         CollideCircle.SetActive(false);
         FillCanvas.SetActive(false);
-        //FindObjectOfType<KeyBox>().EndAnimation();
+        FindObjectOfType<knifeBox>().EndAnimation();
             
     }
     public void SecondBox()

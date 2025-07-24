@@ -49,7 +49,7 @@ AnimatorController:
   m_Name: Image
   serializedVersion: 5
   m_AnimatorParameters:
-  - m_Name: heart
+  - m_Name: knife
     m_Type: 9
     m_DefaultFloat: 0
     m_DefaultInt: 0
@@ -79,10 +79,10 @@ AnimatorStateMachine:
   m_ChildStates:
   - serializedVersion: 1
     m_State: {fileID: -8321942594748540851}
-    m_Position: {x: 430, y: 50, z: 0}
+    m_Position: {x: 440, y: 10, z: 0}
   - serializedVersion: 1
     m_State: {fileID: 2218978241288005189}
-    m_Position: {x: 443.30426, y: -86.034546, z: 0}
+    m_Position: {x: 440, y: 170, z: 0}
   m_ChildStateMachines: []
   m_AnyStateTransitions:
   - {fileID: 8930177051731297679}
@@ -130,7 +130,7 @@ AnimatorStateTransition:
   m_Name: 
   m_Conditions:
   - m_ConditionMode: 1
-    m_ConditionEvent: heart
+    m_ConditionEvent: knife
     m_EventTreshold: 0
   m_DstStateMachine: {fileID: 0}
   m_DstState: {fileID: -8321942594748540851}

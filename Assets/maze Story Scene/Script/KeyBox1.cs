@@ -2,7 +2,7 @@ using System.Collections;
 using UnityEngine;
 using UnityEngine.UI;
 
-public class KeyBox1 : MonoBehaviour,IGetTreasure
+public class KeyBox1 : MonoBehaviour
 {
     [SerializeField] SpriteRenderer _sprite;
     int TotalSeconds = 5;
@@ -93,29 +93,17 @@ public class KeyBox1 : MonoBehaviour,IGetTreasure
 
     
 
-    public void GetTreasure()
-    {
-        Game_Manager.Instance.IsGetKey = true;
-        Game_Manager.Instance.KeyImage.SetActive(true);
-        Game_Manager.Instance.KeyImage.SetActive(true);
-       
-    }
-
    public void BoxOpened()
    {
         textImg.SetActive(false);
         IsOpened = true;
         Box.SetActive(true);
         blackImage.SetActive(true);
-        key_taken = true; ;
-        animatorRef.SetTrigger("key");
+        animatorRef.SetTrigger("knife");
     }
 
     public void EndAnimation()
     {
-        
-        
-         
         textImg.SetActive(true);
         key.SetActive(true);
         Invoke("textfun", 2f);

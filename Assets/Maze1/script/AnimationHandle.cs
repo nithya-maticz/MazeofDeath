@@ -93,7 +93,7 @@ public class AnimationHandle : MonoBehaviour
 
     }
 
-    public void heartImage()
+   /* public void knifefun()
     {
       
         StoryManager.Instance.FirstBox();
@@ -103,7 +103,7 @@ public class AnimationHandle : MonoBehaviour
     {
         
         StoryManager.Instance.SecondBox();
-    }
+    }*/
     public void nextTyping()
     {
         ManagerMaze.instance.FadeImg.SetActive(false);

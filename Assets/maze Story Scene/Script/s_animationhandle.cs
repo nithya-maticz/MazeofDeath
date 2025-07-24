@@ -1,6 +1,6 @@
 using UnityEngine;
 
-public class StoryKeyBox : MonoBehaviour
+public class s_animationhandle : MonoBehaviour
 {
     // Start is called once before the first execution of Update after the MonoBehaviour is created
     void Start()
@@ -12,5 +12,16 @@ public class StoryKeyBox : MonoBehaviour
     void Update()
     {
         
+    }
+    public void knifefun()
+    {
+
+        StoryManager.Instance.FirstBox();
+
+    }
+    public void keyImage()
+    {
+
+        StoryManager.Instance.SecondBox();
     }
 }
