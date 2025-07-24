@@ -97,12 +97,9 @@ public class StoryPlayer : MonoBehaviour
     {
         if (collision.CompareTag("EnemyDoor") )
         {
-            ZombieDoor zombieDoor = collision.GetComponent<ZombieDoor>();
-            if (zombieDoor != null)
-            {
-                zombieDoor.light.SetActive(true);
-                closeDoorCoroutine = StartCoroutine(CloseDoorAfterDelay(zombieDoor));
-            }
+                light.SetActive(true);
+                closeDoorCoroutine = StartCoroutine(CloseDoorAfterDelay());
+            
         }
         if(collision.CompareTag("enemy"))
         {
@@ -136,25 +133,18 @@ public class StoryPlayer : MonoBehaviour
         }
     }
 
-    private IEnumerator CloseDoorAfterDelay(ZombieDoor zombieDoor)
+    private IEnumerator CloseDoorAfterDelay()
     {
         yield return waitFor2Sec;
         light.SetActive(false);
-        CloseDoor(zombieDoor);
+        CloseDoor();
     }
 
-    void CloseDoor(ZombieDoor zombieDoor)
+    void CloseDoor()
     {
-        if (zombieDoor == null) return;
+        
 
-        zombieDoor.isClosed = true;
-        zombieDoor.sprite.sprite = ManagerMaze.instance.DoorClose;
-        zombieDoor.light.SetActive(false);
-        light.SetActive(true);
-        zombieDoor.GetComponent<BoxCollider2D>().enabled = false;
-
-        Debug.Log("Door closed!");
-        ManagerMaze.instance.DoorClosedCount();
+       
         ManagerMaze.instance.CheckLevelUp();
     }
 
