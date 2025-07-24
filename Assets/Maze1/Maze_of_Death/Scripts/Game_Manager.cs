@@ -64,10 +64,14 @@ public class Game_Manager : MonoBehaviour
     private void Awake()
     {
         Instance = this;
+        Application.targetFrameRate = 60;
+        QualitySettings.vSyncCount = 0;
     }
 
     IEnumerator Start()
     {
+        //Application.targetFrameRate = 60; // or 30 for very low-end devices
+        QualitySettings.vSyncCount = 0;   // Disable VSync to let targetFrameRate control FPS
         PlayerHealthCount = 4;
         yield return new WaitForSeconds(0.5f);
         BoxCount();
