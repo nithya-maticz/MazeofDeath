@@ -1,8 +1,10 @@
+using System.Collections;
 using UnityEngine;
 using UnityEngine.EventSystems;
 
 public class PlayerMovements : MonoBehaviour
 {
+    public static PlayerMovements Instance;
     [Header("Joystick Movement")]
     private VariableJoystick movementJoystick;
     public float moveSpeed = 5f;
@@ -20,8 +22,22 @@ public class PlayerMovements : MonoBehaviour
     private bool wasWalking = false;
     private Rigidbody2D rb;
 
+    [Header("Knife Attack Controller")]
+    public KnifeAttack knifeAttack;
+
+    [Header("Door")]
+    private Coroutine closeDoorCoroutine;
+    private WaitForSeconds waitFor2Sec;
+
+    
+
+    private void Awake()
+    {
+        Instance = this;
+    }
     private void Start()
     {
+       
         movementJoystick = Game_Manager.Instance.movementJoystick;
         rb = GetComponent<Rigidbody2D>();
     }
@@ -30,12 +46,13 @@ public class PlayerMovements : MonoBehaviour
     {
         HandleMovementInput();
         HandleRotationInput();
-        HandleRotation();
+       
     }
 
     private void FixedUpdate()
     {
         HandleMovement(); // Do movement in FixedUpdate for better physics stability
+        HandleRotation();
     }
 
     void HandleMovementInput()
@@ -118,4 +135,73 @@ public class PlayerMovements : MonoBehaviour
         float rotationDelta = rotationInput * rotationSensitivity;
         transform.Rotate(Vector3.forward, rotationDelta);
     }
+
+    void AttackEnd()
+    {
+        if(knifeAttack._currentEnemy != null)
+        {
+            if (knifeAttack.IsStayEnemy)
+            {
+                Debug.Log("Destroy...");
+                GameObject blood = Instantiate(Game_Manager.Instance.BloodPrefab, knifeAttack._currentEnemy.gameObject.transform.position, Quaternion.identity);
+                Game_Manager.Instance.Enemies.Remove(knifeAttack._currentEnemy);
+                Destroy(knifeAttack._currentEnemy.gameObject);
+                Game_Manager.Instance.EnemyCount();
+            }
+        }    
+        
+    }
+
+    private void OnTriggerEnter2D(Collider2D collision)
+    {
+        if (collision.CompareTag("EnemyDoor") && Game_Manager.Instance.IsGetKey)
+        {
+            ZombieDoor zombieDoor = collision.GetComponent<ZombieDoor>();
+            if (zombieDoor != null)
+            {
+                zombieDoor.light.SetActive(true);
+                closeDoorCoroutine = StartCoroutine(CloseDoorAfterDelay(zombieDoor));
+            }
+        }
+    }
+
+    private void OnTriggerExit2D(Collider2D collision)
+    {
+        if (collision.CompareTag("EnemyDoor") && closeDoorCoroutine != null)
+        {
+            StopCoroutine(closeDoorCoroutine);
+            closeDoorCoroutine = null;
+
+            ZombieDoor zombieDoor = collision.GetComponent<ZombieDoor>();
+            if (zombieDoor != null)
+            {
+                zombieDoor.light.SetActive(false);
+            }
+        }
+    }
+
+    private IEnumerator CloseDoorAfterDelay(ZombieDoor zombieDoor)
+    {
+        yield return new WaitForSeconds(2f);
+        
+        CloseDoor(zombieDoor);
+    }
+
+    void CloseDoor(ZombieDoor zombieDoor)
+    {
+        if (zombieDoor == null) return;
+
+        zombieDoor.isClosed = true;
+        zombieDoor.sprite.sprite = Game_Manager.Instance.DoorCloseSprite;
+        zombieDoor.light.SetActive(false);
+        
+        zombieDoor.GetComponent<BoxCollider2D>().enabled = false;
+
+        Debug.Log("Door closed!");
+        Game_Manager.Instance.ZombieDoorCount();
+
+
+    }
+
+   
 }

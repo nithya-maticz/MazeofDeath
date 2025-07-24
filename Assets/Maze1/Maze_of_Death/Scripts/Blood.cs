@@ -13,7 +13,7 @@ public class Blood : MonoBehaviour
 
     IEnumerator FadeOut()
     {
-        float duration = 10f;
+        float duration = 20f;
         float elapsed = 0f;
 
         Color originalColor = sprite.color;

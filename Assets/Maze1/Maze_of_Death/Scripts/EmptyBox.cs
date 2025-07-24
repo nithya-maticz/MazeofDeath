@@ -2,7 +2,7 @@ using System.Collections;
 using UnityEngine;
 using UnityEngine.UI;
 
-public class MediBox : MonoBehaviour, IGetTreasure
+public class EmptyBox : MonoBehaviour,IGetTreasure
 {
     [SerializeField] SpriteRenderer _sprite;
     int TotalSeconds = 5;
@@ -61,7 +61,7 @@ public class MediBox : MonoBehaviour, IGetTreasure
         }
     }
 
-  
+
 
     IEnumerator OpenBox()
     {
@@ -88,9 +88,7 @@ public class MediBox : MonoBehaviour, IGetTreasure
     public void GetTreasure()
     {
 
-        Game_Manager.Instance.MedikitCount += 1;
-        Game_Manager.Instance.UseMediKit.interactable = true;
-        Game_Manager.Instance.MedikitCountText.text = Game_Manager.Instance.MedikitCount.ToString();
+        //
     }
 
     public void BoxOpened()
@@ -99,15 +97,13 @@ public class MediBox : MonoBehaviour, IGetTreasure
         _sprite.sprite = Game_Manager.Instance.SpriteBoxOpen;
         Game_Manager.Instance.BoxCountInt -= 1;
         Game_Manager.Instance.BoxCount();
-
-       Game_Manager.Instance.GetMysteryImage.sprite = Game_Manager.Instance.MedikitSprite;
-        Game_Manager.Instance.GetMysteryImage.SetNativeSize();
-        Game_Manager.Instance.curretTreasure = this;
-        Game_Manager.Instance.GetMysteryImage.gameObject.SetActive(true);
-        Game_Manager.Instance.GetMysteryPage.gameObject.SetActive(true);
-        Game_Manager.Instance.GetMysteryPage.SetTrigger("Play");
+        /* Game_Manager.Instance.GetMysteryImage.sprite = Game_Manager.Instance.MedikitSprite;
+         Game_Manager.Instance.curretTreasure = this;
+         Game_Manager.Instance.GetMysteryImage.gameObject.SetActive(true);
+         Game_Manager.Instance.GetMysteryPage.gameObject.SetActive(true);
+         Game_Manager.Instance.GetMysteryPage.SetTrigger("Play");*/
         FillCanvas.SetActive(false);
         CollideCircle.SetActive(false);
-        
+
     }
 }

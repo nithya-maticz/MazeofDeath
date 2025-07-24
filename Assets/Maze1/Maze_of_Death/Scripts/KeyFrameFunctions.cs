@@ -21,6 +21,6 @@ public class KeyFrameFunctions : MonoBehaviour
         Game_Manager.Instance.GetMysteryPage.gameObject.SetActive(false);
         Game_Manager.Instance.GetMysteryImage.gameObject.SetActive(false);
         Game_Manager.Instance.GetMysteryImage.gameObject.transform.localScale = new Vector3(2f, 2f, 2f);
-        
+        Game_Manager.Instance.curretTreasure.GetTreasure();
     }
 }

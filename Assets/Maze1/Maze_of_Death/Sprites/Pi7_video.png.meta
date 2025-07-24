@@ -1,15 +1,15 @@
 fileFormatVersion: 2
-guid: cee8ff9f8f9fba14ea68cee132196421
+guid: 488200ce50ba31547abe89c96c06a6f0
 TextureImporter:
   internalIDToNameTable:
   - first:
-      213: 6450605946063965566
-    second: hit 3_0
+      213: 2100834200955870947
+    second: Pi7_video_0
   externalObjects: {}
   serializedVersion: 13
   mipmaps:
     mipMapMode: 0
-    enableMipMap: 0
+    enableMipMap: 1
     sRGBTexture: 1
     linearTexture: 0
     fadeOut: 0
@@ -24,7 +24,7 @@ TextureImporter:
     heightScale: 0.25
     normalMapFilter: 0
     flipGreenChannel: 0
-  isReadable: 0
+  isReadable: 1
   streamingMipmaps: 0
   streamingMipmapsPriority: 0
   vTOnly: 0
@@ -77,7 +77,7 @@ TextureImporter:
     textureFormat: -1
     textureCompression: 1
     compressionQuality: 50
-    crunchedCompression: 0
+    crunchedCompression: 1
     allowsAlphaSplitting: 0
     overridden: 0
     ignorePlatformSupport: 0
@@ -122,17 +122,30 @@ TextureImporter:
     ignorePlatformSupport: 0
     androidETC2FallbackOverride: 0
     forceMaximumCompressionQuality_BC6H_BC7: 0
+  - serializedVersion: 4
+    buildTarget: iOS
+    maxTextureSize: 2048
+    resizeAlgorithm: 0
+    textureFormat: -1
+    textureCompression: 1
+    compressionQuality: 50
+    crunchedCompression: 0
+    allowsAlphaSplitting: 0
+    overridden: 0
+    ignorePlatformSupport: 0
+    androidETC2FallbackOverride: 0
+    forceMaximumCompressionQuality_BC6H_BC7: 0
   spriteSheet:
     serializedVersion: 2
     sprites:
     - serializedVersion: 2
-      name: hit 3_0
+      name: Pi7_video_0
       rect:
         serializedVersion: 2
-        x: 0
-        y: 0
-        width: 2340
-        height: 1080
+        x: 11
+        y: 11
+        width: 490
+        height: 490
       alignment: 0
       pivot: {x: 0, y: 0}
       border: {x: 0, y: 0, z: 0, w: 0}
@@ -141,8 +154,8 @@ TextureImporter:
       physicsShape: []
       tessellationDetail: -1
       bones: []
-      spriteID: e7d4a216ee7258950800000000000000
-      internalID: 6450605946063965566
+      spriteID: 3ee57f73399a72d10800000000000000
+      internalID: 2100834200955870947
       vertices: []
       indices: 
       edges: []
@@ -161,7 +174,7 @@ TextureImporter:
     spriteCustomMetadata:
       entries: []
     nameFileIdTable:
-      hit 3_0: 6450605946063965566
+      Pi7_video_0: 2100834200955870947
   mipmapLimitGroupName: 
   pSDRemoveMatte: 0
   userData: 
