@@ -2,6 +2,7 @@
 
 public class AutoAimOnly : MonoBehaviour
 {
+    public static AutoAimOnly Instance;
     [Header("References")]
     public Transform weaponPivot;
 
@@ -17,6 +18,10 @@ public class AutoAimOnly : MonoBehaviour
     public SharedPathFollower currentTarget;
     private float fireTimer = 0f;
 
+    private void Awake()
+    {
+        Instance = this;
+    }
     private void Update()
     {
         FindTargetInCone();
@@ -25,7 +30,7 @@ public class AutoAimOnly : MonoBehaviour
 
     void HandleAutoShoot()
     {
-        if (Game_Manager.Instance.IsAutoAttck)
+        if (Game_Manager.Instance.AutoAimAndAutoShootToggle.isOn)
         {
             if (currentTarget != null)
             {

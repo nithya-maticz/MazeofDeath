@@ -8,6 +8,7 @@ public class PlayerMovements : MonoBehaviour
     [Header("Joystick Movement")]
     private VariableJoystick movementJoystick;
     public float moveSpeed = 5f;
+    
 
     [Header("Rotation Settings")]
     public float rotationSensitivity = 0.2f;
@@ -29,16 +30,19 @@ public class PlayerMovements : MonoBehaviour
     private Coroutine closeDoorCoroutine;
     private WaitForSeconds waitFor2Sec;
 
+    [Header("Manual Target")]
+    public Transform ManualTarget;
     
 
     private void Awake()
     {
         Instance = this;
+        
     }
     private void Start()
     {
-       
-        movementJoystick = Game_Manager.Instance.movementJoystick;
+        
+         movementJoystick = Game_Manager.Instance.movementJoystick;
         rb = GetComponent<Rigidbody2D>();
     }
 

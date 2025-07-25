@@ -13,7 +13,7 @@ public class Game_Manager : MonoBehaviour
     public IGetTreasure curretTreasure;
     public GameObject LostPage;
     public GameObject WinPage;
-
+   
 
     [Header("Sprites")]
     public Sprite SpriteBoxOpen;
@@ -28,7 +28,7 @@ public class Game_Manager : MonoBehaviour
     public TMP_Text OpenedBoxText;
     public Animator GetMysteryPage;
     public Image GetMysteryImage;
-
+   
 
     [Header("Player Attributes")]
     public bool IsGetKey;
@@ -67,7 +67,10 @@ public class Game_Manager : MonoBehaviour
     public bool IsAutoAim;
     public bool IsAutoAttck;
     public Toggle AutoAttackToogle;
-    public Toggle AutoShootToogle;
+    public Toggle ManualShootToogle;
+    public Toggle AutoAimAndAutoShootToggle;
+    public Toggle AutoAimAndManualShootToggle;
+    public Toggle ManualAimAndShootToggle;
 
     private void Awake()
     {
@@ -80,6 +83,7 @@ public class Game_Manager : MonoBehaviour
     {
         //Application.targetFrameRate = 60; // or 30 for very low-end devices
         QualitySettings.vSyncCount = 0;   // Disable VSync to let targetFrameRate control FPS
+        AutoAim = AutoAimOnly.Instance;
         PlayerHealthCount = 4;
         yield return new WaitForSeconds(0.5f);
         BoxCount();
@@ -221,13 +225,34 @@ public class Game_Manager : MonoBehaviour
 
     public void Shoot()
     {
-        if(AutoAim.currentTarget != null)
-        {
+       if(ManualAimAndShootToggle.isOn)
+       {
             Bullet bullet = Instantiate(BulletPrefab, BulletSpawner);
             bullet.transform.localPosition = Vector3.zero;
-            bullet.Target = AutoAim.currentTarget.transform;
+            bullet.Target = PlayerMovements.Instance.ManualTarget;
             bullet.GO = true;
-        }
+       }
+       else
+       {
+            if (AutoAim.currentTarget != null)
+            {
+                Bullet bullet = Instantiate(BulletPrefab, BulletSpawner);
+                bullet.transform.localPosition = Vector3.zero;
+                bullet.Target = AutoAim.currentTarget.transform;
+                bullet.GO = true;
+            }
+       }
+        
+    }
+
+    public void EnableAutoAim()
+    {
+        AutoAim.enabled = true;
+    }
+
+    public void DiableAutoAim()
+    {
+        AutoAim.enabled = false;
     }
 }
 

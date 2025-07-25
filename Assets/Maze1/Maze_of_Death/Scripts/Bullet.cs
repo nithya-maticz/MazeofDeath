@@ -24,13 +24,18 @@ public class Bullet : MonoBehaviour
             float angle = Mathf.Atan2(direction.y, direction.x) * Mathf.Rad2Deg;
             transform.rotation = Quaternion.Euler(0f, 0f, angle);
         }
-        
 
-     /*   // Destroy if very close (arrived)
+
+        /*// Destroy if very close (arrived)
         if (Vector3.Distance(transform.position, Target.position) < 0.1f)
-        { 
+        {
             Destroy(gameObject);
             Destroy(Target.gameObject);
         }*/
+
+        if(this.transform.position == Target.position)
+        {
+            Destroy(gameObject);
+        }
     }
 }
