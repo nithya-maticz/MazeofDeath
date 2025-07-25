@@ -247,6 +247,7 @@ public class Game_Manager : MonoBehaviour
                 currentBullets--;
                 Debug.Log("Shot fired! Bullets left: " + currentBullets);
                 UpdateUI();
+                PlayerMovements.Instance._Animator.SetTrigger("Shoot");
                 Bullet bullet = Instantiate(BulletPrefab, BulletSpawner);
                 bullet.transform.localPosition = Vector3.zero;
                 bullet.Target = PlayerMovements.Instance.ManualTarget;
@@ -280,6 +281,7 @@ public class Game_Manager : MonoBehaviour
                     currentBullets--;
                     Debug.Log("Shot fired! Bullets left: " + currentBullets);
                     UpdateUI();
+                    PlayerMovements.Instance._Animator.SetTrigger("Shoot");
                     Bullet bullet = Instantiate(BulletPrefab, BulletSpawner);
                     bullet.transform.localPosition = Vector3.zero;
                     bullet.Target = AutoAim.currentTarget.transform;
