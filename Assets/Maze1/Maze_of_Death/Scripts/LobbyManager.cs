@@ -100,4 +100,9 @@ public class LobbyManager : MonoBehaviour
         currentIndex = CharacterIndex;
     }
 
+    public void Character(string _name)
+    {
+        
+    }
+
 }
