@@ -2,6 +2,7 @@
 using System.Collections.Generic;
 using UnityEngine;
 using UnityEngine.Tilemaps;
+using UnityEngine.UI;
 
 [RequireComponent(typeof(Animator))]
 public class SharedPathFollower : MonoBehaviour
@@ -40,8 +41,20 @@ public class SharedPathFollower : MonoBehaviour
 
     public bool isPatrolDoor;
 
+    public GameObject TargetLocked;
+
+    [Header("Health")]
+    public int Health = 3;
+    public int maxHealth = 3;
+
+    public GameObject HealthParent;
+    public Image FillHealth;
+    private Coroutine hideHealthCoroutine;
+
     private void Start()
     {
+        UpdateHealthUI();
+        HealthParent.SetActive(false);
         if (PlayerMovements.Instance != null)
             player = PlayerMovements.Instance.transform;
 
@@ -203,12 +216,53 @@ public class SharedPathFollower : MonoBehaviour
         
     }
 
+
+    private void OnTriggerEnter2D(Collider2D collision)
+    {
+        if (collision.CompareTag("Bullet"))
+        {
+            Destroy(collision.gameObject);
+
+            Health--;
+
+            if (Health <= 0)
+            {
+                GameObject blood = Instantiate(Game_Manager.Instance.BloodPrefab, gameObject.transform.position, Quaternion.identity);
+                Game_Manager.Instance.Enemies.Remove(this);
+                Destroy(gameObject);
+                Game_Manager.Instance.EnemyCount();
+                return;
+            }
+
+            UpdateHealthUI();
+
+            // Show health UI
+            HealthParent.SetActive(true);
+
+            // Restart 1-second timer to hide health bar
+            if (hideHealthCoroutine != null)
+                StopCoroutine(hideHealthCoroutine);
+
+            hideHealthCoroutine = StartCoroutine(HideHealthAfterDelay());
+        }
+    }
     private void OnTriggerExit2D(Collider2D collision)
     {
         if (!isChasingPlayer && collision.gameObject.CompareTag("enemy"))
         {
             myCollider.isTrigger = false;
         }
+    }
+
+    void UpdateHealthUI()
+    {
+        FillHealth.fillAmount = (float)Health / maxHealth;
+    }
+
+    IEnumerator HideHealthAfterDelay()
+    {
+        yield return new WaitForSeconds(1f);
+        HealthParent.SetActive(false);
     }
 
     private void OnDrawGizmosSelected()

@@ -3,8 +3,7 @@ using System.Collections;
 using System.Collections.Generic;
 using TMPro;
 using UnityEngine.UI;
-using System;
-using System.Security.Cryptography;
+
 
 public class Game_Manager : MonoBehaviour
 {
@@ -14,7 +13,7 @@ public class Game_Manager : MonoBehaviour
     public IGetTreasure curretTreasure;
     public GameObject LostPage;
     public GameObject WinPage;
-
+   
 
     [Header("Sprites")]
     public Sprite SpriteBoxOpen;
@@ -29,7 +28,7 @@ public class Game_Manager : MonoBehaviour
     public TMP_Text OpenedBoxText;
     public Animator GetMysteryPage;
     public Image GetMysteryImage;
-
+   
 
     [Header("Player Attributes")]
     public bool IsGetKey;
@@ -59,7 +58,31 @@ public class Game_Manager : MonoBehaviour
     public TMP_Text MedikitCountText;
     private bool isFilling = false;
 
+    [Header("Shoot")]
+    public AutoAimOnly AutoAim;
+    public Transform BulletSpawner;
+    public Bullet BulletPrefab;
+    public int totalBullets = 15;     
+    public int currentBullets = 5;
+    public TMP_Text totalBulletsText;
+    public Image reloadFillImage;
+    public int maxMagazineSize = 5;
+    public bool isReloading = false;
 
+    [Header("Auto Controls")]
+    public GameObject KnifeObject;
+    public Button KnifeButton;
+    public GameObject GunObject;
+    public Button GunButton;
+    public bool IsGun;
+    public bool IsKnife;
+    public Toggle AutoAttackToogle;
+    public Toggle ManualShootToogle;
+    //public Toggle AutoAimAndAutoShootToggle;
+    public Toggle AutoAimAndManualShootToggle;
+    public Toggle ManualAimAndShootToggle;
+
+    
 
     private void Awake()
     {
@@ -70,12 +93,16 @@ public class Game_Manager : MonoBehaviour
 
     IEnumerator Start()
     {
-        //Application.targetFrameRate = 60; // or 30 for very low-end devices
-        QualitySettings.vSyncCount = 0;   // Disable VSync to let targetFrameRate control FPS
+        QualitySettings.vSyncCount = 0; 
+        AutoAim = AutoAimOnly.Instance;
         PlayerHealthCount = 4;
+        UpdateAttackSettings();
+        UpdateUI();
+        reloadFillImage.fillAmount = 0f;
         yield return new WaitForSeconds(0.5f);
         BoxCount();
         ZombieDoorCount();
+       
     }
 
     public void EnemyCount()
@@ -202,6 +229,184 @@ public class Game_Manager : MonoBehaviour
         if(Enemies.Count == 0 && ZombieDoorCountInt == 0)
         {
             WinPage.SetActive(true);
+        }
+    }
+
+    public void Attack()
+    {
+        if (!AutoAttackToogle.isOn)
+            PlayerMovements.Instance._Animator.SetTrigger("Attack");
+    }
+
+    public void Shoot()
+    {
+       if(ManualAimAndShootToggle.isOn)
+       {
+            if (currentBullets > 0 && !isReloading)
+            {
+                currentBullets--;
+                Debug.Log("Shot fired! Bullets left: " + currentBullets);
+                UpdateUI();
+                Bullet bullet = Instantiate(BulletPrefab, BulletSpawner);
+                bullet.transform.localPosition = Vector3.zero;
+                bullet.Target = PlayerMovements.Instance.ManualTarget;
+                bullet.GO = true;
+
+                if (currentBullets == 0)
+                {
+                    StartCoroutine(Reload());
+                }
+            }
+            else
+            {
+                Debug.Log("No bullets in magazine!");
+
+                if (totalBullets <= 0)
+                {
+                    Debug.Log("Totally out of ammo!");
+                    GunButton.interactable = false;
+
+                }
+            }
+
+       }
+       else
+       {
+            if (AutoAim.currentTarget != null)
+            {
+
+                if (currentBullets > 0 && !isReloading)
+                {
+                    currentBullets--;
+                    Debug.Log("Shot fired! Bullets left: " + currentBullets);
+                    UpdateUI();
+                    Bullet bullet = Instantiate(BulletPrefab, BulletSpawner);
+                    bullet.transform.localPosition = Vector3.zero;
+                    bullet.Target = AutoAim.currentTarget.transform;
+                    bullet.GO = true;
+
+                    if (currentBullets == 0)
+                    {
+                        StartCoroutine(Reload());
+                    }
+                }
+                else
+                {
+                    Debug.Log("No bullets in magazine!");
+
+                    if (totalBullets <= 0)
+                    {
+                        Debug.Log("Totally out of ammo!");
+                        GunButton.interactable = false;
+
+                    }
+                }
+
+            }
+       }
+        
+    }
+
+    public void ManualReload()
+    {
+        if(!isReloading && currentBullets < maxMagazineSize && totalBullets > 0)
+        {
+            StartCoroutine(Reload());
+        }
+    }
+
+    IEnumerator Reload()
+    {
+        isReloading = true;
+        Debug.Log("Reloading...");
+        GunButton.interactable = false;
+        reloadFillImage.fillAmount = 0f;
+        float reloadTime = 3f;
+        float elapsed = 0f;
+
+        while (elapsed < reloadTime)
+        {
+            elapsed += Time.deltaTime;
+            reloadFillImage.fillAmount = Mathf.Clamp01(elapsed / reloadTime);
+            yield return null;
+        }
+
+        int bulletsToReload = Mathf.Min(maxMagazineSize, totalBullets);
+        currentBullets = bulletsToReload;
+        totalBullets -= bulletsToReload;
+
+        Debug.Log("Reloaded! Current: " + currentBullets + ", Total: " + totalBullets);
+
+        UpdateUI();
+        reloadFillImage.fillAmount = 0f;
+        isReloading = false;
+        GunButton.interactable = true;
+    }
+
+    void UpdateUI()
+    {
+        totalBulletsText.text = currentBullets.ToString() + "/"+ totalBullets.ToString();
+       
+    }
+
+    public void EnableAutoAim()
+    {
+        AutoAim.enabled = true;
+    }
+
+    public void DiableAutoAim()
+    {
+        AutoAim.enabled = false;
+    }
+
+    public void GunChange()
+    {
+        IsGun = true;
+        IsKnife = false;
+        GunObject.SetActive(true);
+        KnifeObject.SetActive(false);
+
+        if(AutoAimAndManualShootToggle.isOn)
+        {
+            AutoAim.enabled = true;
+            GunButton.interactable = true;
+           
+        }
+        else if(ManualAimAndShootToggle.isOn)
+        {
+            AutoAim.enabled = false;
+            GunButton.interactable = true;
+        }
+    }
+
+    public void KnifeChange()
+    {
+        IsGun = false;
+        IsKnife = true;
+        GunObject.SetActive(false);
+        KnifeObject.SetActive(true);
+
+        if(AutoAttackToogle.isOn)
+        {
+            KnifeButton.interactable = false;
+        }
+        else
+        {
+            KnifeButton.interactable= true;
+        }
+
+        AutoAim.enabled = false;
+    }
+
+    public void UpdateAttackSettings()
+    {
+        if (IsGun && !IsKnife)
+        {
+            GunChange();
+        }
+        else if(!IsGun && IsKnife)
+        {
+            KnifeChange();
         }
     }
 }
