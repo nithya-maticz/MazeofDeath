@@ -78,7 +78,7 @@ public class Game_Manager : MonoBehaviour
     public bool IsKnife;
     public Toggle AutoAttackToogle;
     public Toggle ManualShootToogle;
-    public Toggle AutoAimAndAutoShootToggle;
+    //public Toggle AutoAimAndAutoShootToggle;
     public Toggle AutoAimAndManualShootToggle;
     public Toggle ManualAimAndShootToggle;
 
@@ -93,16 +93,16 @@ public class Game_Manager : MonoBehaviour
 
     IEnumerator Start()
     {
-        //Application.targetFrameRate = 60; // or 30 for very low-end devices
-        QualitySettings.vSyncCount = 0;   // Disable VSync to let targetFrameRate control FPS
+        QualitySettings.vSyncCount = 0; 
         AutoAim = AutoAimOnly.Instance;
         PlayerHealthCount = 4;
         UpdateAttackSettings();
+        UpdateUI();
+        reloadFillImage.fillAmount = 0f;
         yield return new WaitForSeconds(0.5f);
         BoxCount();
         ZombieDoorCount();
-        UpdateUI();
-        reloadFillImage.fillAmount = 0f;
+       
     }
 
     public void EnemyCount()
@@ -242,7 +242,7 @@ public class Game_Manager : MonoBehaviour
     {
        if(ManualAimAndShootToggle.isOn)
        {
-            if (currentBullets > 0)
+            if (currentBullets > 0 && !isReloading)
             {
                 currentBullets--;
                 Debug.Log("Shot fired! Bullets left: " + currentBullets);
@@ -264,7 +264,7 @@ public class Game_Manager : MonoBehaviour
             if (AutoAim.currentTarget != null)
             {
 
-                if (currentBullets > 0)
+                if (currentBullets > 0 && !isReloading)
                 {
                     currentBullets--;
                     Debug.Log("Shot fired! Bullets left: " + currentBullets);
@@ -343,27 +343,17 @@ public class Game_Manager : MonoBehaviour
         GunObject.SetActive(true);
         KnifeObject.SetActive(false);
 
-        if(AutoAimAndAutoShootToggle.isOn || AutoAimAndManualShootToggle.isOn)
+        if(AutoAimAndManualShootToggle.isOn)
         {
             AutoAim.enabled = true;
-
-            if(AutoAimAndManualShootToggle.isOn)
-            {
-                GunButton.interactable = true;
-            }
-            else
-            {
-                GunButton.interactable = false;
-            }
+            GunButton.interactable = true;
+           
         }
         else if(ManualAimAndShootToggle.isOn)
         {
             AutoAim.enabled = false;
             GunButton.interactable = true;
         }
-        
-
-        
     }
 
     public void KnifeChange()

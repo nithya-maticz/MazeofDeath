@@ -25,10 +25,10 @@ public class AutoAimOnly : MonoBehaviour
     private void Update()
     {
         FindTargetInCone();
-        HandleAutoShoot();
+        //HandleAutoShoot();
     }
 
-    void HandleAutoShoot()
+    /*void HandleAutoShoot()
     {
         if (Game_Manager.Instance.AutoAimAndAutoShootToggle.isOn && !Game_Manager.Instance.isReloading)
         {
@@ -53,7 +53,7 @@ public class AutoAimOnly : MonoBehaviour
         {
             fireTimer = 0f;
         }
-    }
+    }*/
 
     void FindTargetInCone()
     {
