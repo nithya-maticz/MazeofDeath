@@ -66,6 +66,8 @@ public class Game_Manager : MonoBehaviour
     [Header("Auto Controls")]
     public bool IsAutoAim;
     public bool IsAutoAttck;
+    public Toggle AutoAttackToogle;
+    public Toggle AutoShootToogle;
 
     private void Awake()
     {
@@ -213,7 +215,8 @@ public class Game_Manager : MonoBehaviour
 
     public void Attack()
     {
-        PlayerMovements.Instance._Animator.SetTrigger("Attack");
+        if (!AutoAttackToogle.isOn)
+            PlayerMovements.Instance._Animator.SetTrigger("Attack");
     }
 
     public void Shoot()
