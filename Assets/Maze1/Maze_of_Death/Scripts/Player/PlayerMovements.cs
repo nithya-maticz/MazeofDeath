@@ -21,6 +21,7 @@ public class PlayerMovements : MonoBehaviour
     private Vector2 lastTouchPosition;
     private bool isRotating = false;
     private bool wasWalking = false;
+    private bool wasGun;
     private Rigidbody2D rb;
 
     [Header("Knife Attack Controller")]
@@ -32,6 +33,8 @@ public class PlayerMovements : MonoBehaviour
 
     [Header("Manual Target")]
     public Transform ManualTarget;
+
+
     
 
     private void Awake()
@@ -61,6 +64,30 @@ public class PlayerMovements : MonoBehaviour
 
     void HandleMovementInput()
     {
+        /* moveInput = Vector2.zero;
+
+         if (movementJoystick != null &&
+             (Mathf.Abs(movementJoystick.Horizontal) > 0.1f || Mathf.Abs(movementJoystick.Vertical) > 0.1f))
+         {
+             moveInput = new Vector2(movementJoystick.Vertical, movementJoystick.Horizontal);
+         }
+
+         bool isWalking = moveInput.sqrMagnitude > 0.01f;
+         if (isWalking != wasWalking)
+         {
+             if(!Game_Manager.Instance.IsGun)
+             {
+                 _Animator.SetBool("isWalking", isWalking);
+                 wasWalking = isWalking;
+             }
+             else
+             {
+                 _Animator.SetBool("isGun", isWalking);
+                 wasWalking = isWalking;
+             }
+
+         }*/
+
         moveInput = Vector2.zero;
 
         if (movementJoystick != null &&
@@ -70,20 +97,25 @@ public class PlayerMovements : MonoBehaviour
         }
 
         bool isWalking = moveInput.sqrMagnitude > 0.01f;
-        if (isWalking != wasWalking)
+        bool isGun = Game_Manager.Instance.IsGun;
+
+        if (!isWalking && wasWalking)
         {
-            if(!Game_Manager.Instance.IsGun)
-            {
-                _Animator.SetBool("isWalking", isWalking);
-                wasWalking = isWalking;
-            }
-            else
-            {
-                _Animator.SetBool("isGun", isWalking);
-                wasWalking = isWalking;
-            }
-            
+            _Animator.ResetTrigger("Walk");
+            _Animator.ResetTrigger("WalkWithGun");
+            _Animator.SetTrigger("Idle");
         }
+
+        if (isWalking && (!wasWalking || isGun != wasGun))
+        {
+            _Animator.ResetTrigger("Idle");
+            _Animator.SetTrigger(isGun ? "WalkWithGun" : "Walk");
+        }
+
+        wasWalking = isWalking;
+        wasGun = isGun;
+
+
 
     }
 
