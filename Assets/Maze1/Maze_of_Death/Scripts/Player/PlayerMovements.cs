@@ -21,6 +21,7 @@ public class PlayerMovements : MonoBehaviour
     private Vector2 lastTouchPosition;
     private bool isRotating = false;
     private bool wasWalking = false;
+    private bool wasGun;
     private Rigidbody2D rb;
 
     [Header("Knife Attack Controller")]
@@ -32,6 +33,8 @@ public class PlayerMovements : MonoBehaviour
 
     [Header("Manual Target")]
     public Transform ManualTarget;
+
+
     
 
     private void Awake()
@@ -93,15 +96,25 @@ public class PlayerMovements : MonoBehaviour
             moveInput = new Vector2(movementJoystick.Vertical, movementJoystick.Horizontal);
         }
 
-        // Calculate if player is walking
         bool isWalking = moveInput.sqrMagnitude > 0.01f;
+        bool isGun = Game_Manager.Instance.IsGun;
 
-        // Set both animation parameters every frame
-        _Animator.SetBool("isWalking", isWalking);
-        _Animator.SetBool("isGun", Game_Manager.Instance.IsGun);
+        if (!isWalking && wasWalking)
+        {
+            _Animator.ResetTrigger("Walk");
+            _Animator.ResetTrigger("WalkWithGun");
+            _Animator.SetTrigger("Idle");
+        }
 
-        // You can use wasWalking if you want to reduce redundant calls
+        if (isWalking && (!wasWalking || isGun != wasGun))
+        {
+            _Animator.ResetTrigger("Idle");
+            _Animator.SetTrigger(isGun ? "WalkWithGun" : "Walk");
+        }
+
         wasWalking = isWalking;
+        wasGun = isGun;
+
 
 
     }
