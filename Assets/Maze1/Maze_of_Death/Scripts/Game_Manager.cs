@@ -89,6 +89,7 @@ public class Game_Manager : MonoBehaviour
         QualitySettings.vSyncCount = 0;   // Disable VSync to let targetFrameRate control FPS
         AutoAim = AutoAimOnly.Instance;
         PlayerHealthCount = 4;
+        UpdateAttackSettings();
         yield return new WaitForSeconds(0.5f);
         BoxCount();
         ZombieDoorCount();
@@ -261,16 +262,28 @@ public class Game_Manager : MonoBehaviour
 
     public void GunChange()
     {
+        IsGun = true;
+        IsKnife = false;
         GunObject.SetActive(true);
         KnifeObject.SetActive(false);
 
         if(AutoAimAndAutoShootToggle.isOn || AutoAimAndManualShootToggle.isOn)
         {
-            AutoAim.enabled = false;
+            AutoAim.enabled = true;
+
+            if(AutoAimAndManualShootToggle.isOn)
+            {
+                GunButton.interactable = true;
+            }
+            else
+            {
+                GunButton.interactable = false;
+            }
         }
         else if(ManualAimAndShootToggle.isOn)
         {
-            AutoAim.enabled = true;
+            AutoAim.enabled = false;
+            GunButton.interactable = true;
         }
         
 
@@ -279,6 +292,8 @@ public class Game_Manager : MonoBehaviour
 
     public void KnifeChange()
     {
+        IsGun = false;
+        IsKnife = true;
         GunObject.SetActive(false);
         KnifeObject.SetActive(true);
 
@@ -292,6 +307,18 @@ public class Game_Manager : MonoBehaviour
         }
 
         AutoAim.enabled = false;
+    }
+
+    public void UpdateAttackSettings()
+    {
+        if (IsGun && !IsKnife)
+        {
+            GunChange();
+        }
+        else if(!IsGun && IsKnife)
+        {
+            KnifeChange();
+        }
     }
 }
 
