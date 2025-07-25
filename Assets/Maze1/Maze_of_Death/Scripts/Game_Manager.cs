@@ -257,7 +257,18 @@ public class Game_Manager : MonoBehaviour
                     StartCoroutine(Reload());
                 }
             }
-           
+            else
+            {
+                Debug.Log("No bullets in magazine!");
+
+                if (totalBullets <= 0)
+                {
+                    Debug.Log("Totally out of ammo!");
+                    GunButton.interactable = false;
+
+                }
+            }
+
        }
        else
        {
@@ -279,7 +290,18 @@ public class Game_Manager : MonoBehaviour
                         StartCoroutine(Reload());
                     }
                 }
-               
+                else
+                {
+                    Debug.Log("No bullets in magazine!");
+
+                    if (totalBullets <= 0)
+                    {
+                        Debug.Log("Totally out of ammo!");
+                        GunButton.interactable = false;
+
+                    }
+                }
+
             }
        }
         
@@ -297,7 +319,7 @@ public class Game_Manager : MonoBehaviour
     {
         isReloading = true;
         Debug.Log("Reloading...");
-
+        GunButton.interactable = false;
         reloadFillImage.fillAmount = 0f;
         float reloadTime = 3f;
         float elapsed = 0f;
@@ -318,6 +340,7 @@ public class Game_Manager : MonoBehaviour
         UpdateUI();
         reloadFillImage.fillAmount = 0f;
         isReloading = false;
+        GunButton.interactable = true;
     }
 
     void UpdateUI()
