@@ -62,6 +62,12 @@ public class Game_Manager : MonoBehaviour
     public AutoAimOnly AutoAim;
     public Transform BulletSpawner;
     public Bullet BulletPrefab;
+    public int totalBullets = 15;     
+    public int currentBullets = 5;
+    public TMP_Text totalBulletsText;
+    public Image reloadFillImage;
+    public int maxMagazineSize = 5;
+    public bool isReloading = false;
 
     [Header("Auto Controls")]
     public GameObject KnifeObject;
@@ -75,6 +81,8 @@ public class Game_Manager : MonoBehaviour
     public Toggle AutoAimAndAutoShootToggle;
     public Toggle AutoAimAndManualShootToggle;
     public Toggle ManualAimAndShootToggle;
+
+    
 
     private void Awake()
     {
@@ -93,6 +101,8 @@ public class Game_Manager : MonoBehaviour
         yield return new WaitForSeconds(0.5f);
         BoxCount();
         ZombieDoorCount();
+        UpdateUI();
+        reloadFillImage.fillAmount = 0f;
     }
 
     public void EnemyCount()
@@ -232,22 +242,88 @@ public class Game_Manager : MonoBehaviour
     {
        if(ManualAimAndShootToggle.isOn)
        {
-            Bullet bullet = Instantiate(BulletPrefab, BulletSpawner);
-            bullet.transform.localPosition = Vector3.zero;
-            bullet.Target = PlayerMovements.Instance.ManualTarget;
-            bullet.GO = true;
+            if (currentBullets > 0)
+            {
+                currentBullets--;
+                Debug.Log("Shot fired! Bullets left: " + currentBullets);
+                UpdateUI();
+                Bullet bullet = Instantiate(BulletPrefab, BulletSpawner);
+                bullet.transform.localPosition = Vector3.zero;
+                bullet.Target = PlayerMovements.Instance.ManualTarget;
+                bullet.GO = true;
+
+                if (currentBullets == 0)
+                {
+                    StartCoroutine(Reload());
+                }
+            }
+           
        }
        else
        {
             if (AutoAim.currentTarget != null)
             {
-                Bullet bullet = Instantiate(BulletPrefab, BulletSpawner);
-                bullet.transform.localPosition = Vector3.zero;
-                bullet.Target = AutoAim.currentTarget.transform;
-                bullet.GO = true;
+
+                if (currentBullets > 0)
+                {
+                    currentBullets--;
+                    Debug.Log("Shot fired! Bullets left: " + currentBullets);
+                    UpdateUI();
+                    Bullet bullet = Instantiate(BulletPrefab, BulletSpawner);
+                    bullet.transform.localPosition = Vector3.zero;
+                    bullet.Target = AutoAim.currentTarget.transform;
+                    bullet.GO = true;
+
+                    if (currentBullets == 0)
+                    {
+                        StartCoroutine(Reload());
+                    }
+                }
+               
             }
        }
         
+    }
+
+    public void ManualReload()
+    {
+        if(!isReloading && currentBullets < maxMagazineSize && totalBullets > 0)
+        {
+            StartCoroutine(Reload());
+        }
+    }
+
+    IEnumerator Reload()
+    {
+        isReloading = true;
+        Debug.Log("Reloading...");
+
+        reloadFillImage.fillAmount = 0f;
+        float reloadTime = 3f;
+        float elapsed = 0f;
+
+        while (elapsed < reloadTime)
+        {
+            elapsed += Time.deltaTime;
+            reloadFillImage.fillAmount = Mathf.Clamp01(elapsed / reloadTime);
+            yield return null;
+        }
+
+        int bulletsToReload = Mathf.Min(maxMagazineSize, totalBullets);
+        currentBullets = bulletsToReload;
+        totalBullets -= bulletsToReload;
+
+        Debug.Log("Reloaded! Current: " + currentBullets + ", Total: " + totalBullets);
+
+        UpdateUI();
+        reloadFillImage.fillAmount = 0f;
+        isReloading = false;
+    }
+
+    void UpdateUI()
+    {
+        totalBulletsText.text = currentBullets.ToString() + "/"+ totalBullets.ToString();
+       
     }
 
     public void EnableAutoAim()

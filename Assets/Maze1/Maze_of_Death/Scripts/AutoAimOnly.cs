@@ -30,7 +30,7 @@ public class AutoAimOnly : MonoBehaviour
 
     void HandleAutoShoot()
     {
-        if (Game_Manager.Instance.AutoAimAndAutoShootToggle.isOn)
+        if (Game_Manager.Instance.AutoAimAndAutoShootToggle.isOn && !Game_Manager.Instance.isReloading)
         {
             if (currentTarget != null)
             {
