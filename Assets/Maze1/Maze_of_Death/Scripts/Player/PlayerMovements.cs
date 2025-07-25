@@ -72,9 +72,19 @@ public class PlayerMovements : MonoBehaviour
         bool isWalking = moveInput.sqrMagnitude > 0.01f;
         if (isWalking != wasWalking)
         {
-            _Animator.SetBool("isWalking", isWalking);
-            wasWalking = isWalking;
+            if(!Game_Manager.Instance.IsGun)
+            {
+                _Animator.SetBool("isWalking", isWalking);
+                wasWalking = isWalking;
+            }
+            else
+            {
+                _Animator.SetBool("isGun", isWalking);
+                wasWalking = isWalking;
+            }
+            
         }
+
     }
 
     void HandleRotationInput()
