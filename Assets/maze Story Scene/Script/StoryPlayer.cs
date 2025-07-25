@@ -3,6 +3,7 @@ using TMPro;
 using UnityEngine;
 using UnityEngine.UI;
 using UnityEngine.AI;
+using UnityEngine.SceneManagement;
 
 public class StoryPlayer : MonoBehaviour
 {
@@ -11,6 +12,7 @@ public class StoryPlayer : MonoBehaviour
     [Header("References")]
     public Rigidbody2D rb;
     public Animator animatorRef;
+    public Animator fadeAnimator;
     public NavMeshAgent agent;
     public SpriteRenderer playerSprite;
 
@@ -35,6 +37,10 @@ public class StoryPlayer : MonoBehaviour
     public GameObject doorLight;
     public GameObject closeDoor;
     public GameObject openDoor;
+    public GameObject fadeImage;
+    public GameObject attackImage;
+    public bool knifeWalkStart;
+    public bool walkStart;
 
     void Awake()
     {
@@ -73,42 +79,65 @@ public class StoryPlayer : MonoBehaviour
             // Apply velocity
             rb.linearVelocity = moveDir * speed;
 
-            if (FindObjectOfType<knifeBox>().knifeTaken)
-                animatorRef.SetTrigger("knifewalk");
+            if (StoryManager.Instance.knifeTaken && attack==false)
+            {
+                if (knifeWalkStart == false)
+                {
+                    knifeWalkStart = true;
+                    animatorRef.SetTrigger("knifewalk");
+                }
+            }
+
             else
-                animatorRef.SetTrigger("walk");
+            {
+                if (walkStart == false && attack == false)
+                {
+                    walkStart = true;
+                    animatorRef.SetTrigger("walk");
+                }
+            }
+               
+
+
         }
         else
         {
             rb.linearVelocity = Vector2.zero;
 
-            if (FindObjectOfType<knifeBox>().knifeTaken)
+            if (StoryManager.Instance.knifeTaken && attack == false)
             {
-                if (attack)
-                    animatorRef.SetTrigger("attack");
-                else
-                    animatorRef.SetTrigger("knifeidle");
+
+                animatorRef.SetTrigger("knifeidle");
+
             }
             else
             {
-                animatorRef.SetTrigger("idle");
+                if( attack == false)
+                {
+                    animatorRef.SetTrigger("idle");
+                }
+                
             }
         }
     }
 
     private void OnTriggerEnter2D(Collider2D collision)
     {
-        if (collision.CompareTag("EnemyDoor"))
+        Debug.Log("---------------"+ StoryManager.Instance.keyTaken);
+        Debug.Log(StoryManager.Instance.enemyDestory);
+        if (collision.CompareTag("EnemyDoor")  && (StoryManager.Instance.keyTaken) && (StoryManager.Instance.enemyDestory))
         {
             doorLight.SetActive(true);
             light.SetActive(true);
-            Invoke("doorclose", 3f);
+            Invoke("doorclose", 2f);
 
         }
         if (collision.CompareTag("enemy"))
         {
+            
+           
             Debug.Log("Enemyyyyyyyyyy");
-            attack = true;
+            
 
 
         }
@@ -122,6 +151,7 @@ public class StoryPlayer : MonoBehaviour
         }
         if (collision.CompareTag("enemy"))
         {
+            attackImage.SetActive(false);
             Debug.Log("Enemyyyyyyyyyy");
             attack = false;
         }
@@ -131,8 +161,28 @@ public class StoryPlayer : MonoBehaviour
         doorLight.SetActive(false);
         closeDoor.SetActive(true);
         openDoor.SetActive(false);
+        Invoke("fade", 1f);
+       
+       
+    }
+    public void GameScene()
+    {
+        SceneManager.LoadScene("Game");
+    }
+    public void fade()
+    {
+        fadeImage.SetActive(true);
+        fadeAnimator.SetTrigger("fade");
+        GameScene();
     }
 
+    public void AttackFunction()
+    {
+         attack = true;
+        attackImage.SetActive(true);
+        animatorRef.SetTrigger("attack");
+       
+    }
 
 
 }

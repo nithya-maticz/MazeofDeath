@@ -24,4 +24,19 @@ public class s_animationhandle : MonoBehaviour
 
         StoryManager.Instance.SecondBox();
     }
+    
+    public void knifewalk()
+    {
+        StoryPlayer.Instance.knifeWalkStart = false;
+    }
+    public void walk()
+    {
+        StoryPlayer.Instance.walkStart = false;
+    }
+    public void attack()
+    {
+        StoryPlayer.Instance.attackImage.SetActive(false);
+        StoryPlayer.Instance.attack = false;
+    }
 }
+

@@ -1,6 +1,7 @@
 using System.Collections;
 using UnityEngine;
 using UnityEngine.SceneManagement;
+using TMPro;
 
 public class LobbyManager : MonoBehaviour
 {
@@ -11,7 +12,13 @@ public class LobbyManager : MonoBehaviour
     [Header("Pages")]
     public GameObject LoadingPage;
     public GameObject StoryPage;
+    public GameObject LoginPage;
     public GameObject LobbyPage;
+    public TMP_Text levelText;
+    public static string character;
+    public int CharacterIndex;
+    public int currentIndex;
+
 
     [Header("Fader")]
     public Animator Fader;
@@ -24,8 +31,12 @@ public class LobbyManager : MonoBehaviour
     {
         if (!OnTutorial)
         {
-           // LoadingPage.SetActive(true);
-           // StartCoroutine(LoadLobbyWithDelay());
+            LoadingPage.SetActive(true);
+            StartCoroutine(LoadLobbyWithDelay());
+        }
+        if(OnTutorial)
+        {
+            levelText.text = "Maze Level 1";
         }
     }
 
@@ -52,7 +63,7 @@ public class LobbyManager : MonoBehaviour
         {
             Fade();
             LoadingPage.SetActive(false);
-            LobbyPage.SetActive(true);
+            LoginPage.SetActive(true);
         }
     }
 
@@ -64,7 +75,29 @@ public class LobbyManager : MonoBehaviour
     public void PlayGame()
     {
         Fade();
-        SceneManager.LoadScene("Game");
+        OnTutorial = true;
+        SceneManager.LoadScene("Story");
     }
-   
+   public void lobbyPage()
+    {
+        Fade();
+        LoginPage.SetActive(false);
+        LobbyPage.SetActive(true);
+     }
+
+    public void NextCharacterSelection()
+    {
+        character = "female";
+        CharacterIndex = 1;
+    }
+    public void previousCharacterSelection()
+    {
+        character = "male";
+        CharacterIndex = 2;
+    }
+    public void SelectFunction()
+    {
+        currentIndex = CharacterIndex;
+    }
+
 }

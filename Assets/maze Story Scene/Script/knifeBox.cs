@@ -15,7 +15,7 @@ public class knifeBox : MonoBehaviour
     [SerializeField] GameObject FillCanvas;
     public GameObject Box;
    // public GameObject key;
-    public bool knifeTaken;
+   
 
 
     public Animator animatorRef;
@@ -73,7 +73,8 @@ public class knifeBox : MonoBehaviour
 
     IEnumerator OpenBox()
     {
-        textImg.SetActive(true);
+        StoryManager.Instance.content2.SetActive(true);
+       // textImg.SetActive(true);
         FillCanvas.SetActive(true);
         CollideCircle.SetActive(true);
         float timer = 0f;
@@ -95,7 +96,7 @@ public class knifeBox : MonoBehaviour
 
     public void BoxOpened()
     {
-        textImg.SetActive(false);
+        StoryManager.Instance.content2.SetActive(false);
         IsOpened = true;
         Box.SetActive(true);
         blackImage.SetActive(true);
@@ -105,7 +106,8 @@ public class knifeBox : MonoBehaviour
     public void EndAnimation()
     {
         
-        knifeTaken = true;
+       
+        StoryManager.Instance.knifeTaken = true;
         Invoke("textfun", 2f);
         //box.sprite = boxbroke;
     }

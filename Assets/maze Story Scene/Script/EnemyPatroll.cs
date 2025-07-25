@@ -56,16 +56,20 @@ public class EnemyPatroll : MonoBehaviour
     }
     private void OnTriggerEnter2D(Collider2D collision)
     {
-         if (collision.CompareTag("attack"))
+         if (collision.CompareTag("attack") && (StoryManager.Instance.knifeTaken))
         {
-            destory = true;
+            StoryManager.Instance.enemyDestory = true;
             Debug.Log("Attack function");
-            animatorRef.SetTrigger("blood");
-            Invoke("destoryenemy", 0.5f);
+          
+            Invoke("DestoryEnemy",0.5f);
         }
     }
-    public void destoryenemy()
+    
+
+    public void DestoryEnemy()
     {
+       
+        StoryManager.Instance.content5visiblefun();
         Destroy(gameObject);
     }
 }

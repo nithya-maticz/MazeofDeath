@@ -15,7 +15,6 @@ public class KeyBox1 : MonoBehaviour
     [SerializeField] GameObject FillCanvas;
     public GameObject Box;
     public GameObject key;
-    public bool key_taken;
    
 
     public Animator animatorRef;
@@ -104,14 +103,16 @@ public class KeyBox1 : MonoBehaviour
 
     public void EndAnimation()
     {
-        textImg.SetActive(true);
+        StoryManager.Instance.keyTaken = true;
+       
         key.SetActive(true);
         Invoke("textfun", 2f);
         //box.sprite = boxbroke;
     }
     public void textfun()
     {
-       FindObjectOfType<StoryManager>().FillCanvas1.SetActive(false);
+        //StoryManager.Instance.content4visiblefun();
+        FindObjectOfType<StoryManager>().FillCanvas1.SetActive(false);
         textImg.SetActive(false);
 
     }
