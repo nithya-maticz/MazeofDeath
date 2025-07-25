@@ -61,6 +61,30 @@ public class PlayerMovements : MonoBehaviour
 
     void HandleMovementInput()
     {
+        /* moveInput = Vector2.zero;
+
+         if (movementJoystick != null &&
+             (Mathf.Abs(movementJoystick.Horizontal) > 0.1f || Mathf.Abs(movementJoystick.Vertical) > 0.1f))
+         {
+             moveInput = new Vector2(movementJoystick.Vertical, movementJoystick.Horizontal);
+         }
+
+         bool isWalking = moveInput.sqrMagnitude > 0.01f;
+         if (isWalking != wasWalking)
+         {
+             if(!Game_Manager.Instance.IsGun)
+             {
+                 _Animator.SetBool("isWalking", isWalking);
+                 wasWalking = isWalking;
+             }
+             else
+             {
+                 _Animator.SetBool("isGun", isWalking);
+                 wasWalking = isWalking;
+             }
+
+         }*/
+
         moveInput = Vector2.zero;
 
         if (movementJoystick != null &&
@@ -69,21 +93,16 @@ public class PlayerMovements : MonoBehaviour
             moveInput = new Vector2(movementJoystick.Vertical, movementJoystick.Horizontal);
         }
 
+        // Calculate if player is walking
         bool isWalking = moveInput.sqrMagnitude > 0.01f;
-        if (isWalking != wasWalking)
-        {
-            if(!Game_Manager.Instance.IsGun)
-            {
-                _Animator.SetBool("isWalking", isWalking);
-                wasWalking = isWalking;
-            }
-            else
-            {
-                _Animator.SetBool("isGun", isWalking);
-                wasWalking = isWalking;
-            }
-            
-        }
+
+        // Set both animation parameters every frame
+        _Animator.SetBool("isWalking", isWalking);
+        _Animator.SetBool("isGun", Game_Manager.Instance.IsGun);
+
+        // You can use wasWalking if you want to reduce redundant calls
+        wasWalking = isWalking;
+
 
     }
 
