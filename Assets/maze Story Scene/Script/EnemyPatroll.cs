@@ -60,7 +60,7 @@ public class EnemyPatroll : MonoBehaviour
         {
             StoryManager.Instance.enemyDestory = true;
             Debug.Log("Attack function");
-          
+            animatorRef.SetTrigger("blood");
             Invoke("DestoryEnemy",0.5f);
         }
     }

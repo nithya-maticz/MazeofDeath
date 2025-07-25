@@ -14,10 +14,21 @@ public class LobbyManager : MonoBehaviour
     public GameObject StoryPage;
     public GameObject LoginPage;
     public GameObject LobbyPage;
+    public GameObject charPage;
     public TMP_Text levelText;
     public static string character;
     public int CharacterIndex;
     public int currentIndex;
+    public GameObject maleAniChar;
+    public GameObject femaleAniChar;
+    public GameObject maleIcon;
+    public GameObject femaleIcon;
+    public GameObject maleName;
+    public GameObject femaleName;
+    //public GameObject femaleiChar;
+    //public GameObject femaleAniChar;
+
+
 
 
     [Header("Fader")]
@@ -31,8 +42,8 @@ public class LobbyManager : MonoBehaviour
     {
         if (!OnTutorial)
         {
-           // LoadingPage.SetActive(true);
-           // StartCoroutine(LoadLobbyWithDelay());
+            LoadingPage.SetActive(true);
+            StartCoroutine(LoadLobbyWithDelay());
         }
         if(OnTutorial)
         {
@@ -82,7 +93,8 @@ public class LobbyManager : MonoBehaviour
     {
         Fade();
         LoginPage.SetActive(false);
-        LobbyPage.SetActive(true);
+        charPage.SetActive(true);
+       // 
      }
 
     public void NextCharacterSelection()
@@ -95,14 +107,35 @@ public class LobbyManager : MonoBehaviour
         character = "male";
         CharacterIndex = 2;
     }
-    public void SelectFunction()
+   
+
+    public void Character(int index)
     {
-        currentIndex = CharacterIndex;
+        currentIndex = index;
     }
 
-    public void Character(string _name)
+    public void selectfun()
     {
-        
+        Fade();
+        Debug.Log(currentIndex); 
+        LobbyPage.SetActive(true);
+        if(currentIndex==1)
+        {
+            maleAniChar.SetActive(true);
+            femaleAniChar.SetActive(false);
+            femaleName.SetActive(false);
+            femaleIcon.SetActive(false);
+        }
+        else if (currentIndex == 2)
+        {
+            maleAniChar.SetActive(false);
+            femaleAniChar.SetActive(true);
+            femaleName.SetActive(true);
+            femaleIcon.SetActive(true);
+            maleName.SetActive(false);
+            maleIcon.SetActive(false);
+        }
+
     }
 
 }
