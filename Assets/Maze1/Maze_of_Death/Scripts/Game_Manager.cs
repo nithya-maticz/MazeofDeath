@@ -415,6 +415,11 @@ public class Game_Manager : MonoBehaviour
         Scene currentScene = SceneManager.GetActiveScene();
         SceneManager.LoadScene(currentScene.buildIndex);
     }
+
+    public void SceneLoad(string sceneName)
+    {
+        SceneManager.LoadScene(sceneName);
+    }
 }
 
 
