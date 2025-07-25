@@ -64,8 +64,12 @@ public class Game_Manager : MonoBehaviour
     public Bullet BulletPrefab;
 
     [Header("Auto Controls")]
-    public bool IsAutoAim;
-    public bool IsAutoAttck;
+    public GameObject KnifeObject;
+    public Button KnifeButton;
+    public GameObject GunObject;
+    public Button GunButton;
+    public bool IsGun;
+    public bool IsKnife;
     public Toggle AutoAttackToogle;
     public Toggle ManualShootToogle;
     public Toggle AutoAimAndAutoShootToggle;
@@ -252,6 +256,41 @@ public class Game_Manager : MonoBehaviour
 
     public void DiableAutoAim()
     {
+        AutoAim.enabled = false;
+    }
+
+    public void GunChange()
+    {
+        GunObject.SetActive(true);
+        KnifeObject.SetActive(false);
+
+        if(AutoAimAndAutoShootToggle.isOn || AutoAimAndManualShootToggle.isOn)
+        {
+            AutoAim.enabled = false;
+        }
+        else if(ManualAimAndShootToggle.isOn)
+        {
+            AutoAim.enabled = true;
+        }
+        
+
+        
+    }
+
+    public void KnifeChange()
+    {
+        GunObject.SetActive(false);
+        KnifeObject.SetActive(true);
+
+        if(AutoAttackToogle.isOn)
+        {
+            KnifeButton.interactable = false;
+        }
+        else
+        {
+            KnifeButton.interactable= true;
+        }
+
         AutoAim.enabled = false;
     }
 }
