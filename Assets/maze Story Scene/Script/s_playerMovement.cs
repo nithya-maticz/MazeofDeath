@@ -4,150 +4,140 @@ using UnityEngine.EventSystems;
 public class s_playerMovement : MonoBehaviour
 {
     public static s_playerMovement Instance;
-    [Header("Joystick Movement")]
-    public VariableJoystick movementJoystick;
-    public float moveSpeed = 5f;
+    [Header("References")]
+    public Rigidbody2D rb;
+    public Animator animatorRef;
+    // NavMeshAgent agent;
+    public SpriteRenderer playerSprite;
 
-    [Header("Rotation Settings")]
-    public float rotationSensitivity = 0.2f;
+    [Header("UI")]
+    //public Image playerHealthFill;
 
-    [Header("Animations")]
-    public Animator _Animator;
-    private Rigidbody2D rb;
+    [Header("Gameplay")]
+    public GameObject playerCollider;
+    public GameObject light;
 
-    private Vector2 moveInput;
-    private float rotationInput = 0f;
-    private Vector2 lastTouchPosition;
-    private bool isRotating = false;
-    private bool wasWalking = false;
+    [Header("Stats")]
+    public float speed = 5f;
     
-   
 
+    private Coroutine closeDoorCoroutine;
+    private WaitForSeconds waitFor2Sec;
+    public bool IsGetKnife;
 
-    private void Awake()
+    void Awake()
     {
         Instance = this;
-
-    }
-    private void Start()
-    {
-
-       // movementJoystick = StoryManager.Instance.joystick;
+        IsGetKnife = false;
         rb = GetComponent<Rigidbody2D>();
+        waitFor2Sec = new WaitForSeconds(2f);
+        
     }
 
-    // Update is called once per frame
-    private void Update()
+    void Update()
     {
-        HandleMovementInput();
-        HandleRotationInput();
-
-    }
-    private void FixedUpdate()
-    {
-        HandleMovement(); // Do movement in FixedUpdate for better physics stability
-        HandleRotation();
+        HandleMovement();
     }
 
-    void HandleMovementInput()
+    bool wasMovingLastFrame = false;
+
+void HandleMovement()
+{
+    float moveH = StoryManager.Instance.joystick.Vertical;
+    float moveV = StoryManager.Instance.joystick.Horizontal;
+
+    bool isMoving = moveH != 0f || moveV != 0f;
+
+    if (isMoving)
     {
-      
-        _Animator.ResetTrigger("walk");
-        moveInput = Vector2.zero;
+        Vector2 moveDir = new Vector2(moveH, -moveV);
+        rb.linearVelocity = moveDir * speed;
 
-        if (movementJoystick != null &&
-            (Mathf.Abs(movementJoystick.Horizontal) > 0.1f || Mathf.Abs(movementJoystick.Vertical) > 0.1f))
+        float angle = Mathf.Atan2(moveDir.y, moveDir.x) * Mathf.Rad2Deg;
+        Quaternion targetRotation = Quaternion.Euler(0f, 0f, angle + 180f);
+        float rotationSpeed = 720f;
+        transform.rotation = Quaternion.RotateTowards(transform.rotation, targetRotation, rotationSpeed * Time.deltaTime);
+
+        animatorRef.SetFloat("MoveX", moveH);
+        animatorRef.SetFloat("MoveY", -moveV);
+
+        // Trigger only once when movement starts
+        if (!wasMovingLastFrame)
         {
-            moveInput = new Vector2(movementJoystick.Vertical, movementJoystick.Horizontal);
+            animatorRef.SetTrigger("walk");
         }
+    }
+    else
+    {
+        rb.linearVelocity = Vector2.zero;
 
-        bool isWalking = moveInput.sqrMagnitude > 0.01f;
-
-        Debug.Log(isWalking);
-        if (!isWalking && wasWalking)
+        // Trigger only once when stopping
+        if (wasMovingLastFrame)
         {
-            _Animator.ResetTrigger("walk");
-           
+            animatorRef.SetTrigger("idle");
         }
-
-        if (isWalking && (!wasWalking))
-        {
-            _Animator.ResetTrigger("idle");
-          //  _Animator.SetTrigger(isGun ? "WalkWithGun" : "Walk");
-        }
-
-        wasWalking = isWalking;
-       
-
-
-
     }
 
-    void HandleRotationInput()
+    wasMovingLastFrame = isMoving;
+}
+
+
+    private void OnTriggerEnter2D(Collider2D collision)
     {
-        rotationInput = 0f;
-
-#if UNITY_EDITOR
-        if (Input.GetMouseButtonDown(1))
+        /*if (collision.CompareTag("EnemyDoor") && ManagerMaze.instance.isPlayerGetKey)
         {
-            lastTouchPosition = Input.mousePosition;
-            isRotating = true;
-        }
-        else if (Input.GetMouseButton(1) && isRotating)
-        {
-            Vector2 delta = (Vector2)Input.mousePosition - lastTouchPosition;
-            rotationInput = delta.x;
-            lastTouchPosition = Input.mousePosition;
-        }
-        else if (Input.GetMouseButtonUp(1))
-        {
-            isRotating = false;
-        }
-#else
-        foreach (Touch touch in Input.touches)
-        {
-            if (EventSystem.current != null && EventSystem.current.IsPointerOverGameObject(touch.fingerId)) continue;
-            if (touch.position.x < Screen.width / 2f) continue;
-
-            if (touch.phase == TouchPhase.Began)
+            ZombieDoor zombieDoor = collision.GetComponent<ZombieDoor>();
+            if (zombieDoor != null)
             {
-                lastTouchPosition = touch.position;
-                isRotating = true;
-            }
-            else if (touch.phase == TouchPhase.Moved && isRotating)
-            {
-                Vector2 delta = touch.position - lastTouchPosition;
-                rotationInput = -delta.x;
-                lastTouchPosition = touch.position;
-            }
-            else if (touch.phase == TouchPhase.Ended || touch.phase == TouchPhase.Canceled)
-            {
-                isRotating = false;
+                zombieDoor.light.SetActive(true);
+                closeDoorCoroutine = StartCoroutine(CloseDoorAfterDelay(zombieDoor));
             }
         }
-#endif
+        else if (collision.CompareTag("enemy"))
+        {
+            Debug.Log("Inside---------");
+            animatorRef.SetTrigger("playerattack");
+        }*/
     }
 
-    void HandleMovement()
+    private void OnTriggerExit2D(Collider2D collision)
     {
+        /*if (collision.CompareTag("EnemyDoor") && closeDoorCoroutine != null)
+        {
+            StopCoroutine(closeDoorCoroutine);
+            closeDoorCoroutine = null;
 
-        if (moveInput.sqrMagnitude < 0.01f) return;
-
-        Vector3 moveDir = new Vector3(-moveInput.x, moveInput.y, 0f);
-        moveDir = Quaternion.Euler(0, 0, transform.eulerAngles.z) * moveDir;
-
-        rb.MovePosition(rb.position + (Vector2)(moveDir.normalized * moveSpeed * Time.fixedDeltaTime));
+            ZombieDoor zombieDoor = collision.GetComponent<ZombieDoor>();
+            if (zombieDoor != null)
+            {
+                zombieDoor.light.SetActive(false);
+                light.SetActive(true);
+            }
+        }*/
     }
 
-
-    void HandleRotation()
+    private IEnumerator CloseDoorAfterDelay(ZombieDoor zombieDoor)
     {
-        if (Mathf.Abs(rotationInput) < 0.1f) return;
-
-        float rotationDelta = rotationInput * rotationSensitivity;
-        transform.Rotate(Vector3.forward, rotationDelta);
+        yield return waitFor2Sec;
+        light.SetActive(false);
+        CloseDoor(zombieDoor);
     }
 
+    void CloseDoor(ZombieDoor zombieDoor)
+    {
+        if (zombieDoor == null) return;
 
+        zombieDoor.isClosed = true;
+        zombieDoor.sprite.sprite = ManagerMaze.instance.DoorClose;
+        zombieDoor.light.SetActive(false);
+        light.SetActive(true);
+        zombieDoor.GetComponent<BoxCollider2D>().enabled = false;
+
+        Debug.Log("Door closed!");
+        ManagerMaze.instance.DoorClosedCount();
+        ManagerMaze.instance.CheckLevelUp();
+    }
+
+    
 
 }

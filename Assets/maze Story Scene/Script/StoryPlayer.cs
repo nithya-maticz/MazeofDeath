@@ -20,7 +20,7 @@ public class StoryPlayer : MonoBehaviour
     //public Image playerHealthFill;
 
     [Header("Gameplay")]
-    public GameObject playerCollider;
+   // public GameObject playerCollider;
     public GameObject light;
 
     [Header("Stats")]
