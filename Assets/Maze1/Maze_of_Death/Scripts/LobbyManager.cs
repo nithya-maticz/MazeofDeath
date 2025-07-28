@@ -48,6 +48,8 @@ public class LobbyManager : MonoBehaviour
         if(OnTutorial)
         {
             levelText.text = "Maze Level 1";
+            LobbyPage.SetActive(true);
+            LoadingPage.SetActive(false);
         }
     }
 
@@ -85,9 +87,17 @@ public class LobbyManager : MonoBehaviour
     }
     public void PlayGame()
     {
-        Fade();
-        OnTutorial = true;
-        SceneManager.LoadScene("Story");
+        if(!OnTutorial)
+        {
+            Fade();
+            OnTutorial = true;
+            SceneManager.LoadScene("Story");
+        }
+        else
+        {
+            SceneManager.LoadScene("Game");
+        }
+       
     }
    public void lobbyPage()
     {
