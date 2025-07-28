@@ -1,6 +1,6 @@
 using System.Collections;
 using UnityEngine;
-
+using UnityEngine.EventSystems;
 public class s_playerMovement : MonoBehaviour
 {
     public static s_playerMovement Instance;
