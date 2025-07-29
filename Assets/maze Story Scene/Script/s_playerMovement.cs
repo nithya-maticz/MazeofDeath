@@ -1,6 +1,8 @@
 using System.Collections;
 using UnityEngine;
 using UnityEngine.EventSystems;
+using UnityEngine.SceneManagement;
+
 public class s_playerMovement : MonoBehaviour
 {
     public static s_playerMovement Instance;
@@ -17,20 +19,24 @@ public class s_playerMovement : MonoBehaviour
     public GameObject playerCollider;
     public GameObject light;
 
+    public GameObject closeDoor;
+
     [Header("Stats")]
     public float speed = 5f;
     
 
-    private Coroutine closeDoorCoroutine;
-    private WaitForSeconds waitFor2Sec;
+    
     public bool IsGetKnife;
+    public bool attackEnemy;
+    public GameObject fadeImage;
+    public Animator fadeAnimator;
 
     void Awake()
     {
         Instance = this;
         IsGetKnife = false;
         rb = GetComponent<Rigidbody2D>();
-        waitFor2Sec = new WaitForSeconds(2f);
+        
         
     }
 
@@ -40,8 +46,9 @@ public class s_playerMovement : MonoBehaviour
     }
 
     bool wasMovingLastFrame = false;
+    private bool wasKeyTakenLastFrame = false;
 
-void HandleMovement()
+    void HandleMovement()
 {
     float moveH = StoryManager.Instance.joystick.Vertical;
     float moveV = StoryManager.Instance.joystick.Horizontal;
@@ -58,13 +65,22 @@ void HandleMovement()
         float rotationSpeed = 720f;
         transform.rotation = Quaternion.RotateTowards(transform.rotation, targetRotation, rotationSpeed * Time.deltaTime);
 
-        animatorRef.SetFloat("MoveX", moveH);
-        animatorRef.SetFloat("MoveY", -moveV);
+        /*animatorRef.SetFloat("MoveX", moveH);
+        animatorRef.SetFloat("MoveY", -moveV);*/
 
         // Trigger only once when movement starts
         if (!wasMovingLastFrame)
         {
-            animatorRef.SetTrigger("walk");
+                if(StoryManager.Instance.knifeTaken)
+                {
+                  
+                    animatorRef.SetTrigger("knifewalk");
+                }
+                else
+                {
+                    animatorRef.SetTrigger("walk");
+                }
+                    
         }
     }
     else
@@ -74,7 +90,15 @@ void HandleMovement()
         // Trigger only once when stopping
         if (wasMovingLastFrame)
         {
-            animatorRef.SetTrigger("idle");
+                if (StoryManager.Instance.knifeTaken)
+                {
+                    animatorRef.SetTrigger("knifeidle");
+                }
+                else
+                {
+                    animatorRef.SetTrigger("idle");
+                }
+                
         }
     }
 
@@ -84,60 +108,61 @@ void HandleMovement()
 
     private void OnTriggerEnter2D(Collider2D collision)
     {
-        /*if (collision.CompareTag("EnemyDoor") && ManagerMaze.instance.isPlayerGetKey)
+        if(collision.CompareTag("enemy"))
         {
-            ZombieDoor zombieDoor = collision.GetComponent<ZombieDoor>();
-            if (zombieDoor != null)
-            {
-                zombieDoor.light.SetActive(true);
-                closeDoorCoroutine = StartCoroutine(CloseDoorAfterDelay(zombieDoor));
-            }
-        }
-        else if (collision.CompareTag("enemy"))
-        {
+            attackEnemy = true;
             Debug.Log("Inside---------");
-            animatorRef.SetTrigger("playerattack");
-        }*/
+           // animatorRef.SetTrigger("playerattack");
+        }
+          else if (collision.CompareTag("EnemyDoor") && StoryManager.Instance.keyTaken)
+        {
+            light.SetActive(true);
+            Invoke("LightInvisible", 2f);
+
+        }
+       
     }
 
     private void OnTriggerExit2D(Collider2D collision)
     {
-        /*if (collision.CompareTag("EnemyDoor") && closeDoorCoroutine != null)
+        if (collision.CompareTag("enemy"))
         {
-            StopCoroutine(closeDoorCoroutine);
-            closeDoorCoroutine = null;
+            attackEnemy = false;
+            Debug.Log("Inside---------");
+           // animatorRef.SetTrigger("playerattack");
+        }
+        else if (collision.CompareTag("EnemyDoor"))
+        {
+            light.SetActive(false);
+          
 
-            ZombieDoor zombieDoor = collision.GetComponent<ZombieDoor>();
-            if (zombieDoor != null)
-            {
-                zombieDoor.light.SetActive(false);
-                light.SetActive(true);
-            }
-        }*/
+        }
+
     }
-
-    private IEnumerator CloseDoorAfterDelay(ZombieDoor zombieDoor)
+    public void LightInvisible()
     {
-        yield return waitFor2Sec;
         light.SetActive(false);
-        CloseDoor(zombieDoor);
+        closeDoor.SetActive(true);
+        fade();
     }
-
-    void CloseDoor(ZombieDoor zombieDoor)
+    public void GameScene()
     {
-        if (zombieDoor == null) return;
-
-        zombieDoor.isClosed = true;
-        zombieDoor.sprite.sprite = ManagerMaze.instance.DoorClose;
-        zombieDoor.light.SetActive(false);
-        light.SetActive(true);
-        zombieDoor.GetComponent<BoxCollider2D>().enabled = false;
-
-        Debug.Log("Door closed!");
-        ManagerMaze.instance.DoorClosedCount();
-        ManagerMaze.instance.CheckLevelUp();
+        SceneManager.LoadScene("Game");
+    }
+    public void fade()
+    {
+        fadeImage.SetActive(true);
+        fadeAnimator.SetTrigger("fade");
+        
     }
 
-    
+
+
+    public void AttackFun()
+    {
+        animatorRef.SetTrigger("attack");
+    }
+
+   
 
 }

@@ -38,5 +38,17 @@ public class s_animationhandle : MonoBehaviour
         StoryPlayer.Instance.attackImage.SetActive(false);
         StoryPlayer.Instance.attack = false;
     }
+
+     void AttackEnemyFunction()
+    {
+       
+
+        StoryManager.Instance.CheckEnemyRange();
+        StoryManager.Instance.knifeAttack = false;
+    }
+    void fadeImage()
+    {
+        s_playerMovement.Instance.GameScene();
+    }
 }
 

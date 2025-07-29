@@ -65,13 +65,11 @@ public class knifeBox : MonoBehaviour
                 CollideCircle.SetActive(false);
                 StopCoroutine(currentCoroutine);
                 currentCoroutine = null;
-
                 fillImage.fillAmount = 0;
                 FillSeconds = 0;
             }
         }
     }
-
     IEnumerator OpenBox()
     {
         
@@ -109,7 +107,8 @@ public class knifeBox : MonoBehaviour
         
        
         StoryManager.Instance.knifeTaken = true;
-        Invoke("textfun", 2f);
+        print("knife" + StoryManager.Instance.knifeTaken);
+        Invoke("textfun", 1f);
         //box.sprite = boxbroke;
     }
     public void textfun()

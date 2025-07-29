@@ -32,8 +32,9 @@ public class StoryManager : MonoBehaviour
     public GameObject knifecontent4;
     public GameObject content;
     public GameObject blackscreen;
+    public GameObject doorContent;
 
-  
+
 
     [Header("Enemy Attributes")]
     public GameObject BloodPrefab;
@@ -49,6 +50,9 @@ public class StoryManager : MonoBehaviour
     public int PlayerHealthCount;
     public List<Sprite> HealthSprites;
     public Image HealthImage;
+    public bool knifeAttack;
+    public bool destoryEnemy;
+   
 
 
     void Start()
@@ -83,7 +87,8 @@ public class StoryManager : MonoBehaviour
     
     public void AttackFun()
     {
-        StoryPlayer.Instance.AttackFunction();
+        knifeAttack = true;
+        s_playerMovement.Instance.AttackFun();
     }
 
     public void delayknife()
@@ -92,4 +97,29 @@ public class StoryManager : MonoBehaviour
         knifecontent4.SetActive(true);
        
     }
+
+
+
+
+    public void CheckEnemyRange()
+    {
+        Debug.Log("Range " + s_enemy.Instance.isAttackRange);
+        Debug.Log("knifeAttack " + knifeAttack);
+
+        if (s_enemy.Instance.isAttackRange && knifeAttack)
+        {
+            GameObject blood = Instantiate(BloodPrefab, s_enemy.Instance.transform.position, Quaternion.identity);
+            Destroy(s_enemy.Instance.gameObject);
+            Invoke("contentfun", 1f);
+        }
+    }
+
+    public void contentfun()
+    {
+        doorContent.SetActive(true);
+    }
+
+
 }
+
+

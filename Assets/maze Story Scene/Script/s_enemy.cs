@@ -8,7 +8,8 @@ using UnityEngine.UI;
 
 public class s_enemy : MonoBehaviour
 {
-   /* [Header("Movement Settings")]
+    public static s_enemy Instance;
+    [Header("Movement Settings")]
     public float speed = 3f;
     public float stopThreshold = 0.1f;
     public float repathThreshold = 0.5f;
@@ -39,8 +40,8 @@ public class s_enemy : MonoBehaviour
     private Rigidbody2D rb;
     private bool isCollidingWithPlayer = false;
     private CircleCollider2D myCollider;
-
-    public bool isPatrolDoor;
+    public bool isAttackRange;
+   
 
     public GameObject TargetLocked;
 
@@ -48,23 +49,18 @@ public class s_enemy : MonoBehaviour
     public int Health = 3;
     public int maxHealth = 3;
 
-    public GameObject HealthParent;
-    public Image FillHealth;
-    private Coroutine hideHealthCoroutine;
+    private void Awake()
+    {
+        Instance = this;
+    }
+
 
     private void Start()
     {
-        UpdateHealthUI();
-        HealthParent.SetActive(false);
+       
+        
         if (s_playerMovement.Instance != null)
             player = s_playerMovement.Instance.transform;
-
-
-        if (!isPatrolDoor)
-        {
-            patrolPoints = new List<Transform>(Game_Manager.Instance.PatrolPoints);
-           // ShuffleList(patrolPoints);
-        }
 
 
         lastTargetPosition = patrolPoints[patrolIndex].position;
@@ -79,8 +75,13 @@ public class s_enemy : MonoBehaviour
         while (true)
         {
             Vector3 destination;
-            bool visible = IsPlayerVisibleInBack();
-
+            bool visible=false;
+            if (StoryManager.Instance.keyTaken)
+            {
+                visible = IsPlayerVisibleInBack();
+            }
+          
+          
             if (visible)
             {
                 playerDetected = true;
@@ -177,13 +178,14 @@ public class s_enemy : MonoBehaviour
         if (angle > rearViewAngle * 0.5f) return false;
 
         RaycastHit2D hit = Physics2D.Raycast(origin, dirToPlayer, detectionRange, playerMask | obstacleMask);
-        return hit.collider != null && hit.collider.CompareTag("Player");
+        return hit.collider != null && (hit.collider.CompareTag("Player") || hit.collider.CompareTag("PlayerRange"));
     }
 
 
 
     private void OnCollisionEnter2D(Collision2D collision)
     {
+
         if (collision.collider.CompareTag("Player"))
         {
             isCollidingWithPlayer = true;
@@ -191,22 +193,36 @@ public class s_enemy : MonoBehaviour
             animator.SetTrigger("Attack");
         }
 
-        if (!isChasingPlayer && collision.gameObject.CompareTag("enemy"))
+    }
+
+    private void OnTriggerEnter2D(Collider2D collision)
+    {
+        if (collision.CompareTag("PlayerRange") )
         {
-            myCollider.isTrigger = true;
+            Debug.Log("Attack function");
+            isAttackRange = true;
+            StoryManager.Instance.destoryEnemy = true;
+            animator.SetTrigger("Attack");
         }
     }
+    private void OnTriggerExit2D(Collider2D collision)
+    {
+        if (collision.CompareTag("PlayerRange"))
+        {
+            isAttackRange = false;
+        }
+          
+    }
+
 
     private void OnCollisionStay2D(Collision2D collision)
     {
-        if (!isChasingPlayer && collision.gameObject.CompareTag("enemy"))
-        {
-            myCollider.isTrigger = true;
-        }
+      
     }
 
     private void OnCollisionExit2D(Collision2D collision)
     {
+
         if (collision.collider.CompareTag("Player"))
         {
             isCollidingWithPlayer = false;
@@ -214,57 +230,18 @@ public class s_enemy : MonoBehaviour
             animator.SetTrigger("Walk");
         }
 
-
     }
 
-
-    private void OnTriggerEnter2D(Collider2D collision)
+    public void DestoryEnemy()
     {
-       *//* if (collision.CompareTag("Bullet"))
-        {
-            Destroy(collision.gameObject);
-
-            Health--;
-
-            if (Health <= 0)
-            {
-                GameObject blood = Instantiate(Game_Manager.Instance.BloodPrefab, gameObject.transform.position, Quaternion.identity);
-              //  Game_Manager.Instance.Enemies.Remove(this);
-                Destroy(gameObject);
-                Game_Manager.Instance.EnemyCount();
-                return;
-            }
-
-            UpdateHealthUI();
-
-            // Show health UI
-            HealthParent.SetActive(true);
-
-            // Restart 1-second timer to hide health bar
-            if (hideHealthCoroutine != null)
-                StopCoroutine(hideHealthCoroutine);
-
-            hideHealthCoroutine = StartCoroutine(HideHealthAfterDelay());
-        }*//*
-    }
-    private void OnTriggerExit2D(Collider2D collision)
-    {
-        if (!isChasingPlayer && collision.gameObject.CompareTag("enemy"))
-        {
-            myCollider.isTrigger = false;
-        }
+        Destroy(gameObject);
     }
 
-    void UpdateHealthUI()
-    {
-        FillHealth.fillAmount = (float)Health / maxHealth;
-    }
 
-    IEnumerator HideHealthAfterDelay()
-    {
-        yield return new WaitForSeconds(1f);
-        HealthParent.SetActive(false);
-    }
+
+
+
+
 
     private void OnDrawGizmosSelected()
     {
@@ -289,24 +266,16 @@ public class s_enemy : MonoBehaviour
             Gizmos.DrawRay(origin, toPlayer.normalized * toPlayer.magnitude);
     }
 
-    void ShuffleList(List<Transform> list)
-    {
-        for (int i = 0; i < list.Count; i++)
-        {
-            int randomIndex = Random.Range(i, list.Count);
-            Transform temp = list[i];
-            list[i] = list[randomIndex];
-            list[randomIndex] = temp;
-        }
-    }
 
     void Attack()
     {
         if (isCollidingWithPlayer)
         {
-            Game_Manager.Instance.PlayerHealthCount -= 1;
-            Game_Manager.Instance.UpdatePlayerHealth();
+            /*Game_Manager.Instance.PlayerHealthCount -= 1;
+            Game_Manager.Instance.UpdatePlayerHealth();*/
         }
     }
-*/
+
+
+
 }

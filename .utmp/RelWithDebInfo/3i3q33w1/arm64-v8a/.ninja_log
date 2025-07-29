@@ -21,3 +21,5 @@
 30	1164	7747967496583267	GameActivity/CMakeFiles/game.dir/UGAInput.cpp.o	96ae00972e8958d9
 8	1244	7747967497388103	GameActivity/CMakeFiles/game.dir/UGAApplication.cpp.o	7fa605334c043a06
 1245	1358	7747967498551110	E:/Maticz/Unity/Unity6/MazeofDeath/Library/Bee/Android/Prj/IL2CPP/Gradle/unityLibrary/build/intermediates/cxx/RelWithDebInfo/3i3q33w1/obj/arm64-v8a/libgame.so	2c8700c54b46f7d3
+2	248	7754981754753609	FramePacing/CMakeFiles/swappywrapper.dir/UnitySwappyWrapper.cpp.o	93dfc8061bca2aa4
+248	398	7754981756255322	E:/Maticz/Unity/Unity6/MazeofDeath/Library/Bee/Android/Prj/IL2CPP/Gradle/unityLibrary/build/intermediates/cxx/RelWithDebInfo/3i3q33w1/obj/arm64-v8a/libswappywrapper.so	4f5f3b6842ab33a0
