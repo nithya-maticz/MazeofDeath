@@ -14,8 +14,9 @@ public class knifeBox : MonoBehaviour
     [SerializeField] GameObject CollideCircle;
     [SerializeField] GameObject FillCanvas;
     public GameObject Box;
-   // public GameObject key;
-   
+    public GameObject content3;
+    // public GameObject key;
+
 
 
     public Animator animatorRef;
@@ -45,7 +46,7 @@ public class knifeBox : MonoBehaviour
     {
         if (collision.gameObject.CompareTag("PlayerRange") && !IsOpened)
         {
-
+            content3.SetActive(false);
             if (currentCoroutine == null)
             {
                 currentCoroutine = StartCoroutine(OpenBox());
@@ -73,7 +74,7 @@ public class knifeBox : MonoBehaviour
 
     IEnumerator OpenBox()
     {
-        StoryManager.Instance.content2.SetActive(true);
+        
        // textImg.SetActive(true);
         FillCanvas.SetActive(true);
         CollideCircle.SetActive(true);
@@ -96,7 +97,7 @@ public class knifeBox : MonoBehaviour
 
     public void BoxOpened()
     {
-        StoryManager.Instance.content2.SetActive(false);
+       
         IsOpened = true;
         Box.SetActive(true);
         blackImage.SetActive(true);

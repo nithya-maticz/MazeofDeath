@@ -69,7 +69,7 @@ public class EnemyPatroll : MonoBehaviour
     public void DestoryEnemy()
     {
        
-        StoryManager.Instance.content5visiblefun();
+       
         Destroy(gameObject);
     }
 }

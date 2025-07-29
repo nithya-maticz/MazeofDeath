@@ -15,7 +15,9 @@ public class KeyBox1 : MonoBehaviour
     [SerializeField] GameObject FillCanvas;
     public GameObject Box;
     public GameObject key;
-   
+
+    public GameObject content5;
+
 
     public Animator animatorRef;
     public GameObject textImg;
@@ -44,7 +46,7 @@ public class KeyBox1 : MonoBehaviour
     {
         if (collision.gameObject.CompareTag("PlayerRange") && !IsOpened)
         {
-           
+            content5.SetActive(false);
             if (currentCoroutine == null)
             {
                 currentCoroutine = StartCoroutine(OpenBox());
@@ -104,16 +106,9 @@ public class KeyBox1 : MonoBehaviour
     public void EndAnimation()
     {
         StoryManager.Instance.keyTaken = true;
-       
         key.SetActive(true);
-        Invoke("textfun", 2f);
-        //box.sprite = boxbroke;
-    }
-    public void textfun()
-    {
-        //StoryManager.Instance.content4visiblefun();
         FindObjectOfType<StoryManager>().FillCanvas1.SetActive(false);
         textImg.SetActive(false);
-
     }
+   
 }
