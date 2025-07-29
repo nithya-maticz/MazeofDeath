@@ -8,7 +8,7 @@ using UnityEngine.UI;
 
 public class s_enemy : MonoBehaviour
 {
-    [Header("Movement Settings")]
+   /* [Header("Movement Settings")]
     public float speed = 3f;
     public float stopThreshold = 0.1f;
     public float repathThreshold = 0.5f;
@@ -56,14 +56,14 @@ public class s_enemy : MonoBehaviour
     {
         UpdateHealthUI();
         HealthParent.SetActive(false);
-        if (PlayerMovements.Instance != null)
-            player = PlayerMovements.Instance.transform;
+        if (s_playerMovement.Instance != null)
+            player = s_playerMovement.Instance.transform;
 
 
         if (!isPatrolDoor)
         {
             patrolPoints = new List<Transform>(Game_Manager.Instance.PatrolPoints);
-            ShuffleList(patrolPoints);
+           // ShuffleList(patrolPoints);
         }
 
 
@@ -220,7 +220,7 @@ public class s_enemy : MonoBehaviour
 
     private void OnTriggerEnter2D(Collider2D collision)
     {
-       /* if (collision.CompareTag("Bullet"))
+       *//* if (collision.CompareTag("Bullet"))
         {
             Destroy(collision.gameObject);
 
@@ -245,7 +245,7 @@ public class s_enemy : MonoBehaviour
                 StopCoroutine(hideHealthCoroutine);
 
             hideHealthCoroutine = StartCoroutine(HideHealthAfterDelay());
-        }*/
+        }*//*
     }
     private void OnTriggerExit2D(Collider2D collision)
     {
@@ -308,5 +308,5 @@ public class s_enemy : MonoBehaviour
             Game_Manager.Instance.UpdatePlayerHealth();
         }
     }
-
+*/
 }

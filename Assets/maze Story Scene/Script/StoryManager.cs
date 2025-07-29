@@ -33,6 +33,7 @@ public class StoryManager : MonoBehaviour
     public GameObject content;
     public GameObject blackscreen;
 
+  
 
     [Header("Enemy Attributes")]
     public GameObject BloodPrefab;
