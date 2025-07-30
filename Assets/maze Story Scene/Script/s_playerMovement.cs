@@ -1,4 +1,5 @@
 using System.Collections;
+using Unity.VisualScripting;
 using UnityEngine;
 using UnityEngine.EventSystems;
 using UnityEngine.SceneManagement;
@@ -30,6 +31,7 @@ public class s_playerMovement : MonoBehaviour
     public bool attackEnemy;
     public GameObject fadeImage;
     public Animator fadeAnimator;
+    public bool reach;
 
     void Awake()
     {
@@ -117,6 +119,7 @@ public class s_playerMovement : MonoBehaviour
           else if (collision.CompareTag("EnemyDoor") && StoryManager.Instance.keyTaken)
         {
             light.SetActive(true);
+            reach = true;
             Invoke("LightInvisible", 2f);
 
         }
@@ -133,6 +136,7 @@ public class s_playerMovement : MonoBehaviour
         }
         else if (collision.CompareTag("EnemyDoor"))
         {
+            reach = false;
             light.SetActive(false);
           
 
@@ -141,9 +145,13 @@ public class s_playerMovement : MonoBehaviour
     }
     public void LightInvisible()
     {
-        light.SetActive(false);
-        closeDoor.SetActive(true);
-        fade();
+        if(reach)
+        {
+            light.SetActive(false);
+            closeDoor.SetActive(true);
+            fade();
+        }
+       
     }
     public void GameScene()
     {

@@ -1,0 +1,12 @@
+# ninja log v5
+121	1210	7755558321009072	FramePacing/CMakeFiles/swappywrapper.dir/UnitySwappyWrapper.cpp.o	c4f57831091382b5
+1215	1947	7755558327551904	E:/Maticz/Unity/Unity6/MazeofDeath/Library/Bee/Android/Prj/IL2CPP/Gradle/unityLibrary/build/intermediates/cxx/RelWithDebInfo/483w3540/obj/arm64-v8a/libswappywrapper.so	2405fe39b61f8a2d
+22	3097	7755558339925514	GameActivity/CMakeFiles/game.dir/UGAConfiguration.cpp.o	49e2793750bb9415
+109	3153	7755558340336907	GameActivity/CMakeFiles/game.dir/UGASoftKeyboard.cpp.o	ec5b2713ed5dfd20
+86	3183	7755558340529969	GameActivity/CMakeFiles/game.dir/UGAInputKeyEvent.cpp.o	74f2fd7e56059da1
+77	3191	7755558341642017	GameActivity/CMakeFiles/game.dir/UGAEntry.cpp.o	f549ea697bdc57db
+99	3224	7755558342554886	GameActivity/CMakeFiles/game.dir/UGAInputMotionEvent.cpp.o	7eb6432b07499959
+1	3424	7755558344345040	GameActivity/CMakeFiles/game.dir/UGADebug.cpp.o	5465108c1c866d07
+30	3696	7755558347581545	GameActivity/CMakeFiles/game.dir/UGAInput.cpp.o	977a083c30b1c4d2
+12	3747	7755558348084127	GameActivity/CMakeFiles/game.dir/UGAApplication.cpp.o	98d0e5a55591c420
+3748	3910	7755558349896250	E:/Maticz/Unity/Unity6/MazeofDeath/Library/Bee/Android/Prj/IL2CPP/Gradle/unityLibrary/build/intermediates/cxx/RelWithDebInfo/483w3540/obj/arm64-v8a/libgame.so	3a54be9d7a680db7

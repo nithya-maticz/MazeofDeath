@@ -2,6 +2,7 @@ using System.Collections;
 using UnityEngine;
 using UnityEngine.SceneManagement;
 using TMPro;
+using UnityEngine.UI;
 
 public class LobbyManager : MonoBehaviour
 {
@@ -16,15 +17,21 @@ public class LobbyManager : MonoBehaviour
     public GameObject LobbyPage;
     public GameObject charPage;
     public TMP_Text levelText;
-    public static string character;
-    public int CharacterIndex;
-    public int currentIndex;
+
+    [Header("Character Selection")]
+    public static int currentIndex;
+   
+
+    [Header("Lobby")]
     public GameObject maleAniChar;
     public GameObject femaleAniChar;
-    public GameObject maleIcon;
-    public GameObject femaleIcon;
-    public GameObject maleName;
-    public GameObject femaleName;
+    public Image lobbyCharIcon;
+    public Image lobbyCharName;
+    public Sprite lobbyMaleIcon;
+    public Sprite lobbyMaleName;
+    public Sprite lobbyFemaleIcon;
+    public Sprite lobbyFemaleName;
+
     //public GameObject femaleiChar;
     //public GameObject femaleAniChar;
 
@@ -42,8 +49,8 @@ public class LobbyManager : MonoBehaviour
     {
         if (!OnTutorial)
         {
-            LoadingPage.SetActive(true);
-            StartCoroutine(LoadLobbyWithDelay());
+           LoadingPage.SetActive(true);
+           StartCoroutine(LoadLobbyWithDelay());
         }
         if(OnTutorial)
         {
@@ -107,16 +114,6 @@ public class LobbyManager : MonoBehaviour
        // 
      }
 
-    public void NextCharacterSelection()
-    {
-        character = "female";
-        CharacterIndex = 1;
-    }
-    public void previousCharacterSelection()
-    {
-        character = "male";
-        CharacterIndex = 2;
-    }
    
 
     public void Character(int index)
@@ -133,17 +130,16 @@ public class LobbyManager : MonoBehaviour
         {
             maleAniChar.SetActive(true);
             femaleAniChar.SetActive(false);
-            femaleName.SetActive(false);
-            femaleIcon.SetActive(false);
+            lobbyCharIcon.sprite = lobbyMaleIcon;
+            lobbyCharName.sprite = lobbyMaleName;
+            
         }
         else if (currentIndex == 2)
         {
             maleAniChar.SetActive(false);
             femaleAniChar.SetActive(true);
-            femaleName.SetActive(true);
-            femaleIcon.SetActive(true);
-            maleName.SetActive(false);
-            maleIcon.SetActive(false);
+            lobbyCharIcon.sprite = lobbyFemaleIcon;
+            lobbyCharName.sprite = lobbyFemaleName;
         }
 
     }
