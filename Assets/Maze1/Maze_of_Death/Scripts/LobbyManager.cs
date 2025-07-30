@@ -49,8 +49,8 @@ public class LobbyManager : MonoBehaviour
     {
         if (!OnTutorial)
         {
-           LoadingPage.SetActive(true);
-           StartCoroutine(LoadLobbyWithDelay());
+           //LoadingPage.SetActive(true);
+          // StartCoroutine(LoadLobbyWithDelay());
         }
         if(OnTutorial)
         {
