@@ -81,8 +81,11 @@ public class Game_Manager : MonoBehaviour
     //public Toggle AutoAimAndAutoShootToggle;
     public Toggle AutoAimAndManualShootToggle;
     public Toggle ManualAimAndShootToggle;
+    public Transform playerTransform;
+    public GameObject playerPrefab;
+    public GameObject F_PlayerPrefab;
 
-    
+
 
     private void Awake()
     {
@@ -90,9 +93,32 @@ public class Game_Manager : MonoBehaviour
         Application.targetFrameRate = 60;
         QualitySettings.vSyncCount = 0;
     }
-
-    IEnumerator Start()
+    void Start()
     {
+      
+        StartCoroutine(StartGame());
+    }
+
+    IEnumerator StartGame()
+    {
+        Debug.Log("LOBBY    " );
+
+        Instantiate(playerPrefab, playerTransform.transform);
+        SmoothFollowCamera.Instance.target = PlayerMovements.Instance.offSet;
+
+        if (LobbyManager.currentIndex == 1)
+        {
+            Debug.Log("Male");
+            Instantiate(playerPrefab, playerTransform.transform);
+            SmoothFollowCamera.Instance.target = PlayerMovements.Instance.offSet;
+        }
+        else if (LobbyManager.currentIndex == 2)
+        {
+            Debug.Log("Female");
+            Instantiate(F_PlayerPrefab, playerTransform.transform);
+            SmoothFollowCamera.Instance.target = PlayerMovements.Instance.offSet;
+        }
+
         QualitySettings.vSyncCount = 0; 
         AutoAim = AutoAimOnly.Instance;
         PlayerHealthCount = 4;
@@ -102,6 +128,7 @@ public class Game_Manager : MonoBehaviour
         yield return new WaitForSeconds(0.5f);
         BoxCount();
         ZombieDoorCount();
+      
        
     }
 

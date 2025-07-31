@@ -6007,7 +6007,7 @@ MonoBehaviour:
   m_OnCullStateChanged:
     m_PersistentCalls:
       m_Calls: []
-  m_text: Tutorial
+  m_text: Maze Level 1
   m_isRightToLeft: 0
   m_fontAsset: {fileID: 11400000, guid: c7db0377fbbef124aaf75e98691b0eb0, type: 2}
   m_sharedMaterial: {fileID: 6634475634734129892, guid: c7db0377fbbef124aaf75e98691b0eb0, type: 2}

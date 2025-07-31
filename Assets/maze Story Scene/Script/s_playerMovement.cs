@@ -155,7 +155,7 @@ public class s_playerMovement : MonoBehaviour
     }
     public void GameScene()
     {
-        SceneManager.LoadScene("Game");
+        SceneManager.LoadScene("Lobby");
     }
     public void fade()
     {

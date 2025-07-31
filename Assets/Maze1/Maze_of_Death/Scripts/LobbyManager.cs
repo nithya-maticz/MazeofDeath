@@ -8,6 +8,7 @@ public class LobbyManager : MonoBehaviour
 {
     public static LobbyManager Instance;
     public static bool OnTutorial;
+    public static bool OnRetry;
     public bool IsNewUser;
 
     [Header("Pages")]
@@ -47,16 +48,28 @@ public class LobbyManager : MonoBehaviour
     }
     void Start()
     {
+        print("ssss");
         if (!OnTutorial)
         {
-           //LoadingPage.SetActive(true);
-          // StartCoroutine(LoadLobbyWithDelay());
+           LoadingPage.SetActive(true);
+          StartCoroutine(LoadLobbyWithDelay());
         }
         if(OnTutorial)
         {
-            levelText.text = "Maze Level 1";
-            LobbyPage.SetActive(true);
-            LoadingPage.SetActive(false);
+            if(OnRetry)
+            {
+                LobbyPage.SetActive(true);
+                changeLobby();
+            }
+            else
+            {
+                OnRetry = true;
+                charPage.SetActive(true);
+            }
+               
+           /* levelText.text = "Maze Level 1";
+            
+            LoadingPage.SetActive(false);*/
         }
     }
 
@@ -102,17 +115,20 @@ public class LobbyManager : MonoBehaviour
         }
         else
         {
-            SceneManager.LoadScene("Game");
+            Fade();
+            SceneManager.LoadScene("Game1");
         }
        
     }
    public void lobbyPage()
     {
         Fade();
+        OnTutorial = true;
         LoginPage.SetActive(false);
-        charPage.SetActive(true);
-       // 
-     }
+        SceneManager.LoadScene("Story");
+        //
+        // 
+    }
 
    
 
@@ -126,13 +142,18 @@ public class LobbyManager : MonoBehaviour
         Fade();
         Debug.Log(currentIndex); 
         LobbyPage.SetActive(true);
-        if(currentIndex==1)
+        changeLobby();
+
+    }
+    public void changeLobby()
+    {
+        if (currentIndex == 1)
         {
             maleAniChar.SetActive(true);
             femaleAniChar.SetActive(false);
             lobbyCharIcon.sprite = lobbyMaleIcon;
             lobbyCharName.sprite = lobbyMaleName;
-            
+
         }
         else if (currentIndex == 2)
         {
@@ -141,7 +162,6 @@ public class LobbyManager : MonoBehaviour
             lobbyCharIcon.sprite = lobbyFemaleIcon;
             lobbyCharName.sprite = lobbyFemaleName;
         }
-
     }
 
 }

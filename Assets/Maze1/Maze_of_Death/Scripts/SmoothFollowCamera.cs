@@ -5,6 +5,7 @@ public class SmoothFollowCamera : MonoBehaviour
     [Header("Target Settings")]
     public Transform target;
     public Vector3 offset = new Vector3(0, 0, -10f);
+    public static SmoothFollowCamera Instance;
 
     [Header("Smooth Settings")]
     [Tooltip("How quickly the camera follows position.")]
@@ -19,8 +20,15 @@ public class SmoothFollowCamera : MonoBehaviour
 
     private Rigidbody2D targetRb; // Cache target Rigidbody2D for interpolation check
 
+    private void Awake()
+    {
+        Instance = this;
+
+    }
+
     void Start()
     {
+       
         if (target != null)
         {
             targetRb = target.GetComponent<Rigidbody2D>();
@@ -30,6 +38,7 @@ public class SmoothFollowCamera : MonoBehaviour
                 targetRb.interpolation = RigidbodyInterpolation2D.Interpolate;
             }
         }
+        
     }
 
     void LateUpdate()
