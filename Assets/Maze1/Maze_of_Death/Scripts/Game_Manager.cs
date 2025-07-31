@@ -87,6 +87,7 @@ public class Game_Manager : MonoBehaviour
 
 
 
+
     private void Awake()
     {
         Instance = this;

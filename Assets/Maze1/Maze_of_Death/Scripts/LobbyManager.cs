@@ -69,9 +69,7 @@ public class LobbyManager : MonoBehaviour
                 
             }
                
-           /* levelText.text = "Maze Level 1";
-            
-            LoadingPage.SetActive(false);*/
+           
         }
     }
 
@@ -121,7 +119,7 @@ public class LobbyManager : MonoBehaviour
    public void TutorialScene()
     {
         Fade();
-        OnTutorial = true;
+       
         charPage.SetActive(true);
         //
         // 

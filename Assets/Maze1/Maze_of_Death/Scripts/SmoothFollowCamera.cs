@@ -28,8 +28,7 @@ public class SmoothFollowCamera : MonoBehaviour
 
     void Start()
     {
-       
-        if (target != null)
+       if (target != null)
         {
             targetRb = target.GetComponent<Rigidbody2D>();
             if (targetRb != null)
