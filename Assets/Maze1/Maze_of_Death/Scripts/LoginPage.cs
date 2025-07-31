@@ -72,7 +72,7 @@ public class LoginPage : MonoBehaviour
         if (!hasError)
         {
             Debug.Log("Login Success");
-            LobbyManager.Instance.lobbyPage();
+            LobbyManager.Instance.TutorialScene();
             // Add further login logic here
         }
     }

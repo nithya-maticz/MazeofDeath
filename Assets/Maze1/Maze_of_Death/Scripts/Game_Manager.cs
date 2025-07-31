@@ -93,30 +93,29 @@ public class Game_Manager : MonoBehaviour
         Application.targetFrameRate = 60;
         QualitySettings.vSyncCount = 0;
     }
-    void Start()
-    {
-      
-        StartCoroutine(StartGame());
-    }
+   
 
-    IEnumerator StartGame()
+    IEnumerator Start()
     {
         Debug.Log("LOBBY    " );
 
-        Instantiate(playerPrefab, playerTransform.transform);
+        Instantiate(F_PlayerPrefab, playerTransform.transform);
         SmoothFollowCamera.Instance.target = PlayerMovements.Instance.offSet;
+        BulletSpawner = PlayerMovements.Instance.bulletSpawn;
 
         if (LobbyManager.currentIndex == 1)
         {
             Debug.Log("Male");
             Instantiate(playerPrefab, playerTransform.transform);
             SmoothFollowCamera.Instance.target = PlayerMovements.Instance.offSet;
+            BulletSpawner = PlayerMovements.Instance.bulletSpawn;
         }
         else if (LobbyManager.currentIndex == 2)
         {
             Debug.Log("Female");
             Instantiate(F_PlayerPrefab, playerTransform.transform);
             SmoothFollowCamera.Instance.target = PlayerMovements.Instance.offSet;
+            BulletSpawner = PlayerMovements.Instance.bulletSpawn;
         }
 
         QualitySettings.vSyncCount = 0; 
@@ -255,8 +254,13 @@ public class Game_Manager : MonoBehaviour
     {
         if(Enemies.Count == 0 && ZombieDoorCountInt == 0)
         {
-            WinPage.SetActive(true);
+            Invoke("win", 1f);
+            
         }
+    }
+    public void win()
+    {
+        WinPage.SetActive(true);
     }
 
     public void Attack()

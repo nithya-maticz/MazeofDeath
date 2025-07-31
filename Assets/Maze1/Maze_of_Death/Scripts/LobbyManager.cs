@@ -56,6 +56,7 @@ public class LobbyManager : MonoBehaviour
         }
         if(OnTutorial)
         {
+
             if(OnRetry)
             {
                 LobbyPage.SetActive(true);
@@ -64,7 +65,8 @@ public class LobbyManager : MonoBehaviour
             else
             {
                 OnRetry = true;
-                charPage.SetActive(true);
+                LoginPage.SetActive(true);
+                
             }
                
            /* levelText.text = "Maze Level 1";
@@ -72,6 +74,7 @@ public class LobbyManager : MonoBehaviour
             LoadingPage.SetActive(false);*/
         }
     }
+
 
     // Update is called once per frame
     void Update()
@@ -84,7 +87,10 @@ public class LobbyManager : MonoBehaviour
         yield return new WaitForSeconds(2f);
         OnLoadLobby();
     }
-
+    public void LoginPageVisible()
+    {
+        LoginPage.SetActive(true);
+    }
     void OnLoadLobby()
     {
         if (IsNewUser)
@@ -96,7 +102,7 @@ public class LobbyManager : MonoBehaviour
         {
             Fade();
             LoadingPage.SetActive(false);
-            LoginPage.SetActive(true);
+           // 
         }
     }
 
@@ -107,25 +113,16 @@ public class LobbyManager : MonoBehaviour
     }
     public void PlayGame()
     {
-        if(!OnTutorial)
-        {
-            Fade();
-            OnTutorial = true;
-            SceneManager.LoadScene("Story");
-        }
-        else
-        {
             Fade();
             SceneManager.LoadScene("Game1");
-        }
+       
        
     }
-   public void lobbyPage()
+   public void TutorialScene()
     {
         Fade();
         OnTutorial = true;
-        LoginPage.SetActive(false);
-        SceneManager.LoadScene("Story");
+        charPage.SetActive(true);
         //
         // 
     }

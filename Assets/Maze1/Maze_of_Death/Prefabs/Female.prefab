@@ -284,7 +284,7 @@ Transform:
   m_GameObject: {fileID: 6083060975177489311}
   serializedVersion: 2
   m_LocalRotation: {x: 0, y: 0, z: 0, w: 1}
-  m_LocalPosition: {x: 8.85, y: -0.04, z: 0}
+  m_LocalPosition: {x: 0, y: 0, z: 0}
   m_LocalScale: {x: 0.25, y: 0.25, z: 0.25}
   m_ConstrainProportionsScale: 1
   m_Children:
@@ -433,6 +433,7 @@ MonoBehaviour:
   knifeAttack: {fileID: 4655536268699705355}
   ManualTarget: {fileID: 5100239844800713380}
   offSet: {fileID: 7172283758517830902}
+  bulletSpawn: {fileID: 8499391333404727983}
 --- !u!95 &4781255212238485364
 Animator:
   serializedVersion: 7
@@ -559,7 +560,7 @@ MonoBehaviour:
   m_Script: {fileID: 11500000, guid: ebd0b07d18289364ab7cc6bf3f306f3e, type: 3}
   m_Name: 
   m_EditorClassIdentifier: 
-  _animator: {fileID: 0}
+  _animator: {fileID: 4781255212238485364}
   _currentEnemy: {fileID: 0}
   IsStayEnemy: 0
 --- !u!1 &7980708856082946366

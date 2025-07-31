@@ -34,6 +34,7 @@ public class PlayerMovements : MonoBehaviour
     [Header("Manual Target")]
     public Transform ManualTarget;
     public Transform offSet;
+    public Transform bulletSpawn;
 
 
 

@@ -58,7 +58,8 @@ public class VideoController : MonoBehaviour
 
         LobbyManager.Instance.StoryPage.SetActive(false);
         LobbyManager.Instance.LoadingPage.SetActive(false);
-        LobbyManager.Instance.LoginPage.SetActive(true);
+         LobbyManager.OnTutorial = true;
+        SceneManager.LoadScene("Story");
         Debug.Log("✨ All videos finished.");
         yield return null;
     }
