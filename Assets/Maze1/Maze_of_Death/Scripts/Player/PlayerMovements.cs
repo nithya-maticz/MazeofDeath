@@ -21,6 +21,7 @@ public class PlayerMovements : MonoBehaviour
     private Vector2 lastTouchPosition;
     private bool isRotating = false;
     private bool wasWalking = false;
+    private bool wasIdle = false;
     private bool wasGun;
     private Rigidbody2D rb;
 
@@ -64,32 +65,9 @@ public class PlayerMovements : MonoBehaviour
         HandleRotation();
     }
 
-    void HandleMovementInput()
+    /*void HandleMovementInput()
     {
-        /* moveInput = Vector2.zero;
-
-         if (movementJoystick != null &&
-             (Mathf.Abs(movementJoystick.Horizontal) > 0.1f || Mathf.Abs(movementJoystick.Vertical) > 0.1f))
-         {
-             moveInput = new Vector2(movementJoystick.Vertical, movementJoystick.Horizontal);
-         }
-
-         bool isWalking = moveInput.sqrMagnitude > 0.01f;
-         if (isWalking != wasWalking)
-         {
-             if(!Game_Manager.Instance.IsGun)
-             {
-                 _Animator.SetBool("isWalking", isWalking);
-                 wasWalking = isWalking;
-             }
-             else
-             {
-                 _Animator.SetBool("isGun", isWalking);
-                 wasWalking = isWalking;
-             }
-
-         }*/
-
+        
         moveInput = Vector2.zero;
 
         if (movementJoystick != null &&
@@ -100,6 +78,7 @@ public class PlayerMovements : MonoBehaviour
 
         bool isWalking = moveInput.sqrMagnitude > 0.01f;
         bool isGun = Game_Manager.Instance.IsGun;
+        bool isAttack = false;
 
         if (!isWalking && wasWalking)
         {
@@ -119,7 +98,62 @@ public class PlayerMovements : MonoBehaviour
 
 
 
+    }*/
+
+    
+    
+
+    void HandleMovementInput()
+    {
+        moveInput = Vector2.zero;
+
+        if (movementJoystick != null &&
+            (Mathf.Abs(movementJoystick.Horizontal) > 0.1f || Mathf.Abs(movementJoystick.Vertical) > 0.1f))
+        {
+            moveInput = new Vector2(movementJoystick.Vertical, movementJoystick.Horizontal);
+        }
+
+        bool isWalking = moveInput.sqrMagnitude > 0.01f;
+        bool isGun = Game_Manager.Instance.IsGun;
+        bool isAttack = false; // Add your actual attack flag here
+
+        if (!isGun && !isWalking && !isAttack && (!wasIdle || wasGun))
+        {
+            ResetAllTriggers();
+            _Animator.SetTrigger("Idle");
+            wasIdle = true;
+        }
+        else if (isGun && !isWalking && !isAttack && (!wasIdle || !wasGun))
+        {
+            ResetAllTriggers();
+            _Animator.SetTrigger("GunIdle");
+            wasIdle = true;
+        }
+        else if (isGun && isWalking && (!wasWalking || !wasGun))
+        {
+            ResetAllTriggers();
+            _Animator.SetTrigger("WalkWithGun");
+            wasIdle = false;
+        }
+        else if (!isGun && isWalking && (!wasWalking || wasGun))
+        {
+            ResetAllTriggers();
+            _Animator.SetTrigger("Walk");
+            wasIdle = false;
+        }
+
+        wasWalking = isWalking;
+        wasGun = isGun;
     }
+
+    void ResetAllTriggers()
+    {
+        _Animator.ResetTrigger("Idle");
+        _Animator.ResetTrigger("GunIdle");
+        _Animator.ResetTrigger("Walk");
+        _Animator.ResetTrigger("WalkWithGun");
+    }
+
 
     void HandleRotationInput()
     {
