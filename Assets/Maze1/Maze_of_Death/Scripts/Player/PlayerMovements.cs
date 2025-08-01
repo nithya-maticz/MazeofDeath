@@ -63,7 +63,7 @@ public class PlayerMovements : MonoBehaviour
 
     private void FixedUpdate()
     {
-       // HandleMovement(); // Do movement in FixedUpdate for better physics stability
+        //HandleMovement(); // Do movement in FixedUpdate for better physics stability
        // HandleRotation();
     }
 
@@ -102,37 +102,73 @@ public class PlayerMovements : MonoBehaviour
 
     }*/
 
-    
-    
+
+
+
+    /* public void HandleMovementInput()
+     {
+
+         float moveH = movementJoystick.Vertical;
+         float moveV = movementJoystick.Horizontal;
+
+         bool isWalking = moveH != 0f || moveV != 0f;
+         Vector2 moveDir = new Vector2(-moveH, moveV);
+         rb.linearVelocity = moveDir * speed;
+
+         float angle = Mathf.Atan2(moveDir.y, moveDir.x) * Mathf.Rad2Deg;
+         Quaternion targetRotation = Quaternion.Euler(0f, 0f, angle + 180f);
+         float rotationSpeed = 720f;
+         transform.rotation = Quaternion.RotateTowards(transform.rotation, targetRotation, rotationSpeed * Time.deltaTime);
+         isGun = Game_Manager.Instance.IsGun;
+
+
+         if (!isGun && !isWalking && !isAttack && (!wasIdle || wasGun))
+         {
+             ResetAllTriggers();
+             _Animator.SetTrigger("Idle");
+             wasIdle = true;
+         }
+         else if (isGun && !isWalking && !isAttack && (!wasIdle || !wasGun))
+         {
+             ResetAllTriggers();
+             _Animator.SetTrigger("GunIdle");
+             wasIdle = true;
+         }
+         else if (isGun && isWalking && (!wasWalking || !wasGun))
+         {
+             ResetAllTriggers();
+             _Animator.SetTrigger("WalkWithGun");
+             wasIdle = false;
+         }
+         else if (!isGun && isWalking && (!wasWalking || wasGun))
+         {
+             ResetAllTriggers();
+             _Animator.SetTrigger("Walk");
+             wasIdle = false;
+         }
+
+         wasWalking = isWalking;
+         wasGun = isGun;
+     }*/
 
     public void HandleMovementInput()
     {
-       // moveInput = Vector2.zero;
-
-      /*  if (movementJoystick != null &&
-            (Mathf.Abs(movementJoystick.Horizontal) > 0.1f || Mathf.Abs(movementJoystick.Vertical) > 0.1f))
-        {
-            moveInput = new Vector2(movementJoystick.Vertical, movementJoystick.Horizontal);
-        }*/
-
-
         float moveH = movementJoystick.Vertical;
         float moveV = movementJoystick.Horizontal;
 
         bool isWalking = moveH != 0f || moveV != 0f;
-
-        // bool isWalking = moveInput.sqrMagnitude > 0.01f;
-
-
         Vector2 moveDir = new Vector2(-moveH, moveV);
         rb.linearVelocity = moveDir * speed;
 
-        float angle = Mathf.Atan2(moveDir.y, moveDir.x) * Mathf.Rad2Deg;
-        Quaternion targetRotation = Quaternion.Euler(0f, 0f, angle + 180f);
-        float rotationSpeed = 720f;
-        transform.rotation = Quaternion.RotateTowards(transform.rotation, targetRotation, rotationSpeed * Time.deltaTime);
+        if (isWalking)
+        {
+            float angle = Mathf.Atan2(moveDir.y, moveDir.x) * Mathf.Rad2Deg;
+            Quaternion targetRotation = Quaternion.Euler(0f, 0f, angle + 180f);
+            float rotationSpeed = 720f;
+            transform.rotation = Quaternion.RotateTowards(transform.rotation, targetRotation, rotationSpeed * Time.deltaTime);
+        }
+
         isGun = Game_Manager.Instance.IsGun;
-        
 
         if (!isGun && !isWalking && !isAttack && (!wasIdle || wasGun))
         {
@@ -162,6 +198,7 @@ public class PlayerMovements : MonoBehaviour
         wasWalking = isWalking;
         wasGun = isGun;
     }
+
 
     void ResetAllTriggers()
     {
