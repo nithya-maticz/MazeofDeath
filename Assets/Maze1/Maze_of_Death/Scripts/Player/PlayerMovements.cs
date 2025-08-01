@@ -20,11 +20,12 @@ public class PlayerMovements : MonoBehaviour
     private float rotationInput = 0f;
     private Vector2 lastTouchPosition;
     private bool isRotating = false;
-    private bool wasWalking = false;
+    public bool wasWalking = false;
     private bool wasIdle = false;
-    private bool wasGun;
+    public bool wasGun;
+    public bool isGun;
     private Rigidbody2D rb;
-
+    public bool isAttack = false;
     [Header("Knife Attack Controller")]
     public KnifeAttack knifeAttack;
 
@@ -103,7 +104,7 @@ public class PlayerMovements : MonoBehaviour
     
     
 
-    void HandleMovementInput()
+    public void HandleMovementInput()
     {
         moveInput = Vector2.zero;
 
@@ -114,8 +115,8 @@ public class PlayerMovements : MonoBehaviour
         }
 
         bool isWalking = moveInput.sqrMagnitude > 0.01f;
-        bool isGun = Game_Manager.Instance.IsGun;
-        bool isAttack = false; // Add your actual attack flag here
+         isGun = Game_Manager.Instance.IsGun;
+        
 
         if (!isGun && !isWalking && !isAttack && (!wasIdle || wasGun))
         {
@@ -285,5 +286,9 @@ public class PlayerMovements : MonoBehaviour
 
     }
 
+    void IsAttackOff()
+    {
+        isAttack = false;
+    }
    
 }

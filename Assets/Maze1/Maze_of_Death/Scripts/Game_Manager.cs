@@ -132,6 +132,40 @@ public class Game_Manager : MonoBehaviour
        
     }
 
+
+    private void Update()
+    {
+        if(Input.GetKeyDown(KeyCode.Space))
+        {
+            AttackFunction();
+        }
+    }
+
+
+    public void AttackFunction()
+    {
+        StartCoroutine(AttackRoutine());
+    }
+
+    IEnumerator AttackRoutine()
+    {
+        if (IsGun)
+        {
+            Shoot();
+        }
+        else
+        {
+            Attack();
+        }
+
+        yield return new WaitForSeconds(0.5f); // Use your actual attack animation duration
+
+        PlayerMovements.Instance.isAttack = false;
+        PlayerMovements.Instance.wasWalking = false;
+        PlayerMovements.Instance.wasGun = !PlayerMovements.Instance.isGun;
+        PlayerMovements.Instance.HandleMovementInput(); // Resume walk/idle/gunwalk based on current input
+    }
+
     public void EnemyCount()
     {
 
@@ -267,7 +301,11 @@ public class Game_Manager : MonoBehaviour
     public void Attack()
     {
         if (!AutoAttackToogle.isOn)
+        {
+            PlayerMovements.Instance.isAttack = true;
             PlayerMovements.Instance._Animator.SetTrigger("Attack");
+        }
+           
     }
 
     public void Shoot()
@@ -313,6 +351,7 @@ public class Game_Manager : MonoBehaviour
                     currentBullets--;
                     Debug.Log("Shot fired! Bullets left: " + currentBullets);
                     UpdateUI();
+                    PlayerMovements.Instance.isAttack = true;
                     PlayerMovements.Instance._Animator.SetTrigger("Shoot");
                     Bullet bullet = Instantiate(BulletPrefab, BulletSpawner);
                     bullet.transform.localPosition = Vector3.zero;
