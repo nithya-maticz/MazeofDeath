@@ -27,11 +27,11 @@ public class LoginPage : MonoBehaviour
     public void LoginUser()
     {
         string u_name = userName.text.Trim();
-        string u_email = email.text.Trim();
+        //string u_email = email.text.Trim();
         string u_age = age.text.Trim();
 
         usernameErrortxt.text = "";
-        emailErrortxt.text = "";
+        //emailErrortxt.text = "";
         ageErrortxt.text = "";
 
         bool hasError = false;
@@ -44,7 +44,7 @@ public class LoginPage : MonoBehaviour
         }
 
         // Email validation
-        if (string.IsNullOrEmpty(u_email))
+       /* if (string.IsNullOrEmpty(u_email))
         {
             emailErrortxt.text = "Enter email";
             hasError = true;
@@ -53,7 +53,7 @@ public class LoginPage : MonoBehaviour
         {
             emailErrortxt.text = "Invalid email format";
             hasError = true;
-        }
+        }*/
 
         // Age validation
         if (!int.TryParse(u_age, out int parsedAge))

@@ -7,7 +7,7 @@ public class GameManager : MonoBehaviour
     [SerializeField] TextMeshProUGUI textBox;
     [SerializeField] TextMeshProUGUI printBox;
     public TMP_InputField nameText;
-    public TMP_InputField mailText;
+    //public TMP_InputField mailText;
     public TMP_InputField ageText;
     public int login;
 
@@ -17,7 +17,7 @@ public class GameManager : MonoBehaviour
         printBox.text = "";
         textBox.text = "";
         nameText.text = "";
-        mailText.text = "";
+        //mailText.text = "";
         ageText.text = "";
     }
 
@@ -30,10 +30,10 @@ public class GameManager : MonoBehaviour
         {
             nameText.text = nameText.text.Remove(nameText.text.Length - 1, 1);
         }
-        else if (login == 2)
+        /*else if (login == 2)
         {
             mailText.text = mailText.text.Remove(mailText.text.Length - 1, 1);
-        }
+        }*/
 
         else if (login == 3)
         {
@@ -48,10 +48,10 @@ public class GameManager : MonoBehaviour
         {
             nameText.text = nameText.text + letter;
         }
-        else if(login==2)
+      /*  else if(login==2)
         {
             mailText.text = mailText.text + letter;
-        }
+        }*/
 
         else if (login == 3)
         {

@@ -21,15 +21,15 @@ public class Blood : MonoBehaviour
         while (elapsed < duration)
         {
             elapsed += Time.deltaTime;
-            float alpha = Mathf.Lerp(1f, 0f, elapsed / duration);
+            float alpha = Mathf.Lerp(1f, 0.75f, elapsed / duration); // Fade from 1 to 0.5
             sprite.color = new Color(originalColor.r, originalColor.g, originalColor.b, alpha);
             yield return null;
         }
 
-        // Ensure alpha is set to 0 exactly
-        sprite.color = new Color(originalColor.r, originalColor.g, originalColor.b, 0f);
+        // Ensure final alpha is exactly 0.5
+        sprite.color = new Color(originalColor.r, originalColor.g, originalColor.b, 0.75f);
 
-        // Destroy the GameObject
-        Destroy(gameObject);
+        // No Destroy here
     }
+
 }
