@@ -430,10 +430,15 @@ MonoBehaviour:
   moveSpeed: 2
   rotationSensitivity: 0.1
   _Animator: {fileID: 4781255212238485364}
+  wasWalking: 0
+  wasGun: 0
+  isGun: 0
+  isAttack: 0
   knifeAttack: {fileID: 4655536268699705355}
   ManualTarget: {fileID: 5100239844800713380}
   offSet: {fileID: 7172283758517830902}
   bulletSpawn: {fileID: 8499391333404727983}
+  speed: 2
 --- !u!95 &4781255212238485364
 Animator:
   serializedVersion: 7

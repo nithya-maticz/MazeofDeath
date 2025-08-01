@@ -37,6 +37,7 @@ public class PlayerMovements : MonoBehaviour
     public Transform ManualTarget;
     public Transform offSet;
     public Transform bulletSpawn;
+    public float speed = 2f;
 
 
 
@@ -56,14 +57,14 @@ public class PlayerMovements : MonoBehaviour
     private void Update()
     {
         HandleMovementInput();
-        HandleRotationInput();
+       // HandleRotationInput();
        
     }
 
     private void FixedUpdate()
     {
-        HandleMovement(); // Do movement in FixedUpdate for better physics stability
-        HandleRotation();
+       // HandleMovement(); // Do movement in FixedUpdate for better physics stability
+       // HandleRotation();
     }
 
     /*void HandleMovementInput()
@@ -106,16 +107,31 @@ public class PlayerMovements : MonoBehaviour
 
     public void HandleMovementInput()
     {
-        moveInput = Vector2.zero;
+       // moveInput = Vector2.zero;
 
-        if (movementJoystick != null &&
+      /*  if (movementJoystick != null &&
             (Mathf.Abs(movementJoystick.Horizontal) > 0.1f || Mathf.Abs(movementJoystick.Vertical) > 0.1f))
         {
             moveInput = new Vector2(movementJoystick.Vertical, movementJoystick.Horizontal);
-        }
+        }*/
 
-        bool isWalking = moveInput.sqrMagnitude > 0.01f;
-         isGun = Game_Manager.Instance.IsGun;
+
+        float moveH = movementJoystick.Vertical;
+        float moveV = movementJoystick.Horizontal;
+
+        bool isWalking = moveH != 0f || moveV != 0f;
+
+        // bool isWalking = moveInput.sqrMagnitude > 0.01f;
+
+
+        Vector2 moveDir = new Vector2(-moveH, moveV);
+        rb.linearVelocity = moveDir * speed;
+
+        float angle = Mathf.Atan2(moveDir.y, moveDir.x) * Mathf.Rad2Deg;
+        Quaternion targetRotation = Quaternion.Euler(0f, 0f, angle + 180f);
+        float rotationSpeed = 720f;
+        transform.rotation = Quaternion.RotateTowards(transform.rotation, targetRotation, rotationSpeed * Time.deltaTime);
+        isGun = Game_Manager.Instance.IsGun;
         
 
         if (!isGun && !isWalking && !isAttack && (!wasIdle || wasGun))

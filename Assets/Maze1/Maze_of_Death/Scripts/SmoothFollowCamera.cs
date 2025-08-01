@@ -54,13 +54,13 @@ public class SmoothFollowCamera : MonoBehaviour
         );
 
         // ----- Smooth rotation -----
-        float targetZ = (target.eulerAngles.z + rotationOffset) % 360f;
+       /* float targetZ = (target.eulerAngles.z + rotationOffset) % 360f;
         float currentZ = transform.eulerAngles.z;
         float newZ = Mathf.SmoothDampAngle(currentZ, targetZ, ref rotationVelocity, rotationSmoothTime);
-        transform.rotation = Quaternion.Euler(0f, 0f, newZ);
+        transform.rotation = Quaternion.Euler(0f, 0f, newZ);*/
     }
 
-    private void FixedUpdate()
+    /*private void FixedUpdate()
     {
         if (target == null) return;
 
@@ -78,7 +78,7 @@ public class SmoothFollowCamera : MonoBehaviour
         float currentZ = transform.eulerAngles.z;
         float newZ = Mathf.SmoothDampAngle(currentZ, targetZ, ref rotationVelocity, rotationSmoothTime);
         transform.rotation = Quaternion.Euler(0f, 0f, newZ);
-    }
+    }*/
 
     /*  [Header("Target to Follow")]
       public Transform target;

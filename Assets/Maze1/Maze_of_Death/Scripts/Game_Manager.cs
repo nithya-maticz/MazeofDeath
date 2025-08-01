@@ -100,10 +100,10 @@ public class Game_Manager : MonoBehaviour
     {
         Debug.Log("LOBBY    " );
 
-       /* Instantiate(F_PlayerPrefab, playerTransform.transform);
+        Instantiate(F_PlayerPrefab, playerTransform.transform);
         SmoothFollowCamera.Instance.target = PlayerMovements.Instance.offSet;
         BulletSpawner = PlayerMovements.Instance.bulletSpawn;
-*/
+
         if (LobbyManager.currentIndex == 1)
         {
             Debug.Log("Male");
