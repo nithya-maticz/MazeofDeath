@@ -1,65 +1,100 @@
-using UnityEngine;
+﻿using UnityEngine;
 
 public class SmoothFollowCamera : MonoBehaviour
 {
     [Header("Target Settings")]
     public Transform target;
-    public Vector3 offset = new Vector3(0, 0, -10f);
+    public Vector3 offset = new Vector3(0, 0, -10f); // Keep Z offset as needed
     public static SmoothFollowCamera Instance;
 
     [Header("Smooth Settings")]
-    [Tooltip("How quickly the camera follows position.")]
     public float positionSmoothTime = 0.1f;
-    [Tooltip("How quickly the camera follows rotation.")]
-    public float rotationSmoothTime = 0.1f;
-    [Tooltip("Rotation offset for aligning the camera with the target's facing direction.")]
-    public float rotationOffset = 90f;
+
+    [Header("Boundary Settings")]
+    public SpriteRenderer boundsRenderer; // The red boundary sprite
 
     private Vector3 velocity = Vector3.zero;
-    private float rotationVelocity = 0f;
+    private Camera cam;
 
-    private Rigidbody2D targetRb; // Cache target Rigidbody2D for interpolation check
+    private float camHalfWidth;
+    private float camHalfHeight;
+
+    private Vector2 minBound;
+    private Vector2 maxBound;
 
     private void Awake()
     {
         Instance = this;
-
+        cam = Camera.main;
     }
 
-    void Start()
+    private void Start()
     {
-       if (target != null)
+        if (boundsRenderer == null)
         {
-            targetRb = target.GetComponent<Rigidbody2D>();
-            if (targetRb != null)
-            {
-                // Ensure interpolation is enabled to avoid jitter
-                targetRb.interpolation = RigidbodyInterpolation2D.Interpolate;
-            }
+            Debug.LogWarning("No bounds renderer assigned.");
+            return;
         }
-        
+
+        Bounds bounds = boundsRenderer.bounds;
+        minBound = bounds.min;
+        maxBound = bounds.max;
+
+        // Swap height/width due to 90-degree rotation
+        camHalfWidth = cam.orthographicSize;
+        camHalfHeight = camHalfWidth * cam.aspect;
     }
 
     void LateUpdate()
     {
-        if (target == null) return;
+        if (target == null || boundsRenderer == null) return;
 
-        // ----- Smooth position -----
         Vector3 targetPosition = target.position + offset;
-        transform.position = Vector3.SmoothDamp(
-            transform.position,
-            targetPosition,
-            ref velocity,
-            positionSmoothTime
+
+        float clampedX = Mathf.Clamp(
+            targetPosition.x,
+            minBound.x + camHalfWidth,
+            maxBound.x - camHalfWidth
         );
 
-        // ----- Smooth rotation -----
-       /* float targetZ = (target.eulerAngles.z + rotationOffset) % 360f;
-        float currentZ = transform.eulerAngles.z;
-        float newZ = Mathf.SmoothDampAngle(currentZ, targetZ, ref rotationVelocity, rotationSmoothTime);
-        transform.rotation = Quaternion.Euler(0f, 0f, newZ);*/
+        float clampedY = Mathf.Clamp(
+            targetPosition.y,
+            minBound.y + camHalfHeight,
+            maxBound.y - camHalfHeight
+        );
+
+        Vector3 clampedPos = new Vector3(clampedX, clampedY, offset.z);
+
+        transform.position = Vector3.SmoothDamp(transform.position, clampedPos, ref velocity, positionSmoothTime);
     }
 
-    
-}
+    private void OnDrawGizmos()
+    {
+        if (boundsRenderer == null) return;
 
+        if (cam == null)
+            cam = Camera.main;
+
+        // Swap width/height because of Z rotation = 90
+        float cameraWidth = cam.orthographicSize * 2;
+        float cameraHeight = cameraWidth * cam.aspect;
+
+        Bounds bounds = boundsRenderer.bounds;
+
+        float minX = bounds.min.x + cameraWidth / 2f;
+        float maxX = bounds.max.x - cameraWidth / 2f;
+        float minY = bounds.min.y + cameraHeight / 2f;
+        float maxY = bounds.max.y - cameraHeight / 2f;
+
+        Vector3 bottomLeft = new Vector3(minX, minY, 0);
+        Vector3 topLeft = new Vector3(minX, maxY, 0);
+        Vector3 topRight = new Vector3(maxX, maxY, 0);
+        Vector3 bottomRight = new Vector3(maxX, minY, 0);
+
+        Gizmos.color = Color.red;
+        Gizmos.DrawLine(bottomLeft, topLeft);
+        Gizmos.DrawLine(topLeft, topRight);
+        Gizmos.DrawLine(topRight, bottomRight);
+        Gizmos.DrawLine(bottomRight, bottomLeft);
+    }
+}
