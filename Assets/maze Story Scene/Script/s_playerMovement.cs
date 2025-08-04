@@ -75,14 +75,12 @@ public class s_playerMovement : MonoBehaviour
         {
                 if(StoryManager.Instance.knifeTaken)
                 {
-                  
                     animatorRef.SetTrigger("knifewalk");
                 }
                 else
                 {
                     animatorRef.SetTrigger("walk");
                 }
-                    
         }
     }
     else

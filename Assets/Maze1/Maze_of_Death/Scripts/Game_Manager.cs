@@ -100,10 +100,10 @@ public class Game_Manager : MonoBehaviour
     {
         Debug.Log("LOBBY    " );
 
-      /*  Instantiate(F_PlayerPrefab, playerTransform.transform);
+        Instantiate(F_PlayerPrefab, playerTransform.transform);
         SmoothFollowCamera.Instance.target = PlayerMovements.Instance.offSet;
         BulletSpawner = PlayerMovements.Instance.bulletSpawn;
-*/
+
         if (LobbyManager.currentIndex == 1)
         {
             Debug.Log("Male");
@@ -144,11 +144,6 @@ public class Game_Manager : MonoBehaviour
 
     public void AttackFunction()
     {
-        StartCoroutine(AttackRoutine());
-    }
-
-    IEnumerator AttackRoutine()
-    {
         if (IsGun)
         {
             Shoot();
@@ -157,14 +152,10 @@ public class Game_Manager : MonoBehaviour
         {
             Attack();
         }
-
-        yield return new WaitForSeconds(0.5f); // Use your actual attack animation duration
-
-        PlayerMovements.Instance.isAttack = false;
-        PlayerMovements.Instance.wasWalking = false;
-        PlayerMovements.Instance.wasGun = !PlayerMovements.Instance.isGun;
-        PlayerMovements.Instance.HandleMovementInput(); // Resume walk/idle/gunwalk based on current input
+        
     }
+
+   
 
     public void EnemyCount()
     {

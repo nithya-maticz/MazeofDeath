@@ -342,6 +342,10 @@ public class PlayerMovements : MonoBehaviour
     void IsAttackOff()
     {
         isAttack = false;
+        PlayerMovements.Instance.isAttack = false;
+        PlayerMovements.Instance.wasWalking = false;
+        PlayerMovements.Instance.wasGun = !PlayerMovements.Instance.isGun;
+        PlayerMovements.Instance.HandleMovementInput(); // Resume walk/idle/gunwalk based on current input
     }
    
 }

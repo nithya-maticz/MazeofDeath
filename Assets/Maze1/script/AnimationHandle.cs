@@ -10,7 +10,7 @@ public class AnimationHandle : MonoBehaviour
     public int VideoCount;
     // Start is called once before the first execution of Update after the MonoBehaviour is created
     public Player playerRef;
-    public StoryPlayer storyPlayer;
+ 
     void Start()
     {
         
@@ -22,28 +22,7 @@ public class AnimationHandle : MonoBehaviour
         
     }
 
-    public void ColliderVisibleFun()
-    {
-       // storyPlayer.playerCollider.SetActive(true);
-       // storyPlayer.playerCollider.SetActive(true);
-        /* if(playerRef != null)
-             playerRef.playerCollider.SetActive(true);
-         else if(storyPlayer != null)
-         {
-             Debug.Log("dfdfd");
-             storyPlayer.playerCollider.SetActive(true);
-         }*/
-
-    }
-   
-    public void ColliderInvisibleFun()
-    {
-       // storyPlayer.playerCollider.SetActive(false);
-        /*if (playerRef != null)
-            playerRef.playerCollider.SetActive(false);
-        else if (storyPlayer != null)
-            storyPlayer.playerCollider.SetActive(false);*/
-    }
+    
 
     void Key()
     {
@@ -139,5 +118,15 @@ public class AnimationHandle : MonoBehaviour
 
 
     }
+
+    void AttackEndFun()
+    {
+        PlayerMovements.Instance.isAttack = false;
+        PlayerMovements.Instance.wasWalking = false;
+        PlayerMovements.Instance.wasGun = !PlayerMovements.Instance.isGun;
+        PlayerMovements.Instance.HandleMovementInput(); // Resume walk/idle/gunwalk based on current input
+    }
+       
+
 
 }
