@@ -100,7 +100,7 @@ public class Game_Manager : MonoBehaviour
     {
         Debug.Log("LOBBY    " );
 
-        Instantiate(playerPrefab, playerTransform.transform);
+        Instantiate(F_PlayerPrefab, playerTransform.transform);
         SmoothFollowCamera.Instance.target = PlayerMovements.Instance.offSet;
         BulletSpawner = PlayerMovements.Instance.bulletSpawn;
 
