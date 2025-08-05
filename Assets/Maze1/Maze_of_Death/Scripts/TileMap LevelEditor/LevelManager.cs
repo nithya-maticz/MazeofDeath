@@ -18,6 +18,7 @@ public class LevelManager : MonoBehaviour
     private List<PlacedPrefab> loadedPrefabs;
     private List<Vector2Int> enemySpawnPoints;
     public List<Vector2Int> patrolPoints;
+    private List<PlacedBackground> loadedBackgrounds; // ✅ Background list
 
     public List<Vector2Int> emptyCells = new List<Vector2Int>();
     private int gridWidth, gridHeight;
@@ -27,10 +28,12 @@ public class LevelManager : MonoBehaviour
     {
         LoadLevelData();
         SpawnTiles();
+        SpawnBackgrounds(); // ✅ Spawn backgrounds
         BuildEmptyGridCells();
         SpawnPrefabs();
         SpawnEnemies();
         SpawnPatrolPoints();
+        
     }
 
     void LoadLevelData()
@@ -50,8 +53,19 @@ public class LevelManager : MonoBehaviour
         enemySpawnPoints = data.enemySpawns ?? new List<Vector2Int>();
         patrolPoints = data.patrolPoints ?? new List<Vector2Int>();
 
-        Debug.Log($"Loaded level {levelToLoad}: tiles={loadedTiles.Count}, prefabs={loadedPrefabs.Count}, spawns={enemySpawnPoints.Count}");
+        // Handle background
+        loadedBackgrounds = new List<PlacedBackground>();
+        loadedBackgrounds.Add(new PlacedBackground
+        {
+            spriteIndex = data.selectedBackgroundIndex,
+            rotation = 0,
+            flipX = false,
+            flipY = false
+        });
+
+        Debug.Log($"Loaded BG index: {data.selectedBackgroundIndex}");
     }
+
 
     void SpawnTiles()
     {
@@ -67,7 +81,6 @@ public class LevelManager : MonoBehaviour
                 float angle = tile.rotation;
                 Vector3 scale = new Vector3(tile.flipX ? -1f : 1f, tile.flipY ? -1f : 1f, 1f);
                 Quaternion rotation = Quaternion.Euler(0, 0, -angle);
-
                 Matrix4x4 tileTransform = Matrix4x4.TRS(Vector3.zero, rotation, scale);
                 binding.tilemap.SetTransformMatrix(cellPos, tileTransform);
             }
@@ -77,6 +90,44 @@ public class LevelManager : MonoBehaviour
             }
         }
     }
+
+    void SpawnBackgrounds()
+    {
+        if (loadedBackgrounds.Count == 0) return;
+
+        var bg = loadedBackgrounds[0]; // Only one
+        if (bg.spriteIndex >= 0 && bg.spriteIndex < assetsDatabase.backgroundSprites.Length)
+        {
+            Sprite sprite = assetsDatabase.backgroundSprites[bg.spriteIndex];
+            GameObject go = new GameObject("Background");
+            SpriteRenderer renderer = go.AddComponent<SpriteRenderer>();
+            renderer.sprite = sprite;
+            renderer.sortingOrder = -100; // way back
+
+            // Set the scale to match wall tilemap size
+            float width = gridWidth;
+            float height = gridHeight;
+            Vector2 spriteSize = sprite.bounds.size;
+
+            go.transform.localScale = new Vector3(
+                width / spriteSize.x,
+                height / spriteSize.y,
+                1
+            );
+
+            // Centered behind tiles
+            go.transform.position = new Vector3(width / 2f, height / 2f, 0);
+
+            // Rotation / flip
+            go.transform.rotation = Quaternion.Euler(0, 0, bg.rotation);
+            Vector3 scale = go.transform.localScale;
+            scale.x *= bg.flipX ? -1 : 1;
+            scale.y *= bg.flipY ? -1 : 1;
+            go.transform.localScale = scale;
+        }
+    }
+
+
 
     void SpawnPrefabs()
     {
@@ -206,6 +257,15 @@ public class PlacedPrefab
 }
 
 [Serializable]
+public class PlacedBackground // ✅ New background struct
+{
+    public int spriteIndex;
+    public int rotation;
+    public bool flipX;
+    public bool flipY;
+}
+
+[Serializable]
 public class LevelTileData
 {
     public int width, height;
@@ -213,4 +273,6 @@ public class LevelTileData
     public List<PlacedPrefab> prefabs;
     public List<Vector2Int> enemySpawns;
     public List<Vector2Int> patrolPoints;
+
+    public int selectedBackgroundIndex = -1; // ⬅️ Add this line
 }

@@ -34,6 +34,8 @@ public class TilemapLevelEditor : EditorWindow
     private bool flipX = false;
     private bool flipY = false;
 
+    private int selectedBackgroundIndex = -1;
+
     [MenuItem("Tools/Tilemap Level Editor")]
     public static void ShowWindow() => GetWindow<TilemapLevelEditor>("Tilemap Level Editor");
 
@@ -89,6 +91,13 @@ public class TilemapLevelEditor : EditorWindow
             DrawAssetPalette(assetsDatabase.prefabs, ref selectedPrefabIndex, 48f);
         }
 
+        if (assetsDatabase.backgroundSprites != null && assetsDatabase.backgroundSprites.Length > 0)
+        {
+            GUILayout.Label("Background Sprites", EditorStyles.boldLabel);
+            DrawSpritePalette(assetsDatabase.backgroundSprites, 48f);
+        }
+
+
         GUILayout.Space(5);
         GUILayout.Label("\ud83e\uddf9 Clear Options", EditorStyles.boldLabel);
         EditorGUILayout.BeginHorizontal();
@@ -114,6 +123,32 @@ public class TilemapLevelEditor : EditorWindow
 
         HandleEvents();
     }
+
+    private void DrawSpritePalette(Sprite[] sprites, float size)
+    {
+        int perRow = Mathf.Max(1, Mathf.FloorToInt((position.width - 40) / (size + 6)));
+
+        for (int i = 0; i < sprites.Length; i += perRow)
+        {
+            EditorGUILayout.BeginHorizontal();
+            for (int j = 0; j < perRow && i + j < sprites.Length; j++)
+            {
+                int idx = i + j;
+                var sprite = sprites[idx];
+                Texture2D tex = sprite != null ? AssetPreview.GetAssetPreview(sprite) : Texture2D.grayTexture;
+
+                GUI.backgroundColor = (selectedBackgroundIndex == idx) ? Color.green : Color.white;
+
+                if (GUILayout.Button(tex, GUILayout.Width(size), GUILayout.Height(size)))
+                    selectedBackgroundIndex = idx;
+
+                GUI.backgroundColor = Color.white;
+            }
+            EditorGUILayout.EndHorizontal();
+        }
+    }
+
+
 
     private void DrawModeButton(EditMode mode, string label)
     {
@@ -155,6 +190,21 @@ public class TilemapLevelEditor : EditorWindow
     {
         float cellSize = 40f * (gridZoom / 100f);
         hoveredCell = null;
+
+        if (selectedBackgroundIndex >= 0 && selectedBackgroundIndex < assetsDatabase.backgroundSprites.Length)
+        {
+            var bgSprite = assetsDatabase.backgroundSprites[selectedBackgroundIndex];
+            /*if (bgSprite != null)
+            {
+                Texture2D bgTex = AssetPreview.GetAssetPreview(bgSprite) ?? Texture2D.grayTexture;
+                if (bgTex != null)
+                {
+                    Rect totalRect = GUILayoutUtility.GetRect(gridWidth * 40f * (gridZoom / 100f), gridHeight * 40f * (gridZoom / 100f));
+                    GUI.DrawTexture(totalRect, bgTex, ScaleMode.StretchToFill);
+                    GUILayout.Space(totalRect.height); // So grid draws above
+                }
+            }*/
+        }
 
         for (int y = gridHeight - 1; y >= 0; y--)
         {
@@ -295,8 +345,10 @@ public class TilemapLevelEditor : EditorWindow
             tiles = placedTiles,
             prefabs = placedPrefabs,
             enemySpawns = enemySpawnCells,
-            patrolPoints = patrolCells
+            patrolPoints = patrolCells,
+            selectedBackgroundIndex = selectedBackgroundIndex // ⬅️ Save it
         };
+
         File.WriteAllText(Application.dataPath + $"/Level{currentLevel}.json", JsonUtility.ToJson(d, true));
         AssetDatabase.Refresh();
         Debug.Log("Saved!");
@@ -306,12 +358,18 @@ public class TilemapLevelEditor : EditorWindow
     {
         string p = Application.dataPath + $"/Level{currentLevel}.json";
         if (!File.Exists(p)) { Debug.LogWarning("Not found"); return; }
+
         var d = JsonUtility.FromJson<LevelTileData>(File.ReadAllText(p));
-        gridWidth = d.width; gridHeight = d.height;
-        placedTiles = d.tiles; placedPrefabs = d.prefabs;
-        enemySpawnCells = d.enemySpawns; patrolCells = d.patrolPoints;
+        gridWidth = d.width;
+        gridHeight = d.height;
+        placedTiles = d.tiles;
+        placedPrefabs = d.prefabs;
+        enemySpawnCells = d.enemySpawns;
+        patrolCells = d.patrolPoints;
+        selectedBackgroundIndex = d.selectedBackgroundIndex; // ⬅️ Load it
         Debug.Log("Loaded!");
     }
+
 
     private void HandleEvents()
     {
@@ -345,4 +403,14 @@ public class TilemapLevelEditor : EditorWindow
 
 [System.Serializable] public class PlacedTile { public Vector2Int position; public int tileIndex; public TilemapType tilemapType; public int rotation; public bool flipX; public bool flipY; }
 [System.Serializable] public class PlacedPrefab { public Vector2Int position; public int prefabIndex; public Vector2Int size; }
-[System.Serializable] public class LevelTileData { public int width, height; public List<PlacedTile> tiles; public List<PlacedPrefab> prefabs; public List<Vector2Int> enemySpawns; public List<Vector2Int> patrolPoints; }
+[System.Serializable]
+public class LevelTileData
+{
+    public int width, height;
+    public List<PlacedTile> tiles;
+    public List<PlacedPrefab> prefabs;
+    public List<Vector2Int> enemySpawns;
+    public List<Vector2Int> patrolPoints;
+
+    public int selectedBackgroundIndex = -1; // ⬅️ Add this line
+}

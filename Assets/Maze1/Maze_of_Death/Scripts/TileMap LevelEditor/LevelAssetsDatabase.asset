@@ -62,6 +62,9 @@ MonoBehaviour:
   - {fileID: 11400000, guid: 87e0bf229a1f33e4189068d82e2b6bdf, type: 2}
   prefabs: []
   enemyPrefab: {fileID: 0}
+  backgroundSprites:
+  - {fileID: 21300000, guid: 08df51f69b019334ca5e55c148c670d3, type: 3}
+  - {fileID: 21300000, guid: aec01deb37c4d9442a4ecea24ea2a79f, type: 3}
   tilemapTypes:
   - type: 0
     displayName: Walls

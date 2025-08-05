@@ -9,9 +9,141 @@
             },
             "tileIndex": 31,
             "tilemapType": 0,
-            "rotation": 0,
+            "rotation": 270,
             "flipX": false,
-            "flipY": false
+            "flipY": true
+        },
+        {
+            "position": {
+                "x": 0,
+                "y": 11
+            },
+            "tileIndex": 31,
+            "tilemapType": 0,
+            "rotation": 270,
+            "flipX": false,
+            "flipY": true
+        },
+        {
+            "position": {
+                "x": 0,
+                "y": 10
+            },
+            "tileIndex": 31,
+            "tilemapType": 0,
+            "rotation": 270,
+            "flipX": false,
+            "flipY": true
+        },
+        {
+            "position": {
+                "x": 0,
+                "y": 9
+            },
+            "tileIndex": 31,
+            "tilemapType": 0,
+            "rotation": 270,
+            "flipX": false,
+            "flipY": true
+        },
+        {
+            "position": {
+                "x": 0,
+                "y": 8
+            },
+            "tileIndex": 31,
+            "tilemapType": 0,
+            "rotation": 270,
+            "flipX": false,
+            "flipY": true
+        },
+        {
+            "position": {
+                "x": 0,
+                "y": 7
+            },
+            "tileIndex": 31,
+            "tilemapType": 0,
+            "rotation": 270,
+            "flipX": false,
+            "flipY": true
+        },
+        {
+            "position": {
+                "x": 0,
+                "y": 6
+            },
+            "tileIndex": 31,
+            "tilemapType": 0,
+            "rotation": 270,
+            "flipX": false,
+            "flipY": true
+        },
+        {
+            "position": {
+                "x": 0,
+                "y": 5
+            },
+            "tileIndex": 31,
+            "tilemapType": 0,
+            "rotation": 270,
+            "flipX": false,
+            "flipY": true
+        },
+        {
+            "position": {
+                "x": 0,
+                "y": 4
+            },
+            "tileIndex": 31,
+            "tilemapType": 0,
+            "rotation": 270,
+            "flipX": false,
+            "flipY": true
+        },
+        {
+            "position": {
+                "x": 0,
+                "y": 3
+            },
+            "tileIndex": 31,
+            "tilemapType": 0,
+            "rotation": 270,
+            "flipX": false,
+            "flipY": true
+        },
+        {
+            "position": {
+                "x": 0,
+                "y": 2
+            },
+            "tileIndex": 31,
+            "tilemapType": 0,
+            "rotation": 270,
+            "flipX": false,
+            "flipY": true
+        },
+        {
+            "position": {
+                "x": 0,
+                "y": 1
+            },
+            "tileIndex": 31,
+            "tilemapType": 0,
+            "rotation": 270,
+            "flipX": false,
+            "flipY": true
+        },
+        {
+            "position": {
+                "x": 0,
+                "y": 0
+            },
+            "tileIndex": 31,
+            "tilemapType": 0,
+            "rotation": 270,
+            "flipX": false,
+            "flipY": true
         },
         {
             "position": {
@@ -22,7 +154,7 @@
             "tilemapType": 0,
             "rotation": 0,
             "flipX": false,
-            "flipY": false
+            "flipY": true
         },
         {
             "position": {
@@ -33,7 +165,7 @@
             "tilemapType": 0,
             "rotation": 0,
             "flipX": false,
-            "flipY": false
+            "flipY": true
         },
         {
             "position": {
@@ -44,7 +176,7 @@
             "tilemapType": 0,
             "rotation": 0,
             "flipX": false,
-            "flipY": false
+            "flipY": true
         },
         {
             "position": {
@@ -55,18 +187,7 @@
             "tilemapType": 0,
             "rotation": 0,
             "flipX": false,
-            "flipY": false
-        },
-        {
-            "position": {
-                "x": 4,
-                "y": 12
-            },
-            "tileIndex": 31,
-            "tilemapType": 0,
-            "rotation": 0,
-            "flipX": false,
-            "flipY": false
+            "flipY": true
         },
         {
             "position": {
@@ -77,7 +198,7 @@
             "tilemapType": 0,
             "rotation": 0,
             "flipX": false,
-            "flipY": false
+            "flipY": true
         },
         {
             "position": {
@@ -88,18 +209,7 @@
             "tilemapType": 0,
             "rotation": 0,
             "flipX": false,
-            "flipY": false
-        },
-        {
-            "position": {
-                "x": 6,
-                "y": 12
-            },
-            "tileIndex": 31,
-            "tilemapType": 0,
-            "rotation": 0,
-            "flipX": false,
-            "flipY": false
+            "flipY": true
         },
         {
             "position": {
@@ -110,7 +220,7 @@
             "tilemapType": 0,
             "rotation": 0,
             "flipX": false,
-            "flipY": false
+            "flipY": true
         },
         {
             "position": {
@@ -121,7 +231,7 @@
             "tilemapType": 0,
             "rotation": 0,
             "flipX": false,
-            "flipY": false
+            "flipY": true
         },
         {
             "position": {
@@ -132,7 +242,7 @@
             "tilemapType": 0,
             "rotation": 0,
             "flipX": false,
-            "flipY": false
+            "flipY": true
         },
         {
             "position": {
@@ -143,7 +253,7 @@
             "tilemapType": 0,
             "rotation": 0,
             "flipX": false,
-            "flipY": false
+            "flipY": true
         },
         {
             "position": {
@@ -154,7 +264,7 @@
             "tilemapType": 0,
             "rotation": 0,
             "flipX": false,
-            "flipY": false
+            "flipY": true
         },
         {
             "position": {
@@ -165,18 +275,7 @@
             "tilemapType": 0,
             "rotation": 0,
             "flipX": false,
-            "flipY": false
-        },
-        {
-            "position": {
-                "x": 15,
-                "y": 12
-            },
-            "tileIndex": 31,
-            "tilemapType": 0,
-            "rotation": 0,
-            "flipX": false,
-            "flipY": false
+            "flipY": true
         },
         {
             "position": {
@@ -187,7 +286,7 @@
             "tilemapType": 0,
             "rotation": 0,
             "flipX": false,
-            "flipY": false
+            "flipY": true
         },
         {
             "position": {
@@ -198,18 +297,18 @@
             "tilemapType": 0,
             "rotation": 0,
             "flipX": false,
-            "flipY": false
+            "flipY": true
         },
         {
             "position": {
-                "x": 17,
+                "x": 15,
                 "y": 12
             },
             "tileIndex": 31,
             "tilemapType": 0,
             "rotation": 0,
             "flipX": false,
-            "flipY": false
+            "flipY": true
         },
         {
             "position": {
@@ -220,7 +319,18 @@
             "tilemapType": 0,
             "rotation": 0,
             "flipX": false,
-            "flipY": false
+            "flipY": true
+        },
+        {
+            "position": {
+                "x": 17,
+                "y": 12
+            },
+            "tileIndex": 31,
+            "tilemapType": 0,
+            "rotation": 0,
+            "flipX": false,
+            "flipY": true
         },
         {
             "position": {
@@ -231,7 +341,7 @@
             "tilemapType": 0,
             "rotation": 0,
             "flipX": false,
-            "flipY": false
+            "flipY": true
         },
         {
             "position": {
@@ -242,7 +352,7 @@
             "tilemapType": 0,
             "rotation": 0,
             "flipX": false,
-            "flipY": false
+            "flipY": true
         },
         {
             "position": {
@@ -253,7 +363,7 @@
             "tilemapType": 0,
             "rotation": 0,
             "flipX": false,
-            "flipY": false
+            "flipY": true
         },
         {
             "position": {
@@ -264,7 +374,7 @@
             "tilemapType": 0,
             "rotation": 0,
             "flipX": false,
-            "flipY": false
+            "flipY": true
         },
         {
             "position": {
@@ -275,18 +385,7 @@
             "tilemapType": 0,
             "rotation": 0,
             "flipX": false,
-            "flipY": false
-        },
-        {
-            "position": {
-                "x": 24,
-                "y": 12
-            },
-            "tileIndex": 31,
-            "tilemapType": 0,
-            "rotation": 0,
-            "flipX": false,
-            "flipY": false
+            "flipY": true
         },
         {
             "position": {
@@ -297,7 +396,18 @@
             "tilemapType": 0,
             "rotation": 0,
             "flipX": false,
-            "flipY": false
+            "flipY": true
+        },
+        {
+            "position": {
+                "x": 24,
+                "y": 12
+            },
+            "tileIndex": 31,
+            "tilemapType": 0,
+            "rotation": 0,
+            "flipX": false,
+            "flipY": true
         },
         {
             "position": {
@@ -308,7 +418,7 @@
             "tilemapType": 0,
             "rotation": 0,
             "flipX": false,
-            "flipY": false
+            "flipY": true
         },
         {
             "position": {
@@ -319,7 +429,7 @@
             "tilemapType": 0,
             "rotation": 0,
             "flipX": false,
-            "flipY": false
+            "flipY": true
         },
         {
             "position": {
@@ -330,832 +440,249 @@
             "tilemapType": 0,
             "rotation": 0,
             "flipX": false,
-            "flipY": false
+            "flipY": true
         },
         {
             "position": {
-                "x": 28,
-                "y": 12
-            },
-            "tileIndex": 31,
-            "tilemapType": 0,
-            "rotation": 0,
-            "flipX": false,
-            "flipY": false
-        },
-        {
-            "position": {
-                "x": 28,
+                "x": 27,
                 "y": 11
             },
-            "tileIndex": 31,
+            "tileIndex": 39,
             "tilemapType": 0,
-            "rotation": 90,
+            "rotation": 0,
             "flipX": false,
-            "flipY": false
-        },
-        {
-            "position": {
-                "x": 28,
-                "y": 10
-            },
-            "tileIndex": 31,
-            "tilemapType": 0,
-            "rotation": 90,
-            "flipX": false,
-            "flipY": false
-        },
-        {
-            "position": {
-                "x": 28,
-                "y": 9
-            },
-            "tileIndex": 31,
-            "tilemapType": 0,
-            "rotation": 90,
-            "flipX": false,
-            "flipY": false
-        },
-        {
-            "position": {
-                "x": 28,
-                "y": 8
-            },
-            "tileIndex": 31,
-            "tilemapType": 0,
-            "rotation": 90,
-            "flipX": false,
-            "flipY": false
-        },
-        {
-            "position": {
-                "x": 28,
-                "y": 7
-            },
-            "tileIndex": 31,
-            "tilemapType": 0,
-            "rotation": 90,
-            "flipX": false,
-            "flipY": false
-        },
-        {
-            "position": {
-                "x": 28,
-                "y": 6
-            },
-            "tileIndex": 31,
-            "tilemapType": 0,
-            "rotation": 90,
-            "flipX": false,
-            "flipY": false
-        },
-        {
-            "position": {
-                "x": 28,
-                "y": 5
-            },
-            "tileIndex": 31,
-            "tilemapType": 0,
-            "rotation": 90,
-            "flipX": false,
-            "flipY": false
-        },
-        {
-            "position": {
-                "x": 28,
-                "y": 4
-            },
-            "tileIndex": 31,
-            "tilemapType": 0,
-            "rotation": 90,
-            "flipX": false,
-            "flipY": false
-        },
-        {
-            "position": {
-                "x": 28,
-                "y": 3
-            },
-            "tileIndex": 31,
-            "tilemapType": 0,
-            "rotation": 90,
-            "flipX": false,
-            "flipY": false
-        },
-        {
-            "position": {
-                "x": 28,
-                "y": 2
-            },
-            "tileIndex": 31,
-            "tilemapType": 0,
-            "rotation": 90,
-            "flipX": false,
-            "flipY": false
-        },
-        {
-            "position": {
-                "x": 28,
-                "y": 1
-            },
-            "tileIndex": 31,
-            "tilemapType": 0,
-            "rotation": 90,
-            "flipX": false,
-            "flipY": false
-        },
-        {
-            "position": {
-                "x": 28,
-                "y": 0
-            },
-            "tileIndex": 31,
-            "tilemapType": 0,
-            "rotation": 90,
-            "flipX": false,
-            "flipY": false
-        },
-        {
-            "position": {
-                "x": 27,
-                "y": 0
-            },
-            "tileIndex": 31,
-            "tilemapType": 0,
-            "rotation": 180,
-            "flipX": false,
-            "flipY": false
+            "flipY": true
         },
         {
             "position": {
                 "x": 26,
-                "y": 0
+                "y": 11
             },
-            "tileIndex": 31,
+            "tileIndex": 39,
             "tilemapType": 0,
-            "rotation": 180,
+            "rotation": 0,
             "flipX": false,
-            "flipY": false
+            "flipY": true
         },
         {
             "position": {
                 "x": 25,
-                "y": 0
+                "y": 11
             },
-            "tileIndex": 31,
+            "tileIndex": 39,
             "tilemapType": 0,
-            "rotation": 180,
+            "rotation": 0,
             "flipX": false,
-            "flipY": false
+            "flipY": true
         },
         {
             "position": {
                 "x": 24,
-                "y": 0
+                "y": 11
             },
-            "tileIndex": 31,
+            "tileIndex": 39,
             "tilemapType": 0,
-            "rotation": 180,
+            "rotation": 0,
             "flipX": false,
-            "flipY": false
-        },
-        {
-            "position": {
-                "x": 23,
-                "y": 0
-            },
-            "tileIndex": 31,
-            "tilemapType": 0,
-            "rotation": 180,
-            "flipX": false,
-            "flipY": false
+            "flipY": true
         },
         {
             "position": {
                 "x": 22,
-                "y": 0
+                "y": 11
             },
-            "tileIndex": 31,
+            "tileIndex": 39,
             "tilemapType": 0,
-            "rotation": 180,
+            "rotation": 0,
             "flipX": false,
-            "flipY": false
+            "flipY": true
         },
         {
             "position": {
                 "x": 21,
-                "y": 0
+                "y": 11
             },
-            "tileIndex": 31,
+            "tileIndex": 39,
             "tilemapType": 0,
-            "rotation": 180,
+            "rotation": 0,
             "flipX": false,
-            "flipY": false
+            "flipY": true
         },
         {
             "position": {
                 "x": 20,
-                "y": 0
+                "y": 11
             },
-            "tileIndex": 31,
+            "tileIndex": 39,
             "tilemapType": 0,
-            "rotation": 180,
+            "rotation": 0,
             "flipX": false,
-            "flipY": false
-        },
-        {
-            "position": {
-                "x": 19,
-                "y": 0
-            },
-            "tileIndex": 31,
-            "tilemapType": 0,
-            "rotation": 180,
-            "flipX": false,
-            "flipY": false
+            "flipY": true
         },
         {
             "position": {
                 "x": 18,
-                "y": 0
+                "y": 11
             },
-            "tileIndex": 31,
+            "tileIndex": 39,
             "tilemapType": 0,
-            "rotation": 180,
+            "rotation": 0,
             "flipX": false,
-            "flipY": false
+            "flipY": true
         },
         {
             "position": {
                 "x": 17,
-                "y": 0
+                "y": 11
             },
-            "tileIndex": 31,
+            "tileIndex": 39,
             "tilemapType": 0,
-            "rotation": 180,
+            "rotation": 0,
             "flipX": false,
-            "flipY": false
+            "flipY": true
         },
         {
             "position": {
                 "x": 16,
-                "y": 0
+                "y": 11
             },
-            "tileIndex": 31,
+            "tileIndex": 39,
             "tilemapType": 0,
-            "rotation": 180,
+            "rotation": 0,
             "flipX": false,
-            "flipY": false
+            "flipY": true
         },
         {
             "position": {
                 "x": 15,
-                "y": 0
+                "y": 11
             },
-            "tileIndex": 31,
+            "tileIndex": 39,
             "tilemapType": 0,
-            "rotation": 180,
+            "rotation": 0,
             "flipX": false,
-            "flipY": false
+            "flipY": true
         },
         {
             "position": {
                 "x": 14,
-                "y": 0
+                "y": 11
             },
-            "tileIndex": 31,
+            "tileIndex": 39,
             "tilemapType": 0,
-            "rotation": 180,
+            "rotation": 0,
             "flipX": false,
-            "flipY": false
+            "flipY": true
         },
         {
             "position": {
                 "x": 13,
-                "y": 0
+                "y": 11
             },
-            "tileIndex": 31,
+            "tileIndex": 39,
             "tilemapType": 0,
-            "rotation": 180,
+            "rotation": 0,
             "flipX": false,
-            "flipY": false
-        },
-        {
-            "position": {
-                "x": 12,
-                "y": 0
-            },
-            "tileIndex": 31,
-            "tilemapType": 0,
-            "rotation": 180,
-            "flipX": false,
-            "flipY": false
-        },
-        {
-            "position": {
-                "x": 10,
-                "y": 0
-            },
-            "tileIndex": 31,
-            "tilemapType": 0,
-            "rotation": 180,
-            "flipX": false,
-            "flipY": false
+            "flipY": true
         },
         {
             "position": {
                 "x": 11,
-                "y": 0
+                "y": 11
             },
-            "tileIndex": 31,
+            "tileIndex": 39,
             "tilemapType": 0,
-            "rotation": 180,
+            "rotation": 0,
             "flipX": false,
-            "flipY": false
+            "flipY": true
         },
         {
             "position": {
-                "x": 8,
-                "y": 0
+                "x": 12,
+                "y": 11
             },
-            "tileIndex": 31,
+            "tileIndex": 39,
             "tilemapType": 0,
-            "rotation": 180,
+            "rotation": 0,
             "flipX": false,
-            "flipY": false
+            "flipY": true
+        },
+        {
+            "position": {
+                "x": 10,
+                "y": 11
+            },
+            "tileIndex": 39,
+            "tilemapType": 0,
+            "rotation": 0,
+            "flipX": false,
+            "flipY": true
         },
         {
             "position": {
                 "x": 9,
-                "y": 0
+                "y": 11
             },
-            "tileIndex": 31,
+            "tileIndex": 39,
             "tilemapType": 0,
-            "rotation": 180,
+            "rotation": 0,
             "flipX": false,
-            "flipY": false
+            "flipY": true
+        },
+        {
+            "position": {
+                "x": 8,
+                "y": 11
+            },
+            "tileIndex": 39,
+            "tilemapType": 0,
+            "rotation": 0,
+            "flipX": false,
+            "flipY": true
         },
         {
             "position": {
                 "x": 7,
-                "y": 0
+                "y": 11
             },
-            "tileIndex": 31,
+            "tileIndex": 39,
             "tilemapType": 0,
-            "rotation": 180,
+            "rotation": 0,
             "flipX": false,
-            "flipY": false
-        },
-        {
-            "position": {
-                "x": 7,
-                "y": 0
-            },
-            "tileIndex": 31,
-            "tilemapType": 0,
-            "rotation": 180,
-            "flipX": false,
-            "flipY": false
+            "flipY": true
         },
         {
             "position": {
                 "x": 6,
-                "y": 0
+                "y": 11
             },
-            "tileIndex": 31,
+            "tileIndex": 39,
             "tilemapType": 0,
-            "rotation": 180,
+            "rotation": 0,
             "flipX": false,
-            "flipY": false
+            "flipY": true
+        },
+        {
+            "position": {
+                "x": 4,
+                "y": 11
+            },
+            "tileIndex": 39,
+            "tilemapType": 0,
+            "rotation": 0,
+            "flipX": false,
+            "flipY": true
         },
         {
             "position": {
                 "x": 3,
-                "y": 0
-            },
-            "tileIndex": 31,
-            "tilemapType": 0,
-            "rotation": 180,
-            "flipX": false,
-            "flipY": false
-        },
-        {
-            "position": {
-                "x": 5,
-                "y": 0
-            },
-            "tileIndex": 31,
-            "tilemapType": 0,
-            "rotation": 180,
-            "flipX": false,
-            "flipY": false
-        },
-        {
-            "position": {
-                "x": 4,
-                "y": 0
-            },
-            "tileIndex": 31,
-            "tilemapType": 0,
-            "rotation": 180,
-            "flipX": false,
-            "flipY": false
-        },
-        {
-            "position": {
-                "x": 2,
-                "y": 0
-            },
-            "tileIndex": 31,
-            "tilemapType": 0,
-            "rotation": 180,
-            "flipX": false,
-            "flipY": false
-        },
-        {
-            "position": {
-                "x": 1,
-                "y": 0
-            },
-            "tileIndex": 31,
-            "tilemapType": 0,
-            "rotation": 180,
-            "flipX": false,
-            "flipY": false
-        },
-        {
-            "position": {
-                "x": 0,
-                "y": 0
-            },
-            "tileIndex": 31,
-            "tilemapType": 0,
-            "rotation": 180,
-            "flipX": false,
-            "flipY": false
-        },
-        {
-            "position": {
-                "x": 0,
-                "y": 11
-            },
-            "tileIndex": 31,
-            "tilemapType": 0,
-            "rotation": 270,
-            "flipX": false,
-            "flipY": false
-        },
-        {
-            "position": {
-                "x": 0,
-                "y": 10
-            },
-            "tileIndex": 31,
-            "tilemapType": 0,
-            "rotation": 270,
-            "flipX": false,
-            "flipY": false
-        },
-        {
-            "position": {
-                "x": 0,
-                "y": 9
-            },
-            "tileIndex": 31,
-            "tilemapType": 0,
-            "rotation": 270,
-            "flipX": false,
-            "flipY": false
-        },
-        {
-            "position": {
-                "x": 0,
-                "y": 8
-            },
-            "tileIndex": 31,
-            "tilemapType": 0,
-            "rotation": 270,
-            "flipX": false,
-            "flipY": false
-        },
-        {
-            "position": {
-                "x": 0,
-                "y": 7
-            },
-            "tileIndex": 31,
-            "tilemapType": 0,
-            "rotation": 270,
-            "flipX": false,
-            "flipY": false
-        },
-        {
-            "position": {
-                "x": 0,
-                "y": 6
-            },
-            "tileIndex": 31,
-            "tilemapType": 0,
-            "rotation": 270,
-            "flipX": false,
-            "flipY": false
-        },
-        {
-            "position": {
-                "x": 0,
-                "y": 5
-            },
-            "tileIndex": 31,
-            "tilemapType": 0,
-            "rotation": 270,
-            "flipX": false,
-            "flipY": false
-        },
-        {
-            "position": {
-                "x": 0,
-                "y": 4
-            },
-            "tileIndex": 31,
-            "tilemapType": 0,
-            "rotation": 270,
-            "flipX": false,
-            "flipY": false
-        },
-        {
-            "position": {
-                "x": 0,
-                "y": 3
-            },
-            "tileIndex": 31,
-            "tilemapType": 0,
-            "rotation": 270,
-            "flipX": false,
-            "flipY": false
-        },
-        {
-            "position": {
-                "x": 0,
-                "y": 2
-            },
-            "tileIndex": 31,
-            "tilemapType": 0,
-            "rotation": 270,
-            "flipX": false,
-            "flipY": false
-        },
-        {
-            "position": {
-                "x": 0,
-                "y": 1
-            },
-            "tileIndex": 31,
-            "tilemapType": 0,
-            "rotation": 270,
-            "flipX": false,
-            "flipY": false
-        },
-        {
-            "position": {
-                "x": 1,
                 "y": 11
             },
             "tileIndex": 39,
             "tilemapType": 0,
-            "rotation": 270,
+            "rotation": 0,
             "flipX": false,
-            "flipY": false
-        },
-        {
-            "position": {
-                "x": 27,
-                "y": 11
-            },
-            "tileIndex": 39,
-            "tilemapType": 0,
-            "rotation": 270,
-            "flipX": false,
-            "flipY": false
-        },
-        {
-            "position": {
-                "x": 27,
-                "y": 10
-            },
-            "tileIndex": 39,
-            "tilemapType": 0,
-            "rotation": 270,
-            "flipX": false,
-            "flipY": false
-        },
-        {
-            "position": {
-                "x": 27,
-                "y": 9
-            },
-            "tileIndex": 39,
-            "tilemapType": 0,
-            "rotation": 270,
-            "flipX": false,
-            "flipY": false
-        },
-        {
-            "position": {
-                "x": 27,
-                "y": 8
-            },
-            "tileIndex": 39,
-            "tilemapType": 0,
-            "rotation": 270,
-            "flipX": false,
-            "flipY": false
-        },
-        {
-            "position": {
-                "x": 27,
-                "y": 7
-            },
-            "tileIndex": 39,
-            "tilemapType": 0,
-            "rotation": 270,
-            "flipX": false,
-            "flipY": false
-        },
-        {
-            "position": {
-                "x": 27,
-                "y": 6
-            },
-            "tileIndex": 39,
-            "tilemapType": 0,
-            "rotation": 270,
-            "flipX": false,
-            "flipY": false
-        },
-        {
-            "position": {
-                "x": 27,
-                "y": 5
-            },
-            "tileIndex": 39,
-            "tilemapType": 0,
-            "rotation": 270,
-            "flipX": false,
-            "flipY": false
-        },
-        {
-            "position": {
-                "x": 27,
-                "y": 4
-            },
-            "tileIndex": 39,
-            "tilemapType": 0,
-            "rotation": 270,
-            "flipX": false,
-            "flipY": false
-        },
-        {
-            "position": {
-                "x": 27,
-                "y": 3
-            },
-            "tileIndex": 39,
-            "tilemapType": 0,
-            "rotation": 270,
-            "flipX": false,
-            "flipY": false
-        },
-        {
-            "position": {
-                "x": 27,
-                "y": 2
-            },
-            "tileIndex": 39,
-            "tilemapType": 0,
-            "rotation": 270,
-            "flipX": false,
-            "flipY": false
-        },
-        {
-            "position": {
-                "x": 27,
-                "y": 1
-            },
-            "tileIndex": 39,
-            "tilemapType": 0,
-            "rotation": 270,
-            "flipX": false,
-            "flipY": false
-        },
-        {
-            "position": {
-                "x": 1,
-                "y": 10
-            },
-            "tileIndex": 39,
-            "tilemapType": 0,
-            "rotation": 270,
-            "flipX": false,
-            "flipY": false
-        },
-        {
-            "position": {
-                "x": 1,
-                "y": 9
-            },
-            "tileIndex": 39,
-            "tilemapType": 0,
-            "rotation": 270,
-            "flipX": false,
-            "flipY": false
-        },
-        {
-            "position": {
-                "x": 1,
-                "y": 8
-            },
-            "tileIndex": 39,
-            "tilemapType": 0,
-            "rotation": 270,
-            "flipX": false,
-            "flipY": false
-        },
-        {
-            "position": {
-                "x": 1,
-                "y": 7
-            },
-            "tileIndex": 39,
-            "tilemapType": 0,
-            "rotation": 270,
-            "flipX": false,
-            "flipY": false
-        },
-        {
-            "position": {
-                "x": 1,
-                "y": 6
-            },
-            "tileIndex": 39,
-            "tilemapType": 0,
-            "rotation": 270,
-            "flipX": false,
-            "flipY": false
-        },
-        {
-            "position": {
-                "x": 1,
-                "y": 5
-            },
-            "tileIndex": 39,
-            "tilemapType": 0,
-            "rotation": 270,
-            "flipX": false,
-            "flipY": false
-        },
-        {
-            "position": {
-                "x": 1,
-                "y": 4
-            },
-            "tileIndex": 39,
-            "tilemapType": 0,
-            "rotation": 270,
-            "flipX": false,
-            "flipY": false
-        },
-        {
-            "position": {
-                "x": 1,
-                "y": 3
-            },
-            "tileIndex": 39,
-            "tilemapType": 0,
-            "rotation": 270,
-            "flipX": false,
-            "flipY": false
-        },
-        {
-            "position": {
-                "x": 1,
-                "y": 2
-            },
-            "tileIndex": 39,
-            "tilemapType": 0,
-            "rotation": 270,
-            "flipX": false,
-            "flipY": false
-        },
-        {
-            "position": {
-                "x": 1,
-                "y": 1
-            },
-            "tileIndex": 39,
-            "tilemapType": 0,
-            "rotation": 270,
-            "flipX": false,
-            "flipY": false
+            "flipY": true
         },
         {
             "position": {
@@ -1166,300 +693,729 @@
             "tilemapType": 0,
             "rotation": 0,
             "flipX": false,
-            "flipY": false
+            "flipY": true
         },
         {
             "position": {
-                "x": 3,
-                "y": 11
+                "x": 1,
+                "y": 10
             },
             "tileIndex": 39,
-            "tilemapType": 0,
-            "rotation": 0,
-            "flipX": false,
-            "flipY": false
-        },
-        {
-            "position": {
-                "x": 4,
-                "y": 11
-            },
-            "tileIndex": 39,
-            "tilemapType": 0,
-            "rotation": 0,
-            "flipX": false,
-            "flipY": false
-        },
-        {
-            "position": {
-                "x": 6,
-                "y": 11
-            },
-            "tileIndex": 39,
-            "tilemapType": 0,
-            "rotation": 0,
-            "flipX": false,
-            "flipY": false
-        },
-        {
-            "position": {
-                "x": 7,
-                "y": 11
-            },
-            "tileIndex": 39,
-            "tilemapType": 0,
-            "rotation": 0,
-            "flipX": false,
-            "flipY": false
-        },
-        {
-            "position": {
-                "x": 8,
-                "y": 11
-            },
-            "tileIndex": 39,
-            "tilemapType": 0,
-            "rotation": 0,
-            "flipX": false,
-            "flipY": false
-        },
-        {
-            "position": {
-                "x": 9,
-                "y": 11
-            },
-            "tileIndex": 39,
-            "tilemapType": 0,
-            "rotation": 0,
-            "flipX": false,
-            "flipY": false
-        },
-        {
-            "position": {
-                "x": 10,
-                "y": 11
-            },
-            "tileIndex": 39,
-            "tilemapType": 0,
-            "rotation": 0,
-            "flipX": false,
-            "flipY": false
-        },
-        {
-            "position": {
-                "x": 10,
-                "y": 11
-            },
-            "tileIndex": 39,
-            "tilemapType": 0,
-            "rotation": 0,
-            "flipX": false,
-            "flipY": false
-        },
-        {
-            "position": {
-                "x": 12,
-                "y": 11
-            },
-            "tileIndex": 39,
-            "tilemapType": 0,
-            "rotation": 0,
-            "flipX": false,
-            "flipY": false
-        },
-        {
-            "position": {
-                "x": 11,
-                "y": 11
-            },
-            "tileIndex": 39,
-            "tilemapType": 0,
-            "rotation": 0,
-            "flipX": false,
-            "flipY": false
-        },
-        {
-            "position": {
-                "x": 13,
-                "y": 11
-            },
-            "tileIndex": 39,
-            "tilemapType": 0,
-            "rotation": 0,
-            "flipX": false,
-            "flipY": false
-        },
-        {
-            "position": {
-                "x": 14,
-                "y": 11
-            },
-            "tileIndex": 39,
-            "tilemapType": 0,
-            "rotation": 0,
-            "flipX": false,
-            "flipY": false
-        },
-        {
-            "position": {
-                "x": 15,
-                "y": 11
-            },
-            "tileIndex": 39,
-            "tilemapType": 0,
-            "rotation": 0,
-            "flipX": false,
-            "flipY": false
-        },
-        {
-            "position": {
-                "x": 16,
-                "y": 11
-            },
-            "tileIndex": 39,
-            "tilemapType": 0,
-            "rotation": 0,
-            "flipX": false,
-            "flipY": false
-        },
-        {
-            "position": {
-                "x": 17,
-                "y": 11
-            },
-            "tileIndex": 39,
-            "tilemapType": 0,
-            "rotation": 0,
-            "flipX": false,
-            "flipY": false
-        },
-        {
-            "position": {
-                "x": 18,
-                "y": 11
-            },
-            "tileIndex": 39,
-            "tilemapType": 0,
-            "rotation": 0,
-            "flipX": false,
-            "flipY": false
-        },
-        {
-            "position": {
-                "x": 19,
-                "y": 11
-            },
-            "tileIndex": 39,
-            "tilemapType": 0,
-            "rotation": 0,
-            "flipX": false,
-            "flipY": false
-        },
-        {
-            "position": {
-                "x": 21,
-                "y": 11
-            },
-            "tileIndex": 39,
-            "tilemapType": 0,
-            "rotation": 0,
-            "flipX": false,
-            "flipY": false
-        },
-        {
-            "position": {
-                "x": 22,
-                "y": 11
-            },
-            "tileIndex": 39,
-            "tilemapType": 0,
-            "rotation": 0,
-            "flipX": false,
-            "flipY": false
-        },
-        {
-            "position": {
-                "x": 20,
-                "y": 11
-            },
-            "tileIndex": 39,
-            "tilemapType": 0,
-            "rotation": 0,
-            "flipX": false,
-            "flipY": false
-        },
-        {
-            "position": {
-                "x": 23,
-                "y": 11
-            },
-            "tileIndex": 39,
-            "tilemapType": 0,
-            "rotation": 0,
-            "flipX": false,
-            "flipY": false
-        },
-        {
-            "position": {
-                "x": 24,
-                "y": 11
-            },
-            "tileIndex": 39,
-            "tilemapType": 0,
-            "rotation": 0,
-            "flipX": false,
-            "flipY": false
-        },
-        {
-            "position": {
-                "x": 25,
-                "y": 11
-            },
-            "tileIndex": 39,
-            "tilemapType": 0,
-            "rotation": 0,
-            "flipX": false,
-            "flipY": false
-        },
-        {
-            "position": {
-                "x": 25,
-                "y": 11
-            },
-            "tileIndex": 39,
-            "tilemapType": 0,
-            "rotation": 0,
-            "flipX": false,
-            "flipY": false
-        },
-        {
-            "position": {
-                "x": 26,
-                "y": 11
-            },
-            "tileIndex": 39,
-            "tilemapType": 0,
-            "rotation": 0,
-            "flipX": false,
-            "flipY": false
-        },
-        {
-            "position": {
-                "x": 5,
-                "y": 11
-            },
-            "tileIndex": 34,
             "tilemapType": 0,
             "rotation": 270,
             "flipX": false,
-            "flipY": false
+            "flipY": true
+        },
+        {
+            "position": {
+                "x": 1,
+                "y": 8
+            },
+            "tileIndex": 39,
+            "tilemapType": 0,
+            "rotation": 270,
+            "flipX": false,
+            "flipY": true
+        },
+        {
+            "position": {
+                "x": 1,
+                "y": 8
+            },
+            "tileIndex": 39,
+            "tilemapType": 0,
+            "rotation": 270,
+            "flipX": false,
+            "flipY": true
+        },
+        {
+            "position": {
+                "x": 1,
+                "y": 7
+            },
+            "tileIndex": 39,
+            "tilemapType": 0,
+            "rotation": 270,
+            "flipX": false,
+            "flipY": true
+        },
+        {
+            "position": {
+                "x": 1,
+                "y": 6
+            },
+            "tileIndex": 39,
+            "tilemapType": 0,
+            "rotation": 270,
+            "flipX": false,
+            "flipY": true
+        },
+        {
+            "position": {
+                "x": 1,
+                "y": 5
+            },
+            "tileIndex": 39,
+            "tilemapType": 0,
+            "rotation": 270,
+            "flipX": false,
+            "flipY": true
+        },
+        {
+            "position": {
+                "x": 1,
+                "y": 4
+            },
+            "tileIndex": 39,
+            "tilemapType": 0,
+            "rotation": 270,
+            "flipX": false,
+            "flipY": true
+        },
+        {
+            "position": {
+                "x": 1,
+                "y": 3
+            },
+            "tileIndex": 39,
+            "tilemapType": 0,
+            "rotation": 270,
+            "flipX": false,
+            "flipY": true
+        },
+        {
+            "position": {
+                "x": 1,
+                "y": 1
+            },
+            "tileIndex": 39,
+            "tilemapType": 0,
+            "rotation": 270,
+            "flipX": false,
+            "flipY": true
+        },
+        {
+            "position": {
+                "x": 1,
+                "y": 0
+            },
+            "tileIndex": 39,
+            "tilemapType": 0,
+            "rotation": 270,
+            "flipX": false,
+            "flipY": true
+        },
+        {
+            "position": {
+                "x": 1,
+                "y": 11
+            },
+            "tileIndex": 39,
+            "tilemapType": 0,
+            "rotation": 270,
+            "flipX": false,
+            "flipY": true
         },
         {
             "position": {
                 "x": 5,
-                "y": 9
+                "y": 6
             },
             "tileIndex": 33,
+            "tilemapType": 0,
+            "rotation": 180,
+            "flipX": true,
+            "flipY": true
+        },
+        {
+            "position": {
+                "x": 5,
+                "y": 7
+            },
+            "tileIndex": 45,
+            "tilemapType": 0,
+            "rotation": 180,
+            "flipX": true,
+            "flipY": true
+        },
+        {
+            "position": {
+                "x": 5,
+                "y": 8
+            },
+            "tileIndex": 45,
+            "tilemapType": 0,
+            "rotation": 180,
+            "flipX": true,
+            "flipY": true
+        },
+        {
+            "position": {
+                "x": 5,
+                "y": 9
+            },
+            "tileIndex": 45,
+            "tilemapType": 0,
+            "rotation": 180,
+            "flipX": true,
+            "flipY": true
+        },
+        {
+            "position": {
+                "x": 5,
+                "y": 10
+            },
+            "tileIndex": 45,
+            "tilemapType": 0,
+            "rotation": 180,
+            "flipX": true,
+            "flipY": true
+        },
+        {
+            "position": {
+                "x": 5,
+                "y": 11
+            },
+            "tileIndex": 46,
+            "tilemapType": 0,
+            "rotation": 180,
+            "flipX": false,
+            "flipY": true
+        },
+        {
+            "position": {
+                "x": 4,
+                "y": 6
+            },
+            "tileIndex": 30,
+            "tilemapType": 0,
+            "rotation": 90,
+            "flipX": false,
+            "flipY": false
+        },
+        {
+            "position": {
+                "x": 4,
+                "y": 5
+            },
+            "tileIndex": 37,
+            "tilemapType": 0,
+            "rotation": 90,
+            "flipX": false,
+            "flipY": false
+        },
+        {
+            "position": {
+                "x": 4,
+                "y": 4
+            },
+            "tileIndex": 38,
+            "tilemapType": 0,
+            "rotation": 90,
+            "flipX": false,
+            "flipY": true
+        },
+        {
+            "position": {
+                "x": 1,
+                "y": 9
+            },
+            "tileIndex": 46,
+            "tilemapType": 0,
+            "rotation": 90,
+            "flipX": false,
+            "flipY": true
+        },
+        {
+            "position": {
+                "x": 2,
+                "y": 9
+            },
+            "tileIndex": 37,
+            "tilemapType": 0,
+            "rotation": 0,
+            "flipX": false,
+            "flipY": true
+        },
+        {
+            "position": {
+                "x": 3,
+                "y": 9
+            },
+            "tileIndex": 38,
+            "tilemapType": 0,
+            "rotation": 0,
+            "flipX": false,
+            "flipY": false
+        },
+        {
+            "position": {
+                "x": 4,
+                "y": 2
+            },
+            "tileIndex": 38,
+            "tilemapType": 0,
+            "rotation": 0,
+            "flipX": false,
+            "flipY": false
+        },
+        {
+            "position": {
+                "x": 3,
+                "y": 2
+            },
+            "tileIndex": 37,
+            "tilemapType": 0,
+            "rotation": 180,
+            "flipX": false,
+            "flipY": false
+        },
+        {
+            "position": {
+                "x": 2,
+                "y": 2
+            },
+            "tileIndex": 37,
+            "tilemapType": 0,
+            "rotation": 180,
+            "flipX": false,
+            "flipY": false
+        },
+        {
+            "position": {
+                "x": 1,
+                "y": 2
+            },
+            "tileIndex": 46,
+            "tilemapType": 0,
+            "rotation": 270,
+            "flipX": true,
+            "flipY": false
+        },
+        {
+            "position": {
+                "x": 2,
+                "y": 0
+            },
+            "tileIndex": 31,
+            "tilemapType": 0,
+            "rotation": 0,
+            "flipX": true,
+            "flipY": false
+        },
+        {
+            "position": {
+                "x": 3,
+                "y": 0
+            },
+            "tileIndex": 31,
+            "tilemapType": 0,
+            "rotation": 0,
+            "flipX": true,
+            "flipY": false
+        },
+        {
+            "position": {
+                "x": 4,
+                "y": 0
+            },
+            "tileIndex": 31,
+            "tilemapType": 0,
+            "rotation": 0,
+            "flipX": true,
+            "flipY": false
+        },
+        {
+            "position": {
+                "x": 6,
+                "y": 0
+            },
+            "tileIndex": 31,
+            "tilemapType": 0,
+            "rotation": 0,
+            "flipX": true,
+            "flipY": false
+        },
+        {
+            "position": {
+                "x": 5,
+                "y": 0
+            },
+            "tileIndex": 31,
+            "tilemapType": 0,
+            "rotation": 0,
+            "flipX": true,
+            "flipY": false
+        },
+        {
+            "position": {
+                "x": 7,
+                "y": 0
+            },
+            "tileIndex": 31,
+            "tilemapType": 0,
+            "rotation": 0,
+            "flipX": true,
+            "flipY": false
+        },
+        {
+            "position": {
+                "x": 8,
+                "y": 0
+            },
+            "tileIndex": 31,
+            "tilemapType": 0,
+            "rotation": 0,
+            "flipX": true,
+            "flipY": false
+        },
+        {
+            "position": {
+                "x": 9,
+                "y": 0
+            },
+            "tileIndex": 31,
+            "tilemapType": 0,
+            "rotation": 0,
+            "flipX": true,
+            "flipY": false
+        },
+        {
+            "position": {
+                "x": 10,
+                "y": 0
+            },
+            "tileIndex": 31,
+            "tilemapType": 0,
+            "rotation": 0,
+            "flipX": true,
+            "flipY": false
+        },
+        {
+            "position": {
+                "x": 11,
+                "y": 0
+            },
+            "tileIndex": 31,
+            "tilemapType": 0,
+            "rotation": 0,
+            "flipX": true,
+            "flipY": false
+        },
+        {
+            "position": {
+                "x": 12,
+                "y": 0
+            },
+            "tileIndex": 31,
+            "tilemapType": 0,
+            "rotation": 0,
+            "flipX": true,
+            "flipY": false
+        },
+        {
+            "position": {
+                "x": 13,
+                "y": 0
+            },
+            "tileIndex": 31,
+            "tilemapType": 0,
+            "rotation": 0,
+            "flipX": true,
+            "flipY": false
+        },
+        {
+            "position": {
+                "x": 14,
+                "y": 0
+            },
+            "tileIndex": 31,
+            "tilemapType": 0,
+            "rotation": 0,
+            "flipX": true,
+            "flipY": false
+        },
+        {
+            "position": {
+                "x": 15,
+                "y": 0
+            },
+            "tileIndex": 31,
+            "tilemapType": 0,
+            "rotation": 0,
+            "flipX": true,
+            "flipY": false
+        },
+        {
+            "position": {
+                "x": 16,
+                "y": 0
+            },
+            "tileIndex": 31,
+            "tilemapType": 0,
+            "rotation": 0,
+            "flipX": true,
+            "flipY": false
+        },
+        {
+            "position": {
+                "x": 17,
+                "y": 0
+            },
+            "tileIndex": 31,
+            "tilemapType": 0,
+            "rotation": 0,
+            "flipX": true,
+            "flipY": false
+        },
+        {
+            "position": {
+                "x": 18,
+                "y": 0
+            },
+            "tileIndex": 31,
+            "tilemapType": 0,
+            "rotation": 0,
+            "flipX": true,
+            "flipY": false
+        },
+        {
+            "position": {
+                "x": 19,
+                "y": 0
+            },
+            "tileIndex": 31,
+            "tilemapType": 0,
+            "rotation": 0,
+            "flipX": true,
+            "flipY": false
+        },
+        {
+            "position": {
+                "x": 20,
+                "y": 0
+            },
+            "tileIndex": 31,
+            "tilemapType": 0,
+            "rotation": 0,
+            "flipX": true,
+            "flipY": false
+        },
+        {
+            "position": {
+                "x": 21,
+                "y": 0
+            },
+            "tileIndex": 31,
+            "tilemapType": 0,
+            "rotation": 0,
+            "flipX": true,
+            "flipY": false
+        },
+        {
+            "position": {
+                "x": 22,
+                "y": 0
+            },
+            "tileIndex": 31,
+            "tilemapType": 0,
+            "rotation": 0,
+            "flipX": true,
+            "flipY": false
+        },
+        {
+            "position": {
+                "x": 23,
+                "y": 0
+            },
+            "tileIndex": 31,
+            "tilemapType": 0,
+            "rotation": 0,
+            "flipX": true,
+            "flipY": false
+        },
+        {
+            "position": {
+                "x": 25,
+                "y": 0
+            },
+            "tileIndex": 31,
+            "tilemapType": 0,
+            "rotation": 0,
+            "flipX": true,
+            "flipY": false
+        },
+        {
+            "position": {
+                "x": 24,
+                "y": 0
+            },
+            "tileIndex": 31,
+            "tilemapType": 0,
+            "rotation": 0,
+            "flipX": true,
+            "flipY": false
+        },
+        {
+            "position": {
+                "x": 26,
+                "y": 0
+            },
+            "tileIndex": 31,
+            "tilemapType": 0,
+            "rotation": 0,
+            "flipX": true,
+            "flipY": false
+        },
+        {
+            "position": {
+                "x": 27,
+                "y": 0
+            },
+            "tileIndex": 31,
+            "tilemapType": 0,
+            "rotation": 0,
+            "flipX": true,
+            "flipY": false
+        },
+        {
+            "position": {
+                "x": 7,
+                "y": 1
+            },
+            "tileIndex": 45,
+            "tilemapType": 0,
+            "rotation": 0,
+            "flipX": true,
+            "flipY": false
+        },
+        {
+            "position": {
+                "x": 7,
+                "y": 2
+            },
+            "tileIndex": 45,
+            "tilemapType": 0,
+            "rotation": 0,
+            "flipX": true,
+            "flipY": false
+        },
+        {
+            "position": {
+                "x": 7,
+                "y": 3
+            },
+            "tileIndex": 35,
+            "tilemapType": 0,
+            "rotation": 180,
+            "flipX": true,
+            "flipY": false
+        },
+        {
+            "position": {
+                "x": 6,
+                "y": 3
+            },
+            "tileIndex": 38,
+            "tilemapType": 0,
+            "rotation": 0,
+            "flipX": true,
+            "flipY": false
+        },
+        {
+            "position": {
+                "x": 7,
+                "y": 4
+            },
+            "tileIndex": 45,
+            "tilemapType": 0,
+            "rotation": 0,
+            "flipX": true,
+            "flipY": false
+        },
+        {
+            "position": {
+                "x": 7,
+                "y": 5
+            },
+            "tileIndex": 43,
+            "tilemapType": 0,
+            "rotation": 270,
+            "flipX": true,
+            "flipY": false
+        },
+        {
+            "position": {
+                "x": 8,
+                "y": 5
+            },
+            "tileIndex": 37,
+            "tilemapType": 0,
+            "rotation": 0,
+            "flipX": true,
+            "flipY": false
+        },
+        {
+            "position": {
+                "x": 9,
+                "y": 5
+            },
+            "tileIndex": 33,
+            "tilemapType": 0,
+            "rotation": 270,
+            "flipX": true,
+            "flipY": false
+        },
+        {
+            "position": {
+                "x": 9,
+                "y": 6
+            },
+            "tileIndex": 37,
+            "tilemapType": 0,
+            "rotation": 270,
+            "flipX": true,
+            "flipY": false
+        },
+        {
+            "position": {
+                "x": 10,
+                "y": 7
+            },
+            "tileIndex": 37,
+            "tilemapType": 0,
+            "rotation": 180,
+            "flipX": true,
+            "flipY": false
+        },
+        {
+            "position": {
+                "x": 9,
+                "y": 7
+            },
+            "tileIndex": 32,
+            "tilemapType": 0,
+            "rotation": 180,
+            "flipX": true,
+            "flipY": false
+        },
+        {
+            "position": {
+                "x": 8,
+                "y": 7
+            },
+            "tileIndex": 37,
+            "tilemapType": 0,
+            "rotation": 180,
+            "flipX": true,
+            "flipY": false
+        },
+        {
+            "position": {
+                "x": 7,
+                "y": 7
+            },
+            "tileIndex": 30,
             "tilemapType": 0,
             "rotation": 90,
             "flipX": true,
@@ -1467,12 +1423,914 @@
         },
         {
             "position": {
-                "x": 5,
+                "x": 7,
                 "y": 8
+            },
+            "tileIndex": 38,
+            "tilemapType": 0,
+            "rotation": 270,
+            "flipX": false,
+            "flipY": false
+        },
+        {
+            "position": {
+                "x": 11,
+                "y": 7
+            },
+            "tileIndex": 44,
+            "tilemapType": 0,
+            "rotation": 0,
+            "flipX": false,
+            "flipY": false
+        },
+        {
+            "position": {
+                "x": 11,
+                "y": 6
+            },
+            "tileIndex": 42,
+            "tilemapType": 0,
+            "rotation": 180,
+            "flipX": false,
+            "flipY": false
+        },
+        {
+            "position": {
+                "x": 11,
+                "y": 5
+            },
+            "tileIndex": 42,
+            "tilemapType": 0,
+            "rotation": 180,
+            "flipX": false,
+            "flipY": false
+        },
+        {
+            "position": {
+                "x": 11,
+                "y": 4
+            },
+            "tileIndex": 42,
+            "tilemapType": 0,
+            "rotation": 180,
+            "flipX": false,
+            "flipY": false
+        },
+        {
+            "position": {
+                "x": 11,
+                "y": 3
+            },
+            "tileIndex": 42,
+            "tilemapType": 0,
+            "rotation": 180,
+            "flipX": false,
+            "flipY": false
+        },
+        {
+            "position": {
+                "x": 11,
+                "y": 2
+            },
+            "tileIndex": 43,
+            "tilemapType": 0,
+            "rotation": 270,
+            "flipX": false,
+            "flipY": false
+        },
+        {
+            "position": {
+                "x": 10,
+                "y": 9
+            },
+            "tileIndex": 38,
+            "tilemapType": 0,
+            "rotation": 0,
+            "flipX": false,
+            "flipY": false
+        },
+        {
+            "position": {
+                "x": 9,
+                "y": 9
+            },
+            "tileIndex": 38,
+            "tilemapType": 0,
+            "rotation": 180,
+            "flipX": false,
+            "flipY": true
+        },
+        {
+            "position": {
+                "x": 13,
+                "y": 8
+            },
+            "tileIndex": 45,
+            "tilemapType": 0,
+            "rotation": 180,
+            "flipX": false,
+            "flipY": true
+        },
+        {
+            "position": {
+                "x": 13,
+                "y": 9
+            },
+            "tileIndex": 45,
+            "tilemapType": 0,
+            "rotation": 180,
+            "flipX": false,
+            "flipY": true
+        },
+        {
+            "position": {
+                "x": 13,
+                "y": 10
+            },
+            "tileIndex": 45,
+            "tilemapType": 0,
+            "rotation": 180,
+            "flipX": false,
+            "flipY": true
+        },
+        {
+            "position": {
+                "x": 13,
+                "y": 7
             },
             "tileIndex": 33,
             "tilemapType": 0,
+            "rotation": 180,
+            "flipX": false,
+            "flipY": true
+        },
+        {
+            "position": {
+                "x": 14,
+                "y": 7
+            },
+            "tileIndex": 37,
+            "tilemapType": 0,
+            "rotation": 180,
+            "flipX": false,
+            "flipY": true
+        },
+        {
+            "position": {
+                "x": 15,
+                "y": 8
+            },
+            "tileIndex": 37,
+            "tilemapType": 0,
             "rotation": 90,
+            "flipX": false,
+            "flipY": true
+        },
+        {
+            "position": {
+                "x": 15,
+                "y": 7
+            },
+            "tileIndex": 32,
+            "tilemapType": 0,
+            "rotation": 180,
+            "flipX": true,
+            "flipY": true
+        },
+        {
+            "position": {
+                "x": 15,
+                "y": 9
+            },
+            "tileIndex": 30,
+            "tilemapType": 0,
+            "rotation": 0,
+            "flipX": false,
+            "flipY": true
+        },
+        {
+            "position": {
+                "x": 16,
+                "y": 9
+            },
+            "tileIndex": 42,
+            "tilemapType": 0,
+            "rotation": 90,
+            "flipX": true,
+            "flipY": true
+        },
+        {
+            "position": {
+                "x": 17,
+                "y": 9
+            },
+            "tileIndex": 36,
+            "tilemapType": 0,
+            "rotation": 180,
+            "flipX": true,
+            "flipY": false
+        },
+        {
+            "position": {
+                "x": 16,
+                "y": 7
+            },
+            "tileIndex": 37,
+            "tilemapType": 0,
+            "rotation": 180,
+            "flipX": true,
+            "flipY": true
+        },
+        {
+            "position": {
+                "x": 17,
+                "y": 7
+            },
+            "tileIndex": 37,
+            "tilemapType": 0,
+            "rotation": 180,
+            "flipX": true,
+            "flipY": true
+        },
+        {
+            "position": {
+                "x": 18,
+                "y": 7
+            },
+            "tileIndex": 37,
+            "tilemapType": 0,
+            "rotation": 180,
+            "flipX": true,
+            "flipY": true
+        },
+        {
+            "position": {
+                "x": 19,
+                "y": 7
+            },
+            "tileIndex": 38,
+            "tilemapType": 0,
+            "rotation": 180,
+            "flipX": true,
+            "flipY": false
+        },
+        {
+            "position": {
+                "x": 19,
+                "y": 9
+            },
+            "tileIndex": 36,
+            "tilemapType": 0,
+            "rotation": 270,
+            "flipX": true,
+            "flipY": true
+        },
+        {
+            "position": {
+                "x": 19,
+                "y": 10
+            },
+            "tileIndex": 42,
+            "tilemapType": 0,
+            "rotation": 0,
+            "flipX": true,
+            "flipY": true
+        },
+        {
+            "position": {
+                "x": 19,
+                "y": 11
+            },
+            "tileIndex": 46,
+            "tilemapType": 0,
+            "rotation": 180,
+            "flipX": true,
+            "flipY": true
+        },
+        {
+            "position": {
+                "x": 12,
+                "y": 2
+            },
+            "tileIndex": 37,
+            "tilemapType": 0,
+            "rotation": 0,
+            "flipX": true,
+            "flipY": true
+        },
+        {
+            "position": {
+                "x": 13,
+                "y": 2
+            },
+            "tileIndex": 37,
+            "tilemapType": 0,
+            "rotation": 0,
+            "flipX": true,
+            "flipY": true
+        },
+        {
+            "position": {
+                "x": 14,
+                "y": 2
+            },
+            "tileIndex": 37,
+            "tilemapType": 0,
+            "rotation": 0,
+            "flipX": true,
+            "flipY": true
+        },
+        {
+            "position": {
+                "x": 15,
+                "y": 2
+            },
+            "tileIndex": 37,
+            "tilemapType": 0,
+            "rotation": 0,
+            "flipX": true,
+            "flipY": true
+        },
+        {
+            "position": {
+                "x": 15,
+                "y": 2
+            },
+            "tileIndex": 37,
+            "tilemapType": 0,
+            "rotation": 0,
+            "flipX": true,
+            "flipY": true
+        },
+        {
+            "position": {
+                "x": 16,
+                "y": 2
+            },
+            "tileIndex": 37,
+            "tilemapType": 0,
+            "rotation": 0,
+            "flipX": true,
+            "flipY": true
+        },
+        {
+            "position": {
+                "x": 17,
+                "y": 2
+            },
+            "tileIndex": 37,
+            "tilemapType": 0,
+            "rotation": 0,
+            "flipX": true,
+            "flipY": true
+        },
+        {
+            "position": {
+                "x": 18,
+                "y": 2
+            },
+            "tileIndex": 37,
+            "tilemapType": 0,
+            "rotation": 0,
+            "flipX": true,
+            "flipY": true
+        },
+        {
+            "position": {
+                "x": 19,
+                "y": 2
+            },
+            "tileIndex": 37,
+            "tilemapType": 0,
+            "rotation": 0,
+            "flipX": true,
+            "flipY": true
+        },
+        {
+            "position": {
+                "x": 20,
+                "y": 2
+            },
+            "tileIndex": 37,
+            "tilemapType": 0,
+            "rotation": 0,
+            "flipX": true,
+            "flipY": true
+        },
+        {
+            "position": {
+                "x": 13,
+                "y": 5
+            },
+            "tileIndex": 38,
+            "tilemapType": 0,
+            "rotation": 0,
+            "flipX": true,
+            "flipY": true
+        },
+        {
+            "position": {
+                "x": 14,
+                "y": 5
+            },
+            "tileIndex": 37,
+            "tilemapType": 0,
+            "rotation": 180,
+            "flipX": true,
+            "flipY": true
+        },
+        {
+            "position": {
+                "x": 15,
+                "y": 5
+            },
+            "tileIndex": 37,
+            "tilemapType": 0,
+            "rotation": 180,
+            "flipX": true,
+            "flipY": true
+        },
+        {
+            "position": {
+                "x": 16,
+                "y": 5
+            },
+            "tileIndex": 37,
+            "tilemapType": 0,
+            "rotation": 180,
+            "flipX": true,
+            "flipY": true
+        },
+        {
+            "position": {
+                "x": 17,
+                "y": 5
+            },
+            "tileIndex": 37,
+            "tilemapType": 0,
+            "rotation": 180,
+            "flipX": true,
+            "flipY": true
+        },
+        {
+            "position": {
+                "x": 18,
+                "y": 5
+            },
+            "tileIndex": 37,
+            "tilemapType": 0,
+            "rotation": 180,
+            "flipX": true,
+            "flipY": true
+        },
+        {
+            "position": {
+                "x": 19,
+                "y": 5
+            },
+            "tileIndex": 37,
+            "tilemapType": 0,
+            "rotation": 180,
+            "flipX": true,
+            "flipY": true
+        },
+        {
+            "position": {
+                "x": 20,
+                "y": 5
+            },
+            "tileIndex": 37,
+            "tilemapType": 0,
+            "rotation": 180,
+            "flipX": true,
+            "flipY": true
+        },
+        {
+            "position": {
+                "x": 21,
+                "y": 6
+            },
+            "tileIndex": 33,
+            "tilemapType": 0,
+            "rotation": 0,
+            "flipX": true,
+            "flipY": true
+        },
+        {
+            "position": {
+                "x": 21,
+                "y": 5
+            },
+            "tileIndex": 43,
+            "tilemapType": 0,
+            "rotation": 0,
+            "flipX": true,
+            "flipY": true
+        },
+        {
+            "position": {
+                "x": 22,
+                "y": 6
+            },
+            "tileIndex": 37,
+            "tilemapType": 0,
+            "rotation": 0,
+            "flipX": true,
+            "flipY": true
+        },
+        {
+            "position": {
+                "x": 23,
+                "y": 4
+            },
+            "tileIndex": 36,
+            "tilemapType": 0,
+            "rotation": 270,
+            "flipX": true,
+            "flipY": false
+        },
+        {
+            "position": {
+                "x": 23,
+                "y": 5
+            },
+            "tileIndex": 42,
+            "tilemapType": 0,
+            "rotation": 0,
+            "flipX": false,
+            "flipY": false
+        },
+        {
+            "position": {
+                "x": 23,
+                "y": 6
+            },
+            "tileIndex": 32,
+            "tilemapType": 0,
+            "rotation": 180,
+            "flipX": true,
+            "flipY": false
+        },
+        {
+            "position": {
+                "x": 24,
+                "y": 6
+            },
+            "tileIndex": 37,
+            "tilemapType": 0,
+            "rotation": 180,
+            "flipX": true,
+            "flipY": false
+        },
+        {
+            "position": {
+                "x": 25,
+                "y": 6
+            },
+            "tileIndex": 37,
+            "tilemapType": 0,
+            "rotation": 180,
+            "flipX": true,
+            "flipY": false
+        },
+        {
+            "position": {
+                "x": 26,
+                "y": 6
+            },
+            "tileIndex": 37,
+            "tilemapType": 0,
+            "rotation": 180,
+            "flipX": true,
+            "flipY": false
+        },
+        {
+            "position": {
+                "x": 28,
+                "y": 10
+            },
+            "tileIndex": 31,
+            "tilemapType": 0,
+            "rotation": 270,
+            "flipX": true,
+            "flipY": false
+        },
+        {
+            "position": {
+                "x": 28,
+                "y": 9
+            },
+            "tileIndex": 31,
+            "tilemapType": 0,
+            "rotation": 270,
+            "flipX": true,
+            "flipY": false
+        },
+        {
+            "position": {
+                "x": 28,
+                "y": 8
+            },
+            "tileIndex": 31,
+            "tilemapType": 0,
+            "rotation": 270,
+            "flipX": true,
+            "flipY": false
+        },
+        {
+            "position": {
+                "x": 28,
+                "y": 7
+            },
+            "tileIndex": 31,
+            "tilemapType": 0,
+            "rotation": 270,
+            "flipX": true,
+            "flipY": false
+        },
+        {
+            "position": {
+                "x": 28,
+                "y": 6
+            },
+            "tileIndex": 31,
+            "tilemapType": 0,
+            "rotation": 270,
+            "flipX": true,
+            "flipY": false
+        },
+        {
+            "position": {
+                "x": 28,
+                "y": 5
+            },
+            "tileIndex": 31,
+            "tilemapType": 0,
+            "rotation": 270,
+            "flipX": true,
+            "flipY": false
+        },
+        {
+            "position": {
+                "x": 28,
+                "y": 4
+            },
+            "tileIndex": 31,
+            "tilemapType": 0,
+            "rotation": 270,
+            "flipX": true,
+            "flipY": false
+        },
+        {
+            "position": {
+                "x": 28,
+                "y": 3
+            },
+            "tileIndex": 31,
+            "tilemapType": 0,
+            "rotation": 270,
+            "flipX": true,
+            "flipY": false
+        },
+        {
+            "position": {
+                "x": 28,
+                "y": 2
+            },
+            "tileIndex": 31,
+            "tilemapType": 0,
+            "rotation": 270,
+            "flipX": true,
+            "flipY": false
+        },
+        {
+            "position": {
+                "x": 28,
+                "y": 1
+            },
+            "tileIndex": 31,
+            "tilemapType": 0,
+            "rotation": 270,
+            "flipX": true,
+            "flipY": false
+        },
+        {
+            "position": {
+                "x": 28,
+                "y": 12
+            },
+            "tileIndex": 31,
+            "tilemapType": 0,
+            "rotation": 270,
+            "flipX": true,
+            "flipY": false
+        },
+        {
+            "position": {
+                "x": 28,
+                "y": 11
+            },
+            "tileIndex": 31,
+            "tilemapType": 0,
+            "rotation": 270,
+            "flipX": true,
+            "flipY": false
+        },
+        {
+            "position": {
+                "x": 28,
+                "y": 0
+            },
+            "tileIndex": 31,
+            "tilemapType": 0,
+            "rotation": 270,
+            "flipX": true,
+            "flipY": false
+        },
+        {
+            "position": {
+                "x": 27,
+                "y": 10
+            },
+            "tileIndex": 39,
+            "tilemapType": 0,
+            "rotation": 270,
+            "flipX": true,
+            "flipY": false
+        },
+        {
+            "position": {
+                "x": 27,
+                "y": 9
+            },
+            "tileIndex": 39,
+            "tilemapType": 0,
+            "rotation": 270,
+            "flipX": true,
+            "flipY": false
+        },
+        {
+            "position": {
+                "x": 27,
+                "y": 8
+            },
+            "tileIndex": 39,
+            "tilemapType": 0,
+            "rotation": 270,
+            "flipX": true,
+            "flipY": false
+        },
+        {
+            "position": {
+                "x": 27,
+                "y": 7
+            },
+            "tileIndex": 39,
+            "tilemapType": 0,
+            "rotation": 270,
+            "flipX": true,
+            "flipY": false
+        },
+        {
+            "position": {
+                "x": 27,
+                "y": 5
+            },
+            "tileIndex": 39,
+            "tilemapType": 0,
+            "rotation": 270,
+            "flipX": true,
+            "flipY": false
+        },
+        {
+            "position": {
+                "x": 27,
+                "y": 4
+            },
+            "tileIndex": 39,
+            "tilemapType": 0,
+            "rotation": 270,
+            "flipX": true,
+            "flipY": false
+        },
+        {
+            "position": {
+                "x": 27,
+                "y": 3
+            },
+            "tileIndex": 39,
+            "tilemapType": 0,
+            "rotation": 270,
+            "flipX": true,
+            "flipY": false
+        },
+        {
+            "position": {
+                "x": 27,
+                "y": 2
+            },
+            "tileIndex": 39,
+            "tilemapType": 0,
+            "rotation": 270,
+            "flipX": true,
+            "flipY": false
+        },
+        {
+            "position": {
+                "x": 27,
+                "y": 1
+            },
+            "tileIndex": 39,
+            "tilemapType": 0,
+            "rotation": 270,
+            "flipX": true,
+            "flipY": false
+        },
+        {
+            "position": {
+                "x": 27,
+                "y": 6
+            },
+            "tileIndex": 46,
+            "tilemapType": 0,
+            "rotation": 90,
+            "flipX": false,
+            "flipY": false
+        },
+        {
+            "position": {
+                "x": 21,
+                "y": 2
+            },
+            "tileIndex": 38,
+            "tilemapType": 0,
+            "rotation": 0,
+            "flipX": false,
+            "flipY": false
+        },
+        {
+            "position": {
+                "x": 23,
+                "y": 2
+            },
+            "tileIndex": 36,
+            "tilemapType": 0,
+            "rotation": 270,
+            "flipX": false,
+            "flipY": false
+        },
+        {
+            "position": {
+                "x": 23,
+                "y": 1
+            },
+            "tileIndex": 42,
+            "tilemapType": 0,
+            "rotation": 0,
+            "flipX": false,
+            "flipY": false
+        },
+        {
+            "position": {
+                "x": 23,
+                "y": 10
+            },
+            "tileIndex": 42,
+            "tilemapType": 0,
+            "rotation": 0,
+            "flipX": false,
+            "flipY": false
+        },
+        {
+            "position": {
+                "x": 23,
+                "y": 11
+            },
+            "tileIndex": 46,
+            "tilemapType": 0,
+            "rotation": 0,
+            "flipX": true,
+            "flipY": false
+        },
+        {
+            "position": {
+                "x": 8,
+                "y": 9
+            },
+            "tileIndex": 31,
+            "tilemapType": 0,
+            "rotation": 0,
+            "flipX": false,
+            "flipY": false
+        },
+        {
+            "position": {
+                "x": 7,
+                "y": 9
+            },
+            "tileIndex": 31,
+            "tilemapType": 0,
+            "rotation": 0,
             "flipX": false,
             "flipY": false
         },
@@ -1481,58 +2339,15 @@
                 "x": 6,
                 "y": 9
             },
-            "tileIndex": 33,
+            "tileIndex": 31,
             "tilemapType": 0,
-            "rotation": 90,
-            "flipX": true,
-            "flipY": true
-        },
-        {
-            "position": {
-                "x": 6,
-                "y": 8
-            },
-            "tileIndex": 33,
-            "tilemapType": 0,
-            "rotation": 90,
+            "rotation": 0,
             "flipX": false,
-            "flipY": true
+            "flipY": false
         }
     ],
     "prefabs": [],
     "enemySpawns": [],
-    "patrolPoints": [
-        {
-            "x": 3,
-            "y": 9
-        },
-        {
-            "x": 3,
-            "y": 8
-        },
-        {
-            "x": 3,
-            "y": 7
-        },
-        {
-            "x": 4,
-            "y": 7
-        },
-        {
-            "x": 5,
-            "y": 7
-        },
-        {
-            "x": 6,
-            "y": 7
-        },
-        {
-            "x": 8,
-            "y": 6
-        },
-        {
-            "x": 10,
-            "y": 6
-        }
-    ]
+    "patrolPoints": [],
+    "selectedBackgroundIndex": 1
 }
