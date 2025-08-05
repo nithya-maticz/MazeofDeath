@@ -107,13 +107,11 @@ public class Player : MonoBehaviour
     void CloseDoor(ZombieDoor zombieDoor)
     {
         if (zombieDoor == null) return;
-
         zombieDoor.isClosed = true;
         zombieDoor.sprite.sprite = ManagerMaze.instance.DoorClose;
         zombieDoor.light.SetActive(false);
         light.SetActive(true);
         zombieDoor.GetComponent<BoxCollider2D>().enabled = false;
-
         Debug.Log("Door closed!");
         ManagerMaze.instance.DoorClosedCount();
         ManagerMaze.instance.CheckLevelUp();
