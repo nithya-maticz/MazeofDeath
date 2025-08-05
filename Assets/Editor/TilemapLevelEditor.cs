@@ -79,7 +79,7 @@ public class TilemapLevelEditor : EditorWindow
         EditorGUILayout.BeginHorizontal();
         DrawModeButton(EditMode.Tile, "Tile Mode");
         DrawModeButton(EditMode.Prefab, "Prefab Mode");
-        DrawModeButton(EditMode.SpawnPoint, "Spawn Point");
+       // DrawModeButton(EditMode.SpawnPoint, "Spawn Point");
         DrawModeButton(EditMode.PatrolPoint, "Patrol Point");
         EditorGUILayout.EndHorizontal();
 
@@ -159,6 +159,34 @@ public class TilemapLevelEditor : EditorWindow
         GUI.backgroundColor = Color.white;
     }
 
+    /* private void DrawAssetPalette(Object[] assets, ref int selectedIndex, float size)
+     {
+         int perRow = Mathf.Max(1, Mathf.FloorToInt((position.width - 40) / (size + 6)));
+         for (int i = 0; i < assets.Length; i += perRow)
+         {
+             EditorGUILayout.BeginHorizontal();
+             for (int j = 0; j < perRow && i + j < assets.Length; j++)
+             {
+                 int idx = i + j;
+                 var asset = assets[idx];
+                 Texture2D preview = null;
+
+                 if (asset is Tile tile && tile.sprite != null)
+                     preview = tile.sprite.texture;
+                 else if (asset)
+                     preview = AssetPreview.GetAssetPreview(asset) ?? AssetPreview.GetMiniThumbnail(asset);
+                 if (preview == null) preview = Texture2D.grayTexture;
+
+                 GUI.backgroundColor = (selectedIndex == idx) ? Color.cyan : Color.white;
+                 if (GUILayout.Button(preview, GUILayout.Width(size), GUILayout.Height(size)))
+                     selectedIndex = idx;
+                 GUI.backgroundColor = Color.white;
+             }
+             EditorGUILayout.EndHorizontal();
+         }
+     }*/
+
+
     private void DrawAssetPalette(Object[] assets, ref int selectedIndex, float size)
     {
         int perRow = Mathf.Max(1, Mathf.FloorToInt((position.width - 40) / (size + 6)));
@@ -178,8 +206,24 @@ public class TilemapLevelEditor : EditorWindow
                 if (preview == null) preview = Texture2D.grayTexture;
 
                 GUI.backgroundColor = (selectedIndex == idx) ? Color.cyan : Color.white;
+
+                GUILayout.BeginVertical(GUILayout.Width(size + 4));
                 if (GUILayout.Button(preview, GUILayout.Width(size), GUILayout.Height(size)))
                     selectedIndex = idx;
+
+                // Show name only for prefabs (GameObjects)
+                if (asset is GameObject)
+                {
+                    GUIStyle labelStyle = new GUIStyle(EditorStyles.label);
+                    labelStyle.fontSize = 9;
+                    labelStyle.alignment = TextAnchor.MiddleCenter;
+                    labelStyle.wordWrap = true;
+
+                    GUILayout.Label(asset.name, labelStyle, GUILayout.Width(size));
+                }
+
+                GUILayout.EndVertical();
+
                 GUI.backgroundColor = Color.white;
             }
             EditorGUILayout.EndHorizontal();
