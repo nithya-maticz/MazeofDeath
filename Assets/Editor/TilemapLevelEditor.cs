@@ -31,13 +31,15 @@ public class TilemapLevelEditor : EditorWindow
 
     private Vector2Int? hoveredCell = null;
     private int currentRotation = 0;
+    private bool flipX = false;
+    private bool flipY = false;
 
     [MenuItem("Tools/Tilemap Level Editor")]
     public static void ShowWindow() => GetWindow<TilemapLevelEditor>("Tilemap Level Editor");
 
     private void OnGUI()
     {
-        GUILayout.Label("🧩 Tilemap Level Editor", EditorStyles.boldLabel);
+        GUILayout.Label("\ud83e\udde9 Tilemap Level Editor", EditorStyles.boldLabel);
         assetsDatabase = (LevelAssetsDatabase)EditorGUILayout.ObjectField("Assets DB", assetsDatabase, typeof(LevelAssetsDatabase), false);
         if (assetsDatabase == null) return;
 
@@ -45,9 +47,9 @@ public class TilemapLevelEditor : EditorWindow
         gridHeight = EditorGUILayout.IntField("Grid Height", gridHeight);
 
         EditorGUILayout.BeginHorizontal();
-        if (GUILayout.Button("◀ Prev", GUILayout.Width(60))) { currentLevel = Mathf.Max(1, currentLevel - 1); LoadLevel(); }
+        if (GUILayout.Button("\u25c0 Prev", GUILayout.Width(60))) { currentLevel = Mathf.Max(1, currentLevel - 1); LoadLevel(); }
         currentLevel = EditorGUILayout.IntField("Level", currentLevel);
-        if (GUILayout.Button("Next ▶", GUILayout.Width(60))) { currentLevel++; LoadLevel(); }
+        if (GUILayout.Button("Next \u25b6", GUILayout.Width(60))) { currentLevel++; LoadLevel(); }
         EditorGUILayout.EndHorizontal();
 
         gridZoom = EditorGUILayout.Slider("Grid Zoom %", gridZoom, 25f, 300f);
@@ -62,12 +64,16 @@ public class TilemapLevelEditor : EditorWindow
 
         if (assetsDatabase.tiles != null && assetsDatabase.tiles.Length > 0)
         {
-            GUILayout.Label($"Tiles (Rotation: {currentRotation}°)", EditorStyles.boldLabel);
+            GUILayout.Label($"Tiles (Rotation: {currentRotation}\u00b0)", EditorStyles.boldLabel);
+            GUILayout.BeginHorizontal();
+            flipX = GUILayout.Toggle(flipX, "Flip X");
+            flipY = GUILayout.Toggle(flipY, "Flip Y");
+            GUILayout.EndHorizontal();
             DrawAssetPalette(assetsDatabase.tiles, ref selectedTileIndex, 48f);
         }
 
         GUILayout.Space(5);
-        GUILayout.Label("✏️ Mode Selection", EditorStyles.boldLabel);
+        GUILayout.Label("\u270f\ufe0f Mode Selection", EditorStyles.boldLabel);
         EditorGUILayout.BeginHorizontal();
         DrawModeButton(EditMode.Tile, "Tile Mode");
         DrawModeButton(EditMode.Prefab, "Prefab Mode");
@@ -84,7 +90,7 @@ public class TilemapLevelEditor : EditorWindow
         }
 
         GUILayout.Space(5);
-        GUILayout.Label("🧹 Clear Options", EditorStyles.boldLabel);
+        GUILayout.Label("\ud83e\uddf9 Clear Options", EditorStyles.boldLabel);
         EditorGUILayout.BeginHorizontal();
         if (GUILayout.Button("Tiles")) placedTiles.Clear();
         if (GUILayout.Button("Prefabs")) placedPrefabs.Clear();
@@ -100,7 +106,7 @@ public class TilemapLevelEditor : EditorWindow
         GUILayout.FlexibleSpace();
 
         GUILayout.Space(10);
-        GUILayout.Label("💾 Save / Load", EditorStyles.boldLabel);
+        GUILayout.Label("\ud83d\udcbe Save / Load", EditorStyles.boldLabel);
         EditorGUILayout.BeginHorizontal();
         if (GUILayout.Button("Save")) SaveLevel();
         if (GUILayout.Button("Load")) LoadLevel();
@@ -187,7 +193,7 @@ public class TilemapLevelEditor : EditorWindow
                         var t = assetsDatabase.tiles[tile.tileIndex];
                         Texture2D tex = (t is Tile cast && cast.sprite != null) ? cast.sprite.texture : AssetPreview.GetMiniThumbnail(t);
                         if (tex != null)
-                            DrawTextureRotated(rect, tex, tile.rotation);
+                            DrawTextureRotated(rect, tex, tile.rotation, tile.flipX, tile.flipY);
                     }
                 }
 
@@ -212,7 +218,7 @@ public class TilemapLevelEditor : EditorWindow
                     if (hover)
                     {
                         GUI.color = new Color(1, 1, 1, 0.5f);
-                        DrawTextureRotated(rect, hover, angle);
+                        DrawTextureRotated(rect, hover, angle, flipX, flipY);
                         GUI.color = Color.white;
                     }
                 }
@@ -224,14 +230,30 @@ public class TilemapLevelEditor : EditorWindow
         }
     }
 
-    private void DrawTextureRotated(Rect rect, Texture2D tex, int angle)
+    private void DrawTextureRotated(Rect rect, Texture2D tex, int angle, bool flipX, bool flipY)
     {
-        Matrix4x4 prev = GUI.matrix;
+        Matrix4x4 prevMatrix = GUI.matrix;
+
         Vector2 pivot = rect.center;
+
+        // ✅ 1. Apply flipping FIRST (correct order)
+        Vector2 scale = new Vector2(flipX ? -1f : 1f, flipY ? -1f : 1f);
+        GUIUtility.ScaleAroundPivot(scale, pivot);
+
+        // ✅ 2. Then apply rotation
         GUIUtility.RotateAroundPivot(angle, pivot);
+
+        // ✅ 3. Draw texture
         GUI.DrawTexture(rect, tex, ScaleMode.ScaleToFit);
-        GUI.matrix = prev;
+
+        // ✅ 4. Restore matrix
+        GUI.matrix = prevMatrix;
     }
+
+
+
+
+
 
     private void ToggleCellAt(int x, int y)
     {
@@ -244,7 +266,15 @@ public class TilemapLevelEditor : EditorWindow
         else if (currentMode == EditMode.Tile)
         {
             if (eraseMode) placedTiles.RemoveAll(t => t.position == c && t.tilemapType == selectedTilemapType);
-            else placedTiles.Add(new PlacedTile { position = c, tileIndex = selectedTileIndex, tilemapType = selectedTilemapType, rotation = currentRotation });
+            else placedTiles.Add(new PlacedTile
+            {
+                position = c,
+                tileIndex = selectedTileIndex,
+                tilemapType = selectedTilemapType,
+                rotation = currentRotation,
+                flipX = flipX,
+                flipY = flipY
+            });
         }
         else if (currentMode == EditMode.SpawnPoint)
         {
@@ -286,16 +316,33 @@ public class TilemapLevelEditor : EditorWindow
     private void HandleEvents()
     {
         var e = Event.current;
-        if (e.type == EventType.KeyDown && e.keyCode == KeyCode.R)
+
+        if (e.type == EventType.KeyDown)
         {
-            currentRotation = (currentRotation + 90) % 360;
-            Repaint();
+            if (e.keyCode == KeyCode.R)
+            {
+                currentRotation = (currentRotation + 90) % 360;
+                Repaint();
+            }
+            else if (e.keyCode == KeyCode.H)
+            {
+                flipX = !flipX;
+                Repaint();
+            }
+            else if (e.keyCode == KeyCode.V)
+            {
+                flipY = !flipY;
+                Repaint();
+            }
         }
+
         if (e.type == EventType.MouseDown && e.button == 0) isDragging = true;
         if (e.type == EventType.MouseUp && e.button == 0) isDragging = false;
     }
+
+
 }
 
-[System.Serializable] public class PlacedTile { public Vector2Int position; public int tileIndex; public TilemapType tilemapType; public int rotation; }
+[System.Serializable] public class PlacedTile { public Vector2Int position; public int tileIndex; public TilemapType tilemapType; public int rotation; public bool flipX; public bool flipY; }
 [System.Serializable] public class PlacedPrefab { public Vector2Int position; public int prefabIndex; public Vector2Int size; }
 [System.Serializable] public class LevelTileData { public int width, height; public List<PlacedTile> tiles; public List<PlacedPrefab> prefabs; public List<Vector2Int> enemySpawns; public List<Vector2Int> patrolPoints; }

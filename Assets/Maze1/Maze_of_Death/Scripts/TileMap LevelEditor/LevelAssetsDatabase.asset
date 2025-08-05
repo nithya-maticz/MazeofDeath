@@ -12,7 +12,56 @@ MonoBehaviour:
   m_Script: {fileID: 11500000, guid: a492461c9dab36543ab8499e5e1f98ac, type: 3}
   m_Name: LevelAssetsDatabase
   m_EditorClassIdentifier: 
-  tiles: []
+  tiles:
+  - {fileID: 11400000, guid: dc65ce5889c9679419583d82afc2d782, type: 2}
+  - {fileID: 11400000, guid: 03cdb895c4a5ad747a9e5e9cee98ee88, type: 2}
+  - {fileID: 11400000, guid: b554dd2ee525d0a4a8595327e6f20885, type: 2}
+  - {fileID: 11400000, guid: 852f3aa57dd797e489ee27845c8a971c, type: 2}
+  - {fileID: 11400000, guid: d9d47edbb1f97a64394083f08f7c6e20, type: 2}
+  - {fileID: 11400000, guid: b83f169d60512044ea5b5f6877200b6a, type: 2}
+  - {fileID: 11400000, guid: 8c5fd85b3e73f2b4db5ebcbeb2875da0, type: 2}
+  - {fileID: 11400000, guid: 171c6dc3b56caf5459f486e58e20beaa, type: 2}
+  - {fileID: 11400000, guid: 23e6ee222fe504c4fb97c78c1bbfa816, type: 2}
+  - {fileID: 11400000, guid: ac13e6d76e7cc8a488786d52a4b72c02, type: 2}
+  - {fileID: 11400000, guid: 8c2328f87a93122448cd9b5a2255411c, type: 2}
+  - {fileID: 11400000, guid: 7edbcbf171ef6c54b8d84064294114ce, type: 2}
+  - {fileID: 11400000, guid: 4f6a6613c78792b45b28a37d009a664d, type: 2}
+  - {fileID: 11400000, guid: 6a06d3f5f03901347ba6e98763e8e74c, type: 2}
+  - {fileID: 11400000, guid: 0dea049333031974ca7b463fb5cc905f, type: 2}
+  - {fileID: 11400000, guid: 8df9d1128f90d27469dce319fd039357, type: 2}
+  - {fileID: 11400000, guid: 1fa6394c62c42024bac3cd7b00a30e74, type: 2}
+  - {fileID: 11400000, guid: ff745c4f7522c784eaec3fb9291c4298, type: 2}
+  - {fileID: 11400000, guid: a4af472a567138e43b5c9ce9e962df81, type: 2}
+  - {fileID: 11400000, guid: 38007ecf132ae4f438b2eb6088399b94, type: 2}
+  - {fileID: 11400000, guid: af9e9acc534b7744db74f0c9e431709e, type: 2}
+  - {fileID: 11400000, guid: ca84896217f60f64d9b42f6f87dec130, type: 2}
+  - {fileID: 11400000, guid: be9a44d893185a142867f91bc820aee1, type: 2}
+  - {fileID: 11400000, guid: 3f9334f1283d8ea41bb996dda87e66d5, type: 2}
+  - {fileID: 11400000, guid: 292e92aad8a4e6a4d974cc75ce433936, type: 2}
+  - {fileID: 11400000, guid: ca0b97edae7c02c49a86fe0f87e4ff13, type: 2}
+  - {fileID: 11400000, guid: e503656545ba73349a377038f641b07c, type: 2}
+  - {fileID: 11400000, guid: bd0769c980c1e864fb1aa6c1e9443dab, type: 2}
+  - {fileID: 11400000, guid: c61ea267b214ab941a9c680b17d71ef2, type: 2}
+  - {fileID: 11400000, guid: 97686ef6f74ae4047ab1902296f429da, type: 2}
+  - {fileID: 11400000, guid: 944b3cfd8b6352e43aac5d232b3c23c8, type: 2}
+  - {fileID: 11400000, guid: 215247efa8a623a49951767858109c89, type: 2}
+  - {fileID: 11400000, guid: 69a12487be5284040b1289bfb9ad800c, type: 2}
+  - {fileID: 11400000, guid: 75774cd84e2033449874b071607bb362, type: 2}
+  - {fileID: 11400000, guid: 963de7860fcdbdb43928b299a61f9be7, type: 2}
+  - {fileID: 11400000, guid: 27706d98a95f805478e13bc6659adf7f, type: 2}
+  - {fileID: 11400000, guid: 8b11ae1f488ba7044aea11c7d151d73b, type: 2}
+  - {fileID: 11400000, guid: 4500ffd65c4ab8e4da590ff348a1fade, type: 2}
+  - {fileID: 11400000, guid: 965474c835024874088166152070f633, type: 2}
+  - {fileID: 11400000, guid: c85ba03fc60eaee428ef3d182ddf39a3, type: 2}
+  - {fileID: 11400000, guid: 5eb89176540289b409f0723a5756f5c0, type: 2}
+  - {fileID: 11400000, guid: cd7b2f3c1ba10514c8c8af84fe6af17f, type: 2}
+  - {fileID: 11400000, guid: 856a1871f0e823841b8c9974cb73eca7, type: 2}
+  - {fileID: 11400000, guid: 5693df06f718c844f89c3474aa50706d, type: 2}
+  - {fileID: 11400000, guid: 55fb9dd466a435544a7c26813fc39c02, type: 2}
+  - {fileID: 11400000, guid: 7889a66fd7b48ae40a4af07c7c28e52b, type: 2}
+  - {fileID: 11400000, guid: 87e0bf229a1f33e4189068d82e2b6bdf, type: 2}
   prefabs: []
   enemyPrefab: {fileID: 0}
-  tilemapTypes: []
+  tilemapTypes:
+  - type: 0
+    displayName: Walls

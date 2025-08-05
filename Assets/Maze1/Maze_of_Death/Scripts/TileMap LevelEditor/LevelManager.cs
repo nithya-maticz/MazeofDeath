@@ -26,42 +26,21 @@ public class LevelManager : MonoBehaviour
     void Start()
     {
         LoadLevelData();
-        BuildEmptyGridCells();
         SpawnTiles();
+        BuildEmptyGridCells();
         SpawnPrefabs();
         SpawnEnemies();
         SpawnPatrolPoints();
     }
 
-    void SpawnPatrolPoints()
-    {
-        patrolObjects.Clear(); // Clear previous ones if reloading
-
-        var groundTilemap = tilemapBindings.FirstOrDefault(b => b.type == TilemapType.Ground)?.tilemap;
-        if (groundTilemap == null)
-        {
-            Debug.LogWarning("No Ground tilemap found to convert patrol cell to world position.");
-            return;
-        }
-
-        foreach (var pos in patrolPoints)
-        {
-            Vector3Int cellPos = new Vector3Int(pos.x, pos.y, 0);
-            Vector3 worldPos = groundTilemap.CellToWorld(cellPos) + groundTilemap.cellSize / 2;
-
-            GameObject go = new GameObject($"PatrolPoint_{pos.x}_{pos.y}");
-            go.transform.position = worldPos;
-            patrolObjects.Add(go);
-        }
-
-        Debug.Log($"Spawned {patrolObjects.Count} patrol point objects.");
-    }
-
-
     void LoadLevelData()
     {
         string path = Application.dataPath + $"/Level{levelToLoad}.json";
-        if (!File.Exists(path)) { Debug.LogWarning("Level not found at: " + path); return; }
+        if (!File.Exists(path))
+        {
+            Debug.LogWarning("Level not found at: " + path);
+            return;
+        }
 
         var data = JsonUtility.FromJson<LevelTileData>(File.ReadAllText(path));
         gridWidth = data.width;
@@ -84,8 +63,12 @@ public class LevelManager : MonoBehaviour
                 var cellPos = new Vector3Int(tile.position.x, tile.position.y, 0);
                 binding.tilemap.SetTile(cellPos, assetsDatabase.tiles[tile.tileIndex]);
 
-                // Apply rotation
-                var tileTransform = Matrix4x4.Rotate(Quaternion.Euler(0, 0, -tile.rotation));
+                // Combine rotation + flip
+                float angle = tile.rotation;
+                Vector3 scale = new Vector3(tile.flipX ? -1f : 1f, tile.flipY ? -1f : 1f, 1f);
+                Quaternion rotation = Quaternion.Euler(0, 0, -angle);
+
+                Matrix4x4 tileTransform = Matrix4x4.TRS(Vector3.zero, rotation, scale);
                 binding.tilemap.SetTransformMatrix(cellPos, tileTransform);
             }
             else
@@ -103,7 +86,6 @@ public class LevelManager : MonoBehaviour
             return;
         }
 
-        // Find any tilemap (e.g., Ground) to get grid position
         var groundTilemap = tilemapBindings.FirstOrDefault(b => b.type == TilemapType.Ground)?.tilemap;
         if (groundTilemap == null)
         {
@@ -120,8 +102,6 @@ public class LevelManager : MonoBehaviour
                 {
                     Vector3Int cellPos = new Vector3Int(p.position.x, p.position.y, 0);
                     Vector3 worldPos = groundTilemap.CellToWorld(cellPos);
-
-                    // Align to tile center if needed
                     worldPos += groundTilemap.cellSize / 2;
 
                     var instance = Instantiate(prefab, worldPos, Quaternion.identity);
@@ -130,7 +110,6 @@ public class LevelManager : MonoBehaviour
             }
         }
     }
-
 
     void SpawnEnemies()
     {
@@ -146,6 +125,30 @@ public class LevelManager : MonoBehaviour
             Instantiate(assetsDatabase.enemyPrefab, spawnPos, Quaternion.identity);
             Debug.Log($"Spawned enemy at {spawnPos}");
         }
+    }
+
+    void SpawnPatrolPoints()
+    {
+        patrolObjects.Clear();
+
+        var groundTilemap = tilemapBindings.FirstOrDefault(b => b.type == TilemapType.Ground)?.tilemap;
+        if (groundTilemap == null)
+        {
+            Debug.LogWarning("No Ground tilemap found to convert patrol cell to world position.");
+            return;
+        }
+
+        foreach (var pos in patrolPoints)
+        {
+            Vector3Int cellPos = new Vector3Int(pos.x, pos.y, 0);
+            Vector3 worldPos = groundTilemap.CellToWorld(cellPos) + groundTilemap.cellSize / 2;
+
+            GameObject go = new GameObject($"PatrolPoint_{pos.x}_{pos.y}");
+            go.transform.position = worldPos;
+            patrolObjects.Add(go);
+        }
+
+        Debug.Log($"Spawned {patrolObjects.Count} patrol point objects.");
     }
 
     void BuildEmptyGridCells()
@@ -190,6 +193,8 @@ public class PlacedTile
     public int tileIndex;
     public TilemapType tilemapType;
     public int rotation;
+    public bool flipX;
+    public bool flipY;
 }
 
 [Serializable]
