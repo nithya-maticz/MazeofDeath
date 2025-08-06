@@ -25,7 +25,7 @@ public class TilemapLevelEditor : EditorWindow
     private float gridZoom = 100f;
     private bool eraseMode = false;
 
-    private enum EditMode { None, Tile, Prefab, PatrolPoint }
+    private enum EditMode { None, Tile, Prefab, PatrolPoint, PlayerSpawn }
     private EditMode currentMode = EditMode.Tile;
 
     private Vector2Int? hoveredCell = null;
@@ -34,6 +34,7 @@ public class TilemapLevelEditor : EditorWindow
     private bool flipY = false;
 
     private int selectedBackgroundIndex = -1;
+    private Vector2Int? playerSpawnCell = null;
 
     [MenuItem("Tools/Tilemap Level Editor")]
     public static void ShowWindow() => GetWindow<TilemapLevelEditor>("Tilemap Level Editor");
@@ -79,6 +80,7 @@ public class TilemapLevelEditor : EditorWindow
         DrawModeButton(EditMode.Tile, "Tile Mode");
         DrawModeButton(EditMode.Prefab, "Prefab Mode");
         DrawModeButton(EditMode.PatrolPoint, "Patrol Point");
+        DrawModeButton(EditMode.PlayerSpawn, "Player Spawn"); 
         EditorGUILayout.EndHorizontal();
 
         eraseMode = GUILayout.Toggle(eraseMode, "Erase Mode");
@@ -101,6 +103,7 @@ public class TilemapLevelEditor : EditorWindow
         if (GUILayout.Button("Tiles")) placedTiles.Clear();
         if (GUILayout.Button("Prefabs")) placedPrefabs.Clear();
         if (GUILayout.Button("Patrols")) patrolCells.Clear();
+        if (GUILayout.Button("Player")) playerSpawnCell = null;
         if (GUILayout.Button("All")) { placedTiles.Clear(); placedPrefabs.Clear(); patrolCells.Clear(); }
         EditorGUILayout.EndHorizontal();
 
@@ -212,9 +215,11 @@ public class TilemapLevelEditor : EditorWindow
                     hoveredCell = cell;
 
                 bool isPatrol = patrolCells.Contains(cell);
+                bool isPlayer = playerSpawnCell.HasValue && playerSpawnCell.Value == cell; // ✅
 
-                GUI.color = isPatrol ? new Color(0, 0.5f, 0.8f, 0.8f) :
-                          eraseMode ? new Color(1, 0.5f, 0.5f) : Color.white;
+                GUI.color = isPlayer ? new Color(1f, 1f, 0f, 0.8f) : // ✅ Yellow highlight
+                            isPatrol ? new Color(0, 0.5f, 0.8f, 0.8f) :
+                            eraseMode ? new Color(1, 0.5f, 0.5f) : Color.white;
 
                 if (GUI.Button(rect, GUIContent.none)) ToggleCellAt(x, y);
                 GUI.color = Color.white;
@@ -310,6 +315,11 @@ public class TilemapLevelEditor : EditorWindow
         {
             if (patrolCells.Contains(c)) patrolCells.Remove(c); else patrolCells.Add(c);
         }
+        else if (currentMode == EditMode.PlayerSpawn) // ✅ Set or clear player spawn
+        {
+            if (playerSpawnCell == c) playerSpawnCell = null;
+            else playerSpawnCell = c;
+        }
     }
 
     private void SaveLevel()
@@ -321,7 +331,8 @@ public class TilemapLevelEditor : EditorWindow
             tiles = placedTiles,
             prefabs = placedPrefabs,
             patrolPoints = patrolCells,
-            selectedBackgroundIndex = selectedBackgroundIndex
+            selectedBackgroundIndex = selectedBackgroundIndex,
+            playerSpawn = playerSpawnCell.HasValue ? playerSpawnCell.Value : new Vector2Int(-1, -1) // ✅
         };
 
         File.WriteAllText(Application.dataPath + $"/Level{currentLevel}.json", JsonUtility.ToJson(d, true));
@@ -341,6 +352,7 @@ public class TilemapLevelEditor : EditorWindow
         placedPrefabs = d.prefabs;
         patrolCells = d.patrolPoints;
         selectedBackgroundIndex = d.selectedBackgroundIndex;
+        playerSpawnCell = (d.playerSpawn.x >= 0 && d.playerSpawn.y >= 0) ? (Vector2Int?)d.playerSpawn : null; // ✅
         Debug.Log("Loaded!");
     }
 
@@ -383,4 +395,6 @@ public class LevelTileData
     public List<PlacedPrefab> prefabs;
     public List<Vector2Int> patrolPoints;
     public int selectedBackgroundIndex = -1;
+
+    public Vector2Int playerSpawn = new Vector2Int(-1, -1); // ✅ Add this
 }
