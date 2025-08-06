@@ -56,6 +56,17 @@ public class TilemapLevelEditor : EditorWindow
 
         gridZoom = EditorGUILayout.Slider("Grid Zoom %", gridZoom, 25f, 300f);
 
+
+        GUILayout.Space(5);
+        GUILayout.Label("\u270f\ufe0f Mode Selection", EditorStyles.boldLabel);
+        EditorGUILayout.BeginHorizontal();
+        DrawModeButton(EditMode.Tile, "Tile Mode");
+        DrawModeButton(EditMode.Prefab, "Prefab Mode");
+        DrawModeButton(EditMode.PatrolPoint, "Patrol Point");
+        DrawModeButton(EditMode.PlayerSpawn, "Player Spawn");
+        EditorGUILayout.EndHorizontal();
+
+        GUILayout.Space(20);
         if (assetsDatabase.tilemapTypes != null && assetsDatabase.tilemapTypes.Length > 0)
         {
             string[] names = assetsDatabase.tilemapTypes.Select(t => t.displayName).ToArray();
@@ -74,16 +85,9 @@ public class TilemapLevelEditor : EditorWindow
             DrawAssetPalette(assetsDatabase.tiles, ref selectedTileIndex, 48f);
         }
 
-        GUILayout.Space(5);
-        GUILayout.Label("\u270f\ufe0f Mode Selection", EditorStyles.boldLabel);
-        EditorGUILayout.BeginHorizontal();
-        DrawModeButton(EditMode.Tile, "Tile Mode");
-        DrawModeButton(EditMode.Prefab, "Prefab Mode");
-        DrawModeButton(EditMode.PatrolPoint, "Patrol Point");
-        DrawModeButton(EditMode.PlayerSpawn, "Player Spawn"); 
-        EditorGUILayout.EndHorizontal();
+        
 
-        eraseMode = GUILayout.Toggle(eraseMode, "Erase Mode");
+        
 
         if (assetsDatabase.prefabs != null && assetsDatabase.prefabs.Length > 0)
         {
@@ -96,6 +100,10 @@ public class TilemapLevelEditor : EditorWindow
             GUILayout.Label("Background Sprites", EditorStyles.boldLabel);
             DrawSpritePalette(assetsDatabase.backgroundSprites, 48f);
         }
+
+        GUILayout.Space(20);
+
+        eraseMode = GUILayout.Toggle(eraseMode, "Erase Mode");
 
         GUILayout.Space(5);
         GUILayout.Label("\ud83e\uddf9 Clear Options", EditorStyles.boldLabel);

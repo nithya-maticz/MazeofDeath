@@ -150,7 +150,7 @@ public class Game_Manager : MonoBehaviour
     {
         playerTransform.position = worldPos;
 
-        Instantiate(F_PlayerPrefab, playerTransform.transform);
+        Instantiate(playerPrefab, playerTransform.transform);
         SmoothFollowCamera.Instance.target = PlayerMovements.Instance.offSet;
         BulletSpawner = PlayerMovements.Instance.bulletSpawn;
 

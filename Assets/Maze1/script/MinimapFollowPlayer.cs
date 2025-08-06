@@ -34,7 +34,7 @@ public class MinimapFollowPlayer : MonoBehaviour
 
     private void FixedUpdate()
     {
-        if(Player.Instance != null)
+        /*if(Player.Instance != null)
         {
             Vector3 targetPos = Player.Instance.transform.position;
 
@@ -43,7 +43,7 @@ public class MinimapFollowPlayer : MonoBehaviour
             float clampedY = Mathf.Clamp(targetPos.y, minLimits.y + cameraHalfHeight, maxLimits.y - cameraHalfHeight);
 
             transform.position = new Vector3(clampedX, clampedY, transform.position.z);
-        }
+        }*/
         
     }
 }
