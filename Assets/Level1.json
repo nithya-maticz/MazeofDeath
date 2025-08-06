@@ -2313,7 +2313,30 @@
             "flipY": false
         }
     ],
-    "prefabs": [],
+    "prefabs": [
+        {
+            "position": {
+                "x": 2,
+                "y": 10
+            },
+            "prefabIndex": 0,
+            "size": {
+                "x": 1,
+                "y": 1
+            }
+        },
+        {
+            "position": {
+                "x": 6,
+                "y": 10
+            },
+            "prefabIndex": 0,
+            "size": {
+                "x": 1,
+                "y": 1
+            }
+        }
+    ],
     "patrolPoints": [],
     "selectedBackgroundIndex": 1
 }

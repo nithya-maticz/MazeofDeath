@@ -60,8 +60,8 @@ MonoBehaviour:
   - {fileID: 11400000, guid: 55fb9dd466a435544a7c26813fc39c02, type: 2}
   - {fileID: 11400000, guid: 7889a66fd7b48ae40a4af07c7c28e52b, type: 2}
   - {fileID: 11400000, guid: 87e0bf229a1f33e4189068d82e2b6bdf, type: 2}
-  prefabs: []
-  enemyPrefab: {fileID: 0}
+  prefabs:
+  - {fileID: 4547198198294758856, guid: 5b66f5b6df71c7946b19e9fa1588bdf2, type: 3}
   backgroundSprites:
   - {fileID: 21300000, guid: 08df51f69b019334ca5e55c148c670d3, type: 3}
   - {fileID: 21300000, guid: aec01deb37c4d9442a4ecea24ea2a79f, type: 3}

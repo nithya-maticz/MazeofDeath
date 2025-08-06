@@ -135,7 +135,7 @@ public class LevelManager : MonoBehaviour
             return;
         }
 
-        var groundTilemap = tilemapBindings.FirstOrDefault(b => b.type == TilemapType.Ground)?.tilemap;
+        var groundTilemap = tilemapBindings.FirstOrDefault(b => b.type == TilemapType.Walls)?.tilemap;
         if (groundTilemap == null)
         {
             Debug.LogWarning("No Ground tilemap to align prefab positions!");
