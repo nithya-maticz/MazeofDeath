@@ -2311,43 +2311,9 @@
             "rotation": 0,
             "flipX": true,
             "flipY": false
-        },
-        {
-            "position": {
-                "x": 8,
-                "y": 9
-            },
-            "tileIndex": 31,
-            "tilemapType": 0,
-            "rotation": 0,
-            "flipX": false,
-            "flipY": false
-        },
-        {
-            "position": {
-                "x": 7,
-                "y": 9
-            },
-            "tileIndex": 31,
-            "tilemapType": 0,
-            "rotation": 0,
-            "flipX": false,
-            "flipY": false
-        },
-        {
-            "position": {
-                "x": 6,
-                "y": 9
-            },
-            "tileIndex": 31,
-            "tilemapType": 0,
-            "rotation": 0,
-            "flipX": false,
-            "flipY": false
         }
     ],
     "prefabs": [],
-    "enemySpawns": [],
     "patrolPoints": [],
     "selectedBackgroundIndex": 1
 }

@@ -31,9 +31,7 @@ public class LevelManager : MonoBehaviour
         SpawnBackgrounds(); // ✅ Spawn backgrounds
         BuildEmptyGridCells();
         SpawnPrefabs();
-        SpawnEnemies();
         SpawnPatrolPoints();
-        
     }
 
     void LoadLevelData()
@@ -162,21 +160,7 @@ public class LevelManager : MonoBehaviour
         }
     }
 
-    void SpawnEnemies()
-    {
-        if (assetsDatabase.enemyPrefab == null)
-        {
-            Debug.LogWarning("No enemy prefab in assetsDatabase");
-            return;
-        }
-
-        foreach (var pos in enemySpawnPoints)
-        {
-            Vector3 spawnPos = new Vector3(pos.x, pos.y, 0);
-            Instantiate(assetsDatabase.enemyPrefab, spawnPos, Quaternion.identity);
-            Debug.Log($"Spawned enemy at {spawnPos}");
-        }
-    }
+    
 
     void SpawnPatrolPoints()
     {

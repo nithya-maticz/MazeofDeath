@@ -18,7 +18,6 @@ public class TilemapLevelEditor : EditorWindow
 
     private List<PlacedTile> placedTiles = new List<PlacedTile>();
     private List<PlacedPrefab> placedPrefabs = new List<PlacedPrefab>();
-    private List<Vector2Int> enemySpawnCells = new List<Vector2Int>();
     private List<Vector2Int> patrolCells = new List<Vector2Int>();
 
     private Vector2 scrollPos;
@@ -26,7 +25,7 @@ public class TilemapLevelEditor : EditorWindow
     private float gridZoom = 100f;
     private bool eraseMode = false;
 
-    private enum EditMode { None, Tile, Prefab, SpawnPoint, PatrolPoint }
+    private enum EditMode { None, Tile, Prefab, PatrolPoint }
     private EditMode currentMode = EditMode.Tile;
 
     private Vector2Int? hoveredCell = null;
@@ -79,7 +78,6 @@ public class TilemapLevelEditor : EditorWindow
         EditorGUILayout.BeginHorizontal();
         DrawModeButton(EditMode.Tile, "Tile Mode");
         DrawModeButton(EditMode.Prefab, "Prefab Mode");
-       // DrawModeButton(EditMode.SpawnPoint, "Spawn Point");
         DrawModeButton(EditMode.PatrolPoint, "Patrol Point");
         EditorGUILayout.EndHorizontal();
 
@@ -97,15 +95,13 @@ public class TilemapLevelEditor : EditorWindow
             DrawSpritePalette(assetsDatabase.backgroundSprites, 48f);
         }
 
-
         GUILayout.Space(5);
         GUILayout.Label("\ud83e\uddf9 Clear Options", EditorStyles.boldLabel);
         EditorGUILayout.BeginHorizontal();
         if (GUILayout.Button("Tiles")) placedTiles.Clear();
         if (GUILayout.Button("Prefabs")) placedPrefabs.Clear();
-        if (GUILayout.Button("Spawns")) enemySpawnCells.Clear();
         if (GUILayout.Button("Patrols")) patrolCells.Clear();
-        if (GUILayout.Button("All")) { placedTiles.Clear(); placedPrefabs.Clear(); enemySpawnCells.Clear(); patrolCells.Clear(); }
+        if (GUILayout.Button("All")) { placedTiles.Clear(); placedPrefabs.Clear(); patrolCells.Clear(); }
         EditorGUILayout.EndHorizontal();
 
         scrollPos = EditorGUILayout.BeginScrollView(scrollPos, GUILayout.ExpandHeight(true));
@@ -122,6 +118,15 @@ public class TilemapLevelEditor : EditorWindow
         EditorGUILayout.EndHorizontal();
 
         HandleEvents();
+    }
+
+    private void DrawModeButton(EditMode mode, string label)
+    {
+        bool active = (currentMode == mode);
+        GUI.backgroundColor = active ? Color.cyan : Color.white;
+        if (GUILayout.Button(label))
+            currentMode = active ? EditMode.None : mode;
+        GUI.backgroundColor = Color.white;
     }
 
     private void DrawSpritePalette(Sprite[] sprites, float size)
@@ -148,45 +153,6 @@ public class TilemapLevelEditor : EditorWindow
         }
     }
 
-
-
-    private void DrawModeButton(EditMode mode, string label)
-    {
-        bool active = (currentMode == mode);
-        GUI.backgroundColor = active ? Color.cyan : Color.white;
-        if (GUILayout.Button(label))
-            currentMode = active ? EditMode.None : mode;
-        GUI.backgroundColor = Color.white;
-    }
-
-    /* private void DrawAssetPalette(Object[] assets, ref int selectedIndex, float size)
-     {
-         int perRow = Mathf.Max(1, Mathf.FloorToInt((position.width - 40) / (size + 6)));
-         for (int i = 0; i < assets.Length; i += perRow)
-         {
-             EditorGUILayout.BeginHorizontal();
-             for (int j = 0; j < perRow && i + j < assets.Length; j++)
-             {
-                 int idx = i + j;
-                 var asset = assets[idx];
-                 Texture2D preview = null;
-
-                 if (asset is Tile tile && tile.sprite != null)
-                     preview = tile.sprite.texture;
-                 else if (asset)
-                     preview = AssetPreview.GetAssetPreview(asset) ?? AssetPreview.GetMiniThumbnail(asset);
-                 if (preview == null) preview = Texture2D.grayTexture;
-
-                 GUI.backgroundColor = (selectedIndex == idx) ? Color.cyan : Color.white;
-                 if (GUILayout.Button(preview, GUILayout.Width(size), GUILayout.Height(size)))
-                     selectedIndex = idx;
-                 GUI.backgroundColor = Color.white;
-             }
-             EditorGUILayout.EndHorizontal();
-         }
-     }*/
-
-
     private void DrawAssetPalette(Object[] assets, ref int selectedIndex, float size)
     {
         int perRow = Mathf.Max(1, Mathf.FloorToInt((position.width - 40) / (size + 6)));
@@ -211,7 +177,6 @@ public class TilemapLevelEditor : EditorWindow
                 if (GUILayout.Button(preview, GUILayout.Width(size), GUILayout.Height(size)))
                     selectedIndex = idx;
 
-                // Show name only for prefabs (GameObjects)
                 if (asset is GameObject)
                 {
                     GUIStyle labelStyle = new GUIStyle(EditorStyles.label);
@@ -235,21 +200,6 @@ public class TilemapLevelEditor : EditorWindow
         float cellSize = 40f * (gridZoom / 100f);
         hoveredCell = null;
 
-        if (selectedBackgroundIndex >= 0 && selectedBackgroundIndex < assetsDatabase.backgroundSprites.Length)
-        {
-            var bgSprite = assetsDatabase.backgroundSprites[selectedBackgroundIndex];
-            /*if (bgSprite != null)
-            {
-                Texture2D bgTex = AssetPreview.GetAssetPreview(bgSprite) ?? Texture2D.grayTexture;
-                if (bgTex != null)
-                {
-                    Rect totalRect = GUILayoutUtility.GetRect(gridWidth * 40f * (gridZoom / 100f), gridHeight * 40f * (gridZoom / 100f));
-                    GUI.DrawTexture(totalRect, bgTex, ScaleMode.StretchToFill);
-                    GUILayout.Space(totalRect.height); // So grid draws above
-                }
-            }*/
-        }
-
         for (int y = gridHeight - 1; y >= 0; y--)
         {
             EditorGUILayout.BeginHorizontal(GUILayout.Height(cellSize));
@@ -261,11 +211,9 @@ public class TilemapLevelEditor : EditorWindow
                 if (rect.Contains(Event.current.mousePosition))
                     hoveredCell = cell;
 
-                bool isSpawn = enemySpawnCells.Contains(cell);
                 bool isPatrol = patrolCells.Contains(cell);
 
                 GUI.color = isPatrol ? new Color(0, 0.5f, 0.8f, 0.8f) :
-                          isSpawn ? new Color(0.7f, 0, 0, 0.8f) :
                           eraseMode ? new Color(1, 0.5f, 0.5f) : Color.white;
 
                 if (GUI.Button(rect, GUIContent.none)) ToggleCellAt(x, y);
@@ -330,24 +278,12 @@ public class TilemapLevelEditor : EditorWindow
 
         Vector2 pivot = rect.center;
 
-        // ✅ 1. Apply flipping FIRST (correct order)
         Vector2 scale = new Vector2(flipX ? -1f : 1f, flipY ? -1f : 1f);
         GUIUtility.ScaleAroundPivot(scale, pivot);
-
-        // ✅ 2. Then apply rotation
         GUIUtility.RotateAroundPivot(angle, pivot);
-
-        // ✅ 3. Draw texture
         GUI.DrawTexture(rect, tex, ScaleMode.ScaleToFit);
-
-        // ✅ 4. Restore matrix
         GUI.matrix = prevMatrix;
     }
-
-
-
-
-
 
     private void ToggleCellAt(int x, int y)
     {
@@ -370,10 +306,6 @@ public class TilemapLevelEditor : EditorWindow
                 flipY = flipY
             });
         }
-        else if (currentMode == EditMode.SpawnPoint)
-        {
-            if (enemySpawnCells.Contains(c)) enemySpawnCells.Remove(c); else enemySpawnCells.Add(c);
-        }
         else if (currentMode == EditMode.PatrolPoint)
         {
             if (patrolCells.Contains(c)) patrolCells.Remove(c); else patrolCells.Add(c);
@@ -388,9 +320,8 @@ public class TilemapLevelEditor : EditorWindow
             height = gridHeight,
             tiles = placedTiles,
             prefabs = placedPrefabs,
-            enemySpawns = enemySpawnCells,
             patrolPoints = patrolCells,
-            selectedBackgroundIndex = selectedBackgroundIndex // ⬅️ Save it
+            selectedBackgroundIndex = selectedBackgroundIndex
         };
 
         File.WriteAllText(Application.dataPath + $"/Level{currentLevel}.json", JsonUtility.ToJson(d, true));
@@ -408,12 +339,10 @@ public class TilemapLevelEditor : EditorWindow
         gridHeight = d.height;
         placedTiles = d.tiles;
         placedPrefabs = d.prefabs;
-        enemySpawnCells = d.enemySpawns;
         patrolCells = d.patrolPoints;
-        selectedBackgroundIndex = d.selectedBackgroundIndex; // ⬅️ Load it
+        selectedBackgroundIndex = d.selectedBackgroundIndex;
         Debug.Log("Loaded!");
     }
-
 
     private void HandleEvents()
     {
@@ -441,20 +370,17 @@ public class TilemapLevelEditor : EditorWindow
         if (e.type == EventType.MouseDown && e.button == 0) isDragging = true;
         if (e.type == EventType.MouseUp && e.button == 0) isDragging = false;
     }
-
-
 }
 
 [System.Serializable] public class PlacedTile { public Vector2Int position; public int tileIndex; public TilemapType tilemapType; public int rotation; public bool flipX; public bool flipY; }
 [System.Serializable] public class PlacedPrefab { public Vector2Int position; public int prefabIndex; public Vector2Int size; }
+
 [System.Serializable]
 public class LevelTileData
 {
     public int width, height;
     public List<PlacedTile> tiles;
     public List<PlacedPrefab> prefabs;
-    public List<Vector2Int> enemySpawns;
     public List<Vector2Int> patrolPoints;
-
-    public int selectedBackgroundIndex = -1; // ⬅️ Add this line
+    public int selectedBackgroundIndex = -1;
 }
