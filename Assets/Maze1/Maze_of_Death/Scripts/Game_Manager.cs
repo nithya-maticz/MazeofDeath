@@ -95,16 +95,32 @@ public class Game_Manager : MonoBehaviour
         QualitySettings.vSyncCount = 0;
     }
    
+    
 
-    IEnumerator Start()
+
+    void Start()
     {
-        Debug.Log("LOBBY    " );
+        //StartData();
+    }
 
-        Instantiate(F_PlayerPrefab, playerTransform.transform);
+
+    private void Update()
+    {
+        if(Input.GetKeyDown(KeyCode.Space))
+        {
+            AttackFunction();
+        }
+    }
+
+    public IEnumerator StartData()
+    {
+       // Debug.Log("LOBBY    ");
+
+        /*Instantiate(F_PlayerPrefab, playerTransform.transform);
         SmoothFollowCamera.Instance.target = PlayerMovements.Instance.offSet;
-        BulletSpawner = PlayerMovements.Instance.bulletSpawn;
+        BulletSpawner = PlayerMovements.Instance.bulletSpawn;*/
 
-        if (LobbyManager.currentIndex == 1)
+       /* if (LobbyManager.currentIndex == 1)
         {
             Debug.Log("Male");
             Instantiate(playerPrefab, playerTransform.transform);
@@ -118,8 +134,8 @@ public class Game_Manager : MonoBehaviour
             SmoothFollowCamera.Instance.target = PlayerMovements.Instance.offSet;
             BulletSpawner = PlayerMovements.Instance.bulletSpawn;
         }
-
-        QualitySettings.vSyncCount = 0; 
+*/
+        QualitySettings.vSyncCount = 0;
         AutoAim = AutoAimOnly.Instance;
         PlayerHealthCount = 4;
         UpdateAttackSettings();
@@ -128,18 +144,33 @@ public class Game_Manager : MonoBehaviour
         yield return new WaitForSeconds(0.5f);
         BoxCount();
         ZombieDoorCount();
-      
-       
     }
 
-
-    private void Update()
+    public void SpawnPlayer(Vector3 worldPos)
     {
-        if(Input.GetKeyDown(KeyCode.Space))
-        {
-            AttackFunction();
-        }
+        playerTransform.position = worldPos;
+
+        Instantiate(F_PlayerPrefab, playerTransform.transform);
+        SmoothFollowCamera.Instance.target = PlayerMovements.Instance.offSet;
+        BulletSpawner = PlayerMovements.Instance.bulletSpawn;
+
+
+        /*   if (LobbyManager.currentIndex == 1)
+           {
+               Debug.Log("Male");
+               Instantiate(playerPrefab, worldPos, Quaternion.identity);
+               SmoothFollowCamera.Instance.target = PlayerMovements.Instance.offSet;
+               BulletSpawner = PlayerMovements.Instance.bulletSpawn;
+           }
+           else if (LobbyManager.currentIndex == 2)
+           {
+               Debug.Log("Female");
+               Instantiate(F_PlayerPrefab, worldPos, Quaternion.identity);
+               SmoothFollowCamera.Instance.target = PlayerMovements.Instance.offSet;
+               BulletSpawner = PlayerMovements.Instance.bulletSpawn;
+           }*/
     }
+
 
 
     public void AttackFunction()

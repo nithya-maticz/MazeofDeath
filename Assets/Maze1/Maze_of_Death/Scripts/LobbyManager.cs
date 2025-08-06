@@ -112,7 +112,7 @@ public class LobbyManager : MonoBehaviour
     public void PlayGame()
     {
             Fade();
-            SceneManager.LoadScene("Game1");
+            SceneManager.LoadScene("Game Level");
        
        
     }

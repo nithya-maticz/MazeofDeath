@@ -24,8 +24,10 @@ public class LevelManager : MonoBehaviour
     private int gridWidth, gridHeight;
     public List<GameObject> patrolObjects = new List<GameObject>();
 
-    public GameObject playerPrefab;  // ✅ Player prefab reference
+    //public GameObject playerPrefab;  // ✅ Player prefab reference
     private Vector2Int playerSpawn;  // ✅ Loaded player spawn cell
+
+    public SmoothFollowCamera followCamera;
 
     void Start()
     {
@@ -36,6 +38,9 @@ public class LevelManager : MonoBehaviour
         SpawnPrefabs();
         SpawnPatrolPoints();
         SpawnPlayer();  // ✅ Spawn player
+
+        Game_Manager.Instance.StartData();
+        followCamera.enabled = true;
     }
 
     void LoadLevelData()
@@ -121,6 +126,8 @@ public class LevelManager : MonoBehaviour
             scale.x *= bg.flipX ? -1 : 1;
             scale.y *= bg.flipY ? -1 : 1;
             go.transform.localScale = scale;
+
+            followCamera.boundsRenderer = renderer;
         }
     }
 
@@ -183,12 +190,12 @@ public class LevelManager : MonoBehaviour
 
     void SpawnPlayer()
     {
-        if (playerPrefab == null)
+        /*if (playerPrefab == null)
         {
             Debug.LogWarning("Player prefab is not assigned!");
             return;
         }
-
+*/
         var groundTilemap = tilemapBindings.FirstOrDefault(b => b.type == TilemapType.Walls)?.tilemap;
         if (groundTilemap == null)
         {
@@ -199,8 +206,10 @@ public class LevelManager : MonoBehaviour
         Vector3Int cellPos = new Vector3Int(playerSpawn.x, playerSpawn.y, 0);
         Vector3 worldPos = groundTilemap.CellToWorld(cellPos) + groundTilemap.cellSize / 2;
 
-        Instantiate(playerPrefab, worldPos, Quaternion.identity);
-        Debug.Log($"Player spawned at {playerSpawn}");
+       /* Instantiate(playerPrefab, worldPos, Quaternion.identity);
+        Debug.Log($"Player spawned at {playerSpawn}");*/
+       Game_Manager.Instance.SpawnPlayer(worldPos);
+
     }
 
     void BuildEmptyGridCells()

@@ -25,9 +25,11 @@ public class SmoothFollowCamera : MonoBehaviour
     private void Awake()
     {
         Instance = this;
-        cam = Camera.main;
+       
     }
 
+
+   
     private void Start()
     {
         if (boundsRenderer == null)
@@ -40,6 +42,7 @@ public class SmoothFollowCamera : MonoBehaviour
         minBound = bounds.min;
         maxBound = bounds.max;
 
+        cam = Camera.main;
         // Swap height/width due to 90-degree rotation
         camHalfWidth = cam.orthographicSize;
         camHalfHeight = camHalfWidth * cam.aspect;
