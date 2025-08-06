@@ -40,6 +40,7 @@ public class Game_Manager : MonoBehaviour
     public GameObject BloodPrefab;
     public GameObject EnemyPrefab;
     public List<Transform> PatrolPoints;
+  //  public List<GameObject> PatrolPoints;
     public List<ZombieDoor> ZombieDoors;
     public TMP_Text ZombieDoorCountText;
     public List<SharedPathFollower> Enemies;

@@ -27,7 +27,7 @@ public class SharedPathFollower : MonoBehaviour
     public LayerMask playerMask;
 
     private List<Vector3> path;
-    private int currentIndex = 0;
+    private int currentIndex = 0; 
     private bool isFollowing = false;
     private bool isChasingPlayer = false;
     private Vector3 lastTargetPosition;

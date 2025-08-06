@@ -4,6 +4,7 @@ using System.Collections.Generic;
 using System.Linq;
 using System.IO;
 using System;
+using Gilzoide.LottiePlayer.RLottie;
 
 public class LevelManager : MonoBehaviour
 {
@@ -22,7 +23,9 @@ public class LevelManager : MonoBehaviour
 
     public List<Vector2Int> emptyCells = new List<Vector2Int>();
     private int gridWidth, gridHeight;
+
     public List<GameObject> patrolObjects = new List<GameObject>();
+  //  public List<Transform> patrolObjects = new List<Transform>();
 
     //public GameObject playerPrefab;  // ✅ Player prefab reference
     private Vector2Int playerSpawn;  // ✅ Loaded player spawn cell
@@ -45,32 +48,40 @@ public class LevelManager : MonoBehaviour
 
     void LoadLevelData()
     {
-        string path = Application.dataPath + $"/Level{levelToLoad}.json";
-        if (!File.Exists(path))
+
+        string fileName = $"Level{levelToLoad}";
+        TextAsset jsonFile = Resources.Load<TextAsset>(fileName);
+
+        if (jsonFile != null)
         {
-            Debug.LogWarning("Level not found at: " + path);
-            return;
-        }
+            string jsonText = jsonFile.text;
 
-        var data = JsonUtility.FromJson<LevelTileData>(File.ReadAllText(path));
-        gridWidth = data.width;
-        gridHeight = data.height;
-        loadedTiles = data.tiles ?? new List<PlacedTile>();
-        loadedPrefabs = data.prefabs ?? new List<PlacedPrefab>();
-        enemySpawnPoints = data.enemySpawns ?? new List<Vector2Int>();
-        patrolPoints = data.patrolPoints ?? new List<Vector2Int>();
-        playerSpawn = data.playerSpawn;  // ✅ Load player spawn
+            var data = JsonUtility.FromJson<LevelTileData>(jsonText);
+            gridWidth = data.width;
+            gridHeight = data.height;
+            loadedTiles = data.tiles ?? new List<PlacedTile>();
+            loadedPrefabs = data.prefabs ?? new List<PlacedPrefab>();
+            enemySpawnPoints = data.enemySpawns ?? new List<Vector2Int>();
+            patrolPoints = data.patrolPoints ?? new List<Vector2Int>();
+            playerSpawn = data.playerSpawn;
 
-        loadedBackgrounds = new List<PlacedBackground>();
-        loadedBackgrounds.Add(new PlacedBackground
+            loadedBackgrounds = new List<PlacedBackground>
+    {
+        new PlacedBackground
         {
             spriteIndex = data.selectedBackgroundIndex,
             rotation = 0,
             flipX = false,
             flipY = false
-        });
+        }
+    };
 
-        Debug.Log($"Loaded BG index: {data.selectedBackgroundIndex}");
+            Debug.Log($"Loaded BG index: {data.selectedBackgroundIndex}");
+        }
+        else
+        {
+            Debug.LogError("JSON file not found in Resources folder.");
+        }
     }
 
     void SpawnTiles()
@@ -108,7 +119,7 @@ public class LevelManager : MonoBehaviour
             SpriteRenderer renderer = go.AddComponent<SpriteRenderer>();
             renderer.sprite = sprite;
             renderer.sortingOrder = -100;
-
+            Debug.Log("Background NAme " +renderer.material.name);
             float width = gridWidth;
             float height = gridHeight;
             Vector2 spriteSize = sprite.bounds.size;
@@ -126,7 +137,7 @@ public class LevelManager : MonoBehaviour
             scale.x *= bg.flipX ? -1 : 1;
             scale.y *= bg.flipY ? -1 : 1;
             go.transform.localScale = scale;
-
+            
             followCamera.boundsRenderer = renderer;
         }
     }
@@ -164,9 +175,37 @@ public class LevelManager : MonoBehaviour
         }
     }
 
+    /* void SpawnPatrolPoints()
+     {
+         patrolObjects.Clear();
+
+         var groundTilemap = tilemapBindings.FirstOrDefault(b => b.type == TilemapType.Walls)?.tilemap;
+         if (groundTilemap == null)
+         {
+             Debug.LogWarning("No Ground tilemap found to convert patrol cell to world position.");
+             return;
+         }
+         foreach (var pos in patrolPoints)
+         {
+             Vector3Int cellPos = new Vector3Int(pos.x, pos.y, 0);
+             Vector3 worldPos = groundTilemap.CellToWorld(cellPos) + groundTilemap.cellSize / 2;
+
+             GameObject go = new GameObject($"PatrolPoint_{pos.x}_{pos.y}");
+             go.transform.position = worldPos;
+             patrolObjects.Add(go);
+             Game_Manager.Instance.PatrolPoints.Add(go);
+
+         }
+
+
+         Debug.Log($"Spawned {patrolObjects.Count} patrol point objects.");
+     }*/
+
+
     void SpawnPatrolPoints()
     {
         patrolObjects.Clear();
+        Game_Manager.Instance.PatrolPoints.Clear();  // Clear old patrols
 
         var groundTilemap = tilemapBindings.FirstOrDefault(b => b.type == TilemapType.Walls)?.tilemap;
         if (groundTilemap == null)
@@ -182,12 +221,13 @@ public class LevelManager : MonoBehaviour
 
             GameObject go = new GameObject($"PatrolPoint_{pos.x}_{pos.y}");
             go.transform.position = worldPos;
-            patrolObjects.Add(go);
+
+            patrolObjects.Add(go);                          // Local list
+            Game_Manager.Instance.PatrolPoints.Add(go.transform);     // Global list
         }
 
         Debug.Log($"Spawned {patrolObjects.Count} patrol point objects.");
     }
-
     void SpawnPlayer()
     {
         /*if (playerPrefab == null)
