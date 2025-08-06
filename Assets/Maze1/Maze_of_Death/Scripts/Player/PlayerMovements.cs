@@ -8,6 +8,8 @@ public class PlayerMovements : MonoBehaviour
     [Header("Joystick Movement")]
     private VariableJoystick movementJoystick;
     public float moveSpeed = 5f;
+
+
     
 
     [Header("Rotation Settings")]
@@ -39,6 +41,7 @@ public class PlayerMovements : MonoBehaviour
     public Transform bulletSpawn;
     public float speed = 2f;
 
+   // public GameObject autoAim;
 
 
 

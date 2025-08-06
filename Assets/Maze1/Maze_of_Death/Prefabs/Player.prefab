@@ -335,9 +335,6 @@ MonoBehaviour:
   m_Script: {fileID: 11500000, guid: e91c22f8593e3be44b32a5fd1e2685b7, type: 3}
   m_Name: 
   m_EditorClassIdentifier: 
-  VideoCount: 0
-  playerRef: {fileID: 0}
-  storyPlayer: {fileID: 0}
 --- !u!114 &3489822677717737032
 MonoBehaviour:
   m_ObjectHideFlags: 0
@@ -362,6 +359,7 @@ MonoBehaviour:
   offSet: {fileID: 2488802415315389666}
   bulletSpawn: {fileID: 8311839817402392493}
   speed: 2
+  autoAim: {fileID: 1783771154627490365}
 --- !u!1 &3441244766420898857
 GameObject:
   m_ObjectHideFlags: 0
@@ -639,7 +637,7 @@ MonoBehaviour:
   m_ApplyToSortingLayers: 00000000
   m_LightCookieSprite: {fileID: 0}
   m_DeprecatedPointLightCookieSprite: {fileID: 0}
-  m_LightOrder: 0
+  m_LightOrder: 100
   m_AlphaBlendOnOverlap: 0
   m_OverlapOperation: 0
   m_NormalMapDistance: 3

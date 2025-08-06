@@ -137,7 +137,7 @@ public class Game_Manager : MonoBehaviour
         }
 */
         QualitySettings.vSyncCount = 0;
-        AutoAim = AutoAimOnly.Instance;
+       // AutoAim = AutoAimOnly.Instance;
         PlayerHealthCount = 4;
         UpdateAttackSettings();
         UpdateUI();
@@ -155,6 +155,7 @@ public class Game_Manager : MonoBehaviour
         SmoothFollowCamera.Instance.target = PlayerMovements.Instance.offSet;
         BulletSpawner = PlayerMovements.Instance.bulletSpawn;
 
+        AutoAim = AutoAimOnly.Instance;
 
         /*   if (LobbyManager.currentIndex == 1)
            {
