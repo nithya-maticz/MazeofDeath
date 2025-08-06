@@ -587,6 +587,17 @@
         },
         {
             "position": {
+                "x": 9,
+                "y": 11
+            },
+            "tileIndex": 39,
+            "tilemapType": 0,
+            "rotation": 0,
+            "flipX": false,
+            "flipY": true
+        },
+        {
+            "position": {
                 "x": 8,
                 "y": 11
             },
@@ -2577,17 +2588,6 @@
                 "x": 1,
                 "y": 1
             }
-        },
-        {
-            "position": {
-                "x": 9,
-                "y": 11
-            },
-            "prefabIndex": 3,
-            "size": {
-                "x": 1,
-                "y": 1
-            }
         }
     ],
     "patrolPoints": [
@@ -2622,7 +2622,7 @@
     ],
     "selectedBackgroundIndex": 1,
     "playerSpawn": {
-        "x": 11,
-        "y": 8
+        "x": -1,
+        "y": -1
     }
 }

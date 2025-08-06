@@ -62,6 +62,10 @@ MonoBehaviour:
   - {fileID: 11400000, guid: 87e0bf229a1f33e4189068d82e2b6bdf, type: 2}
   prefabs:
   - {fileID: 4547198198294758856, guid: 5b66f5b6df71c7946b19e9fa1588bdf2, type: 3}
+  - {fileID: 4547198198294758856, guid: daff0d4f31cfd1d4c967f45e86ae9b53, type: 3}
+  - {fileID: 4547198198294758856, guid: e8a033e437eb32e448f084618df32fb6, type: 3}
+  - {fileID: 4961835689284915402, guid: 5320c2c561ea8a0459aba6fc57af2093, type: 3}
+  - {fileID: 8497434276732211358, guid: e5fb04d60fa68a240b16c43e91c40e4c, type: 3}
   backgroundSprites:
   - {fileID: 21300000, guid: 08df51f69b019334ca5e55c148c670d3, type: 3}
   - {fileID: 21300000, guid: aec01deb37c4d9442a4ecea24ea2a79f, type: 3}
