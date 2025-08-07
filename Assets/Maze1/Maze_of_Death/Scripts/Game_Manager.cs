@@ -86,8 +86,8 @@ public class Game_Manager : MonoBehaviour
     public GameObject playerPrefab;
     public GameObject F_PlayerPrefab;
 
-
-
+    [Header("MATERIAL")]
+    public Material litMat;
 
     private void Awake()
     {

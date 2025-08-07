@@ -119,7 +119,9 @@ public class LevelManager : MonoBehaviour
             SpriteRenderer renderer = go.AddComponent<SpriteRenderer>();
             renderer.sprite = sprite;
             renderer.sortingOrder = -100;
-            Debug.Log("Background NAme " +renderer.material.name);
+            Debug.Log("Background Name " +renderer.material.name);
+            renderer.material = Game_Manager.Instance.litMat;
+            Debug.Log("Background Name " + renderer.material.name);
             float width = gridWidth;
             float height = gridHeight;
             Vector2 spriteSize = sprite.bounds.size;
