@@ -2520,15 +2520,26 @@
             "rotation": 90,
             "flipX": true,
             "flipY": false
+        },
+        {
+            "position": {
+                "x": 9,
+                "y": 11
+            },
+            "tileIndex": 39,
+            "tilemapType": 0,
+            "rotation": 180,
+            "flipX": false,
+            "flipY": false
         }
     ],
     "prefabs": [
         {
             "position": {
-                "x": 2,
-                "y": 10
+                "x": 1,
+                "y": 5
             },
-            "prefabIndex": 1,
+            "prefabIndex": 4,
             "size": {
                 "x": 1,
                 "y": 1
@@ -2539,7 +2550,40 @@
                 "x": 8,
                 "y": 4
             },
+            "prefabIndex": 1,
+            "size": {
+                "x": 1,
+                "y": 1
+            }
+        },
+        {
+            "position": {
+                "x": 2,
+                "y": 10
+            },
             "prefabIndex": 2,
+            "size": {
+                "x": 1,
+                "y": 1
+            }
+        },
+        {
+            "position": {
+                "x": 2,
+                "y": 1
+            },
+            "prefabIndex": 0,
+            "size": {
+                "x": 1,
+                "y": 1
+            }
+        },
+        {
+            "position": {
+                "x": 22,
+                "y": 10
+            },
+            "prefabIndex": 0,
             "size": {
                 "x": 1,
                 "y": 1
@@ -2551,39 +2595,6 @@
                 "y": 5
             },
             "prefabIndex": 2,
-            "size": {
-                "x": 1,
-                "y": 1
-            }
-        },
-        {
-            "position": {
-                "x": 14,
-                "y": 10
-            },
-            "prefabIndex": 0,
-            "size": {
-                "x": 1,
-                "y": 1
-            }
-        },
-        {
-            "position": {
-                "x": 2,
-                "y": 1
-            },
-            "prefabIndex": 0,
-            "size": {
-                "x": 1,
-                "y": 1
-            }
-        },
-        {
-            "position": {
-                "x": 9,
-                "y": 11
-            },
-            "prefabIndex": 3,
             "size": {
                 "x": 1,
                 "y": 1
@@ -2616,13 +2627,13 @@
             "y": 10
         },
         {
-            "x": 2,
-            "y": 8
+            "x": 4,
+            "y": 10
         }
     ],
     "selectedBackgroundIndex": 1,
     "playerSpawn": {
-        "x": -1,
-        "y": -1
+        "x": 17,
+        "y": 3
     }
 }
