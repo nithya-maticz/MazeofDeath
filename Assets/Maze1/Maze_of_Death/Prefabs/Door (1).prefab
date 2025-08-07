@@ -135,7 +135,7 @@ MonoBehaviour:
   isClosed: 0
   SpawnPoint: {fileID: 5854125375164478994}
   sprite: {fileID: 941339476327586039}
-  waitTime: 40
+  waitTime: 20
   light: {fileID: 7240431445230718389}
   doorPatrolPoints:
   - {fileID: 4620012027069547935}

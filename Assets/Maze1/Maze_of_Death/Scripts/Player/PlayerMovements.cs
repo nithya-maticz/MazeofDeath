@@ -1,4 +1,4 @@
-using System.Collections;
+﻿using System.Collections;
 using UnityEngine;
 using UnityEngine.EventSystems;
 
@@ -154,7 +154,7 @@ public class PlayerMovements : MonoBehaviour
          wasGun = isGun;
      }*/
 
-    public void HandleMovementInput()
+    /*public void HandleMovementInput()
     {
         float moveH = movementJoystick.Vertical;
         float moveV = movementJoystick.Horizontal;
@@ -163,7 +163,7 @@ public class PlayerMovements : MonoBehaviour
         Vector2 moveDir = new Vector2(-moveH, moveV);
         rb.linearVelocity = moveDir * speed;
 
-        if (isWalking)
+        if (isWalking )
         {
             float angle = Mathf.Atan2(moveDir.y, moveDir.x) * Mathf.Rad2Deg;
             Quaternion targetRotation = Quaternion.Euler(0f, 0f, angle + 180f);
@@ -185,7 +185,7 @@ public class PlayerMovements : MonoBehaviour
             _Animator.SetTrigger("GunIdle");
             wasIdle = true;
         }
-        else if (isGun && isWalking && (!wasWalking || !wasGun) )
+        else if (isGun && isWalking && (!wasWalking || !wasGun)  )
         {
             ResetAllTriggers();
             _Animator.SetTrigger("WalkWithGun");
@@ -201,8 +201,59 @@ public class PlayerMovements : MonoBehaviour
         wasWalking = isWalking;
         wasGun = isGun;
     }
+*/
 
 
+    public void HandleMovementInput()
+    {
+        float moveH = movementJoystick.Vertical;
+        float moveV = movementJoystick.Horizontal;
+
+        bool isWalking = moveH != 0f || moveV != 0f;
+        Vector2 moveDir = new Vector2(-moveH, moveV);
+        rb.linearVelocity = moveDir * speed;
+
+        if (isWalking)
+        {
+            float angle = Mathf.Atan2(moveDir.y, moveDir.x) * Mathf.Rad2Deg;
+            Quaternion targetRotation = Quaternion.Euler(0f, 0f, angle + 180f);
+            float rotationSpeed = 720f;
+            transform.rotation = Quaternion.RotateTowards(transform.rotation, targetRotation, rotationSpeed * Time.deltaTime);
+        }
+
+        isGun = Game_Manager.Instance.IsGun;
+
+        // ✅ Skip animation change logic if attacking
+        if (isAttack) return;
+
+        if (!isGun && !isWalking && (!wasIdle || wasGun))
+        {
+            ResetAllTriggers();
+            _Animator.SetTrigger("Idle");
+            wasIdle = true;
+        }
+        else if (isGun && !isWalking && (!wasIdle || !wasGun))
+        {
+            ResetAllTriggers();
+            _Animator.SetTrigger("GunIdle");
+            wasIdle = true;
+        }
+        else if (isGun && isWalking && (!wasWalking || !wasGun))
+        {
+            ResetAllTriggers();
+            _Animator.SetTrigger("WalkWithGun");
+            wasIdle = false;
+        }
+        else if (!isGun && isWalking && (!wasWalking || wasGun))
+        {
+            ResetAllTriggers();
+            _Animator.SetTrigger("Walk");
+            wasIdle = false;
+        }
+
+        wasWalking = isWalking;
+        wasGun = isGun;
+    }
     void ResetAllTriggers()
     {
         _Animator.ResetTrigger("Idle");
