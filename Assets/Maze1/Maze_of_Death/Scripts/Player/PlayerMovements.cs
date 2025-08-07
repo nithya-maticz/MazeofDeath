@@ -185,13 +185,13 @@ public class PlayerMovements : MonoBehaviour
             _Animator.SetTrigger("GunIdle");
             wasIdle = true;
         }
-        else if (isGun && isWalking && (!wasWalking || !wasGun) && !isAttack)
+        else if (isGun && isWalking && (!wasWalking || !wasGun) )
         {
             ResetAllTriggers();
             _Animator.SetTrigger("WalkWithGun");
             wasIdle = false;
         }
-        else if (!isGun && isWalking && (!wasWalking || wasGun) && !isAttack)
+        else if (!isGun && isWalking && (!wasWalking || wasGun) )
         {
             ResetAllTriggers();
             _Animator.SetTrigger("Walk");
