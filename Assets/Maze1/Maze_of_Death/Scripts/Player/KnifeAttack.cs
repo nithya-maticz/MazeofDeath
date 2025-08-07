@@ -27,10 +27,11 @@ public class KnifeAttack : MonoBehaviour
                 Debug.Log("Enter...");
                 _currentEnemy = collision.GetComponent<SharedPathFollower>();
                 IsStayEnemy = true;
-              /*  if(Game_Manager.Instance.AutoAttackToogle.isOn)
+                if (Game_Manager.Instance.AutoAttackToogle.isOn)
                 {
+                    PlayerMovements.Instance.isAttack = true;
                     _animator.SetTrigger("Attack");
-                }*/
+                }
                 //
             }
         }
