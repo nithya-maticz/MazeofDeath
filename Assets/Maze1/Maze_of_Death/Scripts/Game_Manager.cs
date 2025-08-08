@@ -513,6 +513,13 @@ public class Game_Manager : MonoBehaviour
         SceneManager.LoadScene(currentScene.buildIndex);
     }
 
+    public void NextLevel()
+    {
+        LevelManager.levelToLoad++;
+        Scene currentScene = SceneManager.GetActiveScene();
+        SceneManager.LoadScene(currentScene.buildIndex);
+    }
+
     public void SceneLoad(string sceneName)
     {
         SceneManager.LoadScene(sceneName);

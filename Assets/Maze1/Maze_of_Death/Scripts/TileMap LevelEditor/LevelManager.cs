@@ -8,7 +8,8 @@ using Gilzoide.LottiePlayer.RLottie;
 
 public class LevelManager : MonoBehaviour
 {
-    public int levelToLoad = 1;
+    public static LevelManager Instance;
+    public static int levelToLoad = 2;
     public LevelAssetsDatabase assetsDatabase;
 
     [Serializable]
@@ -34,6 +35,7 @@ public class LevelManager : MonoBehaviour
 
     void Start()
     {
+        levelToLoad = 2;
         LoadLevelData();
         SpawnTiles();
         SpawnBackgrounds();
@@ -45,6 +47,10 @@ public class LevelManager : MonoBehaviour
         Game_Manager.Instance.StartData();
         followCamera.enabled = true;
     }
+    private void Awake()
+    {
+        Instance = this;
+    }
 
     void LoadLevelData()
     {
@@ -55,7 +61,6 @@ public class LevelManager : MonoBehaviour
         if (jsonFile != null)
         {
             string jsonText = jsonFile.text;
-
             var data = JsonUtility.FromJson<LevelTileData>(jsonText);
             gridWidth = data.width;
             gridHeight = data.height;
@@ -64,7 +69,6 @@ public class LevelManager : MonoBehaviour
             enemySpawnPoints = data.enemySpawns ?? new List<Vector2Int>();
             patrolPoints = data.patrolPoints ?? new List<Vector2Int>();
             playerSpawn = data.playerSpawn;
-
             loadedBackgrounds = new List<PlacedBackground>
     {
         new PlacedBackground

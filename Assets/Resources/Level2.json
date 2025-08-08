@@ -8,7 +8,7 @@
                 "y": 12
             },
             "tileIndex": 31,
-            "tilemapType": 1,
+            "tilemapType": 0,
             "rotation": 90,
             "flipX": false,
             "flipY": false
@@ -19,7 +19,7 @@
                 "y": 11
             },
             "tileIndex": 31,
-            "tilemapType": 1,
+            "tilemapType": 0,
             "rotation": 90,
             "flipX": false,
             "flipY": false
@@ -30,7 +30,7 @@
                 "y": 10
             },
             "tileIndex": 31,
-            "tilemapType": 1,
+            "tilemapType": 0,
             "rotation": 90,
             "flipX": false,
             "flipY": false
@@ -41,7 +41,7 @@
                 "y": 9
             },
             "tileIndex": 31,
-            "tilemapType": 1,
+            "tilemapType": 0,
             "rotation": 90,
             "flipX": false,
             "flipY": false
@@ -52,7 +52,7 @@
                 "y": 8
             },
             "tileIndex": 31,
-            "tilemapType": 1,
+            "tilemapType": 0,
             "rotation": 90,
             "flipX": false,
             "flipY": false
@@ -63,7 +63,7 @@
                 "y": 7
             },
             "tileIndex": 31,
-            "tilemapType": 1,
+            "tilemapType": 0,
             "rotation": 90,
             "flipX": false,
             "flipY": false
@@ -74,7 +74,7 @@
                 "y": 6
             },
             "tileIndex": 31,
-            "tilemapType": 1,
+            "tilemapType": 0,
             "rotation": 90,
             "flipX": false,
             "flipY": false
@@ -85,7 +85,7 @@
                 "y": 5
             },
             "tileIndex": 31,
-            "tilemapType": 1,
+            "tilemapType": 0,
             "rotation": 90,
             "flipX": false,
             "flipY": false
@@ -96,7 +96,7 @@
                 "y": 4
             },
             "tileIndex": 31,
-            "tilemapType": 1,
+            "tilemapType": 0,
             "rotation": 90,
             "flipX": false,
             "flipY": false
@@ -107,7 +107,7 @@
                 "y": 3
             },
             "tileIndex": 31,
-            "tilemapType": 1,
+            "tilemapType": 0,
             "rotation": 90,
             "flipX": false,
             "flipY": false
@@ -118,7 +118,7 @@
                 "y": 2
             },
             "tileIndex": 31,
-            "tilemapType": 1,
+            "tilemapType": 0,
             "rotation": 90,
             "flipX": false,
             "flipY": false
@@ -129,7 +129,7 @@
                 "y": 1
             },
             "tileIndex": 31,
-            "tilemapType": 1,
+            "tilemapType": 0,
             "rotation": 90,
             "flipX": false,
             "flipY": false
@@ -140,7 +140,7 @@
                 "y": 0
             },
             "tileIndex": 31,
-            "tilemapType": 1,
+            "tilemapType": 0,
             "rotation": 90,
             "flipX": false,
             "flipY": false
@@ -151,7 +151,7 @@
                 "y": 9
             },
             "tileIndex": 50,
-            "tilemapType": 1,
+            "tilemapType": 0,
             "rotation": 90,
             "flipX": false,
             "flipY": false
@@ -162,7 +162,7 @@
                 "y": 8
             },
             "tileIndex": 50,
-            "tilemapType": 1,
+            "tilemapType": 0,
             "rotation": 90,
             "flipX": false,
             "flipY": false
@@ -173,7 +173,7 @@
                 "y": 7
             },
             "tileIndex": 50,
-            "tilemapType": 1,
+            "tilemapType": 0,
             "rotation": 90,
             "flipX": false,
             "flipY": false
@@ -184,7 +184,7 @@
                 "y": 6
             },
             "tileIndex": 50,
-            "tilemapType": 1,
+            "tilemapType": 0,
             "rotation": 90,
             "flipX": false,
             "flipY": false
@@ -195,7 +195,7 @@
                 "y": 5
             },
             "tileIndex": 50,
-            "tilemapType": 1,
+            "tilemapType": 0,
             "rotation": 90,
             "flipX": false,
             "flipY": false
@@ -206,7 +206,7 @@
                 "y": 3
             },
             "tileIndex": 50,
-            "tilemapType": 1,
+            "tilemapType": 0,
             "rotation": 90,
             "flipX": false,
             "flipY": false
@@ -217,7 +217,7 @@
                 "y": 2
             },
             "tileIndex": 50,
-            "tilemapType": 1,
+            "tilemapType": 0,
             "rotation": 90,
             "flipX": false,
             "flipY": false
@@ -228,7 +228,7 @@
                 "y": 1
             },
             "tileIndex": 50,
-            "tilemapType": 1,
+            "tilemapType": 0,
             "rotation": 90,
             "flipX": false,
             "flipY": false
@@ -239,7 +239,7 @@
                 "y": 12
             },
             "tileIndex": 31,
-            "tilemapType": 1,
+            "tilemapType": 0,
             "rotation": 180,
             "flipX": false,
             "flipY": false
@@ -250,7 +250,7 @@
                 "y": 12
             },
             "tileIndex": 31,
-            "tilemapType": 1,
+            "tilemapType": 0,
             "rotation": 180,
             "flipX": false,
             "flipY": false
@@ -261,7 +261,7 @@
                 "y": 12
             },
             "tileIndex": 31,
-            "tilemapType": 1,
+            "tilemapType": 0,
             "rotation": 180,
             "flipX": false,
             "flipY": false
@@ -272,7 +272,7 @@
                 "y": 12
             },
             "tileIndex": 31,
-            "tilemapType": 1,
+            "tilemapType": 0,
             "rotation": 180,
             "flipX": false,
             "flipY": false
@@ -283,7 +283,7 @@
                 "y": 12
             },
             "tileIndex": 31,
-            "tilemapType": 1,
+            "tilemapType": 0,
             "rotation": 180,
             "flipX": false,
             "flipY": false
@@ -294,7 +294,7 @@
                 "y": 12
             },
             "tileIndex": 31,
-            "tilemapType": 1,
+            "tilemapType": 0,
             "rotation": 180,
             "flipX": false,
             "flipY": false
@@ -305,7 +305,7 @@
                 "y": 12
             },
             "tileIndex": 31,
-            "tilemapType": 1,
+            "tilemapType": 0,
             "rotation": 180,
             "flipX": false,
             "flipY": false
@@ -316,7 +316,7 @@
                 "y": 12
             },
             "tileIndex": 31,
-            "tilemapType": 1,
+            "tilemapType": 0,
             "rotation": 180,
             "flipX": false,
             "flipY": false
@@ -327,7 +327,7 @@
                 "y": 12
             },
             "tileIndex": 31,
-            "tilemapType": 1,
+            "tilemapType": 0,
             "rotation": 180,
             "flipX": false,
             "flipY": false
@@ -338,7 +338,7 @@
                 "y": 12
             },
             "tileIndex": 31,
-            "tilemapType": 1,
+            "tilemapType": 0,
             "rotation": 180,
             "flipX": false,
             "flipY": false
@@ -349,7 +349,7 @@
                 "y": 12
             },
             "tileIndex": 31,
-            "tilemapType": 1,
+            "tilemapType": 0,
             "rotation": 180,
             "flipX": false,
             "flipY": false
@@ -360,7 +360,7 @@
                 "y": 12
             },
             "tileIndex": 31,
-            "tilemapType": 1,
+            "tilemapType": 0,
             "rotation": 180,
             "flipX": false,
             "flipY": false
@@ -371,7 +371,7 @@
                 "y": 12
             },
             "tileIndex": 31,
-            "tilemapType": 1,
+            "tilemapType": 0,
             "rotation": 180,
             "flipX": false,
             "flipY": false
@@ -382,7 +382,7 @@
                 "y": 12
             },
             "tileIndex": 31,
-            "tilemapType": 1,
+            "tilemapType": 0,
             "rotation": 180,
             "flipX": false,
             "flipY": false
@@ -393,7 +393,7 @@
                 "y": 12
             },
             "tileIndex": 31,
-            "tilemapType": 1,
+            "tilemapType": 0,
             "rotation": 180,
             "flipX": false,
             "flipY": false
@@ -404,7 +404,7 @@
                 "y": 12
             },
             "tileIndex": 31,
-            "tilemapType": 1,
+            "tilemapType": 0,
             "rotation": 180,
             "flipX": false,
             "flipY": false
@@ -415,7 +415,7 @@
                 "y": 12
             },
             "tileIndex": 31,
-            "tilemapType": 1,
+            "tilemapType": 0,
             "rotation": 180,
             "flipX": false,
             "flipY": false
@@ -426,7 +426,7 @@
                 "y": 12
             },
             "tileIndex": 31,
-            "tilemapType": 1,
+            "tilemapType": 0,
             "rotation": 180,
             "flipX": false,
             "flipY": false
@@ -437,7 +437,7 @@
                 "y": 12
             },
             "tileIndex": 31,
-            "tilemapType": 1,
+            "tilemapType": 0,
             "rotation": 180,
             "flipX": false,
             "flipY": false
@@ -448,7 +448,7 @@
                 "y": 12
             },
             "tileIndex": 31,
-            "tilemapType": 1,
+            "tilemapType": 0,
             "rotation": 180,
             "flipX": false,
             "flipY": false
@@ -459,7 +459,7 @@
                 "y": 12
             },
             "tileIndex": 31,
-            "tilemapType": 1,
+            "tilemapType": 0,
             "rotation": 180,
             "flipX": false,
             "flipY": false
@@ -470,7 +470,7 @@
                 "y": 12
             },
             "tileIndex": 31,
-            "tilemapType": 1,
+            "tilemapType": 0,
             "rotation": 180,
             "flipX": false,
             "flipY": false
@@ -481,7 +481,7 @@
                 "y": 12
             },
             "tileIndex": 31,
-            "tilemapType": 1,
+            "tilemapType": 0,
             "rotation": 180,
             "flipX": false,
             "flipY": false
@@ -492,7 +492,7 @@
                 "y": 12
             },
             "tileIndex": 31,
-            "tilemapType": 1,
+            "tilemapType": 0,
             "rotation": 180,
             "flipX": false,
             "flipY": false
@@ -503,7 +503,7 @@
                 "y": 12
             },
             "tileIndex": 31,
-            "tilemapType": 1,
+            "tilemapType": 0,
             "rotation": 180,
             "flipX": false,
             "flipY": false
@@ -514,7 +514,7 @@
                 "y": 12
             },
             "tileIndex": 31,
-            "tilemapType": 1,
+            "tilemapType": 0,
             "rotation": 180,
             "flipX": false,
             "flipY": false
@@ -525,7 +525,7 @@
                 "y": 12
             },
             "tileIndex": 31,
-            "tilemapType": 1,
+            "tilemapType": 0,
             "rotation": 180,
             "flipX": false,
             "flipY": false
@@ -536,7 +536,7 @@
                 "y": 11
             },
             "tileIndex": 50,
-            "tilemapType": 1,
+            "tilemapType": 0,
             "rotation": 180,
             "flipX": false,
             "flipY": false
@@ -547,7 +547,7 @@
                 "y": 11
             },
             "tileIndex": 50,
-            "tilemapType": 1,
+            "tilemapType": 0,
             "rotation": 180,
             "flipX": false,
             "flipY": false
@@ -558,7 +558,7 @@
                 "y": 11
             },
             "tileIndex": 50,
-            "tilemapType": 1,
+            "tilemapType": 0,
             "rotation": 180,
             "flipX": false,
             "flipY": false
@@ -569,7 +569,7 @@
                 "y": 11
             },
             "tileIndex": 50,
-            "tilemapType": 1,
+            "tilemapType": 0,
             "rotation": 180,
             "flipX": false,
             "flipY": false
@@ -580,7 +580,7 @@
                 "y": 11
             },
             "tileIndex": 50,
-            "tilemapType": 1,
+            "tilemapType": 0,
             "rotation": 180,
             "flipX": false,
             "flipY": false
@@ -591,7 +591,7 @@
                 "y": 11
             },
             "tileIndex": 50,
-            "tilemapType": 1,
+            "tilemapType": 0,
             "rotation": 180,
             "flipX": false,
             "flipY": false
@@ -602,7 +602,7 @@
                 "y": 11
             },
             "tileIndex": 50,
-            "tilemapType": 1,
+            "tilemapType": 0,
             "rotation": 180,
             "flipX": false,
             "flipY": false
@@ -613,7 +613,7 @@
                 "y": 11
             },
             "tileIndex": 50,
-            "tilemapType": 1,
+            "tilemapType": 0,
             "rotation": 180,
             "flipX": false,
             "flipY": false
@@ -624,7 +624,7 @@
                 "y": 11
             },
             "tileIndex": 50,
-            "tilemapType": 1,
+            "tilemapType": 0,
             "rotation": 180,
             "flipX": false,
             "flipY": false
@@ -635,7 +635,7 @@
                 "y": 11
             },
             "tileIndex": 50,
-            "tilemapType": 1,
+            "tilemapType": 0,
             "rotation": 180,
             "flipX": false,
             "flipY": false
@@ -646,7 +646,7 @@
                 "y": 11
             },
             "tileIndex": 50,
-            "tilemapType": 1,
+            "tilemapType": 0,
             "rotation": 180,
             "flipX": false,
             "flipY": false
@@ -657,7 +657,7 @@
                 "y": 11
             },
             "tileIndex": 50,
-            "tilemapType": 1,
+            "tilemapType": 0,
             "rotation": 180,
             "flipX": false,
             "flipY": false
@@ -668,7 +668,7 @@
                 "y": 11
             },
             "tileIndex": 50,
-            "tilemapType": 1,
+            "tilemapType": 0,
             "rotation": 180,
             "flipX": false,
             "flipY": false
@@ -679,7 +679,7 @@
                 "y": 11
             },
             "tileIndex": 50,
-            "tilemapType": 1,
+            "tilemapType": 0,
             "rotation": 180,
             "flipX": false,
             "flipY": false
@@ -690,7 +690,7 @@
                 "y": 11
             },
             "tileIndex": 50,
-            "tilemapType": 1,
+            "tilemapType": 0,
             "rotation": 180,
             "flipX": false,
             "flipY": false
@@ -701,7 +701,7 @@
                 "y": 11
             },
             "tileIndex": 50,
-            "tilemapType": 1,
+            "tilemapType": 0,
             "rotation": 180,
             "flipX": false,
             "flipY": false
@@ -712,7 +712,7 @@
                 "y": 11
             },
             "tileIndex": 50,
-            "tilemapType": 1,
+            "tilemapType": 0,
             "rotation": 180,
             "flipX": false,
             "flipY": false
@@ -723,7 +723,7 @@
                 "y": 11
             },
             "tileIndex": 50,
-            "tilemapType": 1,
+            "tilemapType": 0,
             "rotation": 180,
             "flipX": false,
             "flipY": false
@@ -734,7 +734,7 @@
                 "y": 11
             },
             "tileIndex": 50,
-            "tilemapType": 1,
+            "tilemapType": 0,
             "rotation": 180,
             "flipX": false,
             "flipY": false
@@ -745,7 +745,7 @@
                 "y": 9
             },
             "tileIndex": 59,
-            "tilemapType": 1,
+            "tilemapType": 0,
             "rotation": 270,
             "flipX": false,
             "flipY": false
@@ -756,7 +756,7 @@
                 "y": 8
             },
             "tileIndex": 52,
-            "tilemapType": 1,
+            "tilemapType": 0,
             "rotation": 270,
             "flipX": false,
             "flipY": false
@@ -767,7 +767,7 @@
                 "y": 7
             },
             "tileIndex": 52,
-            "tilemapType": 1,
+            "tilemapType": 0,
             "rotation": 270,
             "flipX": false,
             "flipY": false
@@ -778,7 +778,7 @@
                 "y": 2
             },
             "tileIndex": 53,
-            "tilemapType": 1,
+            "tilemapType": 0,
             "rotation": 0,
             "flipX": true,
             "flipY": false
@@ -789,7 +789,7 @@
                 "y": 2
             },
             "tileIndex": 52,
-            "tilemapType": 1,
+            "tilemapType": 0,
             "rotation": 0,
             "flipX": true,
             "flipY": false
@@ -800,7 +800,7 @@
                 "y": 2
             },
             "tileIndex": 52,
-            "tilemapType": 1,
+            "tilemapType": 0,
             "rotation": 0,
             "flipX": true,
             "flipY": false
@@ -811,7 +811,7 @@
                 "y": 2
             },
             "tileIndex": 59,
-            "tilemapType": 1,
+            "tilemapType": 0,
             "rotation": 0,
             "flipX": true,
             "flipY": false
@@ -822,7 +822,7 @@
                 "y": 4
             },
             "tileIndex": 59,
-            "tilemapType": 1,
+            "tilemapType": 0,
             "rotation": 180,
             "flipX": true,
             "flipY": false
@@ -833,7 +833,7 @@
                 "y": 4
             },
             "tileIndex": 52,
-            "tilemapType": 1,
+            "tilemapType": 0,
             "rotation": 180,
             "flipX": true,
             "flipY": false
@@ -844,7 +844,7 @@
                 "y": 4
             },
             "tileIndex": 52,
-            "tilemapType": 1,
+            "tilemapType": 0,
             "rotation": 180,
             "flipX": true,
             "flipY": false
@@ -855,7 +855,7 @@
                 "y": 0
             },
             "tileIndex": 49,
-            "tilemapType": 1,
+            "tilemapType": 0,
             "rotation": 180,
             "flipX": false,
             "flipY": false
@@ -866,7 +866,7 @@
                 "y": 0
             },
             "tileIndex": 49,
-            "tilemapType": 1,
+            "tilemapType": 0,
             "rotation": 180,
             "flipX": false,
             "flipY": false
@@ -877,7 +877,7 @@
                 "y": 0
             },
             "tileIndex": 49,
-            "tilemapType": 1,
+            "tilemapType": 0,
             "rotation": 180,
             "flipX": false,
             "flipY": false
@@ -888,7 +888,7 @@
                 "y": 0
             },
             "tileIndex": 49,
-            "tilemapType": 1,
+            "tilemapType": 0,
             "rotation": 180,
             "flipX": false,
             "flipY": false
@@ -899,7 +899,7 @@
                 "y": 0
             },
             "tileIndex": 49,
-            "tilemapType": 1,
+            "tilemapType": 0,
             "rotation": 180,
             "flipX": false,
             "flipY": false
@@ -910,7 +910,7 @@
                 "y": 0
             },
             "tileIndex": 49,
-            "tilemapType": 1,
+            "tilemapType": 0,
             "rotation": 180,
             "flipX": false,
             "flipY": false
@@ -921,7 +921,7 @@
                 "y": 0
             },
             "tileIndex": 49,
-            "tilemapType": 1,
+            "tilemapType": 0,
             "rotation": 180,
             "flipX": false,
             "flipY": false
@@ -932,7 +932,7 @@
                 "y": 0
             },
             "tileIndex": 49,
-            "tilemapType": 1,
+            "tilemapType": 0,
             "rotation": 180,
             "flipX": false,
             "flipY": false
@@ -943,7 +943,7 @@
                 "y": 0
             },
             "tileIndex": 49,
-            "tilemapType": 1,
+            "tilemapType": 0,
             "rotation": 180,
             "flipX": false,
             "flipY": false
@@ -954,7 +954,7 @@
                 "y": 0
             },
             "tileIndex": 49,
-            "tilemapType": 1,
+            "tilemapType": 0,
             "rotation": 180,
             "flipX": false,
             "flipY": false
@@ -965,7 +965,7 @@
                 "y": 0
             },
             "tileIndex": 49,
-            "tilemapType": 1,
+            "tilemapType": 0,
             "rotation": 180,
             "flipX": false,
             "flipY": false
@@ -976,7 +976,7 @@
                 "y": 0
             },
             "tileIndex": 49,
-            "tilemapType": 1,
+            "tilemapType": 0,
             "rotation": 180,
             "flipX": false,
             "flipY": false
@@ -987,7 +987,7 @@
                 "y": 0
             },
             "tileIndex": 49,
-            "tilemapType": 1,
+            "tilemapType": 0,
             "rotation": 180,
             "flipX": false,
             "flipY": false
@@ -998,7 +998,7 @@
                 "y": 0
             },
             "tileIndex": 49,
-            "tilemapType": 1,
+            "tilemapType": 0,
             "rotation": 180,
             "flipX": false,
             "flipY": false
@@ -1009,7 +1009,7 @@
                 "y": 0
             },
             "tileIndex": 49,
-            "tilemapType": 1,
+            "tilemapType": 0,
             "rotation": 180,
             "flipX": false,
             "flipY": false
@@ -1020,7 +1020,7 @@
                 "y": 0
             },
             "tileIndex": 49,
-            "tilemapType": 1,
+            "tilemapType": 0,
             "rotation": 180,
             "flipX": false,
             "flipY": false
@@ -1031,7 +1031,7 @@
                 "y": 0
             },
             "tileIndex": 49,
-            "tilemapType": 1,
+            "tilemapType": 0,
             "rotation": 180,
             "flipX": false,
             "flipY": false
@@ -1042,7 +1042,7 @@
                 "y": 0
             },
             "tileIndex": 49,
-            "tilemapType": 1,
+            "tilemapType": 0,
             "rotation": 180,
             "flipX": false,
             "flipY": false
@@ -1053,7 +1053,7 @@
                 "y": 0
             },
             "tileIndex": 49,
-            "tilemapType": 1,
+            "tilemapType": 0,
             "rotation": 180,
             "flipX": false,
             "flipY": false
@@ -1064,7 +1064,7 @@
                 "y": 0
             },
             "tileIndex": 49,
-            "tilemapType": 1,
+            "tilemapType": 0,
             "rotation": 180,
             "flipX": false,
             "flipY": false
@@ -1075,7 +1075,7 @@
                 "y": 0
             },
             "tileIndex": 49,
-            "tilemapType": 1,
+            "tilemapType": 0,
             "rotation": 180,
             "flipX": false,
             "flipY": false
@@ -1086,7 +1086,7 @@
                 "y": 0
             },
             "tileIndex": 49,
-            "tilemapType": 1,
+            "tilemapType": 0,
             "rotation": 180,
             "flipX": false,
             "flipY": false
@@ -1097,7 +1097,7 @@
                 "y": 0
             },
             "tileIndex": 49,
-            "tilemapType": 1,
+            "tilemapType": 0,
             "rotation": 180,
             "flipX": false,
             "flipY": false
@@ -1108,7 +1108,7 @@
                 "y": 0
             },
             "tileIndex": 49,
-            "tilemapType": 1,
+            "tilemapType": 0,
             "rotation": 180,
             "flipX": false,
             "flipY": false
@@ -1119,7 +1119,7 @@
                 "y": 0
             },
             "tileIndex": 49,
-            "tilemapType": 1,
+            "tilemapType": 0,
             "rotation": 180,
             "flipX": false,
             "flipY": false
@@ -1130,7 +1130,7 @@
                 "y": 0
             },
             "tileIndex": 49,
-            "tilemapType": 1,
+            "tilemapType": 0,
             "rotation": 180,
             "flipX": false,
             "flipY": false
@@ -1141,7 +1141,7 @@
                 "y": 10
             },
             "tileIndex": 31,
-            "tilemapType": 1,
+            "tilemapType": 0,
             "rotation": 270,
             "flipX": false,
             "flipY": false
@@ -1152,7 +1152,7 @@
                 "y": 9
             },
             "tileIndex": 31,
-            "tilemapType": 1,
+            "tilemapType": 0,
             "rotation": 270,
             "flipX": false,
             "flipY": false
@@ -1163,7 +1163,7 @@
                 "y": 8
             },
             "tileIndex": 31,
-            "tilemapType": 1,
+            "tilemapType": 0,
             "rotation": 270,
             "flipX": false,
             "flipY": false
@@ -1174,7 +1174,7 @@
                 "y": 7
             },
             "tileIndex": 31,
-            "tilemapType": 1,
+            "tilemapType": 0,
             "rotation": 270,
             "flipX": false,
             "flipY": false
@@ -1185,7 +1185,7 @@
                 "y": 6
             },
             "tileIndex": 31,
-            "tilemapType": 1,
+            "tilemapType": 0,
             "rotation": 270,
             "flipX": false,
             "flipY": false
@@ -1196,7 +1196,7 @@
                 "y": 5
             },
             "tileIndex": 31,
-            "tilemapType": 1,
+            "tilemapType": 0,
             "rotation": 270,
             "flipX": false,
             "flipY": false
@@ -1207,7 +1207,7 @@
                 "y": 4
             },
             "tileIndex": 31,
-            "tilemapType": 1,
+            "tilemapType": 0,
             "rotation": 270,
             "flipX": false,
             "flipY": false
@@ -1218,7 +1218,7 @@
                 "y": 3
             },
             "tileIndex": 31,
-            "tilemapType": 1,
+            "tilemapType": 0,
             "rotation": 270,
             "flipX": false,
             "flipY": false
@@ -1229,7 +1229,7 @@
                 "y": 2
             },
             "tileIndex": 31,
-            "tilemapType": 1,
+            "tilemapType": 0,
             "rotation": 270,
             "flipX": false,
             "flipY": false
@@ -1240,7 +1240,7 @@
                 "y": 1
             },
             "tileIndex": 31,
-            "tilemapType": 1,
+            "tilemapType": 0,
             "rotation": 270,
             "flipX": false,
             "flipY": false
@@ -1251,7 +1251,7 @@
                 "y": 0
             },
             "tileIndex": 31,
-            "tilemapType": 1,
+            "tilemapType": 0,
             "rotation": 270,
             "flipX": false,
             "flipY": false
@@ -1262,7 +1262,7 @@
                 "y": 10
             },
             "tileIndex": 50,
-            "tilemapType": 1,
+            "tilemapType": 0,
             "rotation": 270,
             "flipX": false,
             "flipY": false
@@ -1273,7 +1273,7 @@
                 "y": 8
             },
             "tileIndex": 50,
-            "tilemapType": 1,
+            "tilemapType": 0,
             "rotation": 270,
             "flipX": false,
             "flipY": false
@@ -1284,7 +1284,7 @@
                 "y": 7
             },
             "tileIndex": 50,
-            "tilemapType": 1,
+            "tilemapType": 0,
             "rotation": 270,
             "flipX": false,
             "flipY": false
@@ -1295,7 +1295,7 @@
                 "y": 5
             },
             "tileIndex": 50,
-            "tilemapType": 1,
+            "tilemapType": 0,
             "rotation": 270,
             "flipX": false,
             "flipY": false
@@ -1306,7 +1306,7 @@
                 "y": 6
             },
             "tileIndex": 50,
-            "tilemapType": 1,
+            "tilemapType": 0,
             "rotation": 270,
             "flipX": false,
             "flipY": false
@@ -1317,7 +1317,7 @@
                 "y": 4
             },
             "tileIndex": 50,
-            "tilemapType": 1,
+            "tilemapType": 0,
             "rotation": 270,
             "flipX": false,
             "flipY": false
@@ -1328,7 +1328,7 @@
                 "y": 3
             },
             "tileIndex": 50,
-            "tilemapType": 1,
+            "tilemapType": 0,
             "rotation": 270,
             "flipX": false,
             "flipY": false
@@ -1339,7 +1339,7 @@
                 "y": 2
             },
             "tileIndex": 50,
-            "tilemapType": 1,
+            "tilemapType": 0,
             "rotation": 270,
             "flipX": false,
             "flipY": false
@@ -1350,7 +1350,7 @@
                 "y": 1
             },
             "tileIndex": 50,
-            "tilemapType": 1,
+            "tilemapType": 0,
             "rotation": 270,
             "flipX": false,
             "flipY": false
@@ -1361,7 +1361,7 @@
                 "y": 11
             },
             "tileIndex": 49,
-            "tilemapType": 1,
+            "tilemapType": 0,
             "rotation": 270,
             "flipX": false,
             "flipY": false
@@ -1372,7 +1372,7 @@
                 "y": 12
             },
             "tileIndex": 49,
-            "tilemapType": 1,
+            "tilemapType": 0,
             "rotation": 270,
             "flipX": false,
             "flipY": false
@@ -1383,7 +1383,7 @@
                 "y": 11
             },
             "tileIndex": 50,
-            "tilemapType": 1,
+            "tilemapType": 0,
             "rotation": 0,
             "flipX": false,
             "flipY": false
@@ -1394,7 +1394,7 @@
                 "y": 10
             },
             "tileIndex": 59,
-            "tilemapType": 1,
+            "tilemapType": 0,
             "rotation": 270,
             "flipX": true,
             "flipY": true
@@ -1405,7 +1405,7 @@
                 "y": 8
             },
             "tileIndex": 59,
-            "tilemapType": 1,
+            "tilemapType": 0,
             "rotation": 0,
             "flipX": true,
             "flipY": true
@@ -1416,7 +1416,7 @@
                 "y": 8
             },
             "tileIndex": 52,
-            "tilemapType": 1,
+            "tilemapType": 0,
             "rotation": 0,
             "flipX": true,
             "flipY": true
@@ -1427,7 +1427,7 @@
                 "y": 8
             },
             "tileIndex": 59,
-            "tilemapType": 1,
+            "tilemapType": 0,
             "rotation": 180,
             "flipX": true,
             "flipY": false
@@ -1438,7 +1438,7 @@
                 "y": 9
             },
             "tileIndex": 59,
-            "tilemapType": 1,
+            "tilemapType": 0,
             "rotation": 90,
             "flipX": true,
             "flipY": true
@@ -1449,7 +1449,7 @@
                 "y": 8
             },
             "tileIndex": 52,
-            "tilemapType": 1,
+            "tilemapType": 0,
             "rotation": 90,
             "flipX": true,
             "flipY": true
@@ -1460,7 +1460,7 @@
                 "y": 7
             },
             "tileIndex": 52,
-            "tilemapType": 1,
+            "tilemapType": 0,
             "rotation": 90,
             "flipX": true,
             "flipY": true
@@ -1471,7 +1471,7 @@
                 "y": 6
             },
             "tileIndex": 52,
-            "tilemapType": 1,
+            "tilemapType": 0,
             "rotation": 90,
             "flipX": true,
             "flipY": true
@@ -1482,7 +1482,7 @@
                 "y": 5
             },
             "tileIndex": 52,
-            "tilemapType": 1,
+            "tilemapType": 0,
             "rotation": 180,
             "flipX": true,
             "flipY": false
@@ -1493,7 +1493,7 @@
                 "y": 5
             },
             "tileIndex": 52,
-            "tilemapType": 1,
+            "tilemapType": 0,
             "rotation": 180,
             "flipX": true,
             "flipY": false
@@ -1504,7 +1504,7 @@
                 "y": 5
             },
             "tileIndex": 52,
-            "tilemapType": 1,
+            "tilemapType": 0,
             "rotation": 180,
             "flipX": true,
             "flipY": false
@@ -1515,7 +1515,7 @@
                 "y": 5
             },
             "tileIndex": 55,
-            "tilemapType": 1,
+            "tilemapType": 0,
             "rotation": 180,
             "flipX": true,
             "flipY": false
@@ -1526,7 +1526,7 @@
                 "y": 4
             },
             "tileIndex": 52,
-            "tilemapType": 1,
+            "tilemapType": 0,
             "rotation": 90,
             "flipX": true,
             "flipY": false
@@ -1537,7 +1537,7 @@
                 "y": 3
             },
             "tileIndex": 52,
-            "tilemapType": 1,
+            "tilemapType": 0,
             "rotation": 90,
             "flipX": true,
             "flipY": false
@@ -1548,7 +1548,7 @@
                 "y": 1
             },
             "tileIndex": 52,
-            "tilemapType": 1,
+            "tilemapType": 0,
             "rotation": 90,
             "flipX": true,
             "flipY": false
@@ -1559,7 +1559,7 @@
                 "y": 2
             },
             "tileIndex": 58,
-            "tilemapType": 1,
+            "tilemapType": 0,
             "rotation": 0,
             "flipX": true,
             "flipY": false
@@ -1570,7 +1570,7 @@
                 "y": 2
             },
             "tileIndex": 59,
-            "tilemapType": 1,
+            "tilemapType": 0,
             "rotation": 180,
             "flipX": true,
             "flipY": false
@@ -1581,7 +1581,7 @@
                 "y": 5
             },
             "tileIndex": 54,
-            "tilemapType": 1,
+            "tilemapType": 0,
             "rotation": 180,
             "flipX": true,
             "flipY": false
@@ -1592,7 +1592,7 @@
                 "y": 5
             },
             "tileIndex": 59,
-            "tilemapType": 1,
+            "tilemapType": 0,
             "rotation": 180,
             "flipX": true,
             "flipY": false
@@ -1603,7 +1603,7 @@
                 "y": 7
             },
             "tileIndex": 59,
-            "tilemapType": 1,
+            "tilemapType": 0,
             "rotation": 270,
             "flipX": true,
             "flipY": true
@@ -1614,7 +1614,7 @@
                 "y": 8
             },
             "tileIndex": 52,
-            "tilemapType": 1,
+            "tilemapType": 0,
             "rotation": 270,
             "flipX": true,
             "flipY": true
@@ -1625,7 +1625,7 @@
                 "y": 9
             },
             "tileIndex": 52,
-            "tilemapType": 1,
+            "tilemapType": 0,
             "rotation": 270,
             "flipX": true,
             "flipY": true
@@ -1636,7 +1636,7 @@
                 "y": 10
             },
             "tileIndex": 52,
-            "tilemapType": 1,
+            "tilemapType": 0,
             "rotation": 270,
             "flipX": true,
             "flipY": true
@@ -1647,7 +1647,7 @@
                 "y": 9
             },
             "tileIndex": 59,
-            "tilemapType": 1,
+            "tilemapType": 0,
             "rotation": 90,
             "flipX": true,
             "flipY": false
@@ -1658,7 +1658,7 @@
                 "y": 5
             },
             "tileIndex": 59,
-            "tilemapType": 1,
+            "tilemapType": 0,
             "rotation": 270,
             "flipX": true,
             "flipY": true
@@ -1669,7 +1669,7 @@
                 "y": 8
             },
             "tileIndex": 52,
-            "tilemapType": 1,
+            "tilemapType": 0,
             "rotation": 270,
             "flipX": true,
             "flipY": true
@@ -1680,7 +1680,7 @@
                 "y": 7
             },
             "tileIndex": 52,
-            "tilemapType": 1,
+            "tilemapType": 0,
             "rotation": 270,
             "flipX": true,
             "flipY": true
@@ -1691,7 +1691,7 @@
                 "y": 6
             },
             "tileIndex": 52,
-            "tilemapType": 1,
+            "tilemapType": 0,
             "rotation": 270,
             "flipX": true,
             "flipY": true
@@ -1702,7 +1702,7 @@
                 "y": 9
             },
             "tileIndex": 52,
-            "tilemapType": 1,
+            "tilemapType": 0,
             "rotation": 270,
             "flipX": true,
             "flipY": true
@@ -1713,7 +1713,7 @@
                 "y": 8
             },
             "tileIndex": 59,
-            "tilemapType": 1,
+            "tilemapType": 0,
             "rotation": 270,
             "flipX": true,
             "flipY": true
@@ -1724,7 +1724,7 @@
                 "y": 10
             },
             "tileIndex": 52,
-            "tilemapType": 1,
+            "tilemapType": 0,
             "rotation": 270,
             "flipX": true,
             "flipY": true
@@ -1735,7 +1735,7 @@
                 "y": 6
             },
             "tileIndex": 59,
-            "tilemapType": 1,
+            "tilemapType": 0,
             "rotation": 90,
             "flipX": true,
             "flipY": false
@@ -1746,7 +1746,7 @@
                 "y": 5
             },
             "tileIndex": 52,
-            "tilemapType": 1,
+            "tilemapType": 0,
             "rotation": 90,
             "flipX": true,
             "flipY": false
@@ -1757,7 +1757,7 @@
                 "y": 4
             },
             "tileIndex": 52,
-            "tilemapType": 1,
+            "tilemapType": 0,
             "rotation": 90,
             "flipX": true,
             "flipY": false
@@ -1768,7 +1768,7 @@
                 "y": 3
             },
             "tileIndex": 52,
-            "tilemapType": 1,
+            "tilemapType": 0,
             "rotation": 90,
             "flipX": true,
             "flipY": false
@@ -1779,7 +1779,7 @@
                 "y": 2
             },
             "tileIndex": 52,
-            "tilemapType": 1,
+            "tilemapType": 0,
             "rotation": 90,
             "flipX": true,
             "flipY": false
@@ -1790,7 +1790,7 @@
                 "y": 1
             },
             "tileIndex": 52,
-            "tilemapType": 1,
+            "tilemapType": 0,
             "rotation": 90,
             "flipX": true,
             "flipY": false
@@ -1801,7 +1801,7 @@
                 "y": 3
             },
             "tileIndex": 59,
-            "tilemapType": 1,
+            "tilemapType": 0,
             "rotation": 180,
             "flipX": true,
             "flipY": false
@@ -1812,7 +1812,7 @@
                 "y": 3
             },
             "tileIndex": 52,
-            "tilemapType": 1,
+            "tilemapType": 0,
             "rotation": 180,
             "flipX": true,
             "flipY": false
@@ -1823,7 +1823,7 @@
                 "y": 3
             },
             "tileIndex": 52,
-            "tilemapType": 1,
+            "tilemapType": 0,
             "rotation": 180,
             "flipX": true,
             "flipY": false
@@ -1834,7 +1834,7 @@
                 "y": 3
             },
             "tileIndex": 59,
-            "tilemapType": 1,
+            "tilemapType": 0,
             "rotation": 0,
             "flipX": true,
             "flipY": true
@@ -1845,7 +1845,7 @@
                 "y": 1
             },
             "tileIndex": 59,
-            "tilemapType": 1,
+            "tilemapType": 0,
             "rotation": 90,
             "flipX": true,
             "flipY": false
@@ -1856,7 +1856,7 @@
                 "y": 1
             },
             "tileIndex": 60,
-            "tilemapType": 1,
+            "tilemapType": 0,
             "rotation": 90,
             "flipX": true,
             "flipY": false
@@ -1867,7 +1867,7 @@
                 "y": 3
             },
             "tileIndex": 59,
-            "tilemapType": 1,
+            "tilemapType": 0,
             "rotation": 180,
             "flipX": false,
             "flipY": false
@@ -1878,7 +1878,7 @@
                 "y": 3
             },
             "tileIndex": 52,
-            "tilemapType": 1,
+            "tilemapType": 0,
             "rotation": 180,
             "flipX": false,
             "flipY": false
@@ -1889,7 +1889,7 @@
                 "y": 3
             },
             "tileIndex": 52,
-            "tilemapType": 1,
+            "tilemapType": 0,
             "rotation": 180,
             "flipX": false,
             "flipY": false
@@ -1900,7 +1900,7 @@
                 "y": 3
             },
             "tileIndex": 48,
-            "tilemapType": 1,
+            "tilemapType": 0,
             "rotation": 180,
             "flipX": false,
             "flipY": false
@@ -1911,7 +1911,7 @@
                 "y": 4
             },
             "tileIndex": 59,
-            "tilemapType": 1,
+            "tilemapType": 0,
             "rotation": 270,
             "flipX": false,
             "flipY": false
@@ -1922,7 +1922,7 @@
                 "y": 3
             },
             "tileIndex": 59,
-            "tilemapType": 1,
+            "tilemapType": 0,
             "rotation": 0,
             "flipX": false,
             "flipY": false
@@ -1933,7 +1933,7 @@
                 "y": 2
             },
             "tileIndex": 52,
-            "tilemapType": 1,
+            "tilemapType": 0,
             "rotation": 90,
             "flipX": false,
             "flipY": false
@@ -1944,7 +1944,7 @@
                 "y": 1
             },
             "tileIndex": 52,
-            "tilemapType": 1,
+            "tilemapType": 0,
             "rotation": 90,
             "flipX": false,
             "flipY": false
@@ -1955,7 +1955,7 @@
                 "y": 3
             },
             "tileIndex": 52,
-            "tilemapType": 1,
+            "tilemapType": 0,
             "rotation": 180,
             "flipX": false,
             "flipY": false
@@ -1966,7 +1966,7 @@
                 "y": 5
             },
             "tileIndex": 59,
-            "tilemapType": 1,
+            "tilemapType": 0,
             "rotation": 0,
             "flipX": false,
             "flipY": false
@@ -1977,7 +1977,7 @@
                 "y": 5
             },
             "tileIndex": 59,
-            "tilemapType": 1,
+            "tilemapType": 0,
             "rotation": 180,
             "flipX": false,
             "flipY": true
@@ -1988,7 +1988,7 @@
                 "y": 5
             },
             "tileIndex": 52,
-            "tilemapType": 1,
+            "tilemapType": 0,
             "rotation": 180,
             "flipX": false,
             "flipY": true
@@ -1999,7 +1999,7 @@
                 "y": 10
             },
             "tileIndex": 52,
-            "tilemapType": 1,
+            "tilemapType": 0,
             "rotation": 270,
             "flipX": false,
             "flipY": true
@@ -2010,7 +2010,7 @@
                 "y": 9
             },
             "tileIndex": 52,
-            "tilemapType": 1,
+            "tilemapType": 0,
             "rotation": 270,
             "flipX": false,
             "flipY": true
@@ -2021,7 +2021,7 @@
                 "y": 8
             },
             "tileIndex": 52,
-            "tilemapType": 1,
+            "tilemapType": 0,
             "rotation": 270,
             "flipX": false,
             "flipY": true
@@ -2032,7 +2032,7 @@
                 "y": 7
             },
             "tileIndex": 55,
-            "tilemapType": 1,
+            "tilemapType": 0,
             "rotation": 270,
             "flipX": false,
             "flipY": true
@@ -2043,7 +2043,7 @@
                 "y": 7
             },
             "tileIndex": 59,
-            "tilemapType": 1,
+            "tilemapType": 0,
             "rotation": 0,
             "flipX": false,
             "flipY": false
@@ -2054,7 +2054,7 @@
                 "y": 7
             },
             "tileIndex": 52,
-            "tilemapType": 1,
+            "tilemapType": 0,
             "rotation": 0,
             "flipX": false,
             "flipY": false
@@ -2065,7 +2065,7 @@
                 "y": 7
             },
             "tileIndex": 62,
-            "tilemapType": 1,
+            "tilemapType": 0,
             "rotation": 0,
             "flipX": false,
             "flipY": false
@@ -2076,7 +2076,7 @@
                 "y": 8
             },
             "tileIndex": 52,
-            "tilemapType": 1,
+            "tilemapType": 0,
             "rotation": 90,
             "flipX": false,
             "flipY": false
@@ -2087,7 +2087,7 @@
                 "y": 9
             },
             "tileIndex": 55,
-            "tilemapType": 1,
+            "tilemapType": 0,
             "rotation": 90,
             "flipX": false,
             "flipY": false
@@ -2098,7 +2098,7 @@
                 "y": 9
             },
             "tileIndex": 59,
-            "tilemapType": 1,
+            "tilemapType": 0,
             "rotation": 0,
             "flipX": false,
             "flipY": true
@@ -2109,7 +2109,7 @@
                 "y": 9
             },
             "tileIndex": 59,
-            "tilemapType": 1,
+            "tilemapType": 0,
             "rotation": 180,
             "flipX": false,
             "flipY": true
@@ -2120,7 +2120,7 @@
                 "y": 9
             },
             "tileIndex": 52,
-            "tilemapType": 1,
+            "tilemapType": 0,
             "rotation": 180,
             "flipX": false,
             "flipY": true
@@ -2131,7 +2131,7 @@
                 "y": 6
             },
             "tileIndex": 60,
-            "tilemapType": 1,
+            "tilemapType": 0,
             "rotation": 180,
             "flipX": false,
             "flipY": true
@@ -2142,7 +2142,7 @@
                 "y": 11
             },
             "tileIndex": 39,
-            "tilemapType": 1,
+            "tilemapType": 0,
             "rotation": 180,
             "flipX": false,
             "flipY": true
@@ -2153,7 +2153,7 @@
                 "y": 8
             },
             "tileIndex": 12,
-            "tilemapType": 1,
+            "tilemapType": 0,
             "rotation": 180,
             "flipX": false,
             "flipY": true
@@ -2164,7 +2164,7 @@
                 "y": 7
             },
             "tileIndex": 13,
-            "tilemapType": 1,
+            "tilemapType": 0,
             "rotation": 180,
             "flipX": false,
             "flipY": true
@@ -2175,7 +2175,7 @@
                 "y": 7
             },
             "tileIndex": 13,
-            "tilemapType": 1,
+            "tilemapType": 0,
             "rotation": 180,
             "flipX": false,
             "flipY": true
@@ -2186,7 +2186,7 @@
                 "y": 8
             },
             "tileIndex": 12,
-            "tilemapType": 1,
+            "tilemapType": 0,
             "rotation": 180,
             "flipX": false,
             "flipY": true
@@ -2197,7 +2197,7 @@
                 "y": 8
             },
             "tileIndex": 13,
-            "tilemapType": 1,
+            "tilemapType": 0,
             "rotation": 180,
             "flipX": false,
             "flipY": true
@@ -2208,7 +2208,7 @@
                 "y": 9
             },
             "tileIndex": 12,
-            "tilemapType": 1,
+            "tilemapType": 0,
             "rotation": 180,
             "flipX": false,
             "flipY": true
@@ -2219,7 +2219,7 @@
                 "y": 6
             },
             "tileIndex": 11,
-            "tilemapType": 1,
+            "tilemapType": 0,
             "rotation": 90,
             "flipX": false,
             "flipY": false
@@ -2230,7 +2230,7 @@
                 "y": 6
             },
             "tileIndex": 10,
-            "tilemapType": 1,
+            "tilemapType": 0,
             "rotation": 90,
             "flipX": false,
             "flipY": false
@@ -2241,7 +2241,7 @@
                 "y": 2
             },
             "tileIndex": 10,
-            "tilemapType": 1,
+            "tilemapType": 0,
             "rotation": 0,
             "flipX": false,
             "flipY": false
@@ -2252,7 +2252,7 @@
                 "y": 1
             },
             "tileIndex": 11,
-            "tilemapType": 1,
+            "tilemapType": 0,
             "rotation": 0,
             "flipX": false,
             "flipY": false
@@ -2263,7 +2263,7 @@
                 "y": 2
             },
             "tileIndex": 29,
-            "tilemapType": 1,
+            "tilemapType": 0,
             "rotation": 0,
             "flipX": false,
             "flipY": false
@@ -2296,7 +2296,7 @@
                 "y": 2
             },
             "tileIndex": 52,
-            "tilemapType": 1,
+            "tilemapType": 0,
             "rotation": 90,
             "flipX": false,
             "flipY": false
@@ -2307,7 +2307,7 @@
                 "y": 3
             },
             "tileIndex": 58,
-            "tilemapType": 1,
+            "tilemapType": 0,
             "rotation": 270,
             "flipX": false,
             "flipY": false
@@ -2318,7 +2318,7 @@
                 "y": 1
             },
             "tileIndex": 52,
-            "tilemapType": 1,
+            "tilemapType": 0,
             "rotation": 90,
             "flipX": false,
             "flipY": false
@@ -2329,7 +2329,7 @@
                 "y": 6
             },
             "tileIndex": 53,
-            "tilemapType": 1,
+            "tilemapType": 0,
             "rotation": 180,
             "flipX": true,
             "flipY": true
@@ -2340,7 +2340,7 @@
                 "y": 6
             },
             "tileIndex": 52,
-            "tilemapType": 1,
+            "tilemapType": 0,
             "rotation": 180,
             "flipX": true,
             "flipY": true
@@ -2351,7 +2351,7 @@
                 "y": 7
             },
             "tileIndex": 52,
-            "tilemapType": 1,
+            "tilemapType": 0,
             "rotation": 90,
             "flipX": true,
             "flipY": false
@@ -2362,7 +2362,7 @@
                 "y": 8
             },
             "tileIndex": 52,
-            "tilemapType": 1,
+            "tilemapType": 0,
             "rotation": 90,
             "flipX": true,
             "flipY": false
@@ -2373,7 +2373,7 @@
                 "y": 9
             },
             "tileIndex": 52,
-            "tilemapType": 1,
+            "tilemapType": 0,
             "rotation": 90,
             "flipX": true,
             "flipY": false
@@ -2384,7 +2384,7 @@
                 "y": 10
             },
             "tileIndex": 52,
-            "tilemapType": 1,
+            "tilemapType": 0,
             "rotation": 90,
             "flipX": true,
             "flipY": false
@@ -2395,7 +2395,7 @@
                 "y": 6
             },
             "tileIndex": 58,
-            "tilemapType": 1,
+            "tilemapType": 0,
             "rotation": 270,
             "flipX": true,
             "flipY": false
@@ -2406,7 +2406,7 @@
                 "y": 5
             },
             "tileIndex": 52,
-            "tilemapType": 1,
+            "tilemapType": 0,
             "rotation": 90,
             "flipX": true,
             "flipY": false
@@ -2417,7 +2417,7 @@
                 "y": 4
             },
             "tileIndex": 52,
-            "tilemapType": 1,
+            "tilemapType": 0,
             "rotation": 90,
             "flipX": true,
             "flipY": false
@@ -2428,7 +2428,7 @@
                 "y": 3
             },
             "tileIndex": 52,
-            "tilemapType": 1,
+            "tilemapType": 0,
             "rotation": 90,
             "flipX": true,
             "flipY": false
@@ -2439,7 +2439,7 @@
                 "y": 11
             },
             "tileIndex": 64,
-            "tilemapType": 1,
+            "tilemapType": 0,
             "rotation": 270,
             "flipX": true,
             "flipY": false
@@ -2450,7 +2450,7 @@
                 "y": 11
             },
             "tileIndex": 64,
-            "tilemapType": 1,
+            "tilemapType": 0,
             "rotation": 270,
             "flipX": true,
             "flipY": false
@@ -2461,7 +2461,7 @@
                 "y": 11
             },
             "tileIndex": 64,
-            "tilemapType": 1,
+            "tilemapType": 0,
             "rotation": 270,
             "flipX": true,
             "flipY": false
@@ -2472,7 +2472,7 @@
                 "y": 11
             },
             "tileIndex": 64,
-            "tilemapType": 1,
+            "tilemapType": 0,
             "rotation": 270,
             "flipX": true,
             "flipY": false
@@ -2483,7 +2483,7 @@
                 "y": 11
             },
             "tileIndex": 64,
-            "tilemapType": 1,
+            "tilemapType": 0,
             "rotation": 270,
             "flipX": true,
             "flipY": false
@@ -2494,7 +2494,7 @@
                 "y": 4
             },
             "tileIndex": 64,
-            "tilemapType": 1,
+            "tilemapType": 0,
             "rotation": 0,
             "flipX": true,
             "flipY": false
@@ -2505,7 +2505,7 @@
                 "y": 0
             },
             "tileIndex": 49,
-            "tilemapType": 1,
+            "tilemapType": 0,
             "rotation": 0,
             "flipX": true,
             "flipY": false
@@ -2516,7 +2516,7 @@
                 "y": 6
             },
             "tileIndex": 65,
-            "tilemapType": 1,
+            "tilemapType": 0,
             "rotation": 0,
             "flipX": false,
             "flipY": false
@@ -2527,7 +2527,7 @@
                 "y": 9
             },
             "tileIndex": 64,
-            "tilemapType": 1,
+            "tilemapType": 0,
             "rotation": 180,
             "flipX": false,
             "flipY": false

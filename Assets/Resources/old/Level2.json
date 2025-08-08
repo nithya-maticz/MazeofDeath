@@ -774,6 +774,127 @@
         },
         {
             "position": {
+                "x": 3,
+                "y": 6
+            },
+            "tileIndex": 61,
+            "tilemapType": 1,
+            "rotation": 180,
+            "flipX": false,
+            "flipY": false
+        },
+        {
+            "position": {
+                "x": 4,
+                "y": 6
+            },
+            "tileIndex": 52,
+            "tilemapType": 1,
+            "rotation": 180,
+            "flipX": true,
+            "flipY": true
+        },
+        {
+            "position": {
+                "x": 5,
+                "y": 6
+            },
+            "tileIndex": 62,
+            "tilemapType": 1,
+            "rotation": 180,
+            "flipX": true,
+            "flipY": true
+        },
+        {
+            "position": {
+                "x": 5,
+                "y": 7
+            },
+            "tileIndex": 52,
+            "tilemapType": 1,
+            "rotation": 270,
+            "flipX": true,
+            "flipY": true
+        },
+        {
+            "position": {
+                "x": 5,
+                "y": 8
+            },
+            "tileIndex": 52,
+            "tilemapType": 1,
+            "rotation": 270,
+            "flipX": true,
+            "flipY": true
+        },
+        {
+            "position": {
+                "x": 5,
+                "y": 9
+            },
+            "tileIndex": 52,
+            "tilemapType": 1,
+            "rotation": 270,
+            "flipX": true,
+            "flipY": true
+        },
+        {
+            "position": {
+                "x": 5,
+                "y": 10
+            },
+            "tileIndex": 52,
+            "tilemapType": 1,
+            "rotation": 270,
+            "flipX": true,
+            "flipY": true
+        },
+        {
+            "position": {
+                "x": 5,
+                "y": 11
+            },
+            "tileIndex": 52,
+            "tilemapType": 1,
+            "rotation": 270,
+            "flipX": true,
+            "flipY": true
+        },
+        {
+            "position": {
+                "x": 6,
+                "y": 5
+            },
+            "tileIndex": 52,
+            "tilemapType": 1,
+            "rotation": 270,
+            "flipX": true,
+            "flipY": true
+        },
+        {
+            "position": {
+                "x": 6,
+                "y": 4
+            },
+            "tileIndex": 52,
+            "tilemapType": 1,
+            "rotation": 270,
+            "flipX": true,
+            "flipY": true
+        },
+        {
+            "position": {
+                "x": 6,
+                "y": 3
+            },
+            "tileIndex": 52,
+            "tilemapType": 1,
+            "rotation": 270,
+            "flipX": true,
+            "flipY": true
+        },
+        {
+            "position": {
                 "x": 6,
                 "y": 2
             },
@@ -847,6 +968,17 @@
             "tilemapType": 1,
             "rotation": 180,
             "flipX": true,
+            "flipY": false
+        },
+        {
+            "position": {
+                "x": 1,
+                "y": 4
+            },
+            "tileIndex": 59,
+            "tilemapType": 1,
+            "rotation": 180,
+            "flipX": false,
             "flipY": false
         },
         {
@@ -1390,6 +1522,28 @@
         },
         {
             "position": {
+                "x": 6,
+                "y": 6
+            },
+            "tileIndex": 61,
+            "tilemapType": 1,
+            "rotation": 0,
+            "flipX": false,
+            "flipY": false
+        },
+        {
+            "position": {
+                "x": 8,
+                "y": 11
+            },
+            "tileIndex": 59,
+            "tilemapType": 1,
+            "rotation": 270,
+            "flipX": false,
+            "flipY": true
+        },
+        {
+            "position": {
                 "x": 8,
                 "y": 10
             },
@@ -1643,6 +1797,17 @@
         },
         {
             "position": {
+                "x": 13,
+                "y": 11
+            },
+            "tileIndex": 59,
+            "tilemapType": 1,
+            "rotation": 90,
+            "flipX": true,
+            "flipY": false
+        },
+        {
+            "position": {
                 "x": 15,
                 "y": 9
             },
@@ -1728,6 +1893,17 @@
             "rotation": 270,
             "flipX": true,
             "flipY": true
+        },
+        {
+            "position": {
+                "x": 17,
+                "y": 11
+            },
+            "tileIndex": 59,
+            "tilemapType": 1,
+            "rotation": 90,
+            "flipX": true,
+            "flipY": false
         },
         {
             "position": {
@@ -1838,6 +2014,39 @@
             "rotation": 0,
             "flipX": true,
             "flipY": true
+        },
+        {
+            "position": {
+                "x": 13,
+                "y": 3
+            },
+            "tileIndex": 58,
+            "tilemapType": 1,
+            "rotation": 90,
+            "flipX": true,
+            "flipY": false
+        },
+        {
+            "position": {
+                "x": 13,
+                "y": 2
+            },
+            "tileIndex": 52,
+            "tilemapType": 1,
+            "rotation": 90,
+            "flipX": true,
+            "flipY": false
+        },
+        {
+            "position": {
+                "x": 13,
+                "y": 1
+            },
+            "tileIndex": 52,
+            "tilemapType": 1,
+            "rotation": 90,
+            "flipX": true,
+            "flipY": false
         },
         {
             "position": {
@@ -1996,6 +2205,17 @@
         {
             "position": {
                 "x": 19,
+                "y": 11
+            },
+            "tileIndex": 59,
+            "tilemapType": 1,
+            "rotation": 270,
+            "flipX": false,
+            "flipY": true
+        },
+        {
+            "position": {
+                "x": 19,
                 "y": 10
             },
             "tileIndex": 52,
@@ -2117,6 +2337,17 @@
         {
             "position": {
                 "x": 25,
+                "y": 9
+            },
+            "tileIndex": 52,
+            "tilemapType": 1,
+            "rotation": 180,
+            "flipX": false,
+            "flipY": true
+        },
+        {
+            "position": {
+                "x": 26,
                 "y": 9
             },
             "tileIndex": 52,
@@ -2278,321 +2509,13 @@
             "rotation": 0,
             "flipX": false,
             "flipY": false
-        },
-        {
-            "position": {
-                "x": 1,
-                "y": 10
-            },
-            "tileIndex": 50,
-            "tilemapType": 0,
-            "rotation": 90,
-            "flipX": true,
-            "flipY": false
-        },
-        {
-            "position": {
-                "x": 13,
-                "y": 2
-            },
-            "tileIndex": 52,
-            "tilemapType": 1,
-            "rotation": 90,
-            "flipX": false,
-            "flipY": false
-        },
-        {
-            "position": {
-                "x": 13,
-                "y": 3
-            },
-            "tileIndex": 58,
-            "tilemapType": 1,
-            "rotation": 270,
-            "flipX": false,
-            "flipY": false
-        },
-        {
-            "position": {
-                "x": 13,
-                "y": 1
-            },
-            "tileIndex": 52,
-            "tilemapType": 1,
-            "rotation": 90,
-            "flipX": false,
-            "flipY": false
-        },
-        {
-            "position": {
-                "x": 3,
-                "y": 6
-            },
-            "tileIndex": 53,
-            "tilemapType": 1,
-            "rotation": 180,
-            "flipX": true,
-            "flipY": true
-        },
-        {
-            "position": {
-                "x": 4,
-                "y": 6
-            },
-            "tileIndex": 52,
-            "tilemapType": 1,
-            "rotation": 180,
-            "flipX": true,
-            "flipY": true
-        },
-        {
-            "position": {
-                "x": 5,
-                "y": 7
-            },
-            "tileIndex": 52,
-            "tilemapType": 1,
-            "rotation": 90,
-            "flipX": true,
-            "flipY": false
-        },
-        {
-            "position": {
-                "x": 5,
-                "y": 8
-            },
-            "tileIndex": 52,
-            "tilemapType": 1,
-            "rotation": 90,
-            "flipX": true,
-            "flipY": false
-        },
-        {
-            "position": {
-                "x": 5,
-                "y": 9
-            },
-            "tileIndex": 52,
-            "tilemapType": 1,
-            "rotation": 90,
-            "flipX": true,
-            "flipY": false
-        },
-        {
-            "position": {
-                "x": 5,
-                "y": 10
-            },
-            "tileIndex": 52,
-            "tilemapType": 1,
-            "rotation": 90,
-            "flipX": true,
-            "flipY": false
-        },
-        {
-            "position": {
-                "x": 5,
-                "y": 6
-            },
-            "tileIndex": 58,
-            "tilemapType": 1,
-            "rotation": 270,
-            "flipX": true,
-            "flipY": false
-        },
-        {
-            "position": {
-                "x": 6,
-                "y": 5
-            },
-            "tileIndex": 52,
-            "tilemapType": 1,
-            "rotation": 90,
-            "flipX": true,
-            "flipY": false
-        },
-        {
-            "position": {
-                "x": 6,
-                "y": 4
-            },
-            "tileIndex": 52,
-            "tilemapType": 1,
-            "rotation": 90,
-            "flipX": true,
-            "flipY": false
-        },
-        {
-            "position": {
-                "x": 6,
-                "y": 3
-            },
-            "tileIndex": 52,
-            "tilemapType": 1,
-            "rotation": 90,
-            "flipX": true,
-            "flipY": false
-        },
-        {
-            "position": {
-                "x": 5,
-                "y": 11
-            },
-            "tileIndex": 64,
-            "tilemapType": 1,
-            "rotation": 270,
-            "flipX": true,
-            "flipY": false
-        },
-        {
-            "position": {
-                "x": 8,
-                "y": 11
-            },
-            "tileIndex": 64,
-            "tilemapType": 1,
-            "rotation": 270,
-            "flipX": true,
-            "flipY": false
-        },
-        {
-            "position": {
-                "x": 13,
-                "y": 11
-            },
-            "tileIndex": 64,
-            "tilemapType": 1,
-            "rotation": 270,
-            "flipX": true,
-            "flipY": false
-        },
-        {
-            "position": {
-                "x": 17,
-                "y": 11
-            },
-            "tileIndex": 64,
-            "tilemapType": 1,
-            "rotation": 270,
-            "flipX": true,
-            "flipY": false
-        },
-        {
-            "position": {
-                "x": 19,
-                "y": 11
-            },
-            "tileIndex": 64,
-            "tilemapType": 1,
-            "rotation": 270,
-            "flipX": true,
-            "flipY": false
-        },
-        {
-            "position": {
-                "x": 1,
-                "y": 4
-            },
-            "tileIndex": 64,
-            "tilemapType": 1,
-            "rotation": 0,
-            "flipX": true,
-            "flipY": false
-        },
-        {
-            "position": {
-                "x": 1,
-                "y": 0
-            },
-            "tileIndex": 49,
-            "tilemapType": 1,
-            "rotation": 0,
-            "flipX": true,
-            "flipY": false
-        },
-        {
-            "position": {
-                "x": 6,
-                "y": 6
-            },
-            "tileIndex": 65,
-            "tilemapType": 1,
-            "rotation": 0,
-            "flipX": false,
-            "flipY": false
-        },
-        {
-            "position": {
-                "x": 26,
-                "y": 9
-            },
-            "tileIndex": 64,
-            "tilemapType": 1,
-            "rotation": 180,
-            "flipX": false,
-            "flipY": false
         }
     ],
     "prefabs": [
         {
             "position": {
-                "x": 20,
+                "x": 1,
                 "y": 10
-            },
-            "prefabIndex": 1,
-            "size": {
-                "x": 1,
-                "y": 1
-            }
-        },
-        {
-            "position": {
-                "x": 9,
-                "y": 1
-            },
-            "prefabIndex": 0,
-            "size": {
-                "x": 1,
-                "y": 1
-            }
-        },
-        {
-            "position": {
-                "x": 6,
-                "y": 10
-            },
-            "prefabIndex": 0,
-            "size": {
-                "x": 1,
-                "y": 1
-            }
-        },
-        {
-            "position": {
-                "x": 25,
-                "y": 5
-            },
-            "prefabIndex": 2,
-            "size": {
-                "x": 1,
-                "y": 1
-            }
-        },
-        {
-            "position": {
-                "x": 21,
-                "y": 1
-            },
-            "prefabIndex": 2,
-            "size": {
-                "x": 1,
-                "y": 1
-            }
-        },
-        {
-            "position": {
-                "x": 1,
-                "y": 7
             },
             "prefabIndex": 4,
             "size": {
@@ -2643,7 +2566,7 @@
             "y": 10
         }
     ],
-    "selectedBackgroundIndex": 2,
+    "selectedBackgroundIndex": -1,
     "playerSpawn": {
         "x": 18,
         "y": 4
