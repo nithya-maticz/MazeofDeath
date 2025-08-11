@@ -95,6 +95,19 @@ MonoBehaviour:
   - {fileID: 11400000, guid: 1750721d92fedae44882ef7ad3f3a416, type: 2}
   - {fileID: 11400000, guid: 52230671aa12db541893b39ea7bae6b5, type: 2}
   - {fileID: 11400000, guid: 96ed4f09d2f7bec4ab6c86e07df4e475, type: 2}
+  - {fileID: 11400000, guid: 34af3686769786e45ba8fd9d7eb75b92, type: 2}
+  - {fileID: 11400000, guid: b3537cf7bffe3c94db517fed3b339388, type: 2}
+  - {fileID: 11400000, guid: 446578431167a554f96de667fa79e569, type: 2}
+  - {fileID: 11400000, guid: 5ddf33e05de86ea4dab290a6ebeb9869, type: 2}
+  - {fileID: 11400000, guid: dd621994dc0730e44b5c1c1e4a0dfc92, type: 2}
+  - {fileID: 11400000, guid: 8e86f31fb076c0a489bbf5ef8a2186f1, type: 2}
+  - {fileID: 11400000, guid: 4cb7eeae06ef36441ab9e1a872666d2d, type: 2}
+  - {fileID: 11400000, guid: e66b3c16dfb416347b24ed8c72d7c9a5, type: 2}
+  - {fileID: 11400000, guid: df711047444d1674d89fd55aac004705, type: 2}
+  - {fileID: 11400000, guid: e50cd8a72cc04a74f87c2651639d998a, type: 2}
+  - {fileID: 11400000, guid: b25e054c123b14946806d05157dae7ad, type: 2}
+  - {fileID: 11400000, guid: b25e054c123b14946806d05157dae7ad, type: 2}
+  - {fileID: 11400000, guid: 1c36f04ef1bfd0648a690afa0f4aabb5, type: 2}
   prefabs:
   - {fileID: 4547198198294758856, guid: 5b66f5b6df71c7946b19e9fa1588bdf2, type: 3}
   - {fileID: 4547198198294758856, guid: daff0d4f31cfd1d4c967f45e86ae9b53, type: 3}
@@ -102,11 +115,18 @@ MonoBehaviour:
   - {fileID: 4961835689284915402, guid: 5320c2c561ea8a0459aba6fc57af2093, type: 3}
   - {fileID: 8497434276732211358, guid: e5fb04d60fa68a240b16c43e91c40e4c, type: 3}
   - {fileID: 8497434276732211358, guid: 69bb73cf18f134943abf4f41fff0c08d, type: 3}
+  - {fileID: 326568848620510978, guid: abaf79b2cc3ed914c85bbd124cbd679a, type: 3}
+  - {fileID: 8497434276732211358, guid: 5be584efda4feec40b6e0a2c3c795de0, type: 3}
+  - {fileID: 326568848620510978, guid: abaf79b2cc3ed914c85bbd124cbd679a, type: 3}
+  - {fileID: 326568848620510978, guid: 8ae278cdce1153b45b4598ec21136597, type: 3}
+  - {fileID: 326568848620510978, guid: bffb2334a24c01949adce4754b440140, type: 3}
+  - {fileID: 326568848620510978, guid: e1e60cb08a01ff045828c8af732a93e2, type: 3}
   backgroundSprites:
   - {fileID: 21300000, guid: 08df51f69b019334ca5e55c148c670d3, type: 3}
   - {fileID: 21300000, guid: aec01deb37c4d9442a4ecea24ea2a79f, type: 3}
   - {fileID: 4652027401421723346, guid: c73da0182eda0324c86258951527cab4, type: 3}
   - {fileID: 7515392078626874927, guid: 4f6bfd225e5d7f54fbe4887be89a9ef9, type: 3}
+  - {fileID: 4184211700274527986, guid: fcf4adb5f8d3185468a4aeb9aa2995c4, type: 3}
   tilemapTypes:
   - type: 0
     displayName: Walls
