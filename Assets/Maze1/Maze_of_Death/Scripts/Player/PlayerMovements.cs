@@ -41,6 +41,10 @@ public class PlayerMovements : MonoBehaviour
     public Transform bulletSpawn;
     public float speed = 2f;
 
+    // Bomb
+    public GameObject bombSpawnPoint;
+    public GameObject bombLight;
+    ///
    // public GameObject autoAim;
 
 
@@ -328,8 +332,11 @@ public class PlayerMovements : MonoBehaviour
 
     void AttackEnd()
     {
-        if(knifeAttack._currentEnemy != null)
+        Debug.Log("OutSide enemy");
+        if (knifeAttack._currentEnemy != null)
         {
+            Debug.Log("inside enemy");
+            Debug.Log("inside enemy" + knifeAttack.IsStayEnemy);
             if (knifeAttack.IsStayEnemy)
             {
                 Debug.Log("Destroy...");

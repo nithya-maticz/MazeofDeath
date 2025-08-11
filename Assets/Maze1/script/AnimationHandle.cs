@@ -29,6 +29,9 @@ public class AnimationHandle : MonoBehaviour
         PlayerMovements.Instance.HandleMovementInput(); // Resume walk/idle/gunwalk based on current input
     }
        
-
+    void bombfun()
+    {
+        Game_Manager.Instance.BombAnimattion();
+    }
 
 }

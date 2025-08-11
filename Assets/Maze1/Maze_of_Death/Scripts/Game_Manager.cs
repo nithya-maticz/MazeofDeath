@@ -86,6 +86,10 @@ public class Game_Manager : MonoBehaviour
     public GameObject playerPrefab;
     public GameObject F_PlayerPrefab;
 
+    public GameObject bombPrefab;
+    public GameObject bomb;
+    public bool isBomb;
+
     [Header("MATERIAL")]
     public Material litMat;
 
@@ -101,6 +105,7 @@ public class Game_Manager : MonoBehaviour
 
     void Start()
     {
+        PlayerMovements.Instance._Animator.SetTrigger("bomb");
         //StartData();
     }
 
@@ -150,11 +155,9 @@ public class Game_Manager : MonoBehaviour
     public void SpawnPlayer(Vector3 worldPos)
     {
         playerTransform.position = worldPos;
-
         Instantiate(playerPrefab, playerTransform.transform);
         SmoothFollowCamera.Instance.target = PlayerMovements.Instance.offSet;
         BulletSpawner = PlayerMovements.Instance.bulletSpawn;
-
         AutoAim = AutoAimOnly.Instance;
 
         /*   if (LobbyManager.currentIndex == 1)
@@ -324,7 +327,7 @@ public class Game_Manager : MonoBehaviour
 
     public void Attack()
     {
-        if (!AutoAttackToogle.isOn)
+        if (!AutoAttackToogle.isOn && PlayerMovements.Instance.isAttack==false)
         {
             PlayerMovements.Instance.isAttack = true;
             PlayerMovements.Instance._Animator.SetTrigger("Attack");
@@ -527,6 +530,33 @@ public class Game_Manager : MonoBehaviour
     public void BackToLobby()
     {
         SceneManager.LoadScene("lobby");
+    }
+
+    public void BombFun()
+    {
+        PlayerMovements.Instance._Animator.SetTrigger("bomb");
+        
+    }
+    public void DestoryBomb()
+    {
+        PlayerMovements.Instance.bombSpawnPoint.SetActive(false);
+        isBomb = false;
+        Destroy(bomb);
+       
+    }
+    public void BombAnimattion()
+    {
+        Transform targetTransform = PlayerMovements.Instance.bombSpawnPoint.transform;
+        isBomb = true;
+        PlayerMovements.Instance.bombSpawnPoint.SetActive(true);
+        bomb = Instantiate(
+    bombPrefab,
+    targetTransform.position,
+    Quaternion.identity // or targetTransform.rotation if needed
+);
+    
+
+        Invoke("DestoryBomb", 2f);
     }
 }
 

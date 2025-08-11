@@ -219,6 +219,15 @@ public class SharedPathFollower : MonoBehaviour
 
     private void OnTriggerEnter2D(Collider2D collision)
     {
+        if (collision.CompareTag("bomb") )
+        {
+            GameObject blood = Instantiate(Game_Manager.Instance.BloodPrefab, gameObject.transform.position, Quaternion.identity);
+            Game_Manager.Instance.Enemies.Remove(this);
+            Destroy(gameObject);
+            Game_Manager.Instance.EnemyCount();
+        }
+
+
         if (collision.CompareTag("Bullet"))
         {
             Destroy(collision.gameObject);
@@ -245,6 +254,7 @@ public class SharedPathFollower : MonoBehaviour
 
             hideHealthCoroutine = StartCoroutine(HideHealthAfterDelay());
         }
+       
     }
     private void OnTriggerExit2D(Collider2D collision)
     {

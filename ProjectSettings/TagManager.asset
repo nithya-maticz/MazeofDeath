@@ -21,6 +21,7 @@ TagManager:
   - box1
   - box2
   - Bullet
+  - bomb
   layers:
   - Default
   - TransparentFX

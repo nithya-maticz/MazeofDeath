@@ -39,7 +39,6 @@ public class ZombieDoor : MonoBehaviour
 
     IEnumerator SpawnEnemys()
     {
-        
         while (true)
         {
             yield return new WaitForSeconds(waitTime / 2);
@@ -53,10 +52,7 @@ public class ZombieDoor : MonoBehaviour
                     Game_Manager.Instance.EnemyCount();
                 }
             }
-
             yield return new WaitForSeconds(waitTime/2);
         }
-
-
     }
 }

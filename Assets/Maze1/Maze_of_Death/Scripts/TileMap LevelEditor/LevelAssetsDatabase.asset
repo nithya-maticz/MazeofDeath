@@ -79,16 +79,34 @@ MonoBehaviour:
   - {fileID: 11400000, guid: 202bc8b1be917074b983ee92be084e72, type: 2}
   - {fileID: 11400000, guid: 5e7d826f35c1d9145ba8627f6aed3846, type: 2}
   - {fileID: 11400000, guid: 5cc19eb07bb669f4b93f4ebee77d6fa1, type: 2}
+  - {fileID: 11400000, guid: b5c0e8cdf9cd39a42914387516d29c41, type: 2}
+  - {fileID: 11400000, guid: 25ebeacfbe150e046bb29637f54bc98e, type: 2}
+  - {fileID: 11400000, guid: 6aa9aa4229d748c49a32d9dd524f3873, type: 2}
+  - {fileID: 11400000, guid: 9b011500e5d30c549b6e6b89ecef228d, type: 2}
+  - {fileID: 11400000, guid: 9f737fcffc5a200468cdf446eed503e6, type: 2}
+  - {fileID: 11400000, guid: f8749c8cc6e86e5449d3f56348b54827, type: 2}
+  - {fileID: 11400000, guid: 2b0e1ea72ac67a64fb16d29cf443bcae, type: 2}
+  - {fileID: 11400000, guid: 7a37abe79d5d22f4bbef743e46367b09, type: 2}
+  - {fileID: 11400000, guid: ca3265c2337988d4fb7c7ad005d2464a, type: 2}
+  - {fileID: 11400000, guid: 9274dcd01785b0f4e8aac3d2b1ed02f0, type: 2}
+  - {fileID: 11400000, guid: f5f3335680650f542a77e33303adffa1, type: 2}
+  - {fileID: 11400000, guid: 3851fb9cf42a44447a1c69ffed595b9a, type: 2}
+  - {fileID: 11400000, guid: c2dfddda79b945e4eb8d07465520ccae, type: 2}
+  - {fileID: 11400000, guid: 1750721d92fedae44882ef7ad3f3a416, type: 2}
+  - {fileID: 11400000, guid: 52230671aa12db541893b39ea7bae6b5, type: 2}
+  - {fileID: 11400000, guid: 96ed4f09d2f7bec4ab6c86e07df4e475, type: 2}
   prefabs:
   - {fileID: 4547198198294758856, guid: 5b66f5b6df71c7946b19e9fa1588bdf2, type: 3}
   - {fileID: 4547198198294758856, guid: daff0d4f31cfd1d4c967f45e86ae9b53, type: 3}
   - {fileID: 4547198198294758856, guid: e8a033e437eb32e448f084618df32fb6, type: 3}
   - {fileID: 4961835689284915402, guid: 5320c2c561ea8a0459aba6fc57af2093, type: 3}
   - {fileID: 8497434276732211358, guid: e5fb04d60fa68a240b16c43e91c40e4c, type: 3}
+  - {fileID: 8497434276732211358, guid: 69bb73cf18f134943abf4f41fff0c08d, type: 3}
   backgroundSprites:
   - {fileID: 21300000, guid: 08df51f69b019334ca5e55c148c670d3, type: 3}
   - {fileID: 21300000, guid: aec01deb37c4d9442a4ecea24ea2a79f, type: 3}
   - {fileID: 4652027401421723346, guid: c73da0182eda0324c86258951527cab4, type: 3}
+  - {fileID: 7515392078626874927, guid: 4f6bfd225e5d7f54fbe4887be89a9ef9, type: 3}
   tilemapTypes:
   - type: 0
     displayName: Walls
