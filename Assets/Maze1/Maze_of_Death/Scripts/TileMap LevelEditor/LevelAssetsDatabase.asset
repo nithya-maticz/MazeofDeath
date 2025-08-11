@@ -108,6 +108,16 @@ MonoBehaviour:
   - {fileID: 11400000, guid: b25e054c123b14946806d05157dae7ad, type: 2}
   - {fileID: 11400000, guid: b25e054c123b14946806d05157dae7ad, type: 2}
   - {fileID: 11400000, guid: 1c36f04ef1bfd0648a690afa0f4aabb5, type: 2}
+  - {fileID: 11400000, guid: 89b5f2d607997cb44aefe9dab281789e, type: 2}
+  - {fileID: 11400000, guid: 1797833c251cc594c81d2043ddeb47be, type: 2}
+  - {fileID: 11400000, guid: 9bd8621a310cbc64d806ffaf16406862, type: 2}
+  - {fileID: 11400000, guid: 25b8a644d7644e7459fcb3a63a696efc, type: 2}
+  - {fileID: 11400000, guid: 1fd72c45bf5efb84c8995a8b5b6bca44, type: 2}
+  - {fileID: 11400000, guid: 73c339d3a6f89e24db043efe80a75593, type: 2}
+  - {fileID: 11400000, guid: 296815aafef03754db9a993b184f88a5, type: 2}
+  - {fileID: 11400000, guid: 53139b4896638b94f84732ee26963817, type: 2}
+  - {fileID: 11400000, guid: 5138718a917b89e458d8daf086ecfa62, type: 2}
+  - {fileID: 11400000, guid: deff467bc0d92f84798d8aeb0c8d7678, type: 2}
   prefabs:
   - {fileID: 4547198198294758856, guid: 5b66f5b6df71c7946b19e9fa1588bdf2, type: 3}
   - {fileID: 4547198198294758856, guid: daff0d4f31cfd1d4c967f45e86ae9b53, type: 3}
@@ -121,6 +131,7 @@ MonoBehaviour:
   - {fileID: 326568848620510978, guid: 8ae278cdce1153b45b4598ec21136597, type: 3}
   - {fileID: 326568848620510978, guid: bffb2334a24c01949adce4754b440140, type: 3}
   - {fileID: 326568848620510978, guid: e1e60cb08a01ff045828c8af732a93e2, type: 3}
+  - {fileID: 8497434276732211358, guid: 401b5d00b4af145459b74b596fc6a0df, type: 3}
   backgroundSprites:
   - {fileID: 21300000, guid: 08df51f69b019334ca5e55c148c670d3, type: 3}
   - {fileID: 21300000, guid: aec01deb37c4d9442a4ecea24ea2a79f, type: 3}
