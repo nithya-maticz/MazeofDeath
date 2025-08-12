@@ -9,7 +9,7 @@ using Gilzoide.LottiePlayer.RLottie;
 public class LevelManager : MonoBehaviour
 {
     public static LevelManager Instance;
-    public static int levelToLoad = 3;
+    public static int levelToLoad = 1;
     public LevelAssetsDatabase assetsDatabase;
 
     [Serializable]
@@ -35,7 +35,7 @@ public class LevelManager : MonoBehaviour
 
     void Start()
     {
-        levelToLoad = 5;
+       // levelToLoad = 7;
         LoadLevelData();
         SpawnTiles();
         SpawnBackgrounds();

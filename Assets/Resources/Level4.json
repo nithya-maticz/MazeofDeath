@@ -1533,28 +1533,6 @@
         },
         {
             "position": {
-                "x": 20,
-                "y": 7
-            },
-            "tileIndex": 12,
-            "tilemapType": 0,
-            "rotation": 180,
-            "flipX": true,
-            "flipY": true
-        },
-        {
-            "position": {
-                "x": 20,
-                "y": 6
-            },
-            "tileIndex": 13,
-            "tilemapType": 0,
-            "rotation": 180,
-            "flipX": true,
-            "flipY": true
-        },
-        {
-            "position": {
                 "x": 23,
                 "y": 7
             },
@@ -2465,6 +2443,28 @@
             "rotation": 180,
             "flipX": false,
             "flipY": true
+        },
+        {
+            "position": {
+                "x": 20,
+                "y": 7
+            },
+            "tileIndex": 12,
+            "tilemapType": 0,
+            "rotation": 0,
+            "flipX": false,
+            "flipY": false
+        },
+        {
+            "position": {
+                "x": 20,
+                "y": 6
+            },
+            "tileIndex": 13,
+            "tilemapType": 0,
+            "rotation": 0,
+            "flipX": false,
+            "flipY": false
         }
     ],
     "prefabs": [

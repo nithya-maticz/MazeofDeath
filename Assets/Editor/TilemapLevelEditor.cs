@@ -343,14 +343,17 @@ public class TilemapLevelEditor : EditorWindow
             playerSpawn = playerSpawnCell.HasValue ? playerSpawnCell.Value : new Vector2Int(-1, -1) // ✅
         };
 
-        File.WriteAllText(Application.dataPath + $"/Level{currentLevel}.json", JsonUtility.ToJson(d, true));
+        // File.WriteAllText(Application.dataPath + $"/Level{currentLevel}.json", JsonUtility.ToJson(d, true));
+        string path = Path.Combine(Application.dataPath, "Resources", $"Level{currentLevel}.json");
+        File.WriteAllText(path, JsonUtility.ToJson(d, true));
         AssetDatabase.Refresh();
         Debug.Log("Saved!");
     }
 
     private void LoadLevel()
     {
-        string p = Application.dataPath + $"/Level{currentLevel}.json";
+       // string p =  Application.dataPath + $"/Level{currentLevel}.json";
+        string p = Path.Combine(Application.dataPath, "Resources", $"Level{currentLevel}.json");
         if (!File.Exists(p)) { Debug.LogWarning("Not found"); return; }
 
         var d = JsonUtility.FromJson<LevelTileData>(File.ReadAllText(p));
