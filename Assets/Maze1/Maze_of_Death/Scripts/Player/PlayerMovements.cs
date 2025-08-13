@@ -258,7 +258,7 @@ public class PlayerMovements : MonoBehaviour
         wasWalking = isWalking;
         wasGun = isGun;
     }
-    void ResetAllTriggers()
+  public   void ResetAllTriggers()
     {
         _Animator.ResetTrigger("Idle");
         _Animator.ResetTrigger("GunIdle");

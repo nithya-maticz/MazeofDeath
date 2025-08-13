@@ -330,6 +330,7 @@ public class Game_Manager : MonoBehaviour
         if (!AutoAttackToogle.isOn && PlayerMovements.Instance.isAttack==false)
         {
             PlayerMovements.Instance.isAttack = true;
+            PlayerMovements.Instance.ResetAllTriggers();
             PlayerMovements.Instance._Animator.SetTrigger("Attack");
         }
            
