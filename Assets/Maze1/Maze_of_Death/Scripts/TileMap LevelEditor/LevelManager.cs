@@ -32,10 +32,10 @@ public class LevelManager : MonoBehaviour
     private Vector2Int playerSpawn;  // ✅ Loaded player spawn cell
 
     public SmoothFollowCamera followCamera;
-
+                
     void Start()
     {
-       // levelToLoad = 7;
+       // levelToLoad = 9;
         LoadLevelData();
         SpawnTiles();
         SpawnBackgrounds();

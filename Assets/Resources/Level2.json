@@ -2138,72 +2138,6 @@
         },
         {
             "position": {
-                "x": 4,
-                "y": 8
-            },
-            "tileIndex": 12,
-            "tilemapType": 0,
-            "rotation": 180,
-            "flipX": false,
-            "flipY": true
-        },
-        {
-            "position": {
-                "x": 4,
-                "y": 7
-            },
-            "tileIndex": 13,
-            "tilemapType": 0,
-            "rotation": 180,
-            "flipX": false,
-            "flipY": true
-        },
-        {
-            "position": {
-                "x": 14,
-                "y": 7
-            },
-            "tileIndex": 13,
-            "tilemapType": 0,
-            "rotation": 180,
-            "flipX": false,
-            "flipY": true
-        },
-        {
-            "position": {
-                "x": 14,
-                "y": 8
-            },
-            "tileIndex": 12,
-            "tilemapType": 0,
-            "rotation": 180,
-            "flipX": false,
-            "flipY": true
-        },
-        {
-            "position": {
-                "x": 20,
-                "y": 8
-            },
-            "tileIndex": 13,
-            "tilemapType": 0,
-            "rotation": 180,
-            "flipX": false,
-            "flipY": true
-        },
-        {
-            "position": {
-                "x": 20,
-                "y": 9
-            },
-            "tileIndex": 12,
-            "tilemapType": 0,
-            "rotation": 180,
-            "flipX": false,
-            "flipY": true
-        },
-        {
-            "position": {
                 "x": 9,
                 "y": 6
             },
@@ -2531,6 +2465,72 @@
             "rotation": 90,
             "flipX": false,
             "flipY": false
+        },
+        {
+            "position": {
+                "x": 20,
+                "y": 8
+            },
+            "tileIndex": 13,
+            "tilemapType": 0,
+            "rotation": 0,
+            "flipX": false,
+            "flipY": false
+        },
+        {
+            "position": {
+                "x": 20,
+                "y": 9
+            },
+            "tileIndex": 12,
+            "tilemapType": 0,
+            "rotation": 0,
+            "flipX": false,
+            "flipY": false
+        },
+        {
+            "position": {
+                "x": 4,
+                "y": 8
+            },
+            "tileIndex": 12,
+            "tilemapType": 0,
+            "rotation": 0,
+            "flipX": false,
+            "flipY": false
+        },
+        {
+            "position": {
+                "x": 14,
+                "y": 8
+            },
+            "tileIndex": 13,
+            "tilemapType": 0,
+            "rotation": 0,
+            "flipX": false,
+            "flipY": false
+        },
+        {
+            "position": {
+                "x": 4,
+                "y": 7
+            },
+            "tileIndex": 13,
+            "tilemapType": 0,
+            "rotation": 0,
+            "flipX": false,
+            "flipY": false
+        },
+        {
+            "position": {
+                "x": 14,
+                "y": 9
+            },
+            "tileIndex": 12,
+            "tilemapType": 0,
+            "rotation": 0,
+            "flipX": false,
+            "flipY": false
         }
     ],
     "prefabs": [
@@ -2645,7 +2645,7 @@
     ],
     "selectedBackgroundIndex": 2,
     "playerSpawn": {
-        "x": 7,
-        "y": 5
+        "x": 18,
+        "y": 6
     }
 }

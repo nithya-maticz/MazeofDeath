@@ -105,7 +105,7 @@ public class Game_Manager : MonoBehaviour
 
     void Start()
     {
-        PlayerMovements.Instance._Animator.SetTrigger("bomb");
+      
         //StartData();
     }
 

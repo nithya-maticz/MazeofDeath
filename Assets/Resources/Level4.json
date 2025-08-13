@@ -1005,28 +1005,6 @@
         },
         {
             "position": {
-                "x": 12,
-                "y": 7
-            },
-            "tileIndex": 12,
-            "tilemapType": 0,
-            "rotation": 270,
-            "flipX": true,
-            "flipY": false
-        },
-        {
-            "position": {
-                "x": 13,
-                "y": 7
-            },
-            "tileIndex": 13,
-            "tilemapType": 0,
-            "rotation": 270,
-            "flipX": true,
-            "flipY": false
-        },
-        {
-            "position": {
                 "x": 10,
                 "y": 10
             },
@@ -2465,6 +2443,28 @@
             "rotation": 0,
             "flipX": false,
             "flipY": false
+        },
+        {
+            "position": {
+                "x": 12,
+                "y": 7
+            },
+            "tileIndex": 13,
+            "tilemapType": 0,
+            "rotation": 90,
+            "flipX": false,
+            "flipY": false
+        },
+        {
+            "position": {
+                "x": 13,
+                "y": 7
+            },
+            "tileIndex": 12,
+            "tilemapType": 0,
+            "rotation": 90,
+            "flipX": false,
+            "flipY": false
         }
     ],
     "prefabs": [
@@ -2586,7 +2586,7 @@
     ],
     "selectedBackgroundIndex": 4,
     "playerSpawn": {
-        "x": 24,
-        "y": 9
+        "x": 25,
+        "y": 10
     }
 }
