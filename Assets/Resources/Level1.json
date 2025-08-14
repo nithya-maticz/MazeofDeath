@@ -2238,28 +2238,6 @@
         {
             "position": {
                 "x": 26,
-                "y": 2
-            },
-            "tileIndex": 39,
-            "tilemapType": 0,
-            "rotation": 90,
-            "flipX": true,
-            "flipY": true
-        },
-        {
-            "position": {
-                "x": 26,
-                "y": 2
-            },
-            "tileIndex": 39,
-            "tilemapType": 0,
-            "rotation": 90,
-            "flipX": true,
-            "flipY": true
-        },
-        {
-            "position": {
-                "x": 26,
                 "y": 1
             },
             "tileIndex": 39,
@@ -2599,6 +2577,17 @@
                 "x": 1,
                 "y": 1
             }
+        },
+        {
+            "position": {
+                "x": 26,
+                "y": 2
+            },
+            "prefabIndex": 10,
+            "size": {
+                "x": 1,
+                "y": 1
+            }
         }
     ],
     "patrolPoints": [
@@ -2633,7 +2622,7 @@
     ],
     "selectedBackgroundIndex": 0,
     "playerSpawn": {
-        "x": 17,
-        "y": 3
+        "x": 25,
+        "y": 2
     }
 }

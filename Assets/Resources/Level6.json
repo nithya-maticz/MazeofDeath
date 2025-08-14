@@ -444,17 +444,6 @@
         },
         {
             "position": {
-                "x": 1,
-                "y": 2
-            },
-            "tileIndex": 111,
-            "tilemapType": 0,
-            "rotation": 270,
-            "flipX": false,
-            "flipY": false
-        },
-        {
-            "position": {
                 "x": 2,
                 "y": 2
             },
@@ -551,17 +540,6 @@
             "rotation": 0,
             "flipX": true,
             "flipY": false
-        },
-        {
-            "position": {
-                "x": 1,
-                "y": 5
-            },
-            "tileIndex": 111,
-            "tilemapType": 0,
-            "rotation": 90,
-            "flipX": true,
-            "flipY": true
         },
         {
             "position": {
@@ -1787,17 +1765,6 @@
         {
             "position": {
                 "x": 14,
-                "y": 11
-            },
-            "tileIndex": 111,
-            "tilemapType": 0,
-            "rotation": 180,
-            "flipX": true,
-            "flipY": true
-        },
-        {
-            "position": {
-                "x": 14,
                 "y": 10
             },
             "tileIndex": 115,
@@ -1891,17 +1858,6 @@
             "tileIndex": 115,
             "tilemapType": 0,
             "rotation": 0,
-            "flipX": true,
-            "flipY": true
-        },
-        {
-            "position": {
-                "x": 16,
-                "y": 11
-            },
-            "tileIndex": 111,
-            "tilemapType": 0,
-            "rotation": 180,
             "flipX": true,
             "flipY": true
         },
@@ -2057,17 +2013,6 @@
             "tilemapType": 0,
             "rotation": 270,
             "flipX": false,
-            "flipY": false
-        },
-        {
-            "position": {
-                "x": 25,
-                "y": 9
-            },
-            "tileIndex": 111,
-            "tilemapType": 0,
-            "rotation": 90,
-            "flipX": true,
             "flipY": false
         },
         {
@@ -2314,17 +2259,6 @@
         },
         {
             "position": {
-                "x": 21,
-                "y": 11
-            },
-            "tileIndex": 111,
-            "tilemapType": 0,
-            "rotation": 0,
-            "flipX": false,
-            "flipY": false
-        },
-        {
-            "position": {
                 "x": 22,
                 "y": 10
             },
@@ -2441,6 +2375,72 @@
             "tileIndex": 29,
             "tilemapType": 0,
             "rotation": 0,
+            "flipX": false,
+            "flipY": false
+        },
+        {
+            "position": {
+                "x": 14,
+                "y": 11
+            },
+            "tileIndex": 159,
+            "tilemapType": 0,
+            "rotation": 0,
+            "flipX": false,
+            "flipY": false
+        },
+        {
+            "position": {
+                "x": 16,
+                "y": 11
+            },
+            "tileIndex": 159,
+            "tilemapType": 0,
+            "rotation": 0,
+            "flipX": false,
+            "flipY": false
+        },
+        {
+            "position": {
+                "x": 21,
+                "y": 11
+            },
+            "tileIndex": 159,
+            "tilemapType": 0,
+            "rotation": 0,
+            "flipX": false,
+            "flipY": false
+        },
+        {
+            "position": {
+                "x": 25,
+                "y": 9
+            },
+            "tileIndex": 159,
+            "tilemapType": 0,
+            "rotation": 90,
+            "flipX": true,
+            "flipY": false
+        },
+        {
+            "position": {
+                "x": 1,
+                "y": 5
+            },
+            "tileIndex": 159,
+            "tilemapType": 0,
+            "rotation": 270,
+            "flipX": false,
+            "flipY": false
+        },
+        {
+            "position": {
+                "x": 1,
+                "y": 2
+            },
+            "tileIndex": 159,
+            "tilemapType": 0,
+            "rotation": 270,
             "flipX": false,
             "flipY": false
         }
