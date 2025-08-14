@@ -2854,17 +2854,6 @@
         {
             "position": {
                 "x": 7,
-                "y": 3
-            },
-            "tileIndex": 216,
-            "tilemapType": 0,
-            "rotation": 0,
-            "flipX": false,
-            "flipY": false
-        },
-        {
-            "position": {
-                "x": 7,
                 "y": 5
             },
             "tileIndex": 213,
@@ -2893,6 +2882,17 @@
             "tilemapType": 0,
             "rotation": 180,
             "flipX": false,
+            "flipY": false
+        },
+        {
+            "position": {
+                "x": 7,
+                "y": 3
+            },
+            "tileIndex": 223,
+            "tilemapType": 0,
+            "rotation": 270,
+            "flipX": true,
             "flipY": false
         }
     ],
@@ -3015,7 +3015,7 @@
     ],
     "selectedBackgroundIndex": 12,
     "playerSpawn": {
-        "x": 24,
-        "y": 5
+        "x": -1,
+        "y": -1
     }
 }

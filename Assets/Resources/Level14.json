@@ -2401,6 +2401,28 @@
                 "x": 1,
                 "y": 1
             }
+        },
+        {
+            "position": {
+                "x": 3,
+                "y": 7
+            },
+            "prefabIndex": 15,
+            "size": {
+                "x": 1,
+                "y": 1
+            }
+        },
+        {
+            "position": {
+                "x": 4,
+                "y": 7
+            },
+            "prefabIndex": 16,
+            "size": {
+                "x": 1,
+                "y": 1
+            }
         }
     ],
     "patrolPoints": [
@@ -2441,12 +2463,12 @@
             "y": 7
         },
         {
-            "x": 24,
-            "y": 10
-        },
-        {
             "x": 14,
             "y": 7
+        },
+        {
+            "x": 21,
+            "y": 10
         }
     ],
     "selectedBackgroundIndex": 13,
