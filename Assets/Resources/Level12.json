@@ -2182,28 +2182,6 @@
         },
         {
             "position": {
-                "x": 12,
-                "y": 10
-            },
-            "tileIndex": 178,
-            "tilemapType": 0,
-            "rotation": 90,
-            "flipX": false,
-            "flipY": false
-        },
-        {
-            "position": {
-                "x": 8,
-                "y": 10
-            },
-            "tileIndex": 178,
-            "tilemapType": 0,
-            "rotation": 270,
-            "flipX": true,
-            "flipY": false
-        },
-        {
-            "position": {
                 "x": 9,
                 "y": 10
             },
@@ -2274,28 +2252,6 @@
                 "y": 2
             },
             "tileIndex": 12,
-            "tilemapType": 0,
-            "rotation": 270,
-            "flipX": true,
-            "flipY": false
-        },
-        {
-            "position": {
-                "x": 23,
-                "y": 10
-            },
-            "tileIndex": 12,
-            "tilemapType": 0,
-            "rotation": 270,
-            "flipX": true,
-            "flipY": false
-        },
-        {
-            "position": {
-                "x": 24,
-                "y": 10
-            },
-            "tileIndex": 13,
             "tilemapType": 0,
             "rotation": 270,
             "flipX": true,
@@ -2377,6 +2333,50 @@
             "rotation": 270,
             "flipX": true,
             "flipY": false
+        },
+        {
+            "position": {
+                "x": 23,
+                "y": 10
+            },
+            "tileIndex": 12,
+            "tilemapType": 0,
+            "rotation": 90,
+            "flipX": true,
+            "flipY": true
+        },
+        {
+            "position": {
+                "x": 24,
+                "y": 10
+            },
+            "tileIndex": 13,
+            "tilemapType": 0,
+            "rotation": 90,
+            "flipX": true,
+            "flipY": true
+        },
+        {
+            "position": {
+                "x": 12,
+                "y": 10
+            },
+            "tileIndex": 171,
+            "tilemapType": 0,
+            "rotation": 270,
+            "flipX": true,
+            "flipY": true
+        },
+        {
+            "position": {
+                "x": 8,
+                "y": 10
+            },
+            "tileIndex": 171,
+            "tilemapType": 0,
+            "rotation": 90,
+            "flipX": false,
+            "flipY": true
         }
     ],
     "prefabs": [
