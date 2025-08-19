@@ -12,6 +12,7 @@ public class GridLoader : MonoBehaviour
     public SmoothFollowCamera followCamera;
     public List<Vector2Int> patrolPoints;
     public List<GameObject> patrolObjects = new List<GameObject>();
+    public Vector2Int playerSpawn;
 
     private void Awake()
     {
@@ -34,6 +35,10 @@ public class GridLoader : MonoBehaviour
         LoadPrefab();
         SpawnBackgrounds(bgSprite);
         SpawnPatrolPoints();
+        SpawnPlayer();
+
+        Game_Manager.Instance.StartData();
+        followCamera.enabled = true;
     }
 
     public void LoadTile()
@@ -169,5 +174,18 @@ public class GridLoader : MonoBehaviour
         Debug.Log($"Spawned {patrolObjects.Count} patrol point objects.");
     }
 
+    void SpawnPlayer()
+    {
+       
+        
+     
 
+        Vector3Int cellPos = new Vector3Int(playerSpawn.x, playerSpawn.y, 0);
+        Vector3 worldPos = wallTilemap.CellToWorld(cellPos) + wallTilemap.cellSize / 2;
+
+        /* Instantiate(playerPrefab, worldPos, Quaternion.identity);
+         Debug.Log($"Player spawned at {playerSpawn}");*/
+        Game_Manager.Instance.SpawnPlayer(worldPos);
+
+    }
 }

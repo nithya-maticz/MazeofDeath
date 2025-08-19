@@ -71,6 +71,7 @@ public class ApiManager : MonoBehaviour
             {
                 levelData = allLevels.items[i].level[0];
                 GridLoader.Instance.patrolPoints = levelData.data.patrolPoints;
+                GridLoader.Instance.playerSpawn = levelData.data.playerSpawn;
                 break;
             }
         }
