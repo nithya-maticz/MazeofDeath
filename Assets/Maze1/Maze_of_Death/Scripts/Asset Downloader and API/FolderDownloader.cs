@@ -158,9 +158,9 @@ public class FolderDownloader : MonoBehaviour
                     {
                        
                     }
-                    else if(assetName[i] == "base")
+                    else if(assetName[i] == "bg")
                     {
-                        
+                        GridLoader.Instance.bgSprite = assignedImage;
                     }
                     break; // ✅ stop trying other extensions
                 }

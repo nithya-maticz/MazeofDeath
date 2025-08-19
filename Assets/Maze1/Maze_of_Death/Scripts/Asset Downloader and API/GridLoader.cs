@@ -1,3 +1,5 @@
+﻿using System.Collections.Generic;
+using UnityEditor;
 using UnityEngine;
 using UnityEngine.Tilemaps;
 
@@ -6,7 +8,10 @@ public class GridLoader : MonoBehaviour
     public static GridLoader Instance;
     public LevelAssetsDatabase database;
     public Tilemap wallTilemap;
-   
+    public Sprite bgSprite;
+    public SmoothFollowCamera followCamera;
+    public List<Vector2Int> patrolPoints;
+    public List<GameObject> patrolObjects = new List<GameObject>();
 
     private void Awake()
     {
@@ -27,6 +32,8 @@ public class GridLoader : MonoBehaviour
     {
         LoadTile();
         LoadPrefab();
+        SpawnBackgrounds(bgSprite);
+        SpawnPatrolPoints();
     }
 
     public void LoadTile()
@@ -93,14 +100,73 @@ public class GridLoader : MonoBehaviour
 
                     // Apply rotation
                     float angle = p.rotation;
-                    Quaternion rotation = Quaternion.Euler(0, 0, -angle);
+                    Quaternion rotation = Quaternion.Euler(0, 0, angle);
 
                     // Spawn prefab
                     var instance = Instantiate(prefab, worldPos, rotation);
-                    Debug.Log($"Spawned prefab '{prefab.name}' at {p.position} with rotation {angle}�");
+                    Debug.Log($"Spawned prefab '{prefab.name}' at {p.position} with rotation {angle}°");
                 }
             }
         }
+    }
+
+
+    void SpawnBackgrounds(Sprite bgSprite)
+    {
+        if (bgSprite == null)
+        {
+            Debug.LogWarning("⚠️ No background sprite provided.");
+            return;
+        }
+
+        GameObject go = new GameObject("Background");
+        SpriteRenderer renderer = go.AddComponent<SpriteRenderer>();
+        renderer.sprite = bgSprite;
+        renderer.sortingOrder = -100;
+
+        // ✅ Use lit material if needed
+        renderer.material = Game_Manager.Instance.litMat;
+
+        // ✅ Get tilemap bounds
+        Bounds bounds = wallTilemap.localBounds;
+        float width = bounds.size.x;
+        float height = bounds.size.y;
+
+        // Scale background to match tilemap size
+        Vector2 spriteSize = bgSprite.bounds.size;
+        go.transform.localScale = new Vector3(
+            width / spriteSize.x,
+            height / spriteSize.y,
+            1
+        );
+
+        // Position background at tilemap center
+        go.transform.position = bounds.center;
+
+        followCamera.boundsRenderer = renderer;
+        
+    }
+
+    void SpawnPatrolPoints()
+    {
+        patrolObjects.Clear();
+        Game_Manager.Instance.PatrolPoints.Clear();  // Clear old patrols
+
+        
+
+        foreach (var pos in patrolPoints)
+        {
+            Vector3Int cellPos = new Vector3Int(pos.x, pos.y, 0);
+            Vector3 worldPos = wallTilemap.CellToWorld(cellPos) + wallTilemap.cellSize / 2;
+
+            GameObject go = new GameObject($"PatrolPoint_{pos.x}_{pos.y}");
+            go.transform.position = worldPos;
+
+            patrolObjects.Add(go);                          // Local list
+            Game_Manager.Instance.PatrolPoints.Add(go.transform);     // Global list
+        }
+
+        Debug.Log($"Spawned {patrolObjects.Count} patrol point objects.");
     }
 
 

@@ -144,7 +144,7 @@ public class LevelManager : MonoBehaviour
             scale.y *= bg.flipY ? -1 : 1;
             go.transform.localScale = scale;
             
-            followCamera.boundsRenderer = renderer;
+            //followCamera.boundsRenderer = renderer;
         }
     }
 

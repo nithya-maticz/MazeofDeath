@@ -70,6 +70,7 @@ public class ApiManager : MonoBehaviour
             if (allLevels.items[i].level[0].level == LevelManager.levelToLoad)
             {
                 levelData = allLevels.items[i].level[0];
+                GridLoader.Instance.patrolPoints = levelData.data.patrolPoints;
                 break;
             }
         }

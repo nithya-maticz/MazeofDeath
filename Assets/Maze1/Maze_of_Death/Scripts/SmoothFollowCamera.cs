@@ -25,11 +25,11 @@ public class SmoothFollowCamera : MonoBehaviour
     private void Awake()
     {
         Instance = this;
-       
+
     }
 
 
-   
+
     private void Start()
     {
         if (boundsRenderer == null)
@@ -101,3 +101,5 @@ public class SmoothFollowCamera : MonoBehaviour
         Gizmos.DrawLine(bottomRight, bottomLeft);
     }
 }
+
+
