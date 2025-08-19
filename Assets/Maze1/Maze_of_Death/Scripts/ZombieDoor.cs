@@ -12,7 +12,6 @@ public class ZombieDoor : MonoBehaviour
     public List<Transform> doorPatrolPoints;
     void Start()
     {
-       
         GameObject enemyPrefab = Instantiate(Game_Manager.Instance.EnemyPrefab, SpawnPoint);
         Game_Manager.Instance.ZombieDoors.Add(this);
         Game_Manager.Instance.ZombieDoorCount();

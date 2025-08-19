@@ -24,13 +24,12 @@ public class BombScript : MonoBehaviour
             if (collision.CompareTag("enemy"))
             {
                 Debug.Log("Enter... Bomb Script");
-                 _currentEnemy = collision.GetComponent<SharedPathFollower>();
+                _currentEnemy = collision.GetComponent<SharedPathFollower>();
                 IsStayBomb = true;
             }
         }
     }
 
-   
 
     private void OnTriggerExit2D(Collider2D collision)
     {

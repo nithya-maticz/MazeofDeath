@@ -532,22 +532,20 @@ public class Game_Manager : MonoBehaviour
     {
         SceneManager.LoadScene("lobby");
     }
-
     public void BombFun()
     {
         PlayerMovements.Instance._Animator.SetTrigger("bomb");
-        
     }
     public void DestoryBomb()
     {
         PlayerMovements.Instance.bombSpawnPoint.SetActive(false);
         isBomb = false;
         Destroy(bomb);
-       
     }
     public void BombAnimattion()
     {
         Transform targetTransform = PlayerMovements.Instance.bombSpawnPoint.transform;
+        PlayerMovements.Instance.bombSpawnPoint.SetActive(false);
         isBomb = true;
         PlayerMovements.Instance.bombSpawnPoint.SetActive(true);
         bomb = Instantiate(
@@ -555,9 +553,7 @@ public class Game_Manager : MonoBehaviour
     targetTransform.position,
     Quaternion.identity // or targetTransform.rotation if needed
 );
-    
-
-        Invoke("DestoryBomb", 2f);
+        Invoke("DestoryBomb", 7f);
     }
 }
 

@@ -21,6 +21,7 @@ public class TilemapLevelEditor : EditorWindow
     private List<Vector2Int> patrolCells = new List<Vector2Int>();
 
     private Vector2 scrollPos;
+    private Vector2 scrollPos1;
     private bool isDragging = false;
     private float gridZoom = 100f;
     private bool eraseMode = false;
@@ -82,12 +83,15 @@ public class TilemapLevelEditor : EditorWindow
             flipX = GUILayout.Toggle(flipX, "Flip X");
             flipY = GUILayout.Toggle(flipY, "Flip Y");
             GUILayout.EndHorizontal();
+            //DrawAssetPalette(assetsDatabase.tiles, ref selectedTileIndex, 48f);
+            scrollPos1 = GUILayout.BeginScrollView(scrollPos1, GUILayout.Height(300));
+            // 👆 you can change the height or add GUILayout.Width if needed
+
             DrawAssetPalette(assetsDatabase.tiles, ref selectedTileIndex, 48f);
+
+            GUILayout.EndScrollView();
         }
 
-        
-
-        
 
         if (assetsDatabase.prefabs != null && assetsDatabase.prefabs.Length > 0)
         {
@@ -301,29 +305,53 @@ public class TilemapLevelEditor : EditorWindow
     private void ToggleCellAt(int x, int y)
     {
         Vector2Int c = new Vector2Int(x, y);
+
         if (currentMode == EditMode.Prefab)
         {
-            if (eraseMode) placedPrefabs.RemoveAll(p => p.position == c);
-            else placedPrefabs.Add(new PlacedPrefab { position = c, prefabIndex = selectedPrefabIndex, size = Vector2Int.one });
+            if (eraseMode)
+            {
+                placedPrefabs.RemoveAll(p => p.position == c);
+            }
+            else
+            {
+                // Remove any existing prefab at this cell
+                placedPrefabs.RemoveAll(p => p.position == c);
+                placedPrefabs.Add(new PlacedPrefab
+                {
+                    position = c,
+                    prefabIndex = selectedPrefabIndex,
+                    size = Vector2Int.one
+                });
+            }
         }
         else if (currentMode == EditMode.Tile)
         {
-            if (eraseMode) placedTiles.RemoveAll(t => t.position == c && t.tilemapType == selectedTilemapType);
-            else placedTiles.Add(new PlacedTile
+            if (eraseMode)
             {
-                position = c,
-                tileIndex = selectedTileIndex,
-                tilemapType = selectedTilemapType,
-                rotation = currentRotation,
-                flipX = flipX,
-                flipY = flipY
-            });
+                placedTiles.RemoveAll(t => t.position == c && t.tilemapType == selectedTilemapType);
+            }
+            else
+            {
+                // Remove any existing tile at this cell for this tilemap type
+                placedTiles.RemoveAll(t => t.position == c && t.tilemapType == selectedTilemapType);
+
+                placedTiles.Add(new PlacedTile
+                {
+                    position = c,
+                    tileIndex = selectedTileIndex,
+                    tilemapType = selectedTilemapType,
+                    rotation = currentRotation,
+                    flipX = flipX,
+                    flipY = flipY
+                });
+            }
         }
         else if (currentMode == EditMode.PatrolPoint)
         {
-            if (patrolCells.Contains(c)) patrolCells.Remove(c); else patrolCells.Add(c);
+            if (patrolCells.Contains(c)) patrolCells.Remove(c);
+            else patrolCells.Add(c);
         }
-        else if (currentMode == EditMode.PlayerSpawn) // ✅ Set or clear player spawn
+        else if (currentMode == EditMode.PlayerSpawn)
         {
             if (playerSpawnCell == c) playerSpawnCell = null;
             else playerSpawnCell = c;

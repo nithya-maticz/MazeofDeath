@@ -380,7 +380,6 @@ public class PlayerMovements : MonoBehaviour
     private IEnumerator CloseDoorAfterDelay(ZombieDoor zombieDoor)
     {
         yield return new WaitForSeconds(2f);
-        
         CloseDoor(zombieDoor);
     }
 
