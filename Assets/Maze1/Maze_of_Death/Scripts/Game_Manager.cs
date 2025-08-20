@@ -316,10 +316,22 @@ public class Game_Manager : MonoBehaviour
 
     public void LevelUP()
     {
-        if(Enemies.Count == 0 && ZombieDoorCountInt == 0)
+        //
+      
+        if (Enemies.Count == 0 && ZombieDoorCountInt == 0)
         {
             Invoke("win", 1f);
-            
+            LocalData data = new LocalData();
+            print("Current Level : " + LobbyManager.currentLevel);
+            data.level = LobbyManager.currentLevel + 1;
+            data.avatar = LobbyManager.currentCharacter;
+            string json = JsonUtility.ToJson(data);
+            PlayerPrefs.SetString("Localdata", json);
+            PlayerPrefs.Save();
+            LobbyManager.currentLevel = data.level;
+
+            print("LevelUp : " + PlayerPrefs.GetString("Localdata"));
+
         }
     }
     public void win()

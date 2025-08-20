@@ -66,9 +66,10 @@ public class LobbyManager : MonoBehaviour
         else if(PlayerPrefs.HasKey("Localdata"))
         {
             GetLocalData();
-            levelText.text = "Level " + currentLevel.ToString();
+            
             LobbyPage.SetActive(true);
             changeLobby();
+            levelText.text = "Level " + currentLevel.ToString();
         }
     }
 
@@ -99,6 +100,7 @@ public class LobbyManager : MonoBehaviour
         PlayerPrefs.Save();
         currentLevel = data.level;
         print(PlayerPrefs.GetString("Localdata"));
+        levelText.text = "Level " + currentLevel.ToString();
     }
 
     private IEnumerator StoryWithDelay()
@@ -153,6 +155,7 @@ public class LobbyManager : MonoBehaviour
     }
     public void changeLobby()
     {
+        
         if (currentCharacter == 1)
         {
             maleAniChar.SetActive(true);
