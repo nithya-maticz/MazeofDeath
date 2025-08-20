@@ -456,17 +456,6 @@
         {
             "position": {
                 "x": 1,
-                "y": 2
-            },
-            "tileIndex": 39,
-            "tilemapType": 0,
-            "rotation": 90,
-            "flipX": false,
-            "flipY": false
-        },
-        {
-            "position": {
-                "x": 1,
                 "y": 4
             },
             "tileIndex": 39,
@@ -503,17 +492,6 @@
                 "y": 10
             },
             "tileIndex": 39,
-            "tilemapType": 0,
-            "rotation": 90,
-            "flipX": false,
-            "flipY": false
-        },
-        {
-            "position": {
-                "x": 1,
-                "y": 2
-            },
-            "tileIndex": 89,
             "tilemapType": 0,
             "rotation": 90,
             "flipX": false,

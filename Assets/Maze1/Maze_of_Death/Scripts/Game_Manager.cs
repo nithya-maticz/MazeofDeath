@@ -90,6 +90,8 @@ public class Game_Manager : MonoBehaviour
     public GameObject bomb;
     public bool isBomb;
 
+    public TMP_Text leveltxt;
+
     [Header("MATERIAL")]
     public Material litMat;
 
@@ -154,28 +156,28 @@ public class Game_Manager : MonoBehaviour
 
     public void SpawnPlayer(Vector3 worldPos)
     {
-        /*playerTransform.position = worldPos;
+        playerTransform.position = worldPos;
         Instantiate(playerPrefab, playerTransform.transform);
         SmoothFollowCamera.Instance.target = PlayerMovements.Instance.offSet;
         BulletSpawner = PlayerMovements.Instance.bulletSpawn;
         AutoAim = AutoAimOnly.Instance;
-*/
-        if (LobbyManager.currentIndex == 1)
-        {
-            Debug.Log("Male");
-            Instantiate(playerPrefab, worldPos, Quaternion.identity);
-            SmoothFollowCamera.Instance.target = PlayerMovements.Instance.offSet;
-            BulletSpawner = PlayerMovements.Instance.bulletSpawn;
-            AutoAim = AutoAimOnly.Instance;
-        }
-        else if (LobbyManager.currentIndex == 2)
-        {
-            Debug.Log("Female");
-            Instantiate(F_PlayerPrefab, worldPos, Quaternion.identity);
-            SmoothFollowCamera.Instance.target = PlayerMovements.Instance.offSet;
-            BulletSpawner = PlayerMovements.Instance.bulletSpawn;
-            AutoAim = AutoAimOnly.Instance;
-        }
+
+        /* if (LobbyManager.currentIndex == 1)
+         {
+             Debug.Log("Male");
+             Instantiate(playerPrefab, worldPos, Quaternion.identity);
+             SmoothFollowCamera.Instance.target = PlayerMovements.Instance.offSet;
+             BulletSpawner = PlayerMovements.Instance.bulletSpawn;
+             AutoAim = AutoAimOnly.Instance;
+         }
+         else if (LobbyManager.currentIndex == 2)
+         {
+             Debug.Log("Female");
+             Instantiate(F_PlayerPrefab, worldPos, Quaternion.identity);
+             SmoothFollowCamera.Instance.target = PlayerMovements.Instance.offSet;
+             BulletSpawner = PlayerMovements.Instance.bulletSpawn;
+             AutoAim = AutoAimOnly.Instance;
+         }*/
     }
 
 
@@ -324,6 +326,7 @@ public class Game_Manager : MonoBehaviour
     }
     public void win()
     {
+        leveltxt.text = "LEVEL  " + LevelManager.levelToLoad;
         WinPage.SetActive(true);
     }
 
@@ -524,6 +527,10 @@ public class Game_Manager : MonoBehaviour
         LevelManager.levelToLoad++;
         Scene currentScene = SceneManager.GetActiveScene();
         SceneManager.LoadScene(currentScene.buildIndex);
+    }
+    public void winpage()
+    {
+        LevelManager.levelToLoad++;
     }
 
     public void SceneLoad(string sceneName)

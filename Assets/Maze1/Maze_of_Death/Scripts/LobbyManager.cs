@@ -18,6 +18,7 @@ public class LobbyManager : MonoBehaviour
     public GameObject LobbyPage;
     public GameObject charPage;
     public TMP_Text levelText;
+    public TMP_Text currentLeveltxt;
 
     [Header("Character Selection")]
     public static int currentIndex;
@@ -48,6 +49,7 @@ public class LobbyManager : MonoBehaviour
     }
     void Start()
     {
+        
         print("ssss");
         if (!OnTutorial)
         {
@@ -59,6 +61,7 @@ public class LobbyManager : MonoBehaviour
 
             if(OnRetry)
             {
+                CurrentLevel();
                 LobbyPage.SetActive(true);
                 changeLobby();
             }
@@ -142,6 +145,8 @@ public class LobbyManager : MonoBehaviour
     }
     public void changeLobby()
     {
+        
+
         if (currentIndex == 1)
         {
             maleAniChar.SetActive(true);
@@ -157,6 +162,13 @@ public class LobbyManager : MonoBehaviour
             lobbyCharIcon.sprite = lobbyFemaleIcon;
             lobbyCharName.sprite = lobbyFemaleName;
         }
+    }
+
+   
+    public void CurrentLevel()
+    {
+
+        currentLeveltxt.text = "MAZELEVEL " + LevelManager.levelToLoad;
     }
 
 }
