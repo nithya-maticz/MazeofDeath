@@ -211,6 +211,8 @@ public class SharedPathFollower : MonoBehaviour
             isCollidingWithPlayer = false;
             rb.constraints = RigidbodyConstraints2D.FreezeRotation;
             animator.SetTrigger("Walk");
+            IsPlayerVisibleInBack();
+
         }
     }
 
@@ -219,16 +221,16 @@ public class SharedPathFollower : MonoBehaviour
 
     private void OnTriggerEnter2D(Collider2D collision)
     {
-        if (collision.CompareTag("bomb") )
+       /* if (collision.CompareTag("bomb"))
         {
             Debug.Log("Bomb...");
             GameObject blood = Instantiate(Game_Manager.Instance.BloodPrefab, gameObject.transform.position, Quaternion.identity);
             Game_Manager.Instance.Enemies.Remove(this);
             Destroy(gameObject);
             Game_Manager.Instance.EnemyCount();
-        }
+        }*/
 
-        else if (collision.CompareTag("Bullet"))
+        if (collision.CompareTag("Bullet"))
         {
             Destroy(collision.gameObject);
 

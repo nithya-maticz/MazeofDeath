@@ -534,8 +534,6 @@ MonoBehaviour:
   speed: 2
   bombSpawnPoint: {fileID: 2905874370485677423}
   bombLight: {fileID: 2203036854494695465}
-  aimPoint: {fileID: 0}
-  reachPoint: 0
 --- !u!1 &2905874370485677423
 GameObject:
   m_ObjectHideFlags: 0

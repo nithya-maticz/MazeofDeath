@@ -45,8 +45,7 @@ public class PlayerMovements : MonoBehaviour
     public GameObject bombSpawnPoint;
     public GameObject bombLight;
 
-    public GameObject aimPoint;
-    public bool reachPoint;
+  
 
     ///
     // public GameObject autoAim;
