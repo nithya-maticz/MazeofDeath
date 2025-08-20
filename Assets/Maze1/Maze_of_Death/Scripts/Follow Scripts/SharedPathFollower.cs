@@ -50,7 +50,7 @@ public class SharedPathFollower : MonoBehaviour
     public GameObject HealthParent;
     public Image FillHealth;
     private Coroutine hideHealthCoroutine;
-
+    private bool isAttacking = false;
     private void Start()
     {
         UpdateHealthUI();
@@ -131,7 +131,7 @@ public class SharedPathFollower : MonoBehaviour
 
     private void Update()
     {
-        if (isCollidingWithPlayer) return;
+       if (isCollidingWithPlayer) return;
         if (!isFollowing || path == null || currentIndex >= path.Count) return;
 
         Vector3 targetPoint = path[currentIndex];
@@ -183,11 +183,13 @@ public class SharedPathFollower : MonoBehaviour
     
     private void OnCollisionEnter2D(Collision2D collision)
     {
-        if (collision.collider.CompareTag("Player"))
+        if (collision.collider.CompareTag("Player") && isAttacking==false)
         {
             isCollidingWithPlayer = true;
             rb.constraints = RigidbodyConstraints2D.FreezeAll;
             animator.SetTrigger("Attack");
+            isAttacking = true;
+            Invoke("OnAttackFinished", 0.5f);
         }
 
         if (!isChasingPlayer && collision.gameObject.CompareTag("enemy"))
@@ -210,12 +212,35 @@ public class SharedPathFollower : MonoBehaviour
         {
             isCollidingWithPlayer = false;
             rb.constraints = RigidbodyConstraints2D.FreezeRotation;
-            animator.SetTrigger("Walk");
-            IsPlayerVisibleInBack();
-
         }
     }
 
+    public void OnAttackFinished()
+    {
+        isAttacking = false;
+
+        // Re-enable movement
+        rb.constraints = RigidbodyConstraints2D.FreezeRotation;
+
+        if (IsPlayerVisibleInBack())
+        {
+            // Continue chasing
+            isChasingPlayer = true;
+            lastTargetPosition = player.position;
+           // speed = 1.5f;
+            PathManager.Instance.RequestPath(transform.position, lastTargetPosition, OnPathFound);
+            animator.SetTrigger("Walk");
+        }
+        else
+        {
+            // Go back to patrol
+            isChasingPlayer = false;
+            patrolIndex = (patrolIndex + 1) % patrolPoints.Count;
+            lastTargetPosition = patrolPoints[patrolIndex].position;
+            PathManager.Instance.RequestPath(transform.position, lastTargetPosition, OnPathFound);
+            animator.SetTrigger("Walk");
+        }
+    }
 
 
 
