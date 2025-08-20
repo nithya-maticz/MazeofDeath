@@ -9,7 +9,7 @@ using Gilzoide.LottiePlayer.RLottie;
 public class LevelManager : MonoBehaviour
 {
     public static LevelManager Instance;
-    public static int levelToLoad = 1;
+    //public static int levelToLoad = 1;
     public LevelAssetsDatabase assetsDatabase;
 
     [Serializable]
@@ -26,7 +26,7 @@ public class LevelManager : MonoBehaviour
     private int gridWidth, gridHeight;
 
     public List<GameObject> patrolObjects = new List<GameObject>();
-  //  public List<Transform> patrolObjects = new List<Transform>();
+    //public List<Transform> patrolObjects = new List<Transform>();
 
     //public GameObject playerPrefab;  // ✅ Player prefab reference
     private Vector2Int playerSpawn;  // ✅ Loaded player spawn cell
@@ -55,7 +55,7 @@ public class LevelManager : MonoBehaviour
     void LoadLevelData()
     {
 
-        string fileName = $"Level{levelToLoad}";
+        string fileName = $"Level{LobbyManager.currentLevel}";
         TextAsset jsonFile = Resources.Load<TextAsset>(fileName);
 
         if (jsonFile != null)

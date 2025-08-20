@@ -521,7 +521,7 @@ public class Game_Manager : MonoBehaviour
 
     public void NextLevel()
     {
-        LevelManager.levelToLoad++;
+        LobbyManager.currentLevel++;
         Scene currentScene = SceneManager.GetActiveScene();
         SceneManager.LoadScene(currentScene.buildIndex);
     }

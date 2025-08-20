@@ -132,7 +132,8 @@ public class FolderDownloader : MonoBehaviour
     }
     public async Task Start()
     {
-        LevelManager.levelToLoad = 2;
+        // LobbyManager.currentLevel = 1;
+        print("Current Lvl : " + LobbyManager.currentLevel);
         await DownloadImage();
         GridLoader.Instance.LoadLevel();
        
@@ -149,7 +150,7 @@ public class FolderDownloader : MonoBehaviour
 
             foreach (string ext in extensions)
             {
-                string url = S3Url + "/Level" + LevelManager.levelToLoad + "/" + assetName[i] + ext;
+                string url = S3Url + "/Level" + LobbyManager.currentLevel + "/" + assetName[i] + ext;
 
                 if (await TryDownload(url))
                 {

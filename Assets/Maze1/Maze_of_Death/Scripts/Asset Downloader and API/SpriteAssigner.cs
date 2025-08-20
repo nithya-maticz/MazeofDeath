@@ -19,11 +19,6 @@ public class SpriteAssigner : MonoBehaviour
         Instance = this;
     }
 
-
-
-    
-
-
     public void AssignData()
     {
         extractImages.Clear();

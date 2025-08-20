@@ -43,18 +43,7 @@ public class LoginPage : MonoBehaviour
             hasError = true;
         }
 
-        // Email validation
-       /* if (string.IsNullOrEmpty(u_email))
-        {
-            emailErrortxt.text = "Enter email";
-            hasError = true;
-        }
-        else if (!IsValidEmail(u_email))
-        {
-            emailErrortxt.text = "Invalid email format";
-            hasError = true;
-        }*/
-
+      
         // Age validation
         if (!int.TryParse(u_age, out int parsedAge))
         {
@@ -72,17 +61,12 @@ public class LoginPage : MonoBehaviour
         if (!hasError)
         {
             Debug.Log("Login Success");
-            LobbyManager.Instance.TutorialScene();
+            LobbyManager.Instance.OpenCharacterPage();
             // Add further login logic here
         }
     }
 
-    private bool IsValidEmail(string email)
-    {
-        // Basic email validation using System.Text.RegularExpressions
-        var pattern = @"^[^@\s]+@[^@\s]+\.[^@\s]+$";
-        return System.Text.RegularExpressions.Regex.IsMatch(email, pattern);
-    }
+  
 }
 
 

@@ -376,7 +376,7 @@ MonoBehaviour:
       m_Calls:
       - m_Target: {fileID: 1359897685}
         m_TargetAssemblyTypeName: LobbyManager, Assembly-CSharp
-        m_MethodName: selectfun
+        m_MethodName: selectCharacter
         m_Mode: 1
         m_Arguments:
           m_ObjectArgument: {fileID: 0}
@@ -435,7 +435,7 @@ GameObject:
   - component: {fileID: 57734978}
   - component: {fileID: 57734981}
   - component: {fileID: 57734980}
-  - component: {fileID: 57734979}
+  - component: {fileID: 57734982}
   m_Layer: 5
   m_Name: Loading
   m_TagString: Untagged
@@ -462,25 +462,6 @@ RectTransform:
   m_AnchoredPosition: {x: -522, y: -119}
   m_SizeDelta: {x: 422, y: 111}
   m_Pivot: {x: 0.5, y: 0.5}
---- !u!114 &57734979
-MonoBehaviour:
-  m_ObjectHideFlags: 0
-  m_CorrespondingSourceObject: {fileID: 0}
-  m_PrefabInstance: {fileID: 0}
-  m_PrefabAsset: {fileID: 0}
-  m_GameObject: {fileID: 57734977}
-  m_Enabled: 1
-  m_EditorHideFlags: 0
-  m_Script: {fileID: 11500000, guid: 380622e4fed146842a0cd8847d7810bc, type: 3}
-  m_Name: 
-  m_EditorClassIdentifier: 
-  frames:
-  - {fileID: 21300000, guid: e2f166bbc6772b44da791e724936447f, type: 3}
-  - {fileID: 21300000, guid: 0e6632d71cb4c834488c795313093d65, type: 3}
-  - {fileID: 21300000, guid: 1002667e7fadc8744a46cf73ff687813, type: 3}
-  - {fileID: 21300000, guid: 528b574718cfaeb4a8c2bd09f2eb7574, type: 3}
-  framesPerSecond: 2
-  loop: 1
 --- !u!114 &57734980
 MonoBehaviour:
   m_ObjectHideFlags: 0
@@ -519,6 +500,26 @@ CanvasRenderer:
   m_PrefabAsset: {fileID: 0}
   m_GameObject: {fileID: 57734977}
   m_CullTransparentMesh: 1
+--- !u!114 &57734982
+MonoBehaviour:
+  m_ObjectHideFlags: 0
+  m_CorrespondingSourceObject: {fileID: 0}
+  m_PrefabInstance: {fileID: 0}
+  m_PrefabAsset: {fileID: 0}
+  m_GameObject: {fileID: 57734977}
+  m_Enabled: 1
+  m_EditorHideFlags: 0
+  m_Script: {fileID: 11500000, guid: 7f7c2146b5f48594195f5207c773e02d, type: 3}
+  m_Name: 
+  m_EditorClassIdentifier: 
+  targetImage: {fileID: 57734980}
+  frames:
+  - {fileID: 21300000, guid: e2f166bbc6772b44da791e724936447f, type: 3}
+  - {fileID: 21300000, guid: 0e6632d71cb4c834488c795313093d65, type: 3}
+  - {fileID: 21300000, guid: 1002667e7fadc8744a46cf73ff687813, type: 3}
+  - {fileID: 21300000, guid: 528b574718cfaeb4a8c2bd09f2eb7574, type: 3}
+  frameRate: 0.5
+  loop: 1
 --- !u!1 &58011084
 GameObject:
   m_ObjectHideFlags: 0
@@ -3256,7 +3257,7 @@ GameObject:
   m_Icon: {fileID: 0}
   m_NavMeshLayer: 0
   m_StaticEditorFlags: 0
-  m_IsActive: 0
+  m_IsActive: 1
 --- !u!224 &924177775
 RectTransform:
   m_ObjectHideFlags: 0

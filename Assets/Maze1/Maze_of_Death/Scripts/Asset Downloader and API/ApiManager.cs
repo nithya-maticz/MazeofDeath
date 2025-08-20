@@ -67,7 +67,7 @@ public class ApiManager : MonoBehaviour
     {
         for (int i = 0; i < allLevels.items.Count; i++)
         {
-            if (allLevels.items[i].level[0].level == LevelManager.levelToLoad)
+            if (allLevels.items[i].level[0].level == LobbyManager.currentLevel)
             {
                 levelData = allLevels.items[i].level[0];
                 GridLoader.Instance.patrolPoints = levelData.data.patrolPoints;

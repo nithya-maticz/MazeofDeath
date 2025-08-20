@@ -3,10 +3,12 @@ using UnityEngine;
 using UnityEngine.SceneManagement;
 using TMPro;
 using UnityEngine.UI;
+using System;
 
 public class LobbyManager : MonoBehaviour
 {
     public static LobbyManager Instance;
+    public static int currentLevel;
     public static bool OnTutorial;
     public static bool OnRetry;
     public bool IsNewUser;
@@ -20,7 +22,7 @@ public class LobbyManager : MonoBehaviour
     public TMP_Text levelText;
 
     [Header("Character Selection")]
-    public static int currentIndex;
+    public static int currentCharacter;
    
 
     [Header("Lobby")]
@@ -48,28 +50,25 @@ public class LobbyManager : MonoBehaviour
     }
     void Start()
     {
-        print("ssss");
-        if (!OnTutorial)
+        
+        if(!PlayerPrefs.HasKey("Localdata") && !OnTutorial)
         {
-           LoadingPage.SetActive(true);
-          StartCoroutine(LoadLobbyWithDelay());
+            //New User
+            print("=======> New User <=======");
+            LoadingPage.SetActive(true);
+            StartCoroutine(StoryWithDelay());
         }
-        if(OnTutorial)
+        else if (OnTutorial && !PlayerPrefs.HasKey("Localdata"))
         {
-
-            if(OnRetry)
-            {
-                LobbyPage.SetActive(true);
-                changeLobby();
-            }
-            else
-            {
-                OnRetry = true;
-                LoginPage.SetActive(true);
-                
-            }
-               
-           
+            LoginPage.SetActive(true);
+            
+        }
+        else if(PlayerPrefs.HasKey("Localdata"))
+        {
+            GetLocalData();
+            levelText.text = "Level " + currentLevel.ToString();
+            LobbyPage.SetActive(true);
+            changeLobby();
         }
     }
 
@@ -80,28 +79,39 @@ public class LobbyManager : MonoBehaviour
         
     }
 
-    private IEnumerator LoadLobbyWithDelay()
+    public void GetLocalData()
+    {
+        string savedJson = PlayerPrefs.GetString("Localdata", "{}");
+        LocalData loaded = JsonUtility.FromJson<LocalData>(savedJson);
+        print("Level : " +  loaded.level);
+        print("Avatar : " +  loaded.avatar);
+        currentLevel = loaded.level;
+        currentCharacter = loaded.avatar;
+    }
+
+    public void NewData()
+    {
+        LocalData data = new LocalData();
+        data.level = 1;
+        data.avatar = currentCharacter;
+        string json = JsonUtility.ToJson(data);
+        PlayerPrefs.SetString("Localdata", json);
+        PlayerPrefs.Save();
+        currentLevel = data.level;
+        print(PlayerPrefs.GetString("Localdata"));
+    }
+
+    private IEnumerator StoryWithDelay()
     {
         yield return new WaitForSeconds(2f);
-        OnLoadLobby();
+        OnVideoPlay();
     }
-    public void LoginPageVisible()
+    
+    void OnVideoPlay()
     {
-        LoginPage.SetActive(true);
-    }
-    void OnLoadLobby()
-    {
-        if (IsNewUser)
-        {
-            LoadingPage.SetActive(false);
-            VideoController.Instance.PlayNextVideo();
-        }
-        else
-        {
-            Fade();
-            LoadingPage.SetActive(false);
-           // 
-        }
+        Fade();
+        LoadingPage.SetActive(false);
+        VideoController.Instance.PlayNextVideo();
     }
 
     public void Fade()
@@ -112,37 +122,38 @@ public class LobbyManager : MonoBehaviour
     public void PlayGame()
     {
             Fade();
-            SceneManager.LoadScene("Game Level");
+            SceneManager.LoadScene("Game Loader");
        
        
     }
-   public void TutorialScene()
-    {
+   public void OpenCharacterPage()
+   {
         Fade();
        
         charPage.SetActive(true);
         //
         // 
-    }
+   }
 
    
 
     public void Character(int index)
     {
-        currentIndex = index;
+        currentCharacter = index;
     }
 
-    public void selectfun()
+    public void selectCharacter()
     {
         Fade();
-        Debug.Log(currentIndex); 
+        Debug.Log(currentCharacter); 
         LobbyPage.SetActive(true);
         changeLobby();
+        NewData();
 
     }
     public void changeLobby()
     {
-        if (currentIndex == 1)
+        if (currentCharacter == 1)
         {
             maleAniChar.SetActive(true);
             femaleAniChar.SetActive(false);
@@ -150,13 +161,22 @@ public class LobbyManager : MonoBehaviour
             lobbyCharName.sprite = lobbyMaleName;
 
         }
-        else if (currentIndex == 2)
+        else if (currentCharacter == 2)
         {
             maleAniChar.SetActive(false);
             femaleAniChar.SetActive(true);
             lobbyCharIcon.sprite = lobbyFemaleIcon;
             lobbyCharName.sprite = lobbyFemaleName;
         }
+
     }
 
+}
+
+
+[Serializable]
+public class LocalData
+{
+    public int level;
+    public int avatar;
 }
