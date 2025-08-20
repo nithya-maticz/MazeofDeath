@@ -44,8 +44,12 @@ public class PlayerMovements : MonoBehaviour
     // Bomb
     public GameObject bombSpawnPoint;
     public GameObject bombLight;
+
+    public GameObject aimPoint;
+    public bool reachPoint;
+
     ///
-   // public GameObject autoAim;
+    // public GameObject autoAim;
 
 
 
@@ -353,6 +357,7 @@ public class PlayerMovements : MonoBehaviour
     {
         if (collision.CompareTag("EnemyDoor") && Game_Manager.Instance.IsGetKey)
         {
+           
             ZombieDoor zombieDoor = collision.GetComponent<ZombieDoor>();
             if (zombieDoor != null)
             {
@@ -366,6 +371,7 @@ public class PlayerMovements : MonoBehaviour
     {
         if (collision.CompareTag("EnemyDoor") && closeDoorCoroutine != null)
         {
+           
             StopCoroutine(closeDoorCoroutine);
             closeDoorCoroutine = null;
 

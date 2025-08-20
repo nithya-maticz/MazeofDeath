@@ -74,6 +74,7 @@ public class Game_Manager : MonoBehaviour
     public GameObject KnifeObject;
     public Button KnifeButton;
     public GameObject GunObject;
+   
     public Button GunButton;
     public bool IsGun;
     public bool IsKnife;
@@ -470,6 +471,7 @@ public class Game_Manager : MonoBehaviour
         IsGun = true;
         IsKnife = false;
         GunObject.SetActive(true);
+       
         KnifeObject.SetActive(false);
 
         if(AutoAimAndManualShootToggle.isOn)
@@ -490,6 +492,7 @@ public class Game_Manager : MonoBehaviour
         IsGun = false;
         IsKnife = true;
         GunObject.SetActive(false);
+       
         KnifeObject.SetActive(true);
 
         if(AutoAttackToogle.isOn)
@@ -508,10 +511,12 @@ public class Game_Manager : MonoBehaviour
     {
         if (IsGun && !IsKnife)
         {
+           
             GunChange();
         }
         else if(!IsGun && IsKnife)
         {
+           
             KnifeChange();
         }
     }
