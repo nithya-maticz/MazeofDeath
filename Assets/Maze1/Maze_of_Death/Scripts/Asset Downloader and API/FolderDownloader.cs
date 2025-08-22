@@ -162,7 +162,7 @@ public class FolderDownloader : MonoBehaviour
                     success = true;
                     if(assetName[i] == "101")
                     {
-                       
+                        GridLoader.Instance.doorBgSprite = assignedImage;
                     }
                     else if(assetName[i] == "bg")
                     {

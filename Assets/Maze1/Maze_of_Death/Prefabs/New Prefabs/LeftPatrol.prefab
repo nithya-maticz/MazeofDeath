@@ -140,6 +140,8 @@ MonoBehaviour:
   doorPatrolPoints:
   - {fileID: 4620012027069547935}
   - {fileID: 1292128229987487704}
+  isPlayerDoor: 0
+  bg: {fileID: 8860798658133351394}
 --- !u!61 &1455523368691774939
 BoxCollider2D:
   m_ObjectHideFlags: 0

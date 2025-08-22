@@ -9,6 +9,7 @@ public class GridLoader : MonoBehaviour
     public LevelAssetsDatabase database;
     public Tilemap wallTilemap;
     public Sprite bgSprite;
+    public Sprite doorBgSprite;
     public SmoothFollowCamera followCamera;
     public List<Vector2Int> patrolPoints;
     public List<GameObject> patrolObjects = new List<GameObject>();

@@ -26,9 +26,9 @@ public class LevelManager : MonoBehaviour
     private int gridWidth, gridHeight;
 
     public List<GameObject> patrolObjects = new List<GameObject>();
-    //public List<Transform> patrolObjects = new List<Transform>();
+   
 
-    //public GameObject playerPrefab;  // ✅ Player prefab reference
+   
     private Vector2Int playerSpawn;  // ✅ Loaded player spawn cell
 
     public SmoothFollowCamera followCamera;

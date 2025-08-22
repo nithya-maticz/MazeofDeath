@@ -140,7 +140,7 @@ MonoBehaviour:
   doorPatrolPoints:
   - {fileID: 4620012027069547935}
   - {fileID: 1292128229987487704}
-  isPlayerDoor: 0
+  isPlayerDoor: 1
   bg: {fileID: 8860798658133351394}
 --- !u!61 &1455523368691774939
 BoxCollider2D:
@@ -349,7 +349,7 @@ GameObject:
   m_Component:
   - component: {fileID: 6151832064467447680}
   m_Layer: 0
-  m_Name: Right Patrol
+  m_Name: PlayerDoor
   m_TagString: Untagged
   m_Icon: {fileID: 0}
   m_NavMeshLayer: 0
