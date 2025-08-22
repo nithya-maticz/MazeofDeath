@@ -44,7 +44,7 @@ public class LevelManager : MonoBehaviour
         SpawnPatrolPoints();
         SpawnPlayer();  // ✅ Spawn player
 
-        Game_Manager.Instance.StartData();
+        //Game_Manager.Instance.StartData();
         followCamera.enabled = true;
     }
     private void Awake()

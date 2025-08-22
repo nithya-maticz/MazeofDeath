@@ -13,7 +13,9 @@ public class Game_Manager : MonoBehaviour
     public IGetTreasure curretTreasure;
     public GameObject LostPage;
     public GameObject WinPage;
-   
+    public GameObject loadingScreen;
+    public TMP_Text winLevelTxt;
+    public TMP_Text loseLevelTxt;
 
     [Header("Sprites")]
     public Sprite SpriteBoxOpen;
@@ -120,27 +122,8 @@ public class Game_Manager : MonoBehaviour
 
     public IEnumerator StartData()
     {
-       // Debug.Log("LOBBY    ");
-
-        /*Instantiate(F_PlayerPrefab, playerTransform.transform);
-        SmoothFollowCamera.Instance.target = PlayerMovements.Instance.offSet;
-        BulletSpawner = PlayerMovements.Instance.bulletSpawn;*/
-
-       /* if (LobbyManager.currentIndex == 1)
-        {
-            Debug.Log("Male");
-            Instantiate(playerPrefab, playerTransform.transform);
-            SmoothFollowCamera.Instance.target = PlayerMovements.Instance.offSet;
-            BulletSpawner = PlayerMovements.Instance.bulletSpawn;
-        }
-        else if (LobbyManager.currentIndex == 2)
-        {
-            Debug.Log("Female");
-            Instantiate(F_PlayerPrefab, playerTransform.transform);
-            SmoothFollowCamera.Instance.target = PlayerMovements.Instance.offSet;
-            BulletSpawner = PlayerMovements.Instance.bulletSpawn;
-        }
-*/
+        print("Started..");
+        
         QualitySettings.vSyncCount = 0;
        // AutoAim = AutoAimOnly.Instance;
         PlayerHealthCount = 4;
@@ -150,6 +133,8 @@ public class Game_Manager : MonoBehaviour
         yield return new WaitForSeconds(0.5f);
         BoxCount();
         ZombieDoorCount();
+        loadingScreen.SetActive(false);
+
     }
 
     public void SpawnPlayer(Vector3 worldPos)
@@ -233,6 +218,7 @@ public class Game_Manager : MonoBehaviour
             HealthImage.gameObject.SetActive(true);
             HealthImage.sprite = HealthSprites[2];
             LostPage.SetActive(true);
+            loseLevelTxt.text = "LEVEL " + LobbyManager.currentLevel.ToString();
             //Game Over
         }
         else
@@ -322,7 +308,8 @@ public class Game_Manager : MonoBehaviour
         {
             Invoke("win", 1f);
             LocalData data = new LocalData();
-            print("Current Level : " + LobbyManager.currentLevel);
+            winLevelTxt.text = "LEVEL " + LobbyManager.currentLevel.ToString();
+            //print("Current Level : " + LobbyManager.currentLevel);
             data.level = LobbyManager.currentLevel + 1;
             data.avatar = LobbyManager.currentCharacter;
             string json = JsonUtility.ToJson(data);
@@ -527,13 +514,20 @@ public class Game_Manager : MonoBehaviour
 
     public void ReloadScene()
     {
+        LobbyManager.currentLevel--;
         Scene currentScene = SceneManager.GetActiveScene();
         SceneManager.LoadScene(currentScene.buildIndex);
     }
 
     public void NextLevel()
     {
-        LobbyManager.currentLevel++;
+        //LobbyManager.currentLevel++;
+        Scene currentScene = SceneManager.GetActiveScene();
+        SceneManager.LoadScene(currentScene.buildIndex);
+    }
+
+    public void RetryScene()
+    {
         Scene currentScene = SceneManager.GetActiveScene();
         SceneManager.LoadScene(currentScene.buildIndex);
     }

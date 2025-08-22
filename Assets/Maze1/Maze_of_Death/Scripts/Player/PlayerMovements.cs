@@ -357,6 +357,7 @@ public class PlayerMovements : MonoBehaviour
             if (zombieDoor != null)
             {
                 zombieDoor.light.SetActive(true);
+
                 closeDoorCoroutine = StartCoroutine(CloseDoorAfterDelay(zombieDoor));
             }
         }

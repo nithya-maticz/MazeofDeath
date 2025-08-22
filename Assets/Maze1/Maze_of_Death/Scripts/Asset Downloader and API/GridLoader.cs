@@ -38,7 +38,7 @@ public class GridLoader : MonoBehaviour
         SpawnPatrolPoints();
         SpawnPlayer();
 
-        Game_Manager.Instance.StartData();
+        StartCoroutine(Game_Manager.Instance.StartData()); 
         followCamera.enabled = true;
     }
 
