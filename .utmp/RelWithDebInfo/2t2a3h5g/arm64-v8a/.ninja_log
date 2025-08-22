@@ -1,12 +1,12 @@
 # ninja log v5
-34	191	7773748929462292	FramePacing/CMakeFiles/swappywrapper.dir/UnitySwappyWrapper.cpp.o	fc607d6b514c9095
-192	295	7773748930510276	E:/Projects/MazeofDeath/Library/Bee/Android/Prj/IL2CPP/Gradle/unityLibrary/build/intermediates/cxx/RelWithDebInfo/2t2a3h5g/obj/arm64-v8a/libswappywrapper.so	f2dba550971a76e5
-20	429	7773748931801318	GameActivity/CMakeFiles/game.dir/UGAInputKeyEvent.cpp.o	c739974a5760b50b
-12	438	7773748931900987	GameActivity/CMakeFiles/game.dir/UGAEntry.cpp.o	917573d644da0e89
-4	439	7773748931881054	GameActivity/CMakeFiles/game.dir/UGAConfiguration.cpp.o	b3b9712d0c1b877
-24	445	7773748931970752	GameActivity/CMakeFiles/game.dir/UGAInputMotionEvent.cpp.o	9d8a72b31fdacbcf
-28	477	7773748932304315	GameActivity/CMakeFiles/game.dir/UGASoftKeyboard.cpp.o	c05b0c7cb0ffbe76
-0	512	7773748932648403	GameActivity/CMakeFiles/game.dir/UGADebug.cpp.o	b82a8791bef8dfb
-16	581	7773748933336195	GameActivity/CMakeFiles/game.dir/UGAInput.cpp.o	15ff4997c8900d65
-8	638	7773748933904368	GameActivity/CMakeFiles/game.dir/UGAApplication.cpp.o	481113c4760a46be
-638	695	7773748934512420	E:/Projects/MazeofDeath/Library/Bee/Android/Prj/IL2CPP/Gradle/unityLibrary/build/intermediates/cxx/RelWithDebInfo/2t2a3h5g/obj/arm64-v8a/libgame.so	cf5199c9f5c0b9a3
+53	438	7775520957893021	FramePacing/CMakeFiles/swappywrapper.dir/UnitySwappyWrapper.cpp.o	fc607d6b514c9095
+453	649	7775520960243258	E:/Projects/MazeofDeath/Library/Bee/Android/Prj/IL2CPP/Gradle/unityLibrary/build/intermediates/cxx/RelWithDebInfo/2t2a3h5g/obj/arm64-v8a/libswappywrapper.so	f2dba550971a76e5
+37	843	7775520962148922	GameActivity/CMakeFiles/game.dir/UGAInputKeyEvent.cpp.o	c739974a5760b50b
+29	856	7775520962268524	GameActivity/CMakeFiles/game.dir/UGAConfiguration.cpp.o	b3b9712d0c1b877
+44	858	7775520962298418	GameActivity/CMakeFiles/game.dir/UGAInputMotionEvent.cpp.o	9d8a72b31fdacbcf
+49	897	7775520962697088	GameActivity/CMakeFiles/game.dir/UGASoftKeyboard.cpp.o	c05b0c7cb0ffbe76
+32	904	7775520962776823	GameActivity/CMakeFiles/game.dir/UGAEntry.cpp.o	917573d644da0e89
+22	927	7775520962996087	GameActivity/CMakeFiles/game.dir/UGADebug.cpp.o	b82a8791bef8dfb
+41	1000	7775520963717758	GameActivity/CMakeFiles/game.dir/UGAInput.cpp.o	15ff4997c8900d65
+26	1059	7775520964316334	GameActivity/CMakeFiles/game.dir/UGAApplication.cpp.o	481113c4760a46be
+1059	1146	7775520965209185	E:/Projects/MazeofDeath/Library/Bee/Android/Prj/IL2CPP/Gradle/unityLibrary/build/intermediates/cxx/RelWithDebInfo/2t2a3h5g/obj/arm64-v8a/libgame.so	cf5199c9f5c0b9a3
