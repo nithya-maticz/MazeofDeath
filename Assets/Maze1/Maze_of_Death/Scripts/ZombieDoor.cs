@@ -13,6 +13,7 @@ public class ZombieDoor : MonoBehaviour
     public List<Transform> doorPatrolPoints;
     public bool isPlayerDoor;
     public SpriteRenderer bg;
+    public GameObject keyImage;
     void Start()
     {
         if(GridLoader.Instance.doorBgSprite != null)

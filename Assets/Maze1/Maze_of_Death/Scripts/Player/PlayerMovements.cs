@@ -357,8 +357,9 @@ public class PlayerMovements : MonoBehaviour
             if (zombieDoor != null)
             {
                 zombieDoor.light.SetActive(true);
-
-                closeDoorCoroutine = StartCoroutine(CloseDoorAfterDelay(zombieDoor));
+                Game_Manager.Instance.IsShowKey = true;
+                zombieDoor.keyImage.SetActive(true);
+                //closeDoorCoroutine = StartCoroutine(CloseDoorAfterDelay(zombieDoor));
             }
         }
     }
@@ -374,24 +375,28 @@ public class PlayerMovements : MonoBehaviour
             if (zombieDoor != null)
             {
                 zombieDoor.light.SetActive(false);
+                Game_Manager.Instance.IsShowKey = false;
+                zombieDoor.keyImage.SetActive(false);
             }
         }
     }
 
-    private IEnumerator CloseDoorAfterDelay(ZombieDoor zombieDoor)
+    /*private IEnumerator CloseDoorAfterDelay(ZombieDoor zombieDoor)
     {
         yield return new WaitForSeconds(2f);
         CloseDoor(zombieDoor);
-    }
+    }*/
 
-    void CloseDoor(ZombieDoor zombieDoor)
+    public void CloseDoor(ZombieDoor zombieDoor)
     {
         if (zombieDoor == null) return;
 
         zombieDoor.isClosed = true;
         zombieDoor.sprite.sprite = Game_Manager.Instance.DoorCloseSprite;
         zombieDoor.light.SetActive(false);
-        
+        Game_Manager.Instance.IsShowKey = false;
+        zombieDoor.keyImage.SetActive(false);
+
         zombieDoor.GetComponent<BoxCollider2D>().enabled = false;
 
         Debug.Log("Door closed!");

@@ -35,6 +35,7 @@ public class Game_Manager : MonoBehaviour
     [Header("Player Attributes")]
     public bool IsGetKey;
     public GameObject KeyImage;
+    public bool IsShowKey;
 
     
 

@@ -2,7 +2,7 @@ using UnityEngine;
 
 public class UnlockDoor : MonoBehaviour
 {
-    // Start is called once before the first execution of Update after the MonoBehaviour is created
+    public ZombieDoor door;
     void Start()
     {
         
@@ -16,6 +16,7 @@ public class UnlockDoor : MonoBehaviour
 
     private void OnMouseUp()
     {
-        
+        if (Game_Manager.Instance.IsGetKey && Game_Manager.Instance.IsShowKey)
+            PlayerMovements.Instance.CloseDoor(door);
     }
 }

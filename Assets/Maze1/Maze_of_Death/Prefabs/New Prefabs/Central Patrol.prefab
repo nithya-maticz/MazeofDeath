@@ -142,6 +142,7 @@ MonoBehaviour:
   - {fileID: 1292128229987487704}
   isPlayerDoor: 0
   bg: {fileID: 8860798658133351394}
+  keyImage: {fileID: 3087881043343563156}
 --- !u!61 &1455523368691774939
 BoxCollider2D:
   m_ObjectHideFlags: 0
@@ -487,6 +488,7 @@ MonoBehaviour:
   m_Script: {fileID: 11500000, guid: ed2f1575771442646b962c643baf9bd5, type: 3}
   m_Name: 
   m_EditorClassIdentifier: 
+  door: {fileID: 3792434381710559387}
 --- !u!1 &4961835689284915402
 GameObject:
   m_ObjectHideFlags: 0

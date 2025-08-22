@@ -21,6 +21,8 @@ public class s_playerMovement : MonoBehaviour
     public GameObject light;
 
     public GameObject closeDoor;
+    public GameObject keyImage;
+    public bool IsshowKey;
 
     [Header("Stats")]
     public float speed = 5f;
@@ -114,11 +116,13 @@ public class s_playerMovement : MonoBehaviour
             Debug.Log("Inside---------");
            // animatorRef.SetTrigger("playerattack");
         }
-          else if (collision.CompareTag("EnemyDoor") && StoryManager.Instance.keyTaken)
+        else if (collision.CompareTag("EnemyDoor") && StoryManager.Instance.keyTaken)
         {
             light.SetActive(true);
+            IsshowKey = true;
+            keyImage.SetActive(true);
             reach = true;
-            Invoke("LightInvisible", 2f);
+            //Invoke("LightInvisible", 2f);
 
         }
        
@@ -136,7 +140,8 @@ public class s_playerMovement : MonoBehaviour
         {
             reach = false;
             light.SetActive(false);
-          
+            IsshowKey = false;
+            keyImage.SetActive(false);
 
         }
 
@@ -145,6 +150,8 @@ public class s_playerMovement : MonoBehaviour
     {
         if(reach)
         {
+            IsshowKey = false;
+            keyImage.SetActive(false);
             light.SetActive(false);
             closeDoor.SetActive(true);
             fade();
