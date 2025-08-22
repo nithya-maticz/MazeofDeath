@@ -142,6 +142,7 @@ MonoBehaviour:
   - {fileID: 1292128229987487704}
   isPlayerDoor: 1
   bg: {fileID: 8860798658133351394}
+  keyImage: {fileID: 0}
 --- !u!61 &1455523368691774939
 BoxCollider2D:
   m_ObjectHideFlags: 0
