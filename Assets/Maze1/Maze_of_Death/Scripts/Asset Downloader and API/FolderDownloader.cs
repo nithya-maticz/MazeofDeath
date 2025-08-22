@@ -138,7 +138,7 @@ public class FolderDownloader : MonoBehaviour
 
     public async Task StartDownLoad()
     {
-        // LobbyManager.currentLevel = 1;
+        
         print("Current Lvl : " + LobbyManager.currentLevel);
         await DownloadImage();
         GridLoader.Instance.LoadLevel();
