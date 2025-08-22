@@ -130,13 +130,18 @@ public class FolderDownloader : MonoBehaviour
     {
         Instance = this;
     }
-    public async Task Start()
+    private void Start()
+    {
+       
+       
+    }
+
+    public async Task StartDownLoad()
     {
         // LobbyManager.currentLevel = 1;
         print("Current Lvl : " + LobbyManager.currentLevel);
         await DownloadImage();
         GridLoader.Instance.LoadLevel();
-       
     }
 
     public async Task DownloadImage()

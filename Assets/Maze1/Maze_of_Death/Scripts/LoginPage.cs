@@ -6,8 +6,6 @@ using UnityEngine.UI;
 public class LoginPage : MonoBehaviour
 {
     // Start is called once before the first execution of Update after the MonoBehaviour is created
-
-
     public TMP_InputField userName;
     public TMP_InputField email;
     public TMP_InputField age;
