@@ -32,6 +32,8 @@ public class GridLoader : MonoBehaviour
 
     public void LoadLevel()
     {
+        /*TilemapPathfinding.instance.LoadBlockedPrefabs();
+        PathManager.Instance.ClearCache();*/
         LoadTile();
         LoadPrefab();
         SpawnBackgrounds(bgSprite);
@@ -114,6 +116,8 @@ public class GridLoader : MonoBehaviour
                 }
             }
         }
+
+      
     }
 
 

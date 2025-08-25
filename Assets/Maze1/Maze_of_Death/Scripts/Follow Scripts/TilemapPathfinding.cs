@@ -5,13 +5,23 @@ using UnityEngine.Tilemaps;
 
 public class TilemapPathfinding : MonoBehaviour
 {
+    public static TilemapPathfinding instance;
     [Header("References")]
     public Grid grid;
     public Tilemap wallTilemap;
 
+    [Header("Blocking Data")]
+    // 👇 assign prefab-blocked positions here (e.g. from your LevelController)
+    public List<Vector2Int> blockedPrefabCells = new();
+
     [Header("Debug")]
     public bool drawGizmos = true;
     public List<Vector3> lastPath;
+
+    private void Awake()
+    {
+        instance = this;
+    }
 
     // Internal Node class
     public class Node
@@ -127,10 +137,20 @@ public class TilemapPathfinding : MonoBehaviour
 
     /// <summary>
     /// Returns true if the tile is walkable
+    /// (Checks both wall tiles and prefab-blocked cells)
     /// </summary>
     private bool IsWalkable(Vector3Int cellPos)
     {
-        return !wallTilemap.HasTile(cellPos);
+        // 1. Walls block
+        if (wallTilemap.HasTile(cellPos))
+            return false;
+
+        // 2. Prefab-blocked grid positions block
+        Vector2Int pos2D = new Vector2Int(cellPos.x, cellPos.y);
+        if (blockedPrefabCells.Contains(pos2D))
+            return false;
+
+        return true;
     }
 
     /// <summary>
@@ -172,6 +192,56 @@ public class TilemapPathfinding : MonoBehaviour
         foreach (Vector3 point in lastPath)
         {
             Gizmos.DrawSphere(point, 0.1f);
+        }
+
+      /*  // 🔴 Draw blocked prefab cells too
+        // Gizmos.color = Color.red;
+        foreach (var cell in blockedPrefabCells)
+        {
+            Vector3 world = grid.GetCellCenterWorld(new Vector3Int(cell.x, cell.y, 0));
+            Gizmos.DrawCube(world, Vector3.one * 0.9f);
+        }*/
+    }
+
+    /// <summary>
+    /// Loads placed prefab positions from LevelController into blockedPrefabCells
+    /// Handles multi-cell prefabs (size + rotation)
+    /// </summary>
+    public void LoadBlockedPrefabs()
+    {
+        blockedPrefabCells.Clear();
+
+        if (ApiManager.Instance != null && ApiManager.Instance.levelData != null)
+        {
+            foreach (var prefab in ApiManager.Instance.levelData.data.prefabs)
+            {
+                // if no size info, fallback to 1x1
+                Vector2Int size = prefab.size == Vector2Int.zero ? Vector2Int.one : prefab.size;
+
+                // handle prefab rotation (only multiples of 90° supported)
+                int rot = prefab.rotation % 360;
+
+                for (int x = 0; x < size.x; x++)
+                {
+                    for (int y = 0; y < size.y; y++)
+                    {
+                        Vector2Int local = new Vector2Int(x, y);
+                        Vector2Int rotated = local;
+
+                        // rotate local coords
+                        switch (rot)
+                        {
+                            case 90: rotated = new Vector2Int(-local.y, local.x); break;
+                            case 180: rotated = new Vector2Int(-local.x, -local.y); break;
+                            case 270: rotated = new Vector2Int(local.y, -local.x); break;
+                        }
+
+                        Vector2Int pos = prefab.position + rotated;
+                        if (!blockedPrefabCells.Contains(pos))
+                            blockedPrefabCells.Add(pos);
+                    }
+                }
+            }
         }
     }
 }

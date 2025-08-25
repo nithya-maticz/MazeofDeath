@@ -19,7 +19,7 @@ public class ApiManager : MonoBehaviour
     }
     void Start()
     {
-        //LobbyManager.currentLevel = 13;
+        LobbyManager.currentLevel = 2;
         GetLevels();
     }
 
@@ -71,6 +71,8 @@ public class ApiManager : MonoBehaviour
             if (allLevels.items[i].level[0].level == LobbyManager.currentLevel)
             {
                 levelData = allLevels.items[i].level[0];
+                TilemapPathfinding.instance.LoadBlockedPrefabs();
+                PathManager.Instance.ClearCache();
                 GridLoader.Instance.patrolPoints = levelData.data.patrolPoints;
                 GridLoader.Instance.playerSpawn = levelData.data.playerSpawn;
                 FolderDownloader.Instance.StartDownLoad();
