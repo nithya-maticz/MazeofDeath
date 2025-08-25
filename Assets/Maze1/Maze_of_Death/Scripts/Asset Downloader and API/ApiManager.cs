@@ -8,10 +8,10 @@ public class ApiManager : MonoBehaviour
 {
     public static ApiManager Instance;
     public static string baseURL = "https://mazetest.onrender.com";
-
+    public string data;
     [Header("Level Data")]
     public LevelRootWrapper allLevels;
-    public LevelEntry levelData;
+    public LevelEntry levelData = new LevelEntry();
 
     private void Awake()
     {
@@ -19,7 +19,7 @@ public class ApiManager : MonoBehaviour
     }
     void Start()
     {
-        LobbyManager.currentLevel = 2;
+        LobbyManager.currentLevel = 16;
         GetLevels();
     }
 
@@ -35,7 +35,7 @@ public class ApiManager : MonoBehaviour
     }
     IEnumerator GetLevelsData()
     {
-        using (UnityWebRequest webRequest = UnityWebRequest.Get(baseURL + "/api/levels/"))
+        using (UnityWebRequest webRequest = UnityWebRequest.Get(baseURL + "/api/levels/?level=" + LobbyManager.currentLevel))
         {
 
             // webRequest.SetRequestHeader("Authorization", "Bearer " + localData.token);
@@ -52,14 +52,31 @@ public class ApiManager : MonoBehaviour
             else
             {
                 string rawJson = webRequest.downloadHandler.text;
-
+               
+                
                 // Wrap the raw array in an object so JsonUtility can parse it
                 string wrappedJson = "{\"items\":" + rawJson + "}";
-
+                print(rawJson);
                 LevelRootWrapper wrapper = JsonUtility.FromJson<LevelRootWrapper>(wrappedJson);
-                allLevels = wrapper;
-                List<LevelRoot> levels = wrapper.items;
-                GetMyLevel();
+
+                if (wrapper.items != null && wrapper.items.Count > 0 && wrapper.items[0].level.Count > 0)
+                {
+                     levelData = wrapper.items[0].level[0];
+                    TilemapPathfinding.instance.LoadBlockedPrefabs();
+                    PathManager.Instance.ClearCache();
+                    GridLoader.Instance.patrolPoints = levelData.data.patrolPoints;
+                    GridLoader.Instance.playerSpawn = levelData.data.playerSpawn;
+                    FolderDownloader.Instance.StartDownLoad();
+                    Debug.Log("Player Spawn: " + levelData.data.playerSpawn.x + "," + levelData.data.playerSpawn.y);
+                }
+                else
+                {
+                    Debug.LogError("No levels found in JSON!");
+                }
+                
+                /* allLevels = wrapper;
+                 List<LevelRoot> levels = wrapper.items;
+                 GetMyLevel();*/
             }
         }
     }
