@@ -36,7 +36,7 @@ public class SharedPathFollower : MonoBehaviour
 
     private Animator animator;
     private Rigidbody2D rb;
-    private bool isCollidingWithPlayer = false;
+    public bool isCollidingWithPlayer = false;
     private CircleCollider2D myCollider;
 
     public bool isPatrolDoor;
@@ -204,16 +204,24 @@ public class SharedPathFollower : MonoBehaviour
                  }
              }
          }*/
-        if (collision.collider.CompareTag("enemy"))
+        else if (collision.collider.CompareTag("enemy"))
         {
-            // Ensure only one of them does the swap
-            if (gameObject.GetInstanceID() > collision.gameObject.GetInstanceID())
+            if (!playerDetected && !swappedRecently)
             {
-                Vector3 posA = transform.position;
-                Vector3 posB = collision.transform.position;
+                // Ensure only one of them does the swap (using instance ID)
+                if (gameObject.GetInstanceID() > collision.gameObject.GetInstanceID())
+                {
+                    Vector3 posA = transform.position;
+                    Vector3 posB = collision.transform.position;
 
-                transform.position = posB;
-                collision.transform.position = posA;
+                    transform.position = posB;
+                    collision.transform.position = posA;
+
+                    Debug.Log("Swapped...");
+
+                    // Start cooldown to avoid repeated swapping
+                    StartCoroutine(SwapCooldown());
+                }
             }
         }
     }
@@ -340,8 +348,8 @@ public class SharedPathFollower : MonoBehaviour
     {
         if(isCollidingWithPlayer)
         {
-            Game_Manager.Instance.PlayerHealthCount -= 1;
-            Game_Manager.Instance.UpdatePlayerHealth();
+/*            Game_Manager.Instance.PlayerHealthCount -= 1;
+            Game_Manager.Instance.UpdatePlayerHealth();*/
         }
     }
 
