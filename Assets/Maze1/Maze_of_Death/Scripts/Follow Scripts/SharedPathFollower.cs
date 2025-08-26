@@ -32,7 +32,7 @@ public class SharedPathFollower : MonoBehaviour
     private bool isChasingPlayer = false;
     private Vector3 lastTargetPosition;
     private float playerLostTime;
-    [SerializeField] bool playerDetected = false;
+    [SerializeField] private bool playerDetected = false;
 
     private Animator animator;
     private Rigidbody2D rb;
@@ -50,6 +50,7 @@ public class SharedPathFollower : MonoBehaviour
     public GameObject HealthParent;
     public Image FillHealth;
     private Coroutine hideHealthCoroutine;
+    [SerializeField] EnemyDirection enemyDirection;
 
     private void Start()
     {
@@ -83,11 +84,13 @@ public class SharedPathFollower : MonoBehaviour
             if (visible)
             {
                 playerDetected = true;
+                enemyDirection.playerDetected = playerDetected;
                 playerLostTime = Time.time + 10f;
             }
             else if (Time.time > playerLostTime)
             {
                 playerDetected = false;
+                enemyDirection.playerDetected = playerDetected;
             }
 
             if (isCollidingWithPlayer)
@@ -204,7 +207,7 @@ public class SharedPathFollower : MonoBehaviour
                  }
              }
          }*/
-        else if (collision.collider.CompareTag("enemy"))
+       /* else if (collision.collider.CompareTag("enemy"))
         {
             if (!playerDetected && !swappedRecently)
             {
@@ -223,11 +226,11 @@ public class SharedPathFollower : MonoBehaviour
                     StartCoroutine(SwapCooldown());
                 }
             }
-        }
+        }*/
     }
 
 
-    private bool swappedRecently = false;
+   /* private bool swappedRecently = false;
 
    
 
@@ -237,7 +240,7 @@ public class SharedPathFollower : MonoBehaviour
         yield return new WaitForSeconds(0.5f); // half a second delay before next swap
         swappedRecently = false;
     }
-
+*/
 
     private void OnCollisionExit2D(Collision2D collision)
     {
