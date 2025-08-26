@@ -19,7 +19,7 @@ public class ApiManager : MonoBehaviour
     }
     void Start()
     {
-        //LobbyManager.currentLevel = 2;
+        LobbyManager.currentLevel = 2;
         GetLevels();
     }
 
@@ -35,7 +35,7 @@ public class ApiManager : MonoBehaviour
     }
     IEnumerator GetLevelsData()
     {
-        using (UnityWebRequest webRequest = UnityWebRequest.Get(baseURL + "/api/levels/"))
+        using (UnityWebRequest webRequest = UnityWebRequest.Get(baseURL + "/api/levels/?level=" + LobbyManager.currentLevel))
         {
 
             // webRequest.SetRequestHeader("Authorization", "Bearer " + localData.token);
@@ -57,9 +57,24 @@ public class ApiManager : MonoBehaviour
                 string wrappedJson = "{\"items\":" + rawJson + "}";
 
                 LevelRootWrapper wrapper = JsonUtility.FromJson<LevelRootWrapper>(wrappedJson);
-                allLevels = wrapper;
+                if (wrapper.items != null && wrapper.items.Count > 0 && wrapper.items[0].level.Count > 0)
+                {
+                    levelData = wrapper.items[0].level[0];
+                    PathManager.Instance.ClearCache();
+                    TilemapPathfinding.instance.LoadBlockedPrefabs();
+                    GridLoader.Instance.patrolPoints = levelData.data.patrolPoints;
+                    GridLoader.Instance.playerSpawn = levelData.data.playerSpawn;
+                    FolderDownloader.Instance.StartDownLoad();
+                    Debug.Log("Player Spawn: " + levelData.data.playerSpawn.x + "," + levelData.data.playerSpawn.y);
+                }
+                else
+                {
+                    Debug.LogError("No levels found in JSON!");
+                }
+
+                /*allLevels = wrapper;
                 List<LevelRoot> levels = wrapper.items;
-                GetMyLevel();
+                GetMyLevel();*/
             }
         }
     }

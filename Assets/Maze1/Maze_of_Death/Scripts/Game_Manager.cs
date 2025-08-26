@@ -140,28 +140,28 @@ public class Game_Manager : MonoBehaviour
 
     public void SpawnPlayer(Vector3 worldPos)
     {
-        /*playerTransform.position = worldPos;
+        playerTransform.position = worldPos;
         Instantiate(playerPrefab, playerTransform.transform);
         SmoothFollowCamera.Instance.target = PlayerMovements.Instance.offSet;
         BulletSpawner = PlayerMovements.Instance.bulletSpawn;
-        AutoAim = AutoAimOnly.Instance;*/
+        AutoAim = AutoAimOnly.Instance;
 
-        if (LobbyManager.currentCharacter == 1)
-        {
-            Debug.Log("Male");
-            Instantiate(playerPrefab, worldPos, Quaternion.identity);
-            SmoothFollowCamera.Instance.target = PlayerMovements.Instance.offSet;
-            BulletSpawner = PlayerMovements.Instance.bulletSpawn;
-            AutoAim = AutoAimOnly.Instance;
-        }
-        else if (LobbyManager.currentCharacter == 2)
-        {
-            Debug.Log("Female");
-            Instantiate(F_PlayerPrefab, worldPos, Quaternion.identity);
-            SmoothFollowCamera.Instance.target = PlayerMovements.Instance.offSet;
-            BulletSpawner = PlayerMovements.Instance.bulletSpawn;
-            AutoAim = AutoAimOnly.Instance;
-        }
+        /*        if (LobbyManager.currentCharacter == 1)
+                {
+                    Debug.Log("Male");
+                    Instantiate(playerPrefab, worldPos, Quaternion.identity);
+                    SmoothFollowCamera.Instance.target = PlayerMovements.Instance.offSet;
+                    BulletSpawner = PlayerMovements.Instance.bulletSpawn;
+                    AutoAim = AutoAimOnly.Instance;
+                }
+                else if (LobbyManager.currentCharacter == 2)
+                {
+                    Debug.Log("Female");
+                    Instantiate(F_PlayerPrefab, worldPos, Quaternion.identity);
+                    SmoothFollowCamera.Instance.target = PlayerMovements.Instance.offSet;
+                    BulletSpawner = PlayerMovements.Instance.bulletSpawn;
+                    AutoAim = AutoAimOnly.Instance;
+                }*/
     }
 
 
@@ -524,18 +524,18 @@ public class Game_Manager : MonoBehaviour
     {
         //LobbyManager.currentLevel++;
         Scene currentScene = SceneManager.GetActiveScene();
-        SceneManager.LoadScene(currentScene.buildIndex);
+        SceneManager.LoadScene("Game Loader", LoadSceneMode.Single);
     }
 
     public void RetryScene()
     {
         Scene currentScene = SceneManager.GetActiveScene();
-        SceneManager.LoadScene(currentScene.buildIndex);
+        SceneManager.LoadScene("Game Loader", LoadSceneMode.Single);
     }
 
     public void SceneLoad(string sceneName)
     {
-        SceneManager.LoadScene(sceneName);
+        SceneManager.LoadScene(sceneName, LoadSceneMode.Single);
     }
     public void BackToLobby()
     {
