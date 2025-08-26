@@ -32,7 +32,7 @@ public class SharedPathFollower : MonoBehaviour
     private bool isChasingPlayer = false;
     private Vector3 lastTargetPosition;
     private float playerLostTime;
-    [SerializeField] bool playerDetected = false;
+    public bool playerDetected = false;
 
     private Animator animator;
     private Rigidbody2D rb;
@@ -190,19 +190,19 @@ public class SharedPathFollower : MonoBehaviour
             animator.SetTrigger("Attack");
         }
 
-        if (!isChasingPlayer && collision.gameObject.CompareTag("enemy"))
+       /* if (!isChasingPlayer && collision.gameObject.CompareTag("enemy"))
         {
             myCollider.isTrigger = true;
-        }
+        }*/
     }
 
-    private void OnCollisionStay2D(Collision2D collision)
+   /* private void OnCollisionStay2D(Collision2D collision)
     {
         if (!isChasingPlayer && collision.gameObject.CompareTag("enemy"))
         {
             myCollider.isTrigger = true;
         }
-    }
+    }*/
 
     private void OnCollisionExit2D(Collision2D collision)
     {
@@ -256,13 +256,13 @@ public class SharedPathFollower : MonoBehaviour
         }
        
     }
-    private void OnTriggerExit2D(Collider2D collision)
+   /* private void OnTriggerExit2D(Collider2D collision)
     {
         if (!isChasingPlayer && collision.gameObject.CompareTag("enemy"))
         {
             myCollider.isTrigger = false;
         }
-    }
+    }*/
 
     void UpdateHealthUI()
     {

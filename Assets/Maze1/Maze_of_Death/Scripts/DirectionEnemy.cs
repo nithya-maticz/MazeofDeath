@@ -1,0 +1,56 @@
+using System.Collections;
+using UnityEngine;
+
+public class DirectionEnemy : MonoBehaviour
+{
+    [SerializeField] SharedPathFollower enemy;
+    void Start()
+    {
+        
+    }
+
+    // Update is called once per frame
+    void Update()
+    {
+        
+    }
+
+    private void OnTriggerEnter2D(Collider2D collision)
+    {
+        if (collision.CompareTag("Direction"))
+        {
+            DirectionEnemy dirEnemy = collision.GetComponent<DirectionEnemy>();
+            if (dirEnemy == null) return;
+
+            SharedPathFollower otherEnemy = dirEnemy.enemy;
+            if (otherEnemy == null) return;
+
+            if (!enemy.playerDetected && !swappedRecently)
+            {
+                if (gameObject.GetInstanceID() > otherEnemy.gameObject.GetInstanceID())
+                {
+                    Vector3 posA = enemy.transform.position;
+                    Vector3 posB = otherEnemy.transform.position;
+
+                    enemy.transform.position = posB;
+                    otherEnemy.transform.position = posA;
+
+                    Debug.Log("Swapped due to opposite facing...");
+                    StartCoroutine(SwapCooldown());
+                }
+                   
+              
+            }
+        }
+    }
+
+    private bool swappedRecently = false;
+
+    private IEnumerator SwapCooldown()
+    {
+        swappedRecently = true;
+        yield return new WaitForSeconds(1f); // cooldown before next swap
+        swappedRecently = false;
+    }
+
+}
