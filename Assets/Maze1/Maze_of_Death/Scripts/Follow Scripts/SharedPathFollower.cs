@@ -180,7 +180,7 @@ public class SharedPathFollower : MonoBehaviour
     }
 
 
-    
+
     private void OnCollisionEnter2D(Collision2D collision)
     {
         if (collision.collider.CompareTag("Player"))
@@ -189,20 +189,47 @@ public class SharedPathFollower : MonoBehaviour
             rb.constraints = RigidbodyConstraints2D.FreezeAll;
             animator.SetTrigger("Attack");
         }
+        /* else if (collision.collider.CompareTag("enemy"))
+         {
+             SharedPathFollower other = collision.collider.GetComponent<SharedPathFollower>();
+             if (other != null)
+             {
+                 // Check if opposite directions (dot product < 0)
+                 Vector2 myDir = rb.linearVelocity.normalized;
+                 Vector2 otherDir = other.rb.linearVelocity.normalized;
 
-        if (!isChasingPlayer && collision.gameObject.CompareTag("enemy"))
+                 if (Vector2.Dot(myDir, otherDir) < -0.5f) // facing nearly opposite
+                 {
+                     SwapAttributes(other);
+                 }
+             }
+         }*/
+        if (collision.collider.CompareTag("enemy"))
         {
-            myCollider.isTrigger = true;
+            // Ensure only one of them does the swap
+            if (gameObject.GetInstanceID() > collision.gameObject.GetInstanceID())
+            {
+                Vector3 posA = transform.position;
+                Vector3 posB = collision.transform.position;
+
+                transform.position = posB;
+                collision.transform.position = posA;
+            }
         }
     }
 
-    private void OnCollisionStay2D(Collision2D collision)
+
+    private bool swappedRecently = false;
+
+   
+
+    private IEnumerator SwapCooldown()
     {
-        if (!isChasingPlayer && collision.gameObject.CompareTag("enemy"))
-        {
-            myCollider.isTrigger = true;
-        }
+        swappedRecently = true;
+        yield return new WaitForSeconds(0.5f); // half a second delay before next swap
+        swappedRecently = false;
     }
+
 
     private void OnCollisionExit2D(Collision2D collision)
     {
@@ -258,10 +285,10 @@ public class SharedPathFollower : MonoBehaviour
     }
     private void OnTriggerExit2D(Collider2D collision)
     {
-        if (!isChasingPlayer && collision.gameObject.CompareTag("enemy"))
+       /* if (!isChasingPlayer && collision.gameObject.CompareTag("enemy"))
         {
             myCollider.isTrigger = false;
-        }
+        }*/
     }
 
     void UpdateHealthUI()
@@ -318,5 +345,61 @@ public class SharedPathFollower : MonoBehaviour
         }
     }
 
+    private void SwapAttributes(SharedPathFollower other)
+    {
+        // Swap Health
+        int tempHealth = this.Health;
+        this.Health = other.Health;
+        other.Health = tempHealth;
 
+        int tempMaxHealth = this.maxHealth;
+        this.maxHealth = other.maxHealth;
+        other.maxHealth = tempMaxHealth;
+
+        // Swap Patrol
+        int tempIndex = this.patrolIndex;
+        this.patrolIndex = other.patrolIndex;
+        other.patrolIndex = tempIndex;
+
+        var tempPatrol = this.patrolPoints;
+        this.patrolPoints = other.patrolPoints;
+        other.patrolPoints = tempPatrol;
+
+        // Swap Path
+        var tempPath = this.path;
+        this.path = other.path;
+        other.path = tempPath;
+
+        int tempCurrentIndex = this.currentIndex;
+        this.currentIndex = other.currentIndex;
+        other.currentIndex = tempCurrentIndex;
+
+        // Swap States
+        bool tempFollow = this.isFollowing;
+        this.isFollowing = other.isFollowing;
+        other.isFollowing = tempFollow;
+
+        bool tempChasing = this.isChasingPlayer;
+        this.isChasingPlayer = other.isChasingPlayer;
+        other.isChasingPlayer = tempChasing;
+
+        Vector3 tempLastTarget = this.lastTargetPosition;
+        this.lastTargetPosition = other.lastTargetPosition;
+        other.lastTargetPosition = tempLastTarget;
+
+        float tempLostTime = this.playerLostTime;
+        this.playerLostTime = other.playerLostTime;
+        other.playerLostTime = tempLostTime;
+
+        bool tempDetected = this.playerDetected;
+        this.playerDetected = other.playerDetected;
+        other.playerDetected = tempDetected;
+
+        // Swap PatrolDoor
+        bool tempDoor = this.isPatrolDoor;
+        this.isPatrolDoor = other.isPatrolDoor;
+        other.isPatrolDoor = tempDoor;
+
+        Debug.Log($"{name} swapped attributes with {other.name}");
+    }
 }

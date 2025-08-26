@@ -19,7 +19,7 @@ public class ApiManager : MonoBehaviour
     }
     void Start()
     {
-        LobbyManager.currentLevel = 16;
+       // LobbyManager.currentLevel = 16;
         GetLevels();
     }
 
