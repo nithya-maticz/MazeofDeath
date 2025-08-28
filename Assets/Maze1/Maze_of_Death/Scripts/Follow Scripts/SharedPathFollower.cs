@@ -13,7 +13,7 @@ public class SharedPathFollower : MonoBehaviour
     public float repathThreshold = 0.5f;
     public float pathUpdateInterval = 0.25f;
     public float rotationSpeed = 720f;
-
+    public bool isAllowRot;
     [Header("Patrol Settings")]
     public List<Transform> patrolPoints;
     private int patrolIndex = 0;
@@ -145,7 +145,8 @@ public class SharedPathFollower : MonoBehaviour
         {
             float angle = Mathf.Atan2(direction.y, direction.x) * Mathf.Rad2Deg;
             Quaternion targetRotation = Quaternion.Euler(0, 0, angle + 180f);
-            transform.rotation = Quaternion.RotateTowards(transform.rotation, targetRotation, rotationSpeed * Time.deltaTime);
+            if(isAllowRot)
+                transform.rotation = Quaternion.RotateTowards(transform.rotation, targetRotation, rotationSpeed * Time.deltaTime);
         }
 
         if (Vector3.Distance(transform.position, targetPoint) < stopThreshold)

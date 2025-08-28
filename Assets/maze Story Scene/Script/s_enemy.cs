@@ -192,7 +192,6 @@ public class s_enemy : MonoBehaviour
             rb.constraints = RigidbodyConstraints2D.FreezeAll;
             animator.SetTrigger("Attack");
         }
-
     }
 
     private void OnTriggerEnter2D(Collider2D collision)

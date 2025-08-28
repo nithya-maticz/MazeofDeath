@@ -135,6 +135,7 @@ MonoBehaviour:
   repathThreshold: 0.5
   pathUpdateInterval: 0.25
   rotationSpeed: 720
+  isAllowRot: 1
   patrolPoints: []
   player: {fileID: 0}
   detectionRange: 2.5
