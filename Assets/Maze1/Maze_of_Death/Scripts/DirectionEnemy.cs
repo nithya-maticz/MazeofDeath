@@ -40,7 +40,7 @@ public class DirectionEnemy : MonoBehaviour
                     enemy.transform.position = posB;
                     otherEnemy.transform.position = posA;
 
-                    Debug.Log("Swapped due to opposite facing...");
+                   // Debug.Log("Swapped due to opposite facing...");
                     StartCoroutine(SwapCooldown());
                 }
 

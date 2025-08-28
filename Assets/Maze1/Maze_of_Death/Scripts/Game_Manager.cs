@@ -1,9 +1,10 @@
-using UnityEngine;
+using System;
 using System.Collections;
 using System.Collections.Generic;
 using TMPro;
-using UnityEngine.UI;
+using UnityEngine;
 using UnityEngine.SceneManagement;
+using UnityEngine.UI;
 
 public class Game_Manager : MonoBehaviour
 {
@@ -140,28 +141,28 @@ public class Game_Manager : MonoBehaviour
 
     public void SpawnPlayer(Vector3 worldPos)
     {
-        playerTransform.position = worldPos;
+        /*playerTransform.position = worldPos;
         Instantiate(playerPrefab, playerTransform.transform);
         SmoothFollowCamera.Instance.target = PlayerMovements.Instance.offSet;
         BulletSpawner = PlayerMovements.Instance.bulletSpawn;
-        AutoAim = AutoAimOnly.Instance;
+        AutoAim = AutoAimOnly.Instance;*/
 
-        /* if (LobbyManager.currentCharacter == 1)
-         {
-             Debug.Log("Male");
-             Instantiate(playerPrefab, worldPos, Quaternion.identity);
-             SmoothFollowCamera.Instance.target = PlayerMovements.Instance.offSet;
-             BulletSpawner = PlayerMovements.Instance.bulletSpawn;
-             AutoAim = AutoAimOnly.Instance;
-         }
-         else if (LobbyManager.currentCharacter == 2)
-         {
-             Debug.Log("Female");
-             Instantiate(F_PlayerPrefab, worldPos, Quaternion.identity);
-             SmoothFollowCamera.Instance.target = PlayerMovements.Instance.offSet;
-             BulletSpawner = PlayerMovements.Instance.bulletSpawn;
-             AutoAim = AutoAimOnly.Instance;
-         }*/
+        if (LobbyManager.currentCharacter == 1)
+        {
+            Debug.Log("Male");
+            Instantiate(playerPrefab, worldPos, Quaternion.identity);
+            SmoothFollowCamera.Instance.target = PlayerMovements.Instance.offSet;
+            BulletSpawner = PlayerMovements.Instance.bulletSpawn;
+            AutoAim = AutoAimOnly.Instance;
+        }
+        else if (LobbyManager.currentCharacter == 2)
+        {
+            Debug.Log("Female");
+            Instantiate(F_PlayerPrefab, worldPos, Quaternion.identity);
+            SmoothFollowCamera.Instance.target = PlayerMovements.Instance.offSet;
+            BulletSpawner = PlayerMovements.Instance.bulletSpawn;
+            AutoAim = AutoAimOnly.Instance;
+        }
     }
 
 
@@ -567,3 +568,10 @@ public class Game_Manager : MonoBehaviour
 }
 
 
+[Serializable]
+public enum TilemapType
+{
+    Walls,
+    Ground,
+    Obstacles
+}

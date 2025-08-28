@@ -1,3 +1,4 @@
+using System;
 using UnityEngine;
 using UnityEngine.Tilemaps;
 
@@ -20,3 +21,4 @@ public class LevelAssetsDatabase : ScriptableObject
 
     public TilemapBinding[] tilemapTypes; // define available tilemap types
 }
+
