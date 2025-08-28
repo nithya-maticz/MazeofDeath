@@ -1,6 +1,7 @@
 using System;
 using System.Collections;
 using System.Collections.Generic;
+using System.Linq;
 using TMPro;
 using UnityEngine;
 using UnityEngine.SceneManagement;
@@ -99,9 +100,15 @@ public class Game_Manager : MonoBehaviour
 
     private void Awake()
     {
+        if (Instance != null && Instance != this)
+        {
+            Destroy(gameObject);
+            return;
+        }
+
         Instance = this;
-        Application.targetFrameRate = 60;
-        QualitySettings.vSyncCount = 0;
+       /* Application.targetFrameRate = 60;
+        QualitySettings.vSyncCount = 0;*/
     }
    
     
@@ -125,9 +132,10 @@ public class Game_Manager : MonoBehaviour
     public IEnumerator StartData()
     {
         print("Started..");
-        
-        QualitySettings.vSyncCount = 0;
-       // AutoAim = AutoAimOnly.Instance;
+
+        Enemies.Clear();
+        ZombieDoors.Clear();
+        // AutoAim = AutoAimOnly.Instance;
         PlayerHealthCount = 4;
         UpdateAttackSettings();
         UpdateUI();
@@ -518,7 +526,11 @@ public class Game_Manager : MonoBehaviour
     {
         LobbyManager.currentLevel--;
         Scene currentScene = SceneManager.GetActiveScene();
-        SceneManager.LoadScene(currentScene.buildIndex);
+        //SceneManager.LoadScene(currentScene.buildIndex);
+
+        SceneManager.LoadScene(currentScene.buildIndex, LoadSceneMode.Single);
+        Resources.UnloadUnusedAssets();
+        GC.Collect();
     }
 
     public void NextLevel()
@@ -526,21 +538,32 @@ public class Game_Manager : MonoBehaviour
         //LobbyManager.currentLevel++;
         Scene currentScene = SceneManager.GetActiveScene();
         SceneManager.LoadScene("Game Loader", LoadSceneMode.Single);
+        Resources.UnloadUnusedAssets();
+        GC.Collect();
     }
 
     public void RetryScene()
     {
         Scene currentScene = SceneManager.GetActiveScene();
         SceneManager.LoadScene("Game Loader", LoadSceneMode.Single);
+        Resources.UnloadUnusedAssets();
+        GC.Collect();
     }
 
     public void SceneLoad(string sceneName)
     {
         SceneManager.LoadScene(sceneName, LoadSceneMode.Single);
+        Resources.UnloadUnusedAssets();
+        GC.Collect();
     }
     public void BackToLobby()
     {
         SceneManager.LoadScene("lobby");
+    }
+
+    private void OnDestroy()
+    {
+        StopAllCoroutines();
     }
     public void BombFun()
     {
