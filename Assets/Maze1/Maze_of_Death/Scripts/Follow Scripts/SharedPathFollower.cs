@@ -5,6 +5,8 @@ using UnityEngine.Tilemaps;
 using UnityEngine.UI;
 
 [RequireComponent(typeof(Animator))]
+[RequireComponent(typeof(Rigidbody2D))]
+[RequireComponent(typeof(CircleCollider2D))]
 public class SharedPathFollower : MonoBehaviour
 {
     [Header("Movement Settings")]
@@ -14,20 +16,20 @@ public class SharedPathFollower : MonoBehaviour
     public float pathUpdateInterval = 0.25f;
     public float rotationSpeed = 720f;
     public bool isAllowRot;
+
     [Header("Patrol Settings")]
     public List<Transform> patrolPoints;
     private int patrolIndex = 0;
 
     [Header("Detection Settings")]
     public Transform player;
-   // public Tilemap obstacleTilemap;
     public float detectionRange = 5f;
     public float rearViewAngle = 90f;
     public LayerMask obstacleMask;
     public LayerMask playerMask;
 
     private List<Vector3> path;
-    private int currentIndex = 0; 
+    private int currentIndex = 0;
     private bool isFollowing = false;
     private bool isChasingPlayer = false;
     private Vector3 lastTargetPosition;
@@ -40,7 +42,6 @@ public class SharedPathFollower : MonoBehaviour
     private CircleCollider2D myCollider;
 
     public bool isPatrolDoor;
-
     public GameObject TargetLocked;
 
     [Header("Health")]
@@ -51,26 +52,44 @@ public class SharedPathFollower : MonoBehaviour
     public Image FillHealth;
     private Coroutine hideHealthCoroutine;
 
+    private void Awake()
+    {
+        rb = GetComponent<Rigidbody2D>();
+        animator = GetComponent<Animator>();
+        myCollider = GetComponent<CircleCollider2D>();
+
+        // ✅ Reset Rigidbody on scene load
+        rb.linearVelocity = Vector2.zero;
+        rb.angularVelocity = 0f;
+        rb.constraints = RigidbodyConstraints2D.FreezeRotation;
+    }
+
     private void Start()
     {
         UpdateHealthUI();
         HealthParent.SetActive(false);
+
         if (PlayerMovements.Instance != null)
             player = PlayerMovements.Instance.transform;
-
 
         if (!isPatrolDoor)
         {
             patrolPoints = new List<Transform>(Game_Manager.Instance.PatrolPoints);
             ShuffleList(patrolPoints);
         }
-       
 
         lastTargetPosition = patrolPoints[patrolIndex].position;
-        animator = GetComponent<Animator>();
-        rb = GetComponent<Rigidbody2D>();
-        myCollider = GetComponent<CircleCollider2D>();
         StartCoroutine(UpdatePathRoutine());
+    }
+
+    private void OnDisable()
+    {
+        StopAllCoroutines(); // ✅ Stop path coroutine on scene reload
+    }
+
+    private void OnDestroy()
+    {
+        StopAllCoroutines(); // ✅ Safety net
     }
 
     private IEnumerator UpdatePathRoutine()
@@ -129,7 +148,7 @@ public class SharedPathFollower : MonoBehaviour
         isFollowing = true;
     }
 
-    private void Update()
+    private void FixedUpdate()
     {
         if (isCollidingWithPlayer) return;
         if (!isFollowing || path == null || currentIndex >= path.Count) return;
@@ -137,18 +156,18 @@ public class SharedPathFollower : MonoBehaviour
         Vector3 targetPoint = path[currentIndex];
         Vector3 direction = (targetPoint - transform.position).normalized;
 
-        // Move
-        transform.position += direction * speed * Time.deltaTime;
+        // ✅ Physics-based movement (no jitter)
+        rb.MovePosition(rb.position + (Vector2)(direction * speed * Time.fixedDeltaTime));
 
-        // Rotate (2D)
-        if (direction != Vector3.zero)
+        // ✅ Rotation
+        if (direction != Vector3.zero && isAllowRot)
         {
             float angle = Mathf.Atan2(direction.y, direction.x) * Mathf.Rad2Deg;
             Quaternion targetRotation = Quaternion.Euler(0, 0, angle + 180f);
-            if(isAllowRot)
-                transform.rotation = Quaternion.RotateTowards(transform.rotation, targetRotation, rotationSpeed * Time.deltaTime);
+            transform.rotation = Quaternion.RotateTowards(transform.rotation, targetRotation, rotationSpeed * Time.deltaTime);
         }
 
+        // ✅ Path progression
         if (Vector3.Distance(transform.position, targetPoint) < stopThreshold)
         {
             currentIndex++;
@@ -180,8 +199,6 @@ public class SharedPathFollower : MonoBehaviour
         return hit.collider != null && hit.collider.CompareTag("Player");
     }
 
-
-    
     private void OnCollisionEnter2D(Collision2D collision)
     {
         if (collision.collider.CompareTag("Player"))
@@ -190,54 +207,35 @@ public class SharedPathFollower : MonoBehaviour
             rb.constraints = RigidbodyConstraints2D.FreezeAll;
             animator.SetTrigger("Attack");
         }
-
-       /* if (!isChasingPlayer && collision.gameObject.CompareTag("enemy"))
-        {
-            myCollider.isTrigger = true;
-        }*/
     }
-
-   /* private void OnCollisionStay2D(Collision2D collision)
-    {
-        if (!isChasingPlayer && collision.gameObject.CompareTag("enemy"))
-        {
-            myCollider.isTrigger = true;
-        }
-    }*/
 
     private void OnCollisionExit2D(Collision2D collision)
     {
         if (collision.collider.CompareTag("Player"))
         {
             isCollidingWithPlayer = false;
-            rb.constraints = RigidbodyConstraints2D.FreezeRotation;
+            rb.constraints = RigidbodyConstraints2D.FreezeRotation; // ✅ Always restore safe state
             animator.SetTrigger("Walk");
         }
     }
 
-
-
-
     private void OnTriggerEnter2D(Collider2D collision)
     {
-        if (collision.CompareTag("bomb") )
+        if (collision.CompareTag("bomb"))
         {
-            Debug.Log("Bomb...");
-            GameObject blood = Instantiate(Game_Manager.Instance.BloodPrefab, gameObject.transform.position, Quaternion.identity);
+            GameObject blood = Instantiate(Game_Manager.Instance.BloodPrefab, transform.position, Quaternion.identity);
             Game_Manager.Instance.Enemies.Remove(this);
             Destroy(gameObject);
             Game_Manager.Instance.EnemyCount();
         }
-
         else if (collision.CompareTag("Bullet"))
         {
             Destroy(collision.gameObject);
-
             Health--;
 
             if (Health <= 0)
             {
-                GameObject blood = Instantiate(Game_Manager.Instance.BloodPrefab, gameObject.transform.position, Quaternion.identity);
+                GameObject blood = Instantiate(Game_Manager.Instance.BloodPrefab, transform.position, Quaternion.identity);
                 Game_Manager.Instance.Enemies.Remove(this);
                 Destroy(gameObject);
                 Game_Manager.Instance.EnemyCount();
@@ -245,25 +243,14 @@ public class SharedPathFollower : MonoBehaviour
             }
 
             UpdateHealthUI();
-
-            // Show health UI
             HealthParent.SetActive(true);
 
-            // Restart 1-second timer to hide health bar
             if (hideHealthCoroutine != null)
                 StopCoroutine(hideHealthCoroutine);
 
             hideHealthCoroutine = StartCoroutine(HideHealthAfterDelay());
         }
-       
     }
-   /* private void OnTriggerExit2D(Collider2D collision)
-    {
-        if (!isChasingPlayer && collision.gameObject.CompareTag("enemy"))
-        {
-            myCollider.isTrigger = false;
-        }
-    }*/
 
     void UpdateHealthUI()
     {
@@ -312,12 +299,10 @@ public class SharedPathFollower : MonoBehaviour
 
     void Attack()
     {
-        if(isCollidingWithPlayer)
+        if (isCollidingWithPlayer)
         {
             Game_Manager.Instance.PlayerHealthCount -= 1;
             Game_Manager.Instance.UpdatePlayerHealth();
         }
     }
-
-
 }
