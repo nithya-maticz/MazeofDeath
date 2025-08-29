@@ -7,7 +7,7 @@ using UnityEngine.UI;
 [RequireComponent(typeof(Animator))]
 [RequireComponent(typeof(Rigidbody2D))]
 [RequireComponent(typeof(CircleCollider2D))]
-public class SharedPathFollower : MonoBehaviour
+public class SharedPathFollower : MonoBehaviour,IGetBlastTank
 {
     [Header("Movement Settings")]
     public float speed = 3f;
@@ -304,5 +304,27 @@ public class SharedPathFollower : MonoBehaviour
             Game_Manager.Instance.PlayerHealthCount -= 1;
             Game_Manager.Instance.UpdatePlayerHealth();
         }
+    }
+
+    public void TankBlastUpdate()
+    {
+        Health = Health - 2;
+
+        if (Health <= 0)
+        {
+            GameObject blood = Instantiate(Game_Manager.Instance.BloodPrefab, transform.position, Quaternion.identity);
+            Game_Manager.Instance.Enemies.Remove(this);
+            Destroy(gameObject);
+            Game_Manager.Instance.EnemyCount();
+            return;
+        }
+
+        UpdateHealthUI();
+        HealthParent.SetActive(true);
+
+        if (hideHealthCoroutine != null)
+            StopCoroutine(hideHealthCoroutine);
+
+        hideHealthCoroutine = StartCoroutine(HideHealthAfterDelay());
     }
 }

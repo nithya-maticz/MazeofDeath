@@ -13,4 +13,13 @@ public class TankBlaster : MonoBehaviour
     {
         
     }
+
+    private void OnTriggerEnter2D(Collider2D collision)
+    {
+        Debug.Log("Colloide : " + collision.gameObject.name);
+        if(collision.GetComponent<IGetBlastTank>() != null)
+        {
+            collision.GetComponent<IGetBlastTank>().TankBlastUpdate();
+        }
+    }
 }

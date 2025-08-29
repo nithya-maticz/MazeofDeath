@@ -50,6 +50,8 @@ public class Tanker : MonoBehaviour
 
             blast.SetActive(true);
             animator.SetTrigger("Blast");
+            radius.gameObject.SetActive(true);
+           // radius.gameObject.SetActive(false);
         }
         else
         {
