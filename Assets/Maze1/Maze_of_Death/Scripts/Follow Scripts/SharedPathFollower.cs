@@ -52,6 +52,7 @@ public class SharedPathFollower : MonoBehaviour,IGetBlastTank
     public Image FillHealth;
     private Coroutine hideHealthCoroutine;
 
+    Vector3 destination;
     private void Awake()
     {
         rb = GetComponent<Rigidbody2D>();
@@ -96,7 +97,7 @@ public class SharedPathFollower : MonoBehaviour,IGetBlastTank
     {
         while (true)
         {
-            Vector3 destination;
+           // Vector3 destination;
             bool visible = IsPlayerVisibleInBack();
 
             if (visible)
@@ -205,9 +206,36 @@ public class SharedPathFollower : MonoBehaviour,IGetBlastTank
         {
             isCollidingWithPlayer = true;
             rb.constraints = RigidbodyConstraints2D.FreezeAll;
-            animator.SetTrigger("Attack");
+
+            // Calculate direction to player
+            Vector3 dirToPlayer = (collision.transform.position - transform.position).normalized;
+            float angle = Mathf.Atan2(dirToPlayer.y, dirToPlayer.x) * Mathf.Rad2Deg;
+            Quaternion targetRot = Quaternion.Euler(0, 0, angle + 180f);
+
+            // Start rotation coroutine instead of attacking immediately
+            StartCoroutine(RotateThenAttack(targetRot));
+
+            if (!playerDetected)
+            {
+                playerDetected = true;
+                playerLostTime = Time.time + 10f;
+            }
         }
     }
+
+    private IEnumerator RotateThenAttack(Quaternion targetRot)
+    {
+        // Smoothly rotate until almost facing player
+        while (Quaternion.Angle(transform.rotation, targetRot) > 5f)
+        {
+            transform.rotation = Quaternion.RotateTowards(transform.rotation, targetRot, rotationSpeed * Time.deltaTime);
+            yield return null;
+        }
+
+        // ✅ Once facing player, trigger attack
+        animator.SetTrigger("Attack");
+    }
+
 
     private void OnCollisionExit2D(Collision2D collision)
     {
@@ -249,6 +277,11 @@ public class SharedPathFollower : MonoBehaviour,IGetBlastTank
                 StopCoroutine(hideHealthCoroutine);
 
             hideHealthCoroutine = StartCoroutine(HideHealthAfterDelay());
+            if (!playerDetected)
+            {
+                playerDetected = true;
+                playerLostTime = Time.time + 10f;
+            }
         }
     }
 

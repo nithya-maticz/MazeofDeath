@@ -17,7 +17,41 @@ public class DirectionEnemy : MonoBehaviour
         
     }
 
-    private void OnTriggerEnter2D(Collider2D collision)
+    /* private void OnTriggerEnter2D(Collider2D collision)
+     {
+         if (collision.CompareTag("Direction"))
+         {
+             DirectionEnemy dirEnemy = collision.GetComponent<DirectionEnemy>();
+             if (dirEnemy == null) return;
+
+             SharedPathFollower otherEnemy = dirEnemy.enemy;
+             otherEnmy = dirEnemy.enemy;
+             if (otherEnemy == null) return;
+
+             if (!enemy.playerDetected && !swappedRecently)
+             {
+                 if (gameObject.GetInstanceID() > otherEnemy.gameObject.GetInstanceID())
+                 {
+                     enemy.isAllowRot = false;
+                     otherEnmy.isAllowRot = false;
+                      Vector3 posA = enemy.transform.position;
+                     Vector3 posB = otherEnemy.transform.position;
+
+                     enemy.transform.position = posB;
+                     otherEnemy.transform.position = posA;
+
+                    // Debug.Log("Swapped due to opposite facing...");
+                     StartCoroutine(SwapCooldown());
+                 }
+
+
+             }
+         }
+     }*/
+
+   
+
+    private void OnTriggerStay2D(Collider2D collision)
     {
         if (collision.CompareTag("Direction"))
         {
@@ -34,47 +68,21 @@ public class DirectionEnemy : MonoBehaviour
                 {
                     enemy.isAllowRot = false;
                     otherEnmy.isAllowRot = false;
-                     Vector3 posA = enemy.transform.position;
-                    Vector3 posB = otherEnemy.transform.position;
-
-                    enemy.transform.position = posB;
-                    otherEnemy.transform.position = posA;
-
-                   // Debug.Log("Swapped due to opposite facing...");
-                    StartCoroutine(SwapCooldown());
-                }
-
-
-            }
-        }
-    }
-
-    /*private void OnTriggerEnter2D(Collider2D collision)
-    {
-        if (collision.CompareTag("Direction"))
-        {
-            DirectionEnemy dirEnemy = collision.GetComponent<DirectionEnemy>();
-            if (dirEnemy == null) return;
-
-            SharedPathFollower otherEnemy = dirEnemy.enemy;
-            if (otherEnemy == null) return;
-
-            if (!enemy.playerDetected)
-            {
-                if (gameObject.GetInstanceID() > otherEnemy.gameObject.GetInstanceID())
-                {
-                    // Swap positions
                     Vector3 posA = enemy.transform.position;
                     Vector3 posB = otherEnemy.transform.position;
 
                     enemy.transform.position = posB;
                     otherEnemy.transform.position = posA;
 
-                    Debug.Log("Swapped once on trigger enter...");
+                    // Debug.Log("Swapped due to opposite facing...");
+                    StartCoroutine(SwapCooldown());
+                    
                 }
+
+
             }
         }
-    }*/
+    }
 
 
     private bool swappedRecently = false;
