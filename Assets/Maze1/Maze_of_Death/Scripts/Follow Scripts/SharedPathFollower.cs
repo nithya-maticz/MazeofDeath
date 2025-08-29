@@ -308,7 +308,7 @@ public class SharedPathFollower : MonoBehaviour,IGetBlastTank
 
     public void TankBlastUpdate()
     {
-        Health = Health - 2;
+        Health = Health - 3;
 
         if (Health <= 0)
         {

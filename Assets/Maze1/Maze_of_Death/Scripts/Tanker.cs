@@ -12,7 +12,7 @@ public class Tanker : MonoBehaviour
     public GameObject blast;
     public CircleCollider2D colloider;
     public TankBlaster radius;
-
+    public GameObject shadow;
     void Start()
     {
         UpdateHealth();
@@ -51,11 +51,14 @@ public class Tanker : MonoBehaviour
             blast.SetActive(true);
             animator.SetTrigger("Blast");
             radius.gameObject.SetActive(true);
-           // radius.gameObject.SetActive(false);
+            // radius.gameObject.SetActive(false);
+           
         }
         else
         {
             animator.SetTrigger("Shoot");
         }
     }
+
+  
 }

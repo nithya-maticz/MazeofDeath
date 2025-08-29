@@ -34,4 +34,9 @@ public class AnimationHandle : MonoBehaviour
         Game_Manager.Instance.BombAnimattion();
     }
 
+    void TankBlast()
+    {
+
+    }
+
 }

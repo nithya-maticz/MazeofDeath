@@ -285,6 +285,7 @@ public class PlayerMovements : MonoBehaviour,IGetBlastTank
 
     public void TankBlastUpdate()
     {
+      
         Game_Manager.Instance.PlayerHealthCount -= 2;
         Game_Manager.Instance.UpdatePlayerHealth();
     }
