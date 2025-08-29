@@ -11,21 +11,9 @@ EditorBuildSettings:
   - enabled: 1
     path: Assets/Maze1/Maze_of_Death/Scenes/Lobby.unity
     guid: 03a0bd303676a0e47ae93e6abeb56667
-  - enabled: 0
-    path: Assets/Maze1/Maze_of_Death/Scenes/Game.unity
-    guid: fced26f62f019de4c813bddd86969085
   - enabled: 1
     path: Assets/maze Story Scene/Story.unity
     guid: 1cf05264a78905d4db6b7cbcea2a73b0
-  - enabled: 0
-    path: Assets/Maze1/loading.unity
-    guid: 75b8dd9a4a7ca574da53eb670454efa7
-  - enabled: 0
-    path: Assets/Maze1/Maze_of_Death/Scenes/Game1.unity
-    guid: fdbca7700f0d157498c69ebf71465830
-  - enabled: 0
-    path: Assets/Maze1/Maze_of_Death/Scenes/Game2.unity
-    guid: 9860fe75b9049ea4a9879956493bb336
   - enabled: 0
     path: Assets/Maze1/Maze_of_Death/Scenes/Game Level.unity
     guid: bcc209589834ee348b66c6371c872d85

@@ -51,7 +51,7 @@ MonoBehaviour:
   - {fileID: 4961835689284915402, guid: 631fd5632c2bf1446a9630b0659144c1, type: 3}
   - {fileID: 4961835689284915402, guid: 36cc355b24cc54b4781605cf2a5aa229, type: 3}
   - {fileID: 4961835689284915402, guid: b1b96c9cfdc262c4ba0fcdc14753e12c, type: 3}
-  - {fileID: 4138851552157072677, guid: 1799b1fd538d8644a99aa859ce99f5eb, type: 3}
+  - {fileID: 7291027354348203301, guid: 2513d77759d99f54e8790ed3b083f520, type: 3}
   - {fileID: 4961835689284915402, guid: 11e8e524f2cd33d42bea8e7a3f1e1674, type: 3}
   backgroundSprites:
   - {fileID: 21300000, guid: 08df51f69b019334ca5e55c148c670d3, type: 3}
