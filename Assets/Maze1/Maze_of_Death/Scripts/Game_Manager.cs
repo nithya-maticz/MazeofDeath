@@ -149,13 +149,13 @@ public class Game_Manager : MonoBehaviour
 
     public void SpawnPlayer(Vector3 worldPos)
     {
-        /* playerTransform.position = worldPos;
-         Instantiate(playerPrefab, playerTransform.transform);
-         SmoothFollowCamera.Instance.target = PlayerMovements.Instance.offSet;
-         BulletSpawner = PlayerMovements.Instance.bulletSpawn;
-         AutoAim = AutoAimOnly.Instance;*/
+        playerTransform.position = worldPos;
+        Instantiate(playerPrefab, playerTransform.transform);
+        SmoothFollowCamera.Instance.target = PlayerMovements.Instance.offSet;
+        BulletSpawner = PlayerMovements.Instance.bulletSpawn;
+        AutoAim = AutoAimOnly.Instance;
 
-        if (LobbyManager.currentCharacter == 1)
+        /*if (LobbyManager.currentCharacter == 1)
         {
             Debug.Log("Male");
             Instantiate(playerPrefab, worldPos, Quaternion.identity);
@@ -170,7 +170,7 @@ public class Game_Manager : MonoBehaviour
             SmoothFollowCamera.Instance.target = PlayerMovements.Instance.offSet;
             BulletSpawner = PlayerMovements.Instance.bulletSpawn;
             AutoAim = AutoAimOnly.Instance;
-        }
+        }*/
     }
 
 
@@ -221,14 +221,28 @@ public class Game_Manager : MonoBehaviour
         LevelUP();
     }
 
+    void GameOver()
+    {
+        LostPage.SetActive(true);
+        loseLevelTxt.text = "LEVEL " + LobbyManager.currentLevel.ToString();
+        Destroy(PlayerMovements.Instance.gameObject);
+        foreach (SharedPathFollower ene in Enemies)
+        {
+            Destroy(ene.gameObject);
+        }
+        foreach (ZombieDoor door in ZombieDoors)
+        {
+            Destroy(door.gameObject);
+        }
+    }
+
     public void UpdatePlayerHealth()
     {
         if(PlayerHealthCount <= 0)
         {
             HealthImage.gameObject.SetActive(true);
             HealthImage.sprite = HealthSprites[2];
-            LostPage.SetActive(true);
-            loseLevelTxt.text = "LEVEL " + LobbyManager.currentLevel.ToString();
+            GameOver();
             //Game Over
         }
         else

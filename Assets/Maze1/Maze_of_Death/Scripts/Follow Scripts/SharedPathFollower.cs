@@ -6,7 +6,7 @@ using UnityEngine.UI;
 
 [RequireComponent(typeof(Animator))]
 [RequireComponent(typeof(Rigidbody2D))]
-[RequireComponent(typeof(CapsuleCollider2D))] // ✅ Changed from CircleCollider2D
+[RequireComponent(typeof(CapsuleCollider2D))]
 public class SharedPathFollower : MonoBehaviour, IGetBlastTank
 {
     [Header("Movement Settings")]
@@ -38,9 +38,11 @@ public class SharedPathFollower : MonoBehaviour, IGetBlastTank
 
     private Animator animator;
     private Rigidbody2D rb;
-    private bool isCollidingWithPlayer = false;
-    private CapsuleCollider2D myCollider; // ✅ Changed
+    private CapsuleCollider2D myCollider;
 
+    private bool isCollidingWithPlayer = false;
+
+    [Header("Patrol Door")]
     public bool isPatrolDoor;
     public GameObject TargetLocked;
 
@@ -52,7 +54,7 @@ public class SharedPathFollower : MonoBehaviour, IGetBlastTank
     public Image FillHealth;
     private Coroutine hideHealthCoroutine;
 
-    Vector3 destination;
+    private Vector3 destination;
 
     public float defaultSpeed;
     public float maxSpeed;
@@ -63,15 +65,23 @@ public class SharedPathFollower : MonoBehaviour, IGetBlastTank
         animator = GetComponent<Animator>();
         myCollider = GetComponent<CapsuleCollider2D>();
 
-        // ✅ Setup Capsule Collider
+        // Capsule setup
         myCollider.direction = CapsuleDirection2D.Vertical;
         myCollider.isTrigger = false;
 
-        // ✅ Reset Rigidbody
+        // Rigidbody setup
         rb.linearVelocity = Vector2.zero;
         rb.angularVelocity = 0f;
 
-        defaultSpeed = Random.Range(0.25f, 0.75f);
+        if (isPatrolDoor)
+        {
+            defaultSpeed = 0.75f;
+        } 
+        else
+        {
+            defaultSpeed = Random.Range(0.25f, 0.65f);
+        }
+           
     }
 
     private void Start()
@@ -89,21 +99,20 @@ public class SharedPathFollower : MonoBehaviour, IGetBlastTank
         }
 
         lastTargetPosition = patrolPoints[patrolIndex].position;
+        if (isPatrolDoor)
+        {
+            defaultSpeed = 0.75f;
+        }
         StartCoroutine(UpdatePathRoutine());
     }
 
-    private void OnDisable()
-    {
-        StopAllCoroutines();
-    }
-
-    private void OnDestroy()
-    {
-        StopAllCoroutines();
-    }
+    private void OnDisable() => StopAllCoroutines();
+    private void OnDestroy() => StopAllCoroutines();
 
     private IEnumerator UpdatePathRoutine()
     {
+        var wait = new WaitForSeconds(pathUpdateInterval);
+
         while (true)
         {
             bool visible = IsPlayerVisibleInBack();
@@ -129,18 +138,18 @@ public class SharedPathFollower : MonoBehaviour, IGetBlastTank
                 rb.freezeRotation = true;
                 isChasingPlayer = true;
                 destination = player.position;
-                //speed = 1.5f;
                 speed = maxSpeed;
                 pathUpdateInterval = 0.15f;
+                wait = new WaitForSeconds(pathUpdateInterval);
             }
             else
             {
                 rb.freezeRotation = false;
                 isChasingPlayer = false;
                 destination = patrolPoints[patrolIndex].position;
-                //speed = 0.5f;
                 speed = defaultSpeed;
                 pathUpdateInterval = 0.25f;
+                wait = new WaitForSeconds(pathUpdateInterval);
             }
 
             if (!isFollowing || Vector3.Distance(destination, lastTargetPosition) > repathThreshold)
@@ -149,7 +158,7 @@ public class SharedPathFollower : MonoBehaviour, IGetBlastTank
                 PathManager.Instance.RequestPath(transform.position, destination, OnPathFound);
             }
 
-            yield return new WaitForSeconds(pathUpdateInterval);
+            yield return wait;
         }
     }
 
@@ -163,15 +172,14 @@ public class SharedPathFollower : MonoBehaviour, IGetBlastTank
 
     private void FixedUpdate()
     {
-        if (isCollidingWithPlayer) return;
-        if (!isFollowing || path == null || currentIndex >= path.Count) return;
+        if (isCollidingWithPlayer || !isFollowing || path == null || currentIndex >= path.Count) return;
 
         Vector3 targetPoint = path[currentIndex];
         Vector3 direction = (targetPoint - transform.position).normalized;
 
         rb.MovePosition(rb.position + (Vector2)(direction * speed * Time.fixedDeltaTime));
 
-        if (direction != Vector3.zero && isAllowRot)
+        if (isAllowRot && direction.sqrMagnitude > 0.001f)
         {
             float angle = Mathf.Atan2(direction.y, direction.x) * Mathf.Rad2Deg;
             Quaternion targetRotation = Quaternion.Euler(0, 0, angle + 180f);
@@ -192,21 +200,20 @@ public class SharedPathFollower : MonoBehaviour, IGetBlastTank
 
     public bool IsPlayerVisibleInBack()
     {
-        if (player == null) return false;
+        if (!player) return false;
 
         Vector3 origin = transform.position;
         Vector3 toPlayer = player.position - origin;
-        float distanceToPlayer = toPlayer.magnitude;
 
-        if (distanceToPlayer > detectionRange) return false;
+        if (toPlayer.magnitude > detectionRange) return false;
 
         Vector3 dirToPlayer = toPlayer.normalized;
         Vector3 back = -transform.right;
-        float angle = Vector3.Angle(back, dirToPlayer);
-        if (angle > rearViewAngle * 0.5f) return false;
+
+        if (Vector3.Angle(back, dirToPlayer) > rearViewAngle * 0.5f) return false;
 
         RaycastHit2D hit = Physics2D.Raycast(origin, dirToPlayer, detectionRange, playerMask | obstacleMask);
-        return hit.collider != null && hit.collider.CompareTag("Player");
+        return hit.collider && hit.collider.CompareTag("Player");
     }
 
     private void OnCollisionEnter2D(Collision2D collision)
@@ -228,39 +235,54 @@ public class SharedPathFollower : MonoBehaviour, IGetBlastTank
                 playerLostTime = Time.time + 10f;
             }
         }
-        else if (collision.collider.CompareTag("enemy"))
+        else if (collision.collider.CompareTag("enemy") && !playerDetected)
         {
-            if(!playerDetected)
+            /*SharedPathFollower otherEnemy = collision.collider.GetComponent<SharedPathFollower>();
+            if (!otherEnemy) return;
+
+            Vector2 myDir = transform.right;
+            Vector2 otherDir = otherEnemy.transform.right;
+
+            if (Vector2.Dot(myDir, otherDir) < -0.8f)
             {
-                SharedPathFollower otherEnemy = collision.collider.GetComponent<SharedPathFollower>();
-                if (otherEnemy == null) return;
+                ShuffleList(patrolPoints);
+                patrolIndex = 0;
 
-                // ✅ Check if facing opposite
-                Vector2 myDir = transform.right;
-                Vector2 otherDir = otherEnemy.transform.right;
-
-                if (Vector2.Dot(myDir, otherDir) < -0.8f)
-                {
-                    // Shuffle patrols for both enemies
-                    ShuffleList(patrolPoints);
-                    patrolIndex = 0;
-
-                    otherEnemy.ShuffleList(otherEnemy.patrolPoints);
-                    otherEnemy.patrolIndex = 0;
-                }
-
-                // ✅ Push slightly apart to avoid overlap
-                Vector2 pushDir = (transform.position - collision.transform.position).normalized;
-                rb.MovePosition(rb.position + pushDir * 0.2f);
-                CancelInvoke("Freeze");
-                Invoke("Freeze", 4f);
+                otherEnemy.ShuffleList(otherEnemy.patrolPoints);
+                otherEnemy.patrolIndex = 0;
             }
-            
-            
+
+            Vector2 pushDir = (transform.position - collision.transform.position).normalized;
+            rb.MovePosition(rb.position + pushDir * 0.2f);
+
+            CancelInvoke(nameof(Freeze));
+            Invoke(nameof(Freeze), 3f);*/
+            SharedPathFollower otherEnemy = collision.collider.GetComponent<SharedPathFollower>();
+            if (otherEnemy == null) return;
+
+            // ✅ Check if facing opposite
+            Vector2 myDir = transform.right;
+            Vector2 otherDir = otherEnemy.transform.right;
+
+            if (Vector2.Dot(myDir, otherDir) < -0.8f)
+            {
+                // Shuffle patrols for both enemies
+                ShuffleList(patrolPoints);
+                patrolIndex = 0;
+
+                otherEnemy.ShuffleList(otherEnemy.patrolPoints);
+                otherEnemy.patrolIndex = 0;
+            }
+
+            // ✅ Push slightly apart to avoid overlap
+            Vector2 pushDir = (transform.position - collision.transform.position).normalized;
+            rb.MovePosition(rb.position + pushDir * 0.2f);
+            CancelInvoke("Freeze");
+            Invoke("Freeze", 4f);
         }
     }
 
-    void Freeze()
+    private void Freeze()
     {
         rb.freezeRotation = true;
         rb.freezeRotation = false;
@@ -278,19 +300,18 @@ public class SharedPathFollower : MonoBehaviour, IGetBlastTank
 
     private void OnCollisionExit2D(Collision2D collision)
     {
-        if (collision.collider.CompareTag("Player"))
-        {
-            isCollidingWithPlayer = false;
-            rb.constraints = RigidbodyConstraints2D.FreezeRotation;
-            animator.SetTrigger("Walk");
-        }
+        if (!collision.collider.CompareTag("Player")) return;
+
+        isCollidingWithPlayer = false;
+        rb.constraints = RigidbodyConstraints2D.FreezeRotation;
+        animator.SetTrigger("Walk");
     }
 
     private void OnTriggerEnter2D(Collider2D collision)
     {
         if (collision.CompareTag("bomb"))
         {
-            GameObject blood = Instantiate(Game_Manager.Instance.BloodPrefab, transform.position, Quaternion.identity);
+            Instantiate(Game_Manager.Instance.BloodPrefab, transform.position, Quaternion.identity);
             Game_Manager.Instance.Enemies.Remove(this);
             Destroy(gameObject);
             Game_Manager.Instance.EnemyCount();
@@ -302,7 +323,7 @@ public class SharedPathFollower : MonoBehaviour, IGetBlastTank
 
             if (Health <= 0)
             {
-                GameObject blood = Instantiate(Game_Manager.Instance.BloodPrefab, transform.position, Quaternion.identity);
+                Instantiate(Game_Manager.Instance.BloodPrefab, transform.position, Quaternion.identity);
                 Game_Manager.Instance.Enemies.Remove(this);
                 Destroy(gameObject);
                 Game_Manager.Instance.EnemyCount();
@@ -325,20 +346,19 @@ public class SharedPathFollower : MonoBehaviour, IGetBlastTank
         }
     }
 
-    void UpdateHealthUI()
-    {
+    private void UpdateHealthUI() =>
         FillHealth.fillAmount = (float)Health / maxHealth;
-    }
 
-    IEnumerator HideHealthAfterDelay()
+    private IEnumerator HideHealthAfterDelay()
     {
         yield return new WaitForSeconds(1f);
         HealthParent.SetActive(false);
+        hideHealthCoroutine = null;
     }
 
     private void OnDrawGizmosSelected()
     {
-        if (player == null) return;
+        if (!player) return;
 
         Vector3 origin = transform.position;
         Vector3 back = -transform.right;
@@ -364,19 +384,16 @@ public class SharedPathFollower : MonoBehaviour, IGetBlastTank
         for (int i = 0; i < list.Count; i++)
         {
             int randomIndex = Random.Range(i, list.Count);
-            Transform temp = list[i];
-            list[i] = list[randomIndex];
-            list[randomIndex] = temp;
+            (list[i], list[randomIndex]) = (list[randomIndex], list[i]);
         }
     }
 
-    void Attack()
+    private void Attack()
     {
-        if (isCollidingWithPlayer)
-        {
-            Game_Manager.Instance.PlayerHealthCount -= 1;
-            Game_Manager.Instance.UpdatePlayerHealth();
-        }
+        if (!isCollidingWithPlayer) return;
+
+        Game_Manager.Instance.PlayerHealthCount -= 1;
+        Game_Manager.Instance.UpdatePlayerHealth();
     }
 
     public void TankBlastUpdate()
@@ -385,7 +402,7 @@ public class SharedPathFollower : MonoBehaviour, IGetBlastTank
 
         if (Health <= 0)
         {
-            GameObject blood = Instantiate(Game_Manager.Instance.BloodPrefab, transform.position, Quaternion.identity);
+            Instantiate(Game_Manager.Instance.BloodPrefab, transform.position, Quaternion.identity);
             Game_Manager.Instance.Enemies.Remove(this);
             Destroy(gameObject);
             Game_Manager.Instance.EnemyCount();
