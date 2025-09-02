@@ -54,6 +54,9 @@ public class SharedPathFollower : MonoBehaviour, IGetBlastTank
 
     Vector3 destination;
 
+    public float defaultSpeed;
+    public float maxSpeed;
+
     private void Awake()
     {
         rb = GetComponent<Rigidbody2D>();
@@ -67,6 +70,8 @@ public class SharedPathFollower : MonoBehaviour, IGetBlastTank
         // ✅ Reset Rigidbody
         rb.linearVelocity = Vector2.zero;
         rb.angularVelocity = 0f;
+
+        defaultSpeed = Random.Range(0.25f, 0.75f);
     }
 
     private void Start()
@@ -123,14 +128,16 @@ public class SharedPathFollower : MonoBehaviour, IGetBlastTank
             {
                 isChasingPlayer = true;
                 destination = player.position;
-                speed = 1.5f;
+                //speed = 1.5f;
+                speed = maxSpeed;
                 pathUpdateInterval = 0.15f;
             }
             else
             {
                 isChasingPlayer = false;
                 destination = patrolPoints[patrolIndex].position;
-                speed = 0.5f;
+                //speed = 0.5f;
+                speed = defaultSpeed;
                 pathUpdateInterval = 0.25f;
             }
 
@@ -221,28 +228,32 @@ public class SharedPathFollower : MonoBehaviour, IGetBlastTank
         }
         else if (collision.collider.CompareTag("enemy"))
         {
-            SharedPathFollower otherEnemy = collision.collider.GetComponent<SharedPathFollower>();
-            if (otherEnemy == null) return;
-
-            // ✅ Check if facing opposite
-            Vector2 myDir = transform.right;
-            Vector2 otherDir = otherEnemy.transform.right;
-
-            if (Vector2.Dot(myDir, otherDir) < -0.8f)
+            if(!playerDetected)
             {
-                // Shuffle patrols for both enemies
-                ShuffleList(patrolPoints);
-                patrolIndex = 0;
+                SharedPathFollower otherEnemy = collision.collider.GetComponent<SharedPathFollower>();
+                if (otherEnemy == null) return;
 
-                otherEnemy.ShuffleList(otherEnemy.patrolPoints);
-                otherEnemy.patrolIndex = 0;
+                // ✅ Check if facing opposite
+                Vector2 myDir = transform.right;
+                Vector2 otherDir = otherEnemy.transform.right;
+
+                if (Vector2.Dot(myDir, otherDir) < -0.8f)
+                {
+                    // Shuffle patrols for both enemies
+                    ShuffleList(patrolPoints);
+                    patrolIndex = 0;
+
+                    otherEnemy.ShuffleList(otherEnemy.patrolPoints);
+                    otherEnemy.patrolIndex = 0;
+                }
+
+                // ✅ Push slightly apart to avoid overlap
+                Vector2 pushDir = (transform.position - collision.transform.position).normalized;
+                rb.MovePosition(rb.position + pushDir * 0.2f);
+                CancelInvoke("Freeze");
+                Invoke("Freeze", 4f);
             }
-
-            // ✅ Push slightly apart to avoid overlap
-            Vector2 pushDir = (transform.position - collision.transform.position).normalized;
-            rb.MovePosition(rb.position + pushDir * 0.2f);
-            CancelInvoke("Freeze");
-            Invoke("Freeze", 4f);
+            
             
         }
     }

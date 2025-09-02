@@ -155,6 +155,8 @@ MonoBehaviour:
   maxHealth: 3
   HealthParent: {fileID: 5524638139309803725}
   FillHealth: {fileID: 8219686356089263212}
+  defaultSpeed: 0
+  maxSpeed: 1.5
 --- !u!58 &4042242603920037692
 CircleCollider2D:
   m_ObjectHideFlags: 0
