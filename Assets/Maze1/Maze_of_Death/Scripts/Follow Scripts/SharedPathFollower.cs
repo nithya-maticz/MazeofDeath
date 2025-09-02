@@ -6,8 +6,8 @@ using UnityEngine.UI;
 
 [RequireComponent(typeof(Animator))]
 [RequireComponent(typeof(Rigidbody2D))]
-[RequireComponent(typeof(CircleCollider2D))]
-public class SharedPathFollower : MonoBehaviour,IGetBlastTank
+[RequireComponent(typeof(CapsuleCollider2D))] // ✅ Changed from CircleCollider2D
+public class SharedPathFollower : MonoBehaviour, IGetBlastTank
 {
     [Header("Movement Settings")]
     public float speed = 3f;
@@ -19,7 +19,7 @@ public class SharedPathFollower : MonoBehaviour,IGetBlastTank
 
     [Header("Patrol Settings")]
     public List<Transform> patrolPoints;
-    private int patrolIndex = 0;
+    public int patrolIndex = 0;
 
     [Header("Detection Settings")]
     public Transform player;
@@ -39,7 +39,7 @@ public class SharedPathFollower : MonoBehaviour,IGetBlastTank
     private Animator animator;
     private Rigidbody2D rb;
     private bool isCollidingWithPlayer = false;
-    private CircleCollider2D myCollider;
+    private CapsuleCollider2D myCollider; // ✅ Changed
 
     public bool isPatrolDoor;
     public GameObject TargetLocked;
@@ -53,16 +53,20 @@ public class SharedPathFollower : MonoBehaviour,IGetBlastTank
     private Coroutine hideHealthCoroutine;
 
     Vector3 destination;
+
     private void Awake()
     {
         rb = GetComponent<Rigidbody2D>();
         animator = GetComponent<Animator>();
-        myCollider = GetComponent<CircleCollider2D>();
+        myCollider = GetComponent<CapsuleCollider2D>();
 
-        // ✅ Reset Rigidbody on scene load
+        // ✅ Setup Capsule Collider
+        myCollider.direction = CapsuleDirection2D.Vertical;
+        myCollider.isTrigger = false;
+
+        // ✅ Reset Rigidbody
         rb.linearVelocity = Vector2.zero;
         rb.angularVelocity = 0f;
-        rb.constraints = RigidbodyConstraints2D.FreezeRotation;
     }
 
     private void Start()
@@ -85,19 +89,18 @@ public class SharedPathFollower : MonoBehaviour,IGetBlastTank
 
     private void OnDisable()
     {
-        StopAllCoroutines(); // ✅ Stop path coroutine on scene reload
+        StopAllCoroutines();
     }
 
     private void OnDestroy()
     {
-        StopAllCoroutines(); // ✅ Safety net
+        StopAllCoroutines();
     }
 
     private IEnumerator UpdatePathRoutine()
     {
         while (true)
         {
-           // Vector3 destination;
             bool visible = IsPlayerVisibleInBack();
 
             if (visible)
@@ -157,10 +160,8 @@ public class SharedPathFollower : MonoBehaviour,IGetBlastTank
         Vector3 targetPoint = path[currentIndex];
         Vector3 direction = (targetPoint - transform.position).normalized;
 
-        // ✅ Physics-based movement (no jitter)
         rb.MovePosition(rb.position + (Vector2)(direction * speed * Time.fixedDeltaTime));
 
-        // ✅ Rotation
         if (direction != Vector3.zero && isAllowRot)
         {
             float angle = Mathf.Atan2(direction.y, direction.x) * Mathf.Rad2Deg;
@@ -168,7 +169,6 @@ public class SharedPathFollower : MonoBehaviour,IGetBlastTank
             transform.rotation = Quaternion.RotateTowards(transform.rotation, targetRotation, rotationSpeed * Time.deltaTime);
         }
 
-        // ✅ Path progression
         if (Vector3.Distance(transform.position, targetPoint) < stopThreshold)
         {
             currentIndex++;
@@ -207,12 +207,10 @@ public class SharedPathFollower : MonoBehaviour,IGetBlastTank
             isCollidingWithPlayer = true;
             rb.constraints = RigidbodyConstraints2D.FreezeAll;
 
-            // Calculate direction to player
             Vector3 dirToPlayer = (collision.transform.position - transform.position).normalized;
             float angle = Mathf.Atan2(dirToPlayer.y, dirToPlayer.x) * Mathf.Rad2Deg;
             Quaternion targetRot = Quaternion.Euler(0, 0, angle + 180f);
 
-            // Start rotation coroutine instead of attacking immediately
             StartCoroutine(RotateThenAttack(targetRot));
 
             if (!playerDetected)
@@ -221,28 +219,56 @@ public class SharedPathFollower : MonoBehaviour,IGetBlastTank
                 playerLostTime = Time.time + 10f;
             }
         }
+        else if (collision.collider.CompareTag("enemy"))
+        {
+            SharedPathFollower otherEnemy = collision.collider.GetComponent<SharedPathFollower>();
+            if (otherEnemy == null) return;
+
+            // ✅ Check if facing opposite
+            Vector2 myDir = transform.right;
+            Vector2 otherDir = otherEnemy.transform.right;
+
+            if (Vector2.Dot(myDir, otherDir) < -0.8f)
+            {
+                // Shuffle patrols for both enemies
+                ShuffleList(patrolPoints);
+                patrolIndex = 0;
+
+                otherEnemy.ShuffleList(otherEnemy.patrolPoints);
+                otherEnemy.patrolIndex = 0;
+            }
+
+            // ✅ Push slightly apart to avoid overlap
+            Vector2 pushDir = (transform.position - collision.transform.position).normalized;
+            rb.MovePosition(rb.position + pushDir * 0.2f);
+            CancelInvoke("Freeze");
+            Invoke("Freeze", 4f);
+            
+        }
+    }
+
+    void Freeze()
+    {
+        rb.freezeRotation = true;
+        rb.freezeRotation = false;
     }
 
     private IEnumerator RotateThenAttack(Quaternion targetRot)
     {
-        // Smoothly rotate until almost facing player
         while (Quaternion.Angle(transform.rotation, targetRot) > 5f)
         {
             transform.rotation = Quaternion.RotateTowards(transform.rotation, targetRot, rotationSpeed * Time.deltaTime);
             yield return null;
         }
-
-        // ✅ Once facing player, trigger attack
         animator.SetTrigger("Attack");
     }
-
 
     private void OnCollisionExit2D(Collision2D collision)
     {
         if (collision.collider.CompareTag("Player"))
         {
             isCollidingWithPlayer = false;
-            rb.constraints = RigidbodyConstraints2D.FreezeRotation; // ✅ Always restore safe state
+            rb.constraints = RigidbodyConstraints2D.FreezeRotation;
             animator.SetTrigger("Walk");
         }
     }
@@ -277,6 +303,7 @@ public class SharedPathFollower : MonoBehaviour,IGetBlastTank
                 StopCoroutine(hideHealthCoroutine);
 
             hideHealthCoroutine = StartCoroutine(HideHealthAfterDelay());
+
             if (!playerDetected)
             {
                 playerDetected = true;
@@ -319,7 +346,7 @@ public class SharedPathFollower : MonoBehaviour,IGetBlastTank
             Gizmos.DrawRay(origin, toPlayer.normalized * toPlayer.magnitude);
     }
 
-    void ShuffleList(List<Transform> list)
+    public void ShuffleList(List<Transform> list)
     {
         for (int i = 0; i < list.Count; i++)
         {
@@ -341,7 +368,7 @@ public class SharedPathFollower : MonoBehaviour,IGetBlastTank
 
     public void TankBlastUpdate()
     {
-        Health = Health - 3;
+        Health -= 3;
 
         if (Health <= 0)
         {
