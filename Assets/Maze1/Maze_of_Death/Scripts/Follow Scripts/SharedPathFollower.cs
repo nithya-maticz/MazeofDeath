@@ -126,6 +126,7 @@ public class SharedPathFollower : MonoBehaviour, IGetBlastTank
             }
             else if (playerDetected)
             {
+                rb.freezeRotation = true;
                 isChasingPlayer = true;
                 destination = player.position;
                 //speed = 1.5f;
@@ -134,6 +135,7 @@ public class SharedPathFollower : MonoBehaviour, IGetBlastTank
             }
             else
             {
+                rb.freezeRotation = false;
                 isChasingPlayer = false;
                 destination = patrolPoints[patrolIndex].position;
                 //speed = 0.5f;
