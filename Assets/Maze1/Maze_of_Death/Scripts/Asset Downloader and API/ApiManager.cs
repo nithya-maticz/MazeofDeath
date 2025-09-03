@@ -7,7 +7,8 @@ using UnityEngine.Networking;
 public class ApiManager : MonoBehaviour
 {
     public static ApiManager Instance;
-    public static string baseURL = "https://mazetest.onrender.com";
+    public static string baseURL = "https://backend-mazeod.maticz.in";
+    public static string secretKey = "1234567812345678";
 
     [Header("Level Data")]
     public LevelRootWrapper allLevels;
@@ -19,7 +20,7 @@ public class ApiManager : MonoBehaviour
     }
     void Start()
     {
-        LobbyManager.currentLevel = 15;
+        //LobbyManager.currentLevel = 15;
         GetLevels();
     }
 
@@ -35,13 +36,14 @@ public class ApiManager : MonoBehaviour
     }
     IEnumerator GetLevelsData()
     {
-        using (UnityWebRequest webRequest = UnityWebRequest.Get(baseURL + "/api/levels/?level=" + LobbyManager.currentLevel))
+        using (UnityWebRequest webRequest = UnityWebRequest.Get(baseURL + "/api/user/getLevels?level=" + LobbyManager.currentLevel))
         {
 
             // webRequest.SetRequestHeader("Authorization", "Bearer " + localData.token);
 
 
             yield return webRequest.SendWebRequest();
+
 
 
             if (webRequest.result == UnityWebRequest.Result.ConnectionError || webRequest.result == UnityWebRequest.Result.ProtocolError)
@@ -51,7 +53,7 @@ public class ApiManager : MonoBehaviour
             }
             else
             {
-                string rawJson = webRequest.downloadHandler.text;
+                /*string rawJson = webRequest.downloadHandler.text;
 
                 // Wrap the raw array in an object so JsonUtility can parse it
                 string wrappedJson = "{\"items\":" + rawJson + "}";
@@ -70,11 +72,34 @@ public class ApiManager : MonoBehaviour
                 else
                 {
                     Debug.LogError("No levels found in JSON!");
+                }*/
+                string json = webRequest.downloadHandler.text;
+                print("Get Level : " + json);
+                Status response = JsonUtility.FromJson<Status>(json);
+
+
+                if (response.status)
+                {
+                    
+                    
+                    string clean = CleanBase64String(response.data);
+                    string decrypt = AESUtility.Decrypt(clean, secretKey);
+                    LevelDataList data = JsonUtility.FromJson<LevelDataList>(decrypt);
+                    levelData = new LevelEntry();
+                    levelData.level = data.data[0].level;
+                    levelData._id = data.data[0]._id;
+                    levelData.data = data.data[0].data;
+                    PathManager.Instance.ClearCache();
+                    TilemapPathfinding.instance.LoadBlockedPrefabs();
+                    GridLoader.Instance.patrolPoints = levelData.data.patrolPoints;
+                    GridLoader.Instance.playerSpawn = levelData.data.playerSpawn;
+                    FolderDownloader.Instance.StartDownLoad();
+
+
+
                 }
 
-                /*allLevels = wrapper;
-                List<LevelRoot> levels = wrapper.items;
-                GetMyLevel();*/
+
             }
         }
     }
@@ -94,6 +119,18 @@ public class ApiManager : MonoBehaviour
                 break;
             }
         }
+    }
+
+    public static string CleanBase64String(string base64String)
+    {
+        // Remove spaces, line breaks, and other non-Base64 characters
+        base64String = base64String.Trim();
+        base64String = base64String.Replace(" ", "")
+                                    .Replace("\n", "")
+                                    .Replace("\r", "")
+                                    .Replace("\"", "")
+                                    .Replace("'", "");
+        return base64String;
     }
 
 }
@@ -156,4 +193,32 @@ public class LevelEntryPayload
     public int level;
     public LevelData data = new LevelData();
 }
+
+
+//---------------------------
+[Serializable]
+public class Status
+{
+    public bool status;
+    public string message;
+    public string data;
+}
+
+[Serializable]
+public class LevelDataList
+{
+    public List<Level> data;
+}
+
+[Serializable]
+public class Level
+{
+    public int level;
+    public string _id;
+    public LevelData data;
+    public string createdAt;
+    public string updatedAt;
+}
+
+
 
