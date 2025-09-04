@@ -93,7 +93,19 @@ public class ApiManager : MonoBehaviour
                     TilemapPathfinding.instance.LoadBlockedPrefabs();
                     GridLoader.Instance.patrolPoints = levelData.data.patrolPoints;
                     GridLoader.Instance.playerSpawn = levelData.data.playerSpawn;
-                    FolderDownloader.Instance.StartDownLoad();
+
+                    if(LobbyManager.loadedLevel != LobbyManager.currentLevel)
+                    {
+                        FolderDownloader.Instance.StartDownLoad();
+                    }
+                    else 
+                    {
+                        GridLoader.Instance.bgSprite = FolderDownloader.bgSprite;
+                        GridLoader.Instance.doorBgSprite = FolderDownloader.doorSprite;
+                        
+                        GridLoader.Instance.LoadLevel();
+                    }
+                   
 
 
 

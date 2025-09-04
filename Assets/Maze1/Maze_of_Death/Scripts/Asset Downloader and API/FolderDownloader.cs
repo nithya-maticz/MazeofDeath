@@ -124,6 +124,8 @@ public class FolderDownloader : MonoBehaviour
     public static string S3Url = "https://mazeofdeath.s3.ap-south-1.amazonaws.com/ASSETS";
 
     public Sprite assignedImage;
+    public static Sprite bgSprite;
+    public static Sprite doorSprite;
     //string url = S3Url + "/Level"+ LevelController.Instance.selectedLevel + "/"+assetName[i] + ext;
 
     private void Awake()
@@ -163,10 +165,12 @@ public class FolderDownloader : MonoBehaviour
                     if(assetName[i] == "101")
                     {
                         GridLoader.Instance.doorBgSprite = assignedImage;
+                        doorSprite = assignedImage;
                     }
                     else if(assetName[i] == "bg")
                     {
                         GridLoader.Instance.bgSprite = assignedImage;
+                        bgSprite = assignedImage;
                     }
                     break; // ✅ stop trying other extensions
                 }
@@ -179,6 +183,8 @@ public class FolderDownloader : MonoBehaviour
 
            
         }
+
+        LobbyManager.loadedLevel = LobbyManager.currentLevel;
 
         if (SpriteAssigner.Instance != null)
             SpriteAssigner.Instance.AssignData();

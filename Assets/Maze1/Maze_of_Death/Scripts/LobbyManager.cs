@@ -9,6 +9,7 @@ public class LobbyManager : MonoBehaviour
 {
     public static LobbyManager Instance;
     public static int currentLevel;
+    public static int loadedLevel;
     public static bool OnTutorial;
     public static bool OnRetry;
     public bool IsNewUser;
