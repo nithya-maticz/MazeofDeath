@@ -98,6 +98,10 @@ public class Game_Manager : MonoBehaviour
     [Header("MATERIAL")]
     public Material litMat;
 
+    [Header("Zombie Patrol")]
+    public List<PatrolAreas> patrolAreas;
+    public int currentPatrolId;
+
     private void Awake()
     {
         if (Instance != null && Instance != this)
@@ -107,6 +111,7 @@ public class Game_Manager : MonoBehaviour
         }
 
         Instance = this;
+        currentPatrolId = 1;
        /* Application.targetFrameRate = 60;
         QualitySettings.vSyncCount = 0;*/
     }
@@ -602,6 +607,30 @@ public class Game_Manager : MonoBehaviour
 );
         Invoke("DestoryBomb", 7f);
     }
+
+    public void GeneratePatrolAreas()
+    {
+        patrolAreas = new List<PatrolAreas>();
+        Debug.Log("Started Generate....");
+        int id = 1;
+        for (int i = 0; i < PatrolPoints.Count; i += 2)
+        {
+            PatrolAreas area = new PatrolAreas();
+            area._id = id++;
+            area.isOccupied = false;
+
+            // Add 2 points (if available)
+            if (i < PatrolPoints.Count)
+                area.patrolPoints.Add(PatrolPoints[i]);
+
+            if (i + 1 < PatrolPoints.Count)
+                area.patrolPoints.Add(PatrolPoints[i + 1]);
+
+            patrolAreas.Add(area);
+        }
+        Debug.Log("Ended Generate....");
+        Debug.Log($"Created {patrolAreas.Count} patrol areas.");
+    }
 }
 
 
@@ -611,4 +640,12 @@ public enum TilemapType
     Walls,
     Ground,
     Obstacles
+}
+
+[Serializable]
+public class PatrolAreas
+{
+    public int _id;
+    public List<Transform> patrolPoints = new List<Transform>();
+    public bool isOccupied;
 }

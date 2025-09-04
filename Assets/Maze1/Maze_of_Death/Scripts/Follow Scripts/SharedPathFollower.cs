@@ -59,6 +59,8 @@ public class SharedPathFollower : MonoBehaviour, IGetBlastTank
     public float defaultSpeed;
     public float maxSpeed;
 
+    public PatrolAreas patrolArea;
+
     private void Awake()
     {
         rb = GetComponent<Rigidbody2D>();
@@ -75,11 +77,11 @@ public class SharedPathFollower : MonoBehaviour, IGetBlastTank
 
         if (isPatrolDoor)
         {
-            defaultSpeed = 0.75f;
+            defaultSpeed = 0.5f;
         } 
         else
         {
-            defaultSpeed = Random.Range(0.25f, 0.65f);
+            defaultSpeed = 0.5f;
         }
            
     }
@@ -92,11 +94,11 @@ public class SharedPathFollower : MonoBehaviour, IGetBlastTank
         if (PlayerMovements.Instance != null)
             player = PlayerMovements.Instance.transform;
 
-        if (!isPatrolDoor)
+       /* if (!isPatrolDoor)
         {
             patrolPoints = new List<Transform>(Game_Manager.Instance.PatrolPoints);
             ShuffleList(patrolPoints);
-        }
+        }*/
 
         lastTargetPosition = patrolPoints[patrolIndex].position;
         if (isPatrolDoor)
@@ -313,6 +315,14 @@ public class SharedPathFollower : MonoBehaviour, IGetBlastTank
         {
             Instantiate(Game_Manager.Instance.BloodPrefab, transform.position, Quaternion.identity);
             Game_Manager.Instance.Enemies.Remove(this);
+            for (int i = 0; i < Game_Manager.Instance.patrolAreas.Count; i++)
+            {
+                if (Game_Manager.Instance.patrolAreas[i]._id == patrolArea._id)
+                {
+                    Game_Manager.Instance.patrolAreas[i].isOccupied = false;
+                    break;
+                }
+            }
             Destroy(gameObject);
             Game_Manager.Instance.EnemyCount();
         }
@@ -325,6 +335,14 @@ public class SharedPathFollower : MonoBehaviour, IGetBlastTank
             {
                 Instantiate(Game_Manager.Instance.BloodPrefab, transform.position, Quaternion.identity);
                 Game_Manager.Instance.Enemies.Remove(this);
+                for (int i = 0; i < Game_Manager.Instance.patrolAreas.Count; i++)
+                {
+                    if (Game_Manager.Instance.patrolAreas[i]._id == patrolArea._id)
+                    {
+                        Game_Manager.Instance.patrolAreas[i].isOccupied = false;
+                        break;
+                    }
+                }
                 Destroy(gameObject);
                 Game_Manager.Instance.EnemyCount();
                 return;
@@ -404,6 +422,14 @@ public class SharedPathFollower : MonoBehaviour, IGetBlastTank
         {
             Instantiate(Game_Manager.Instance.BloodPrefab, transform.position, Quaternion.identity);
             Game_Manager.Instance.Enemies.Remove(this);
+            for (int i = 0; i < Game_Manager.Instance.patrolAreas.Count; i++)
+            {
+                if (Game_Manager.Instance.patrolAreas[i]._id == patrolArea._id)
+                {
+                    Game_Manager.Instance.patrolAreas[i].isOccupied = false;
+                    break;
+                }
+            }
             Destroy(gameObject);
             Game_Manager.Instance.EnemyCount();
             return;

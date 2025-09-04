@@ -55,14 +55,47 @@ public class ZombieDoor : MonoBehaviour
            
             if (!isClosed)
             {
-                if(Game_Manager.Instance.Enemies.Count <= 8)
+                if(Game_Manager.Instance.Enemies.Count <= 9)
                 {
+                    bool isget = false;
                     GameObject enemyPrefab = Instantiate(Game_Manager.Instance.EnemyPrefab, SpawnPoint);
                     Game_Manager.Instance.Enemies.Add(enemyPrefab.GetComponent<SharedPathFollower>());
                     Game_Manager.Instance.EnemyCount();
+                    for(int i = 0; i < Game_Manager.Instance.patrolAreas.Count; i++)
+                    {
+                        if (Game_Manager.Instance.patrolAreas[i]._id == Game_Manager.Instance.currentPatrolId)
+                        {
+                            if(!Game_Manager.Instance.patrolAreas[i].isOccupied)
+                            {
+                                enemyPrefab.GetComponent<SharedPathFollower>().patrolPoints = Game_Manager.Instance.patrolAreas[i].patrolPoints;
+                                enemyPrefab.GetComponent<SharedPathFollower>().patrolArea = Game_Manager.Instance.patrolAreas[i];
+                                Game_Manager.Instance.patrolAreas[i].isOccupied = true;
+                                isget = true;
+                                Game_Manager.Instance.currentPatrolId++;
+                                break;
+                            }
+                            
+                        }
+                    }
+
+                    if(!isget)
+                    {
+                        for (int i = 0; i < Game_Manager.Instance.patrolAreas.Count; i++)
+                        {
+                            if (!Game_Manager.Instance.patrolAreas[i].isOccupied)
+                            {
+                                enemyPrefab.GetComponent<SharedPathFollower>().patrolPoints = Game_Manager.Instance.patrolAreas[i].patrolPoints;
+                                enemyPrefab.GetComponent<SharedPathFollower>().patrolArea = Game_Manager.Instance.patrolAreas[i];
+                                Game_Manager.Instance.patrolAreas[i].isOccupied = true;
+                                break;
+                            }
+                        }
+                    }
                 }
             }
             yield return new WaitForSeconds(waitTime/2);
         }
     }
+
+
 }

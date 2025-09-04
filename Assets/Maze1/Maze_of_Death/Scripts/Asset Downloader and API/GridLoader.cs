@@ -176,7 +176,9 @@ public class GridLoader : MonoBehaviour
 
             patrolObjects.Add(go);
             Game_Manager.Instance.PatrolPoints.Add(go.transform);
+            
         }
+       Game_Manager.Instance.GeneratePatrolAreas();
 
         Debug.Log($"Spawned {patrolObjects.Count} patrol point objects.");
     }
