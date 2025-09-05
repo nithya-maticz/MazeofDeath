@@ -155,6 +155,10 @@ MonoBehaviour:
   FillHealth: {fileID: 8219686356089263212}
   defaultSpeed: 0
   maxSpeed: 1.5
+  patrolArea:
+    _id: 0
+    patrolPoints: []
+    isOccupied: 0
 --- !u!50 &2116278565407277633
 Rigidbody2D:
   serializedVersion: 5
@@ -181,7 +185,7 @@ Rigidbody2D:
   m_Interpolate: 0
   m_SleepingMode: 1
   m_CollisionDetection: 0
-  m_Constraints: 0
+  m_Constraints: 4
 --- !u!70 &2422324640924424007
 CapsuleCollider2D:
   m_ObjectHideFlags: 0

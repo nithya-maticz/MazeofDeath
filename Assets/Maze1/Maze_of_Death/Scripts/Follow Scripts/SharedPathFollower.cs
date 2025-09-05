@@ -68,12 +68,12 @@ public class SharedPathFollower : MonoBehaviour, IGetBlastTank
         myCollider = GetComponent<CapsuleCollider2D>();
 
         // Capsule setup
-        myCollider.direction = CapsuleDirection2D.Vertical;
+       /* myCollider.direction = CapsuleDirection2D.Vertical;
         myCollider.isTrigger = false;
 
         // Rigidbody setup
         rb.linearVelocity = Vector2.zero;
-        rb.angularVelocity = 0f;
+        rb.angularVelocity = 0f;*/
 
         if (isPatrolDoor)
         {
@@ -103,7 +103,7 @@ public class SharedPathFollower : MonoBehaviour, IGetBlastTank
         lastTargetPosition = patrolPoints[patrolIndex].position;
         if (isPatrolDoor)
         {
-            defaultSpeed = 0.75f;
+            defaultSpeed = 0.5f;
         }
         StartCoroutine(UpdatePathRoutine());
     }
@@ -137,7 +137,7 @@ public class SharedPathFollower : MonoBehaviour, IGetBlastTank
             }
             else if (playerDetected)
             {
-                rb.freezeRotation = true;
+                //rb.freezeRotation = true;
                 isChasingPlayer = true;
                 destination = player.position;
                 speed = maxSpeed;
@@ -146,7 +146,7 @@ public class SharedPathFollower : MonoBehaviour, IGetBlastTank
             }
             else
             {
-                rb.freezeRotation = false;
+                //rb.freezeRotation = false;
                 isChasingPlayer = false;
                 destination = patrolPoints[patrolIndex].position;
                 speed = defaultSpeed;
@@ -200,6 +200,8 @@ public class SharedPathFollower : MonoBehaviour, IGetBlastTank
         }
     }
 
+
+
     public bool IsPlayerVisibleInBack()
     {
         if (!player) return false;
@@ -239,26 +241,7 @@ public class SharedPathFollower : MonoBehaviour, IGetBlastTank
         }
         else if (collision.collider.CompareTag("enemy") && !playerDetected)
         {
-            /*SharedPathFollower otherEnemy = collision.collider.GetComponent<SharedPathFollower>();
-            if (!otherEnemy) return;
-
-            Vector2 myDir = transform.right;
-            Vector2 otherDir = otherEnemy.transform.right;
-
-            if (Vector2.Dot(myDir, otherDir) < -0.8f)
-            {
-                ShuffleList(patrolPoints);
-                patrolIndex = 0;
-
-                otherEnemy.ShuffleList(otherEnemy.patrolPoints);
-                otherEnemy.patrolIndex = 0;
-            }
-
-            Vector2 pushDir = (transform.position - collision.transform.position).normalized;
-            rb.MovePosition(rb.position + pushDir * 0.2f);
-
-            CancelInvoke(nameof(Freeze));
-            Invoke(nameof(Freeze), 3f);*/
+          /*
             SharedPathFollower otherEnemy = collision.collider.GetComponent<SharedPathFollower>();
             if (otherEnemy == null) return;
 
@@ -280,14 +263,14 @@ public class SharedPathFollower : MonoBehaviour, IGetBlastTank
             Vector2 pushDir = (transform.position - collision.transform.position).normalized;
             rb.MovePosition(rb.position + pushDir * 0.2f);
             CancelInvoke("Freeze");
-            Invoke("Freeze", 4f);
+            Invoke("Freeze", 4f);*/
         }
     }
 
     private void Freeze()
     {
-        rb.freezeRotation = true;
-        rb.freezeRotation = false;
+       /* rb.freezeRotation = true;
+        rb.freezeRotation = false;*/
     }
 
     private IEnumerator RotateThenAttack(Quaternion targetRot)
