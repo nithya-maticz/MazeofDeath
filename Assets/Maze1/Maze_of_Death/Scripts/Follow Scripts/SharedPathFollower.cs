@@ -15,7 +15,7 @@ public class SharedPathFollower : MonoBehaviour, IGetBlastTank
     public float repathThreshold = 0.5f;
     public float pathUpdateInterval = 0.25f;
     public float rotationSpeed = 720f;
-    public bool isAllowRot;
+    //public bool isAllowRot;
 
     [Header("Patrol Settings")]
     public List<Transform> patrolPoints;
@@ -36,7 +36,7 @@ public class SharedPathFollower : MonoBehaviour, IGetBlastTank
     private float playerLostTime;
     public bool playerDetected = false;
 
-    private Animator animator;
+    public Animator animator;
     [HideInInspector] public Rigidbody2D rb;
     [HideInInspector] public CapsuleCollider2D myCollider;
 
@@ -60,7 +60,7 @@ public class SharedPathFollower : MonoBehaviour, IGetBlastTank
     public float maxSpeed;
 
     public PatrolAreas patrolArea;
-
+    public bool playerInRange;
     private void Awake()
     {
         rb = GetComponent<Rigidbody2D>();
@@ -160,7 +160,7 @@ public class SharedPathFollower : MonoBehaviour, IGetBlastTank
 
         rb.MovePosition(rb.position + (Vector2)(direction * speed * Time.fixedDeltaTime));
 
-        if (isAllowRot && direction.sqrMagnitude > 0.001f)
+        if (direction.sqrMagnitude > 0.001f)
         {
             float angle = Mathf.Atan2(direction.y, direction.x) * Mathf.Rad2Deg;
             Quaternion targetRotation = Quaternion.Euler(0, 0, angle + 180f);
@@ -308,7 +308,7 @@ public class SharedPathFollower : MonoBehaviour, IGetBlastTank
         {
             isCollidingWithPlayer = false;
             rb.constraints = RigidbodyConstraints2D.FreezeRotation;
-            animator.SetTrigger("Walk");
+            //animator.SetTrigger("Walk");
         }
 
     }
@@ -320,7 +320,7 @@ public class SharedPathFollower : MonoBehaviour, IGetBlastTank
             transform.rotation = Quaternion.RotateTowards(transform.rotation, targetRot, rotationSpeed * Time.deltaTime);
             yield return null;
         }
-        animator.SetTrigger("Attack");
+       // animator.SetTrigger("Attack");
     }
 
     // ---------------- HEALTH ----------------
@@ -369,10 +369,14 @@ public class SharedPathFollower : MonoBehaviour, IGetBlastTank
 
     private void Attack()
     {
-        if (!isCollidingWithPlayer) return;
-
-        Game_Manager.Instance.PlayerHealthCount -= 1;
-        Game_Manager.Instance.UpdatePlayerHealth();
+       // if (!isCollidingWithPlayer) return;
+       if(playerInRange)
+        {
+            Debug.Log("Health------->");
+          /*  Game_Manager.Instance.PlayerHealthCount -= 1;
+            Game_Manager.Instance.UpdatePlayerHealth();*/
+        }
+       
     }
 
     public void TankBlastUpdate()
