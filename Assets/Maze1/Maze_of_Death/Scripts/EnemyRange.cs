@@ -1,4 +1,4 @@
-/*using UnityEngine;
+﻿/*using UnityEngine;
 
 public class EnemyRange : MonoBehaviour
 {
@@ -27,7 +27,7 @@ public class EnemyRange : MonoBehaviour
 
     void ChangeAnimationState(string newState)
     {
-        // Don�t restart if it�s the same state
+        // Don’t restart if it’s the same state
         if (currentAnimState == newState) return;
 
         enemy.animator.ResetTrigger(currentAnimState); // optional, if using triggers
@@ -64,14 +64,15 @@ using UnityEngine;
 public class EnemyRange : MonoBehaviour
 {
     [SerializeField] private SharedPathFollower enemy;
-    private string currentAnimState = "";
+    private bool lastInRange = false; // track previous state
 
-    private void SetAnimState(string newState)
+    private void UpdateAnimState(bool inRange)
     {
-        if (currentAnimState == newState) return; // avoid restart
-        enemy.animator.ResetTrigger(currentAnimState);
-        enemy.animator.SetTrigger(newState);
-        currentAnimState = newState;
+        if (lastInRange == inRange) return; // 🔑 prevent jitter
+        lastInRange = inRange;
+
+        enemy.animator.SetBool("IsAttacking", inRange);
+        enemy.animator.SetBool("IsWalking", !inRange);
     }
 
     private void OnTriggerEnter2D(Collider2D collision)
@@ -79,7 +80,7 @@ public class EnemyRange : MonoBehaviour
         if (collision.CompareTag("Player"))
         {
             enemy.playerInRange = true;
-            SetAnimState("Attack");
+            UpdateAnimState(true);
         }
     }
 
@@ -88,7 +89,7 @@ public class EnemyRange : MonoBehaviour
         if (collision.CompareTag("Player"))
         {
             enemy.playerInRange = false;
-            SetAnimState("Walk");
+            UpdateAnimState(false);
         }
     }
 }
