@@ -151,7 +151,7 @@ public class SharedPathFollower : MonoBehaviour, IGetBlastTank
         isFollowing = true;
     }
 
-    private void FixedUpdate()
+    /*private void FixedUpdate()
     {
         if (isCollidingWithPlayer || !isFollowing || path == null || currentIndex >= path.Count) return;
 
@@ -177,7 +177,83 @@ public class SharedPathFollower : MonoBehaviour, IGetBlastTank
                     patrolIndex = (patrolIndex + 1) % patrolPoints.Count;
             }
         }
+    }*/
+
+    private void FixedUpdate()
+    {
+        if (isCollidingWithPlayer || !isFollowing || path == null || currentIndex >= path.Count)
+            return;
+
+        Vector3 targetPoint = path[currentIndex];
+        Vector3 direction = (targetPoint - transform.position).normalized;
+
+        // Move enemy
+        rb.MovePosition(rb.position + (Vector2)(direction * speed * Time.fixedDeltaTime));
+
+        // Smooth rotation only if moving
+        if (direction.sqrMagnitude > 0.001f)
+        {
+            float angle = Mathf.Atan2(direction.y, direction.x) * Mathf.Rad2Deg + 180f;
+            Quaternion targetRotation = Quaternion.Euler(0f, 0f, angle);
+
+            // Multiply by Time.fixedDeltaTime to keep rotation consistent with physics update
+            float step = rotationSpeed * Time.fixedDeltaTime;
+            transform.rotation = Quaternion.RotateTowards(transform.rotation, targetRotation, step);
+        }
+
+        // Check if reached current path point
+        if (Vector3.Distance(transform.position, targetPoint) < stopThreshold)
+        {
+            currentIndex++;
+            if (currentIndex >= path.Count)
+            {
+                isFollowing = false;
+                if (!isChasingPlayer)
+                    patrolIndex = (patrolIndex + 1) % patrolPoints.Count;
+            }
+        }
     }
+
+    /* private void FixedUpdate()
+     {
+         if (isCollidingWithPlayer || !isFollowing || path == null || currentIndex >= path.Count)
+             return;
+
+         Vector3 targetPoint = path[currentIndex];
+         Vector3 moveVector = targetPoint - transform.position;
+         float distance = moveVector.magnitude;
+
+         if (distance > 0.001f)
+         {
+             // Normalize movement direction
+             Vector3 moveDir = moveVector / distance;
+
+             // Move enemy
+             Vector2 moveDelta = (Vector2)(moveDir * speed * Time.fixedDeltaTime);
+             rb.MovePosition(rb.position + moveDelta);
+
+             // Rotate to match actual velocity
+             if (moveDelta.sqrMagnitude > 0.0001f)
+             {
+                 float angle = Mathf.Atan2(moveDelta.y, moveDelta.x) * Mathf.Rad2Deg + 180f;
+                 transform.rotation = Quaternion.Euler(0f, 0f, angle);
+             }
+         }
+
+         // Check if reached current path point
+         if (distance < stopThreshold)
+         {
+             currentIndex++;
+             if (currentIndex >= path.Count)
+             {
+                 isFollowing = false;
+                 if (!isChasingPlayer)
+                     patrolIndex = (patrolIndex + 1) % patrolPoints.Count;
+             }
+         }
+     }*/
+
+
 
     public bool IsPlayerVisibleInBack()
     {
@@ -373,8 +449,8 @@ public class SharedPathFollower : MonoBehaviour, IGetBlastTank
        if(playerInRange)
         {
             Debug.Log("Health------->");
-          /*  Game_Manager.Instance.PlayerHealthCount -= 1;
-            Game_Manager.Instance.UpdatePlayerHealth();*/
+            Game_Manager.Instance.PlayerHealthCount -= 1;
+            Game_Manager.Instance.UpdatePlayerHealth();
         }
        
     }
