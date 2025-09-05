@@ -22,7 +22,7 @@ public class KnifeAttack : MonoBehaviour
     {
         if(_currentEnemy == null)
         {
-            if (collision.CompareTag("enemy"))
+            if (collision.CompareTag("enemy") || collision.CompareTag("enemyDetected"))
             {
                 Debug.Log("Enter...");
                 _currentEnemy = collision.GetComponent<SharedPathFollower>();
