@@ -162,6 +162,8 @@ public class GridLoader : MonoBehaviour
         backgroundInstance.transform.position = bounds.center;
 
         followCamera.boundsRenderer = renderer;
+
+        FindAnyObjectByType<FloorTileFiller>().FillInsideBounds();
     }
 
     void SpawnPatrolPoints()

@@ -1,111 +1,4 @@
-﻿/*
-
-using UnityEngine;
-using UnityEngine.Networking;
-using System.IO;
-using System.IO.Compression;
-using System.Collections;
-using System.Threading.Tasks;
-
-public class FolderDownloader : MonoBehaviour
-{
-
-    public static FolderDownloader Instance;
-    [Tooltip("Direct GitHub RAW link to your ZIP file")]
-
-
-    private string extractPath;
-
-
-    private void Awake()
-    {
-        Instance = this;
-    }
-    void Start()
-    {
-
-    }
-
-    *//*  public async void ExtractTile()
-      {
-  #if UNITY_EDITOR
-          extractPath = Path.Combine(Application.dataPath, "Resources/MySprites");
-  #else
-          extractPath = Path.Combine(Application.persistentDataPath, "MySprites");
-  #endif
-          StartCoroutine(DownloadAndExtract());
-      }*//*
-    public Task ExtractTile()
-    {
-        var tcs = new TaskCompletionSource<bool>();
-        StartCoroutine(ExtractTileRoutine(tcs));
-        return tcs.Task;
-    }
-
-    private IEnumerator ExtractTileRoutine(TaskCompletionSource<bool> tcs)
-    {
-#if UNITY_EDITOR
-        extractPath = Path.Combine(Application.dataPath, "Resources/MySprites");
-#else
-    extractPath = Path.Combine(Application.persistentDataPath, "MySprites");
-#endif
-
-        yield return DownloadAndExtract(); // Wait for the download + extraction
-
-        tcs.SetResult(true); // Mark task as done
-    }
-
-    IEnumerator DownloadAndExtract()
-    {
-        string zipUrl = "https://raw.githubusercontent.com/kavinmaticz/unity-assets/main/Level" + LevelController.Instance.selectedLevel;
-        print("Zip : " + zipUrl);
-        UnityWebRequest www = UnityWebRequest.Get(zipUrl);
-        yield return www.SendWebRequest();
-
-        if (www.result != UnityWebRequest.Result.Success)
-        {
-            Debug.LogError($"Download failed: {www.error}");
-            yield break;
-        }
-
-        byte[] data = www.downloadHandler.data;
-        string zipPath = Path.Combine(Application.temporaryCachePath, "Level.zip");
-        File.WriteAllBytes(zipPath, data);
-
-        ClearFolder(extractPath);
-        WebGLCacheClear.Instance.ClearCache();
-
-        try
-        {
-            ZipFile.ExtractToDirectory(zipPath, extractPath);
-            Debug.Log($"Assets extracted to: {extractPath}");
-        }
-        catch (System.Exception ex)
-        {
-            Debug.LogError($"Extraction failed: {ex.Message}");
-        }
-
-#if UNITY_EDITOR
-        UnityEditor.AssetDatabase.Refresh();
-#endif
-
-        if (SpriteAssigner.Instance != null)
-            SpriteAssigner.Instance.AssignData();
-    }
-
-    void ClearFolder(string path)
-    {
-        if (!Directory.Exists(path))
-            Directory.CreateDirectory(path);
-
-        foreach (var file in Directory.GetFiles(path))
-            File.Delete(file);
-
-        foreach (var dir in Directory.GetDirectories(path))
-            Directory.Delete(dir, true);
-    }
-}*/
-
+﻿
 
 
 using System.Collections;
@@ -113,6 +6,7 @@ using System.IO;
 using System.Threading.Tasks;
 using UnityEngine;
 using UnityEngine.Networking;
+using UnityEngine.Tilemaps;
 using UnityEngine.UI;
 
 public class FolderDownloader : MonoBehaviour
@@ -126,6 +20,7 @@ public class FolderDownloader : MonoBehaviour
     public Sprite assignedImage;
     public static Sprite bgSprite;
     public static Sprite doorSprite;
+    public Tile bgTile;
     //string url = S3Url + "/Level"+ LevelController.Instance.selectedLevel + "/"+assetName[i] + ext;
 
     private void Awake()
@@ -153,7 +48,7 @@ public class FolderDownloader : MonoBehaviour
         for (int i = 0; i < assetName.Length; i++)
         {
             bool success = false;
-            string[] extensions = { ".png", ".jpg", ".jpeg" };
+            string[] extensions = { ".png"/*, ".jpg", ".jpeg"*/ };
 
             foreach (string ext in extensions)
             {
@@ -171,6 +66,7 @@ public class FolderDownloader : MonoBehaviour
                     {
                         GridLoader.Instance.bgSprite = assignedImage;
                         bgSprite = assignedImage;
+                        bgTile.sprite = bgSprite;
                     }
                     break; // ✅ stop trying other extensions
                 }
