@@ -63,26 +63,26 @@ public class PlayerMovements : MonoBehaviour,IGetBlastTank
 
     private void Update()
     {
-        HandleMovementInput();
+       
        // HandleRotationInput();
        
     }
 
     private void FixedUpdate()
     {
-       
+        HandleMovementInput();
     }
 
-   
 
 
 
 
-  
-   
 
 
-    public void HandleMovementInput()
+
+
+
+    /*public void HandleMovementInput()
     {
         float moveH = movementJoystick.Vertical;
         float moveV = movementJoystick.Horizontal;
@@ -131,8 +131,72 @@ public class PlayerMovements : MonoBehaviour,IGetBlastTank
 
         wasWalking = isWalking;
         wasGun = isGun;
+    }*/
+
+    private float playerSmoothVel; // field for rotation smoothing
+
+    public void HandleMovementInput()
+    {
+        float moveH = movementJoystick.Vertical;
+        float moveV = movementJoystick.Horizontal;
+
+        bool isWalking = moveH != 0f || moveV != 0f;
+        Vector2 moveDir = new Vector2(-moveH, moveV);
+
+        // Movement
+        rb.linearVelocity = moveDir * 2f;
+
+        // Rotation
+        if (isWalking)
+        {
+            float targetAngle = Mathf.Atan2(moveDir.y, moveDir.x) * Mathf.Rad2Deg + 180f;
+            float smoothedAngle = Mathf.SmoothDampAngle(
+                transform.eulerAngles.z,
+                targetAngle,
+                ref playerSmoothVel,
+                0.1f // matches your "rotation sensitivity"
+            );
+
+            transform.rotation = Quaternion.Euler(0f, 0f, smoothedAngle);
+        }
+
+        isGun = Game_Manager.Instance.IsGun;
+
+        // ✅ Skip animation change logic if attacking
+        if (isAttack) return;
+
+        if (!isGun && !isWalking && (!wasIdle || wasGun))
+        {
+            ResetAllTriggers();
+            _Animator.SetTrigger("Idle");
+            wasIdle = true;
+        }
+        else if (isGun && !isWalking && (!wasIdle || !wasGun))
+        {
+            ResetAllTriggers();
+            _Animator.SetTrigger("GunIdle");
+            wasIdle = true;
+        }
+        else if (isGun && isWalking && (!wasWalking || !wasGun))
+        {
+            ResetAllTriggers();
+            _Animator.SetTrigger("WalkWithGun");
+            wasIdle = false;
+        }
+        else if (!isGun && isWalking && (!wasWalking || wasGun))
+        {
+            ResetAllTriggers();
+            _Animator.SetTrigger("Walk");
+            wasIdle = false;
+        }
+
+        wasWalking = isWalking;
+        wasGun = isGun;
     }
-  public   void ResetAllTriggers()
+
+
+
+    public void ResetAllTriggers()
     {
         _Animator.ResetTrigger("Idle");
         _Animator.ResetTrigger("GunIdle");

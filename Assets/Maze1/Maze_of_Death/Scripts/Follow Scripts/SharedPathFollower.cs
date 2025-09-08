@@ -61,6 +61,16 @@ public class SharedPathFollower : MonoBehaviour, IGetBlastTank
 
     public PatrolAreas patrolArea;
     public bool playerInRange;
+
+    public float rotationSampleInterval = 0.06f;
+    public float rotationAngleThreshold = 1f;
+    public float predictionTime = 0.08f;
+    private Vector3 moveDir;
+    private Vector3 cachedMoveDir;
+    private float rotationSampleTimer;
+    private float cachedTargetAngle;
+    private bool hasCachedAngle = false;
+    private Rigidbody2D playerRb;
     private void Awake()
     {
         rb = GetComponent<Rigidbody2D>();
@@ -151,22 +161,19 @@ public class SharedPathFollower : MonoBehaviour, IGetBlastTank
         isFollowing = true;
     }
 
-    /*private void FixedUpdate()
+    private void FixedUpdate()
     {
-        if (isCollidingWithPlayer || !isFollowing || path == null || currentIndex >= path.Count) return;
+        if (isCollidingWithPlayer || !isFollowing || path == null || currentIndex >= path.Count)
+            return;
 
+        // --- Movement ---
         Vector3 targetPoint = path[currentIndex];
-        Vector3 direction = (targetPoint - transform.position).normalized;
+        moveDir = (targetPoint - transform.position).normalized;
+        cachedMoveDir = moveDir;
 
-        rb.MovePosition(rb.position + (Vector2)(direction * speed * Time.fixedDeltaTime));
+        rb.MovePosition(rb.position + (Vector2)(moveDir * speed * Time.fixedDeltaTime));
 
-        if (direction.sqrMagnitude > 0.001f)
-        {
-            float angle = Mathf.Atan2(direction.y, direction.x) * Mathf.Rad2Deg;
-            Quaternion targetRotation = Quaternion.Euler(0, 0, angle + 180f);
-            transform.rotation = Quaternion.RotateTowards(transform.rotation, targetRotation, rotationSpeed * Time.deltaTime);
-        }
-
+        // --- Path check ---
         if (Vector3.Distance(transform.position, targetPoint) < stopThreshold)
         {
             currentIndex++;
@@ -177,9 +184,76 @@ public class SharedPathFollower : MonoBehaviour, IGetBlastTank
                     patrolIndex = (patrolIndex + 1) % patrolPoints.Count;
             }
         }
-    }*/
+    }
 
-    private void FixedUpdate()
+   
+
+
+
+    private void Update()
+    {
+        // --- Rotation Sampling ---
+
+        if(playerRb==null)
+        {
+            playerRb = PlayerMovements.Instance.gameObject.GetComponent<Rigidbody2D>();
+        }
+
+        rotationSampleTimer += Time.deltaTime;
+        if (rotationSampleTimer >= rotationSampleInterval)
+        {
+            rotationSampleTimer = 0f;
+
+            float desiredAngle;
+
+            if (isChasingPlayer && player != null)
+            {
+                // Predict player pos if needed
+                Vector3 targetPos = player.position;
+                if (predictionTime > 0f && playerRb != null)
+                    targetPos = (Vector2)player.position + playerRb.linearVelocity * predictionTime;
+
+                Vector3 dirToPlayer = (targetPos - transform.position);
+                desiredAngle = dirToPlayer.sqrMagnitude > 0.0001f
+                    ? Mathf.Atan2(dirToPlayer.y, dirToPlayer.x) * Mathf.Rad2Deg + 180f
+                    : transform.eulerAngles.z;
+            }
+            else
+            {
+                desiredAngle = cachedMoveDir.sqrMagnitude > 0.0001f
+                    ? Mathf.Atan2(cachedMoveDir.y, cachedMoveDir.x) * Mathf.Rad2Deg + 180f
+                    : transform.eulerAngles.z;
+            }
+
+            // Update cached target only if significant
+            if (!hasCachedAngle)
+            {
+                cachedTargetAngle = desiredAngle;
+                hasCachedAngle = true;
+            }
+            else
+            {
+                float delta = Mathf.DeltaAngle(cachedTargetAngle, desiredAngle);
+                if (Mathf.Abs(delta) > rotationAngleThreshold)
+                    cachedTargetAngle = desiredAngle;
+            }
+        }
+
+        // --- Rotate deterministically ---
+        if (hasCachedAngle)
+        {
+            Quaternion targetRot = Quaternion.Euler(0f, 0f, cachedTargetAngle);
+            transform.rotation = Quaternion.RotateTowards(
+                transform.rotation,
+                targetRot,
+                rotationSpeed * Time.deltaTime
+            );
+        }
+    }
+
+
+
+    /*private void LateUpdate()
     {
         if (isCollidingWithPlayer || !isFollowing || path == null || currentIndex >= path.Count)
             return;
@@ -212,7 +286,7 @@ public class SharedPathFollower : MonoBehaviour, IGetBlastTank
                     patrolIndex = (patrolIndex + 1) % patrolPoints.Count;
             }
         }
-    }
+    }*/
 
     /* private void FixedUpdate()
      {

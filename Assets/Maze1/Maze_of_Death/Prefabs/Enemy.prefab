@@ -158,7 +158,7 @@ MonoBehaviour:
   HealthParent: {fileID: 5524638139309803725}
   FillHealth: {fileID: 8219686356089263212}
   defaultSpeed: 0
-  maxSpeed: 1
+  maxSpeed: 1.8
   patrolArea:
     _id: 0
     patrolPoints: []
