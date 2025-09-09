@@ -36,11 +36,6 @@ public class LobbyManager : MonoBehaviour
     public Sprite lobbyFemaleIcon;
     public Sprite lobbyFemaleName;
 
-    //public GameObject femaleiChar;
-    //public GameObject femaleAniChar;
-
-
-
 
     [Header("Fader")]
     public Animator Fader;
@@ -124,18 +119,15 @@ public class LobbyManager : MonoBehaviour
     }
     public void PlayGame()
     {
-            Fade();
-            SceneManager.LoadScene("Game Loader");
-       
-       
+        Fade();
+        SceneManager.LoadScene("Game Loader");
     }
    public void OpenCharacterPage()
    {
         Fade();
        
         charPage.SetActive(true);
-        //
-        // 
+        
    }
 
    
