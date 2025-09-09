@@ -10,6 +10,7 @@ using UnityEngine.UI;
 public class Game_Manager : MonoBehaviour
 {
     public static Game_Manager Instance;
+    public PlayerHealth playerHealth;
     public VariableJoystick movementJoystick;
     
     public IGetTreasure curretTreasure;
@@ -52,17 +53,16 @@ public class Game_Manager : MonoBehaviour
     public TMP_Text EnemyCountText;
     public int ZombieDoorCountInt;
 
+
     [Header("PLAYER Health")]
-    public int PlayerHealthCount;
     public List<Sprite> HealthSprites;
     public Image HealthImage;
-    
 
     public Image MedikitFillImage;
     public Button UseMediKit;
     public int MedikitCount;
     public TMP_Text MedikitCountText;
-    private bool isFilling = false;
+    
 
     [Header("Shoot")]
     public AutoAimOnly AutoAim;
@@ -141,7 +141,7 @@ public class Game_Manager : MonoBehaviour
         Enemies.Clear();
         ZombieDoors.Clear();
         // AutoAim = AutoAimOnly.Instance;
-        PlayerHealthCount = 4;
+        //PlayerHealthCount = 4;
         UpdateAttackSettings();
         UpdateUI();
         reloadFillImage.fillAmount = 0f;
@@ -226,7 +226,7 @@ public class Game_Manager : MonoBehaviour
         LevelUP();
     }
 
-    void GameOver()
+    public void GameOver()
     {
         LostPage.SetActive(true);
         loseLevelTxt.text = "LEVEL " + LobbyManager.currentLevel.ToString();
@@ -241,93 +241,21 @@ public class Game_Manager : MonoBehaviour
         }
     }
 
-    public void UpdatePlayerHealth()
-    {
-        if(PlayerHealthCount <= 0)
-        {
-            HealthImage.gameObject.SetActive(true);
-            HealthImage.sprite = HealthSprites[2];
-            GameOver();
-            //Game Over
-        }
-        else
-        {
-            switch (PlayerHealthCount)
-            {
-                case 1:
-                    HealthImage.gameObject.SetActive(true);
-                    HealthImage.sprite = HealthSprites[1];
-                    break;
-
-                case 2:
-                    HealthImage.gameObject.SetActive(true);
-                    HealthImage.sprite = HealthSprites[0];
-                    break;
-
-                case 3:
-                    HealthImage.gameObject.SetActive(false);
-                    break;
-
-                case 4:
-                    HealthImage.gameObject.SetActive(false);
-                    break;
-
-            }
-
-        }
-    }
+   
 
     public void OnUseMediKit()
     {
-        if (MedikitCount > 0 && !isFilling)
+        if (MedikitCount > 0 && !playerHealth.isFilling)
         {
             MedikitCount--;
-            UpdateMedikitUI();
-            StartCoroutine(FillMedikit());
+            playerHealth.UpdateMedikitUI();
+            StartCoroutine(playerHealth.FillMedikit());
         }
     }
 
-    void UpdateMedikitUI()
-    {
-        if(MedikitCount <= 0)
-        {
-            UseMediKit.interactable = false;
-        }
-        MedikitCountText.text = MedikitCount.ToString();
-    }
+    
 
-    IEnumerator FillMedikit()
-    {
-        isFilling = true;
-
-        // Set full opacity
-        SetImageAlpha(MedikitFillImage, 1f);
-
-        float duration = 2f;
-        float elapsed = 0f;
-
-        while (elapsed < duration)
-        {
-            elapsed += Time.deltaTime;
-            MedikitFillImage.fillAmount = Mathf.Clamp01(elapsed / duration);
-            yield return null;
-        }
-
-        // Done filling
-        Debug.Log("Filled!");
-        PlayerHealthCount = 4;
-        UpdatePlayerHealth();
-        SetImageAlpha(MedikitFillImage, 0.2f);
-
-        isFilling = false;
-    }
-
-    void SetImageAlpha(Image img, float alpha)
-    {
-        Color c = img.color;
-        c.a = alpha;
-        img.color = c;
-    }
+    
 
     public void LevelUP()
     {

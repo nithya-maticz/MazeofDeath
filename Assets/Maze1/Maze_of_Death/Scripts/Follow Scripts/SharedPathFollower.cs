@@ -521,11 +521,9 @@ public class SharedPathFollower : MonoBehaviour, IGetBlastTank
     {
        // if (!isCollidingWithPlayer) return;
        if(playerInRange)
-        {
-            Debug.Log("Health------->");
-            Game_Manager.Instance.PlayerHealthCount -= 1;
-            Game_Manager.Instance.UpdatePlayerHealth();
-        }
+       {
+            Game_Manager.Instance.playerHealth.GetAttack(1);
+       }
        
     }
 

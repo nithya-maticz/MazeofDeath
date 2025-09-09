@@ -2,7 +2,7 @@
 using UnityEngine;
 using UnityEngine.EventSystems;
 
-public class PlayerMovements : MonoBehaviour,IGetBlastTank
+public class PlayerMovements : MonoBehaviour
 {
     public static PlayerMovements Instance;
     [Header("Joystick Movement")]
@@ -64,7 +64,7 @@ public class PlayerMovements : MonoBehaviour,IGetBlastTank
     private void Update()
     {
        
-       // HandleRotationInput();
+       
        
     }
 
@@ -73,65 +73,6 @@ public class PlayerMovements : MonoBehaviour,IGetBlastTank
         HandleMovementInput();
     }
 
-
-
-
-
-
-
-
-
-
-    /*public void HandleMovementInput()
-    {
-        float moveH = movementJoystick.Vertical;
-        float moveV = movementJoystick.Horizontal;
-
-        bool isWalking = moveH != 0f || moveV != 0f;
-        Vector2 moveDir = new Vector2(-moveH, moveV);
-        rb.linearVelocity = moveDir * speed;
-
-        if (isWalking)
-        {
-            float angle = Mathf.Atan2(moveDir.y, moveDir.x) * Mathf.Rad2Deg;
-            Quaternion targetRotation = Quaternion.Euler(0f, 0f, angle + 180f);
-            float rotationSpeed = 720f;
-            transform.rotation = Quaternion.RotateTowards(transform.rotation, targetRotation, rotationSpeed * Time.deltaTime);
-        }
-
-        isGun = Game_Manager.Instance.IsGun;
-
-        // ✅ Skip animation change logic if attacking
-        if (isAttack) return;
-
-        if (!isGun && !isWalking && (!wasIdle || wasGun))
-        {
-            ResetAllTriggers();
-            _Animator.SetTrigger("Idle");
-            wasIdle = true;
-        }
-        else if (isGun && !isWalking && (!wasIdle || !wasGun))
-        {
-            ResetAllTriggers();
-            _Animator.SetTrigger("GunIdle");
-            wasIdle = true;
-        }
-        else if (isGun && isWalking && (!wasWalking || !wasGun))
-        {
-            ResetAllTriggers();
-            _Animator.SetTrigger("WalkWithGun");
-            wasIdle = false;
-        }
-        else if (!isGun && isWalking && (!wasWalking || wasGun))
-        {
-            ResetAllTriggers();
-            _Animator.SetTrigger("Walk");
-            wasIdle = false;
-        }
-
-        wasWalking = isWalking;
-        wasGun = isGun;
-    }*/
 
     private float playerSmoothVel; // field for rotation smoothing
 
@@ -205,68 +146,7 @@ public class PlayerMovements : MonoBehaviour,IGetBlastTank
     }
 
 
-    void HandleRotationInput()
-    {
-        rotationInput = 0f;
-
-#if UNITY_EDITOR
-        if (Input.GetMouseButtonDown(1))
-        {
-            lastTouchPosition = Input.mousePosition;
-            isRotating = true;
-        }
-        else if (Input.GetMouseButton(1) && isRotating)
-        {
-            Vector2 delta = (Vector2)Input.mousePosition - lastTouchPosition;
-            rotationInput = -delta.x;
-            lastTouchPosition = Input.mousePosition;
-        }
-        else if (Input.GetMouseButtonUp(1))
-        {
-            isRotating = false;
-        }
-#else
-        foreach (Touch touch in Input.touches)
-        {
-            if (EventSystem.current != null && EventSystem.current.IsPointerOverGameObject(touch.fingerId)) continue;
-            if (touch.position.x < Screen.width / 2f) continue;
-
-            if (touch.phase == TouchPhase.Began)
-            {
-                lastTouchPosition = touch.position;
-                isRotating = true;
-            }
-            else if (touch.phase == TouchPhase.Moved && isRotating)
-            {
-                Vector2 delta = touch.position - lastTouchPosition;
-                rotationInput = -delta.x;
-                lastTouchPosition = touch.position;
-            }
-            else if (touch.phase == TouchPhase.Ended || touch.phase == TouchPhase.Canceled)
-            {
-                isRotating = false;
-            }
-        }
-#endif
-    }
-
-    void HandleMovement()
-    {
-        if (moveInput.sqrMagnitude < 0.01f) return;
-
-        Vector3 moveDir = new Vector3(-moveInput.x, moveInput.y, 0f);
-        moveDir = Quaternion.Euler(0, 0, transform.eulerAngles.z) * moveDir;
-
-        rb.MovePosition(rb.position + (Vector2)(moveDir.normalized * moveSpeed * Time.fixedDeltaTime));
-    }
-
-    void HandleRotation()
-    {
-        if (Mathf.Abs(rotationInput) < 0.1f) return;
-
-        float rotationDelta = rotationInput * rotationSensitivity;
-        transform.Rotate(Vector3.forward, rotationDelta);
-    }
+   
 
     void AttackEnd()
     {
@@ -356,10 +236,5 @@ public class PlayerMovements : MonoBehaviour,IGetBlastTank
         PlayerMovements.Instance.HandleMovementInput(); // Resume walk/idle/gunwalk based on current input
     }
 
-    public void TankBlastUpdate()
-    {
-      
-        Game_Manager.Instance.PlayerHealthCount -= 2;
-        Game_Manager.Instance.UpdatePlayerHealth();
-    }
+    
 }
