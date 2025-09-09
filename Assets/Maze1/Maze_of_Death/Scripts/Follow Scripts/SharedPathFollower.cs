@@ -161,7 +161,7 @@ public class SharedPathFollower : MonoBehaviour, IGetBlastTank
         isFollowing = true;
     }
 
-    private void FixedUpdate()
+ /*   private void FixedUpdate()
     {
         if (isCollidingWithPlayer || !isFollowing || path == null || currentIndex >= path.Count)
             return;
@@ -250,7 +250,7 @@ public class SharedPathFollower : MonoBehaviour, IGetBlastTank
             );
         }
     }
-
+*/
 
 
     private void LateUpdate()
