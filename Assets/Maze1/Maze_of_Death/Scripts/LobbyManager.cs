@@ -40,6 +40,8 @@ public class LobbyManager : MonoBehaviour
     [Header("Fader")]
     public Animator Fader;
 
+   
+
     private void Awake()
     {
         Instance = this;
