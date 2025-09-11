@@ -1,7 +1,6 @@
 using System;
 using System.Collections;
 using System.Collections.Generic;
-using System.Linq;
 using TMPro;
 using UnityEngine;
 using UnityEngine.SceneManagement;
@@ -19,6 +18,7 @@ public class Game_Manager : MonoBehaviour
     public GameObject loadingScreen;
     public TMP_Text winLevelTxt;
     public TMP_Text loseLevelTxt;
+    public TMP_Text levelText;
 
     [Header("Sprites")]
     public Sprite SpriteBoxOpen;
@@ -140,6 +140,7 @@ public class Game_Manager : MonoBehaviour
 
         Enemies.Clear();
         ZombieDoors.Clear();
+        levelText.text = "LEVEL " + LobbyManager.currentLevel.ToString();
         // AutoAim = AutoAimOnly.Instance;
         //PlayerHealthCount = 4;
         UpdateAttackSettings();
@@ -154,11 +155,11 @@ public class Game_Manager : MonoBehaviour
 
     public void SpawnPlayer(Vector3 worldPos)
     {
-        /*playerTransform.position = worldPos;
-        Instantiate(playerPrefab, playerTransform.transform);
-        SmoothFollowCamera.Instance.target = PlayerMovements.Instance.offSet;
-        BulletSpawner = PlayerMovements.Instance.bulletSpawn;
-        AutoAim = AutoAimOnly.Instance;*/
+        /* playerTransform.position = worldPos;
+         Instantiate(playerPrefab, playerTransform.transform);
+         SmoothFollowCamera.Instance.target = PlayerMovements.Instance.offSet;
+         BulletSpawner = PlayerMovements.Instance.bulletSpawn;
+         AutoAim = AutoAimOnly.Instance;*/
 
         if (LobbyManager.currentCharacter == 1)
         {

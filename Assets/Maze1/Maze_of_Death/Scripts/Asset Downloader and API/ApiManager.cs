@@ -20,7 +20,7 @@ public class ApiManager : MonoBehaviour
     }
     void Start()
     {
-       // LobbyManager.currentLevel = 27;
+       // LobbyManager.currentLevel = 24;
         GetLevels();
     }
 
@@ -41,9 +41,7 @@ public class ApiManager : MonoBehaviour
 
             // webRequest.SetRequestHeader("Authorization", "Bearer " + localData.token);
 
-
             yield return webRequest.SendWebRequest();
-
 
 
             if (webRequest.result == UnityWebRequest.Result.ConnectionError || webRequest.result == UnityWebRequest.Result.ProtocolError)
@@ -99,13 +97,8 @@ public class ApiManager : MonoBehaviour
                     {
                         GridLoader.Instance.bgSprite = FolderDownloader.bgSprite;
                         GridLoader.Instance.doorBgSprite = FolderDownloader.doorSprite;
-                        
                         GridLoader.Instance.LoadLevel();
                     }
-                   
-
-
-
                 }
 
 
