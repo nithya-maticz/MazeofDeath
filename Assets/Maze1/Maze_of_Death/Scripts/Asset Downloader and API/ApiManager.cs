@@ -77,11 +77,8 @@ public class ApiManager : MonoBehaviour
                 print("Get Level : " + json);
                 Status response = JsonUtility.FromJson<Status>(json);
 
-
                 if (response.status)
                 {
-                    
-                    
                     string clean = CleanBase64String(response.data);
                     string decrypt = AESUtility.Decrypt(clean, secretKey);
                     LevelDataList data = JsonUtility.FromJson<LevelDataList>(decrypt);
