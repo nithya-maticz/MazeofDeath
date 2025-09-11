@@ -154,13 +154,13 @@ public class Game_Manager : MonoBehaviour
 
     public void SpawnPlayer(Vector3 worldPos)
     {
-       /* playerTransform.position = worldPos;
+        playerTransform.position = worldPos;
         Instantiate(playerPrefab, playerTransform.transform);
         SmoothFollowCamera.Instance.target = PlayerMovements.Instance.offSet;
         BulletSpawner = PlayerMovements.Instance.bulletSpawn;
-        AutoAim = AutoAimOnly.Instance;*/
+        AutoAim = AutoAimOnly.Instance;
 
-        if (LobbyManager.currentCharacter == 1)
+        /*if (LobbyManager.currentCharacter == 1)
         {
             Debug.Log("Male");
             Instantiate(playerPrefab, worldPos, Quaternion.identity);
@@ -175,7 +175,7 @@ public class Game_Manager : MonoBehaviour
             SmoothFollowCamera.Instance.target = PlayerMovements.Instance.offSet;
             BulletSpawner = PlayerMovements.Instance.bulletSpawn;
             AutoAim = AutoAimOnly.Instance;
-        }
+        }*/
     }
 
 

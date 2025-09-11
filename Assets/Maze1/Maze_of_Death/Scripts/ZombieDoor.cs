@@ -28,7 +28,7 @@ public class ZombieDoor : MonoBehaviour
             enemyPrefab.GetComponent<SharedPathFollower>().patrolPoints = doorPatrolPoints;
             Game_Manager.Instance.Enemies.Add(enemyPrefab.GetComponent<SharedPathFollower>());
             Game_Manager.Instance.EnemyCount();
-            SpawnEnemyFromDoor();
+            StartCoroutine(SpawnEnemyFromDoor());
         }
         
     }
@@ -37,8 +37,10 @@ public class ZombieDoor : MonoBehaviour
     {
         
     }
-    public void SpawnEnemyFromDoor()
+    public IEnumerator SpawnEnemyFromDoor()
     {
+        yield return new WaitForSeconds(Random.Range(1f, 8f));
+        //wait for 1 to 8 seconds random and than start
         StartCoroutine(SpawnEnemys());
     }
     // Update is called once per frame
@@ -49,6 +51,8 @@ public class ZombieDoor : MonoBehaviour
 
     IEnumerator SpawnEnemys()
     {
+        
+
         while (true)
         {
             yield return new WaitForSeconds(waitTime / 2);
