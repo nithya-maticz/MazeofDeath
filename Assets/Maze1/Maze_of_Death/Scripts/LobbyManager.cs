@@ -4,6 +4,7 @@ using UnityEngine.SceneManagement;
 using TMPro;
 using UnityEngine.UI;
 using System;
+using UnityEngine.Playables;
 
 public class LobbyManager : MonoBehaviour
 {
@@ -39,7 +40,7 @@ public class LobbyManager : MonoBehaviour
 
     [Header("Fader")]
     public Animator Fader;
-
+    public PlayableDirector faderTimeline;
    
 
     private void Awake()
@@ -169,6 +170,12 @@ public class LobbyManager : MonoBehaviour
 
     }
 
+    public void GameFader()
+    {
+        faderTimeline.gameObject.SetActive(true);
+        faderTimeline.time = 0;
+        faderTimeline.Play();
+    }
 }
 
 

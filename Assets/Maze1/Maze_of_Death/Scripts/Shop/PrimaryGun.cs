@@ -1,54 +1,67 @@
+using TMPro;
 using UnityEngine;
 using UnityEngine.UI;
-using TMPro;
-public class OwnedWeapon : MonoBehaviour
+
+public class PrimaryGun : MonoBehaviour
 {
+    public static PrimaryGun Instance;
+    public SecondaryGun secondaryGun;
+    [SerializeField] Sprite defaultSprite;
+    [SerializeField] Sprite selectedSprite;
     public Weapon data;
-    
+    public GameObject emptyObject;
+    public GameObject loadObject;
+    public Image weaponImage;
+    public Image ButtonImage;
+    public TMP_Text name;
+    public TMP_Text bulletsText;
+
 
     private int currentMag;
     private int reserve;
     private int totalBullets;
     private int magazineCapacity;
+    public bool isOccupied;
 
-    public Image weaponImage;
-    public TMP_Text name;
-    public TMP_Text bulletsText;
-    public TMP_Text throwableCount;
-    void Start()
+    private void Awake()
     {
-        
+        Instance = this;
     }
 
     // Update is called once per frame
     void Update()
     {
-        
+
     }
 
     public void AssignData()
     {
-        foreach(WeaponImages img in ShopManager.Instance.weaponSprites)
+
+        emptyObject.SetActive(false);
+        loadObject.SetActive(true);
+        ButtonImage.sprite = defaultSprite;
+
+        foreach (WeaponImages img in ShopManager.Instance.weaponSprites)
         {
-            if(img.name == data.name)
+            if (img.name == data.name)
             {
                 weaponImage.sprite = img.weaponSprite;
                 weaponImage.SetNativeSize();
 
                 float maxWidth = 0;
                 float maxHeight = 0;
-                
+
                 if (data.isGun || data.isKnife)
                 {
-                     maxWidth = 350f;
-                     maxHeight = 150f;
+                    maxWidth = 350f;
+                    maxHeight = 150f;
                 }
-                else if(data.isThrowables)
+                else if (data.isThrowables)
                 {
-                     maxWidth = 175f;
-                     maxHeight = 175f;
+                    maxWidth = 175f;
+                    maxHeight = 175f;
                 }
-                
+
 
                 // current native size
                 float width = weaponImage.rectTransform.sizeDelta.x;
@@ -64,20 +77,24 @@ public class OwnedWeapon : MonoBehaviour
         }
 
         name.text = data.name;
-
-        if(data.isGun)
-        {
-            bulletsText.gameObject.SetActive(true);
-            bulletsText.text = Initialize(data.bulletCount, data.magazineSize);
-        }
-        else if(data.isThrowables)
-        {
-            throwableCount.text = data.throwablesCount.ToString();
-        }
-
-
-        
+        bulletsText.text = Initialize(data.bulletCount, data.magazineSize);
+        isOccupied = true;
     }
+
+    public void UnEquip()
+    {
+        emptyObject.SetActive(true);
+        loadObject.SetActive(false);
+        isOccupied = false;
+
+        if(secondaryGun.isOccupied)
+        {
+            data = secondaryGun.data;
+            AssignData();
+            secondaryGun.UnEquip();
+        }
+    }
+
     string Initialize(int total, int magCap)
     {
         totalBullets = Mathf.Max(0, total);
