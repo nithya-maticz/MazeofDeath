@@ -11,6 +11,7 @@ public class SecondaryGun : MonoBehaviour
     public Weapon data;
     public GameObject emptyObject;
     public GameObject loadObject;
+    public GameObject options;
     public Image weaponImage;
     public Image ButtonImage;
     public TMP_Text name;
@@ -109,7 +110,7 @@ public class SecondaryGun : MonoBehaviour
     {
         if(isOccupied)
         {
-
+            options.SetActive(true);
         }
     }
 }

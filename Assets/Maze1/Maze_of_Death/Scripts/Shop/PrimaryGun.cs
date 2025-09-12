@@ -11,6 +11,7 @@ public class PrimaryGun : MonoBehaviour
     public Weapon data;
     public GameObject emptyObject;
     public GameObject loadObject;
+    public GameObject options;
     public Image weaponImage;
     public Image ButtonImage;
     public TMP_Text name;
@@ -36,7 +37,6 @@ public class PrimaryGun : MonoBehaviour
 
     public void AssignData()
     {
-
         emptyObject.SetActive(false);
         loadObject.SetActive(true);
         ButtonImage.sprite = defaultSprite;
@@ -104,5 +104,13 @@ public class PrimaryGun : MonoBehaviour
         currentMag = Mathf.Min(magazineCapacity, totalBullets);
         reserve = totalBullets - currentMag;
         return (currentMag.ToString() + "/" + reserve.ToString());
+    }
+
+    public void Click()
+    {
+        if (isOccupied)
+        {
+            options.SetActive(true);
+        }
     }
 }

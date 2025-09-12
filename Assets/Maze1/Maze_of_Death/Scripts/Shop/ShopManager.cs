@@ -17,6 +17,7 @@ public class ShopManager : MonoBehaviour
     public WeaponsData userEquipedWeapons;
     public PrimaryGun primaryGun;
     public SecondaryGun secondaryGun;
+    public PrimaryKnife primaryKnife;
     public Animator SelectWeapon;
 
     [Header("Owned Weapons")]
@@ -75,6 +76,11 @@ public class ShopManager : MonoBehaviour
                     secondaryGun.AssignData();
                 }
 
+            }
+            else if(weapon.isKnife)
+            {
+                primaryKnife.data = weapon;
+                primaryKnife.AssignData();
             }
 
         }
@@ -161,7 +167,7 @@ public class ShopManager : MonoBehaviour
             }
         }
     }
-
+     
 
     public void DeleteAllChild(Transform _parent)
     {
