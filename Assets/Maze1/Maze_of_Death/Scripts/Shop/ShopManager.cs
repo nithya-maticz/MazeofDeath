@@ -188,6 +188,28 @@ public class ShopManager : MonoBehaviour
                 }
             }
         }
+        else if(type == "Knife")
+        {
+            int count = 0;
+            DeleteAllChild(quickEquipContent);
+            foreach (Weapon weapon in userWeapons.weapons)
+            {
+                if (weapon.isKnife)
+                {
+                    if(weapon.name != PrimaryKnife.Instance.data.name)
+                    {
+                        QuickEquipWeapon quickWeapon = Instantiate(quickEquipPrefab, quickEquipContent);
+                        quickWeapon.data = weapon;
+                        quickWeapon.AssignData();
+                        count++;
+                    }
+                   
+                }
+            }
+
+            if(count > 0)
+                LobbyManager.Instance.quickEquipAnimator.SetTrigger("OPEN");
+        }
     }
 
     public void DeleteAllChild(Transform _parent)

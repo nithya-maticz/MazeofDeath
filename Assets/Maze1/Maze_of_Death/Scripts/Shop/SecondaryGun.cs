@@ -111,6 +111,10 @@ public class SecondaryGun : MonoBehaviour
         if (isOccupied)
         {
             options.SetActive(true);
+            primaryGun.options.SetActive(false);
+            PrimaryKnife.Instance.options.SetActive(false);
+            if (!isSelected)
+                LobbyManager.Instance.quickEquipAnimator.SetTrigger("CLOSE");
         }
         else
         {

@@ -1,4 +1,5 @@
 using TMPro;
+using Unity.VisualScripting;
 using UnityEngine;
 using UnityEngine.UI;
 
@@ -117,6 +118,11 @@ public class PrimaryGun : MonoBehaviour
         if (isOccupied)
         {
             options.SetActive(true);
+            secondaryGun.options.SetActive(false);
+            PrimaryKnife.Instance.options.SetActive(false);
+            if(!isSelected)
+                LobbyManager.Instance.quickEquipAnimator.SetTrigger("CLOSE");
+
         }
         else
         {

@@ -8,10 +8,12 @@ public class PrimaryKnife : MonoBehaviour
     public Weapon data;
     public Image weaponImage;
     public TMP_Text name;
- 
+    public Button clickButton;
+    public GameObject options;
     private void Awake()
     {
         Instance = this;
+        clickButton.onClick.AddListener(Click);
     }
 
     // Update is called once per frame
@@ -22,6 +24,8 @@ public class PrimaryKnife : MonoBehaviour
 
     public void AssignData()
     {
+        RemovePrevious();
+        
         foreach (WeaponImages img in ShopManager.Instance.weaponSprites)
         {
             if (img.name == data.name)
@@ -29,19 +33,9 @@ public class PrimaryKnife : MonoBehaviour
                 weaponImage.sprite = img.weaponSprite;
                 weaponImage.SetNativeSize();
 
-                float maxWidth = 0;
-                float maxHeight = 0;
-
-                if (data.isGun || data.isKnife)
-                {
-                    maxWidth = 350f;
-                    maxHeight = 150f;
-                }
-                else if (data.isThrowables)
-                {
-                    maxWidth = 175f;
-                    maxHeight = 175f;
-                }
+               float maxWidth = 220;
+               float  maxHeight = 150f;
+              
 
 
                 // current native size
@@ -58,6 +52,30 @@ public class PrimaryKnife : MonoBehaviour
 
             name.text = data.name;
             
+        }
+
+        ShopManager.Instance.userEquipedWeapons.weapons.Add(data);
+    }
+
+    void Click()
+    {
+        ShopManager.Instance.QuickEquipShow("Knife");
+        ShopManager.Instance.currentSelection = "knife";
+        options.SetActive(true);
+        PrimaryGun.Instance.options.SetActive(false);
+        SecondaryGun.Instance.options.SetActive(false);
+    }
+
+    public void RemovePrevious()
+    {
+        options.SetActive(false);
+        foreach (Weapon weapon in ShopManager.Instance.userWeapons.weapons)
+        {
+            if(weapon.isKnife)
+            {
+                ShopManager.Instance.userEquipedWeapons.weapons.Remove(weapon);
+                break;
+            }
         }
     }
 }

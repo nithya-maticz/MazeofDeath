@@ -26,7 +26,7 @@ public class QuickEquipWeapon : MonoBehaviour
         {
             if (img.name == data.name)
             {
-                print("Names : " + data.name);
+              
                 weaponImage.sprite = img.weaponSprite;
                 weaponImage.SetNativeSize();
 
@@ -68,6 +68,11 @@ public class QuickEquipWeapon : MonoBehaviour
         {
             SecondaryGun.Instance.data = data;  
             SecondaryGun.Instance.AssignData();
+        }
+        else if(ShopManager.Instance.currentSelection == "knife")
+        {
+            PrimaryKnife.Instance.data = data;
+            PrimaryKnife.Instance.AssignData();
         }
 
         LobbyManager.Instance.quickEquipAnimator.SetTrigger("CLOSE");
