@@ -1,4 +1,4 @@
-using TMPro;
+﻿using TMPro;
 using UnityEngine;
 using UnityEngine.UI;
 
@@ -57,7 +57,7 @@ public class QuickEquipWeapon : MonoBehaviour
         name.text = data.name;
     }
 
-    void Click()
+    /*void Click()
     {
         if(ShopManager.Instance.currentSelection == "primary")
         {
@@ -71,10 +71,45 @@ public class QuickEquipWeapon : MonoBehaviour
         }
         else if(ShopManager.Instance.currentSelection == "knife")
         {
+            foreach(Weapon weapon in ShopManager.Instance.userEquipedWeapons.weapons)
+            {
+                if(weapon.isKnife)
+                {
+                    ShopManager.Instance.userEquipedWeapons.weapons.Remove(weapon);
+                }
+            }
+
+            ShopManager.Instance.userEquipedWeapons.weapons.Add(data);
+            PrimaryKnife.Instance.data = data;
+            PrimaryKnife.Instance.AssignData();
+        }
+
+        LobbyManager.Instance.quickEquipAnimator.SetTrigger("CLOSE");
+    }*/
+
+    void Click()
+    {
+        if (ShopManager.Instance.currentSelection == "primary")
+        {
+            PrimaryGun.Instance.data = data;
+            PrimaryGun.Instance.AssignData();
+        }
+        else if (ShopManager.Instance.currentSelection == "secondary")
+        {
+            SecondaryGun.Instance.data = data;
+            SecondaryGun.Instance.AssignData();
+        }
+        else if (ShopManager.Instance.currentSelection == "knife")
+        {
+            // ✅ Remove any previously equipped knife(s) before adding the new one
+            ShopManager.Instance.userEquipedWeapons.weapons.RemoveAll(w => w.isKnife);
+
+            ShopManager.Instance.userEquipedWeapons.weapons.Add(data);
             PrimaryKnife.Instance.data = data;
             PrimaryKnife.Instance.AssignData();
         }
 
         LobbyManager.Instance.quickEquipAnimator.SetTrigger("CLOSE");
     }
+
 }

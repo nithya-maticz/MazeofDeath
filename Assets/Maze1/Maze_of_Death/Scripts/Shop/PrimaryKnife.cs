@@ -24,8 +24,7 @@ public class PrimaryKnife : MonoBehaviour
 
     public void AssignData()
     {
-        RemovePrevious();
-        
+        options.SetActive(false);
         foreach (WeaponImages img in ShopManager.Instance.weaponSprites)
         {
             if (img.name == data.name)
@@ -54,7 +53,7 @@ public class PrimaryKnife : MonoBehaviour
             
         }
 
-        ShopManager.Instance.userEquipedWeapons.weapons.Add(data);
+        
     }
 
     void Click()
@@ -69,12 +68,12 @@ public class PrimaryKnife : MonoBehaviour
     public void RemovePrevious()
     {
         options.SetActive(false);
-        foreach (Weapon weapon in ShopManager.Instance.userWeapons.weapons)
+        foreach (Weapon weapon in ShopManager.Instance.userEquipedWeapons.weapons)
         {
             if(weapon.isKnife)
             {
                 ShopManager.Instance.userEquipedWeapons.weapons.Remove(weapon);
-                break;
+               
             }
         }
     }

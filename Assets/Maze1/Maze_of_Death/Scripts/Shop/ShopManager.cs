@@ -80,17 +80,13 @@ public class ShopManager : MonoBehaviour
                     secondaryGun.data = weapon;
                     secondaryGun.AssignData();
                 }
-
             }
             else if(weapon.isKnife)
             {
                 primaryKnife.data = weapon;
                 primaryKnife.AssignData();
             }
-
         }
-        
-
     }
 
     void GetOwnedWeapons()
