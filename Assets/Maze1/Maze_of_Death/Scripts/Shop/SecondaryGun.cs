@@ -38,6 +38,15 @@ public class SecondaryGun : MonoBehaviour
 
     public void AssignData()
     {
+        if(!primaryGun.isOccupied)
+        {
+            primaryGun.data = data;
+            primaryGun.AssignData();
+            ButtonImage.sprite = defaultSprite;
+            isSelected = false;
+            return;
+        }
+
         emptyObject.SetActive(false);
         loadObject.SetActive(true);
         ButtonImage.sprite = defaultSprite;
@@ -108,11 +117,14 @@ public class SecondaryGun : MonoBehaviour
 
     public void Click()
     {
+
+        primaryGun.Deselect();
+
         if (isOccupied)
         {
             options.SetActive(true);
-            primaryGun.options.SetActive(false);
-            PrimaryKnife.Instance.options.SetActive(false);
+           
+           
             if (!isSelected)
                 LobbyManager.Instance.quickEquipAnimator.SetTrigger("CLOSE");
         }
@@ -120,6 +132,7 @@ public class SecondaryGun : MonoBehaviour
         {
             if (!isSelected)
             {
+                ShopManager.Instance.QuickEquipShow("Gun");
                 ButtonImage.sprite = selectedSprite;
                 LobbyManager.Instance.quickEquipAnimator.SetTrigger("OPEN");
                 isSelected = true;
@@ -148,5 +161,12 @@ public class SecondaryGun : MonoBehaviour
     void RemoveEquippedWeapon()
     {
         ShopManager.Instance.userEquipedWeapons.weapons.Remove(data);
+    }
+
+    public void Deselect()
+    {
+        isSelected = false;
+        ButtonImage.sprite = defaultSprite;
+        options.SetActive(false);
     }
 }

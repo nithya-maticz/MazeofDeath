@@ -115,11 +115,13 @@ public class PrimaryGun : MonoBehaviour
 
     public void Click()
     {
+        secondaryGun.Deselect();
+       
         if (isOccupied)
         {
+            
             options.SetActive(true);
-            secondaryGun.options.SetActive(false);
-            PrimaryKnife.Instance.options.SetActive(false);
+           
             if(!isSelected)
                 LobbyManager.Instance.quickEquipAnimator.SetTrigger("CLOSE");
 
@@ -157,5 +159,12 @@ public class PrimaryGun : MonoBehaviour
     void RemoveEquippedWeapon()
     {
         ShopManager.Instance.userEquipedWeapons.weapons.Remove(data);
+    }
+
+    public void Deselect()
+    {
+        isSelected = false;
+        ButtonImage.sprite = defaultSprite;
+        options.SetActive(false);
     }
 }

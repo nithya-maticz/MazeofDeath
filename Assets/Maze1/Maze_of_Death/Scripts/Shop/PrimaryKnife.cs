@@ -35,8 +35,6 @@ public class PrimaryKnife : MonoBehaviour
                float maxWidth = 220;
                float  maxHeight = 150f;
               
-
-
                 // current native size
                 float width = weaponImage.rectTransform.sizeDelta.x;
                 float height = weaponImage.rectTransform.sizeDelta.y;
