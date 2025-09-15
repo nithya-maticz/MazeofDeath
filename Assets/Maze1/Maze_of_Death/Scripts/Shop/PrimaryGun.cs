@@ -24,12 +24,17 @@ public class PrimaryGun : MonoBehaviour
     private int totalBullets;
     private int magazineCapacity;
     public bool isOccupied;
+    [SerializeField] Button details;
 
     private void Awake()
     {
         Instance = this;
     }
 
+    private void Start()
+    {
+        details.onClick.AddListener(() => WeaponDetails.Instance.AssignData(data));
+    }
     // Update is called once per frame
     void Update()
     {

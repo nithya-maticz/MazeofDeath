@@ -25,9 +25,15 @@ public class SecondaryGun : MonoBehaviour
     public bool isOccupied;
     public bool isSelected;
 
+    [SerializeField] Button details;
     private void Awake()
     {
         Instance = this;
+    }
+
+    private void Start()
+    {
+        details.onClick.AddListener(() => WeaponDetails.Instance.AssignData(data));
     }
 
     // Update is called once per frame

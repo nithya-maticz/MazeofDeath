@@ -10,10 +10,17 @@ public class PrimaryKnife : MonoBehaviour
     public TMP_Text name;
     public Button clickButton;
     public GameObject options;
+
+    [SerializeField] Button details;
     private void Awake()
     {
         Instance = this;
         clickButton.onClick.AddListener(Click);
+    }
+
+    private void Start()
+    {
+        details.onClick.AddListener(() => WeaponDetails.Instance.AssignData(data));
     }
 
     // Update is called once per frame

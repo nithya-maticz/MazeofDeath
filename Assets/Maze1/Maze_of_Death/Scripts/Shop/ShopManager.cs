@@ -249,7 +249,7 @@ public class Weapon
     public int magazineSize;
     public int bulletCount;
     public int throwablesCount;
-    public string fireRate;
+    public int fireRate;
     public float range;
     public float freezeTime;
     public Cost cost;
