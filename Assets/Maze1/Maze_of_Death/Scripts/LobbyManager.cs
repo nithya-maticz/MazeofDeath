@@ -41,7 +41,9 @@ public class LobbyManager : MonoBehaviour
     [Header("Fader")]
     public Animator Fader;
     public PlayableDirector faderTimeline;
-   
+
+    [Header("Shop")]
+    public Animator quickEquipAnimator;
 
     private void Awake()
     {
@@ -176,6 +178,8 @@ public class LobbyManager : MonoBehaviour
         faderTimeline.time = 0;
         faderTimeline.Play();
     }
+
+    
 }
 
 

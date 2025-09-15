@@ -32,6 +32,11 @@ public class ShopManager : MonoBehaviour
     public BuyWeapon buyWeaponPrefab;
     public Transform buyWeaponContent;
 
+    [Header("QUICK EQUIP")]
+    public QuickEquipWeapon quickEquipPrefab;
+    public Transform quickEquipContent;
+    public string currentSelection;
+
     
     private void Awake()
     {
@@ -167,7 +172,23 @@ public class ShopManager : MonoBehaviour
             }
         }
     }
-     
+
+    public void QuickEquipShow(string type)
+    {
+        if (type == "Gun")
+        {
+            DeleteAllChild(quickEquipContent);
+            foreach (Weapon weapon in userWeapons.weapons)
+            {
+                if (weapon.isGun)
+                {
+                    QuickEquipWeapon quickWeapon = Instantiate(quickEquipPrefab, quickEquipContent);
+                    quickWeapon.data = weapon;
+                    quickWeapon.AssignData();
+                }
+            }
+        }
+    }
 
     public void DeleteAllChild(Transform _parent)
     {
@@ -177,7 +198,7 @@ public class ShopManager : MonoBehaviour
         }
     }
 
-
+    
 }
 
 [Serializable]

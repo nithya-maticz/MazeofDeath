@@ -16,7 +16,7 @@ public class PrimaryGun : MonoBehaviour
     public Image ButtonImage;
     public TMP_Text name;
     public TMP_Text bulletsText;
-
+    public bool isSelected;
 
     private int currentMag;
     private int reserve;
@@ -45,6 +45,7 @@ public class PrimaryGun : MonoBehaviour
         {
             if (img.name == data.name)
             {
+               
                 weaponImage.sprite = img.weaponSprite;
                 weaponImage.SetNativeSize();
 
@@ -79,19 +80,24 @@ public class PrimaryGun : MonoBehaviour
         name.text = data.name;
         bulletsText.text = Initialize(data.bulletCount, data.magazineSize);
         isOccupied = true;
+        AddEquipedWeapons();
+
+
     }
 
     public void UnEquip()
     {
+        options.SetActive(false);  
         emptyObject.SetActive(true);
         loadObject.SetActive(false);
         isOccupied = false;
-
-        if(secondaryGun.isOccupied)
+        RemoveEquippedWeapon();
+        if (secondaryGun.isOccupied)
         {
+            secondaryGun.UnEquip();
             data = secondaryGun.data;
             AssignData();
-            secondaryGun.UnEquip();
+            
         }
     }
 
@@ -112,5 +118,38 @@ public class PrimaryGun : MonoBehaviour
         {
             options.SetActive(true);
         }
+        else
+        {
+            if(!isSelected)
+            {
+                ShopManager.Instance.QuickEquipShow("Gun");
+                ButtonImage.sprite = selectedSprite;
+                LobbyManager.Instance.quickEquipAnimator.SetTrigger("OPEN");
+                isSelected = true;
+                ShopManager.Instance.currentSelection = "primary";
+                if (secondaryGun.isSelected)
+                {
+                    secondaryGun.isSelected = false;
+                    secondaryGun.ButtonImage.sprite = defaultSprite;
+                }
+            }
+        }
+    }
+
+    void AddEquipedWeapons()
+    {
+        foreach(Weapon weapon in ShopManager.Instance.userEquipedWeapons.weapons)
+        {
+            if (weapon == data)
+            {
+                return;
+            }
+        }
+        ShopManager.Instance.userEquipedWeapons.weapons.Add(data);
+    }
+
+    void RemoveEquippedWeapon()
+    {
+        ShopManager.Instance.userEquipedWeapons.weapons.Remove(data);
     }
 }
