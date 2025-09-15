@@ -57,6 +57,7 @@ public class BuyWeapon : MonoBehaviour
         if(!isBuyed)
         {
             buyButton.gameObject.SetActive(true);
+            ownedIcon.SetActive(false);
             costText.text = data.cost.value.ToString();
 
             if (data.cost.currency == "Gold")

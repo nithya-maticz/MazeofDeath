@@ -36,7 +36,7 @@ public class QuickEquipWeapon : MonoBehaviour
                 if (data.isGun || data.isKnife)
                 {
                     maxWidth = 258;
-                    maxHeight = 69;
+                    maxHeight = 92;
                 }
 
 
