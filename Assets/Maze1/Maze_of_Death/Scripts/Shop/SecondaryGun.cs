@@ -119,6 +119,7 @@ public class SecondaryGun : MonoBehaviour
     {
 
         primaryGun.Deselect();
+        PrimaryKnife.Instance.options.SetActive(false);
 
         if (isOccupied)
         {
@@ -126,7 +127,15 @@ public class SecondaryGun : MonoBehaviour
            
            
             if (!isSelected)
-                LobbyManager.Instance.quickEquipAnimator.SetTrigger("CLOSE");
+            {
+                AnimatorStateInfo state = LobbyManager.Instance.quickEquipAnimator.GetCurrentAnimatorStateInfo(0);
+
+                if (!state.IsName("CONFIRMWEAPON")) // replace "Closed" with your actual state name
+                {
+                    LobbyManager.Instance.quickEquipAnimator.SetTrigger("CLOSE");
+                }
+            }
+                
         }
         else
         {
@@ -134,7 +143,12 @@ public class SecondaryGun : MonoBehaviour
             {
                 ShopManager.Instance.QuickEquipShow("Gun");
                 ButtonImage.sprite = selectedSprite;
-                LobbyManager.Instance.quickEquipAnimator.SetTrigger("OPEN");
+                AnimatorStateInfo state = LobbyManager.Instance.quickEquipAnimator.GetCurrentAnimatorStateInfo(0);
+
+                if (!state.IsName("SELECTWEAPON"))
+                {
+                    LobbyManager.Instance.quickEquipAnimator.SetTrigger("OPEN");
+                }
                 isSelected = true;
                 ShopManager.Instance.currentSelection = "secondary";
                 if(primaryGun.isSelected)
