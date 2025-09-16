@@ -1,4 +1,4 @@
-using UnityEngine;
+﻿using UnityEngine;
 using System;
 using System.Collections.Generic;
 using UnityEngine.Rendering.Universal.Internal;
@@ -12,6 +12,8 @@ public class ShopManager : MonoBehaviour
     public string weaponDB;
     public string userWeaponString;
     public string userEquippedString;
+
+    public string userEquippedSendString;
 
     [Header("PLAYER WEAPON")]
     public WeaponsData userEquipedWeapons;
@@ -37,7 +39,11 @@ public class ShopManager : MonoBehaviour
     public Transform quickEquipContent;
     public string currentSelection;
 
-    
+   
+
+    public List<Weapon> equippedGunsList = new List<Weapon>();
+
+
     private void Awake()
     {
         Instance = this;
@@ -64,24 +70,28 @@ public class ShopManager : MonoBehaviour
         int i = 0;
         primaryGun.UnEquip();
         secondaryGun.UnEquip();
+        equippedGunsList.Clear();
+        
 
         foreach (Weapon weapon in userEquipedWeapons.weapons)
         {
-            if(weapon.isGun)
+            if (weapon.isGun)
             {
                 i++;
-                if(i == 1)
+                if (i == 1)
                 {
                     primaryGun.data = weapon;
                     primaryGun.AssignData();
+                    equippedGunsList.Add(primaryGun.data);
                 }
-                else if(i == 2)
+                else if (i == 2)
                 {
                     secondaryGun.data = weapon;
                     secondaryGun.AssignData();
+                    equippedGunsList.Add(secondaryGun.data);
                 }
             }
-            else if(weapon.isKnife)
+            else if (weapon.isKnife)
             {
                 primaryKnife.data = weapon;
                 primaryKnife.AssignData();
@@ -216,14 +226,25 @@ public class ShopManager : MonoBehaviour
         }
     }
 
-    
+
+    public void HomeFun()
+    {
+        userEquippedSendString = JsonUtility.ToJson(userEquipedWeapons);
+
+    }
+
+
+
 }
+
+
 
 [Serializable]
 public class WeaponImages
 {
     public string name;
     public Sprite weaponSprite;
+
 }
 
 [Serializable]

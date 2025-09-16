@@ -176,11 +176,13 @@ public class SecondaryGun : MonoBehaviour
             }
         }
         ShopManager.Instance.userEquipedWeapons.weapons.Add(data);
+        ShopManager.Instance.equippedGunsList.Add(data);
     }
 
     void RemoveEquippedWeapon()
     {
         ShopManager.Instance.userEquipedWeapons.weapons.Remove(data);
+        ShopManager.Instance.equippedGunsList.Remove(data);
     }
 
     public void Deselect()

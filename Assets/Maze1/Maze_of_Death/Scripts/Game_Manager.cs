@@ -8,6 +8,9 @@ using UnityEngine.UI;
 
 public class Game_Manager : MonoBehaviour
 {
+
+    public string userEquippedString;
+    public WeaponsData userEquipedWeapons;
     public static Game_Manager Instance;
     public PlayerHealth playerHealth;
     public VariableJoystick movementJoystick;
@@ -79,9 +82,41 @@ public class Game_Manager : MonoBehaviour
     public GameObject KnifeObject;
     public Button KnifeButton;
     public GameObject GunObject;
+    public GameObject KnieObject;
+    public GameObject GranadeObject;
+    public GameObject IceGranadeObject;
+    public GameObject MolotovObject;
+
+    public GameObject gunPanelObject;
+    public GameObject KnifePanelObject;
+    public GameObject granadePanelObject;
+    public GameObject IceGranadePanelObject;
+    public GameObject MolotovPanelObject;
+
+    public Sprite knifeImage;
+    public Sprite gunImage;
+    public Sprite geranadeImage;
+    public Sprite IcegerandeImage;
+    public Sprite MolotoVImage;
+
+    public Image IconImage;
+    public Image PrimaryGunImage;
+    public Image SecondaryGunImage;
+    public Sprite PistolImage;
+    public Sprite shortGunImage;
+    public Sprite AssaultRifleImage;
+    public Sprite SniperImage;
+    public Sprite UziImage;
+
+
+
+
     public Button GunButton;
     public bool IsGun;
     public bool IsKnife;
+    public bool IsGranade;
+    public bool IsIceGranade;
+    public bool isMolotov;
     public Toggle AutoAttackToogle;
     public Toggle ManualShootToogle;
     //public Toggle AutoAimAndAutoShootToggle;
@@ -94,7 +129,7 @@ public class Game_Manager : MonoBehaviour
     public GameObject bombPrefab;
     public GameObject bomb;
     public bool isBomb;
-
+  
     [Header("MATERIAL")]
     public Material litMat;
 
@@ -121,10 +156,79 @@ public class Game_Manager : MonoBehaviour
 
     void Start()
     {
-      
+        userEquipedWeapons = JsonUtility.FromJson<WeaponsData>(userEquippedString);
+        GetEquipedWeapons();
+
         //StartData();
     }
 
+    void GetEquipedWeapons()
+    {
+        int i = 0;
+        foreach (Weapon weapon in userEquipedWeapons.weapons)
+        {
+            Debug.Log("fdfds");
+            if (weapon.isGun)
+            {
+                i++;
+                if (i == 1)
+                {
+                    Debug.Log("inside if");
+                    if (weapon.name== "9mmPistol")
+                    {
+                        PrimaryGunImage.sprite = PistolImage;
+                    }
+                    else if (weapon.name == "Shotgun")
+                    {
+                        PrimaryGunImage.sprite = shortGunImage;
+                    }
+                    else if (weapon.name == "AssaultRifle")
+                    {
+                        PrimaryGunImage.sprite = AssaultRifleImage;
+                    }
+                    else if (weapon.name == "Sniper")
+                    {
+                        PrimaryGunImage.sprite = SniperImage;
+                    }
+                    else if (weapon.name == "Uzi")
+                    {
+                        PrimaryGunImage.sprite = UziImage;
+                    }
+
+
+                }
+                else if (i == 2)
+                {
+                    if (weapon.name == "9mmPistol")
+                    {
+                        SecondaryGunImage.sprite = PistolImage;
+                    }
+                    else if (weapon.name == "Shotgun")
+                    {
+                        SecondaryGunImage.sprite = shortGunImage;
+                    }
+                    else if (weapon.name == "AssaultRifle")
+                    {
+                        SecondaryGunImage.sprite = AssaultRifleImage;
+                    }
+                    else if (weapon.name == "Sniper")
+                    {
+                        SecondaryGunImage.sprite = SniperImage;
+                    }
+                    else if (weapon.name == "Uzi")
+                    {
+                        SecondaryGunImage.sprite = UziImage;
+                    }
+                }
+            }
+           
+        }
+    }
+
+    void setGunImage()
+    {
+
+    }
 
     private void Update()
     {
@@ -423,16 +527,34 @@ public class Game_Manager : MonoBehaviour
     {
         IsGun = true;
         IsKnife = false;
+        IsGranade = false;
+        IsIceGranade = false;
+        isMolotov = false;
         GunObject.SetActive(true);
         KnifeObject.SetActive(false);
+        MolotovObject.SetActive(false);
+        GranadeObject.SetActive(false);
+        IceGranadeObject.SetActive(false);
+        gunPanelObject.SetActive(false);
+        KnifePanelObject.SetActive(true);
+        MolotovPanelObject.SetActive(true);
+        granadePanelObject.SetActive(true);
+        IceGranadePanelObject.SetActive(true);
 
-        if(AutoAimAndManualShootToggle.isOn)
+        IconImage.sprite = gunImage;
+
+        PrimaryGunImage = PrimaryGun.Instance.weaponImage;
+        SecondaryGunImage = SecondaryGun.Instance.weaponImage;
+
+
+
+        if (AutoAimAndManualShootToggle.isOn)
         {
             AutoAim.enabled = true;
             GunButton.interactable = true;
-           
+
         }
-        else if(ManualAimAndShootToggle.isOn)
+        else if (ManualAimAndShootToggle.isOn)
         {
             AutoAim.enabled = false;
             GunButton.interactable = true;
@@ -443,10 +565,22 @@ public class Game_Manager : MonoBehaviour
     {
         IsGun = false;
         IsKnife = true;
+        IsGranade = false;
+        IsIceGranade = false;
+        isMolotov = false;
         GunObject.SetActive(false);
         KnifeObject.SetActive(true);
+        MolotovObject.SetActive(false);
+        GranadeObject.SetActive(false);
+        IceGranadeObject.SetActive(false);
+        gunPanelObject.SetActive(true);
+        KnifePanelObject.SetActive(false);
+        MolotovPanelObject.SetActive(true);
+        granadePanelObject.SetActive(true);
+        IceGranadePanelObject.SetActive(true);
+        IconImage.sprite = knifeImage;
 
-        if(AutoAttackToogle.isOn)
+        if (AutoAttackToogle.isOn)
         {
             KnifeButton.interactable = false;
         }
@@ -457,6 +591,66 @@ public class Game_Manager : MonoBehaviour
 
         AutoAim.enabled = false;
     }
+
+    public void MolotovChange()
+    {
+        IsGun = false;
+        IsKnife = false;
+        IsGranade = false;
+        IsIceGranade = false;
+        isMolotov = true;
+        GunObject.SetActive(false);
+        KnifeObject.SetActive(false);
+        MolotovObject.SetActive(true);
+        GranadeObject.SetActive(false);
+        IceGranadeObject.SetActive(false);
+        gunPanelObject.SetActive(true);
+        KnifePanelObject.SetActive(true);
+        MolotovPanelObject.SetActive(false);
+        granadePanelObject.SetActive(true);
+        IceGranadePanelObject.SetActive(true);
+        IconImage.sprite = MolotoVImage;
+       
+    }
+    public void GeranedeChange()
+    {
+        IsGun = false;
+        IsKnife = false;
+        IsGranade = true;
+        IsIceGranade = false;
+        isMolotov = false;
+        GunObject.SetActive(false);
+        KnifeObject.SetActive(false);
+        MolotovObject.SetActive(false);
+        GranadeObject.SetActive(true);
+        IceGranadeObject.SetActive(false);
+        gunPanelObject.SetActive(true);
+        KnifePanelObject.SetActive(true);
+        MolotovPanelObject.SetActive(true);
+        granadePanelObject.SetActive(false);
+        IceGranadePanelObject.SetActive(true);
+        IconImage.sprite = geranadeImage;
+    }
+    public void IceGeranedeChange()
+    {
+        IsGun = false;
+        IsKnife = false;
+        IsGranade = false;
+        IsIceGranade = true;
+        isMolotov = false;
+        GunObject.SetActive(false);
+        KnifeObject.SetActive(false);
+        MolotovObject.SetActive(false);
+        GranadeObject.SetActive(false);
+        IceGranadeObject.SetActive(true);
+        gunPanelObject.SetActive(true);
+        KnifePanelObject.SetActive(true);
+        MolotovPanelObject.SetActive(true);
+        granadePanelObject.SetActive(true);
+        IceGranadePanelObject.SetActive(false);
+        IconImage.sprite = IcegerandeImage;
+    }
+    
 
     public void UpdateAttackSettings()
     {
@@ -578,3 +772,6 @@ public class PatrolAreas
     public List<Transform> patrolPoints = new List<Transform>();
     public bool isOccupied;
 }
+
+
+
