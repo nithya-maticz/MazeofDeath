@@ -44,6 +44,8 @@ public class PlayerMovements : MonoBehaviour
     // Bomb
     public GameObject bombSpawnPoint;
     public GameObject bombLight;
+
+    public bool shotGun;
     ///
    // public GameObject autoAim;
 
@@ -106,30 +108,64 @@ public class PlayerMovements : MonoBehaviour
         // ✅ Skip animation change logic if attacking
         if (isAttack) return;
 
-        if (!isGun && !isWalking && (!wasIdle || wasGun))
+        shotGun = true;
+
+        if(shotGun)
         {
-            ResetAllTriggers();
-            _Animator.SetTrigger("Idle");
-            wasIdle = true;
+            if (!isGun && !isWalking && (!wasIdle || wasGun))
+            {
+                ResetAllTriggers();
+                _Animator.SetTrigger("Idle");
+                wasIdle = true;
+            }
+            else if (isGun && !isWalking && (!wasIdle || !wasGun))
+            {
+                ResetAllTriggers();
+                _Animator.SetTrigger("shotgunidle");
+                wasIdle = true;
+            }
+            else if (isGun && isWalking && (!wasWalking || !wasGun))
+            {
+                ResetAllTriggers();
+                _Animator.SetTrigger("shotgunwalk");
+                wasIdle = false;
+            }
+            else if (!isGun && isWalking && (!wasWalking || wasGun))
+            {
+                ResetAllTriggers();
+                _Animator.SetTrigger("Walk");
+                wasIdle = false;
+            }
         }
-        else if (isGun && !isWalking && (!wasIdle || !wasGun))
+        else
         {
-            ResetAllTriggers();
-            _Animator.SetTrigger("GunIdle");
-            wasIdle = true;
+            if (!isGun && !isWalking && (!wasIdle || wasGun))
+            {
+                ResetAllTriggers();
+                _Animator.SetTrigger("Idle");
+                wasIdle = true;
+            }
+            else if (isGun && !isWalking && (!wasIdle || !wasGun))
+            {
+                ResetAllTriggers();
+                _Animator.SetTrigger("GunIdle");
+                wasIdle = true;
+            }
+            else if (isGun && isWalking && (!wasWalking || !wasGun))
+            {
+                ResetAllTriggers();
+                _Animator.SetTrigger("WalkWithGun");
+                wasIdle = false;
+            }
+            else if (!isGun && isWalking && (!wasWalking || wasGun))
+            {
+                ResetAllTriggers();
+                _Animator.SetTrigger("Walk");
+                wasIdle = false;
+            }
         }
-        else if (isGun && isWalking && (!wasWalking || !wasGun))
-        {
-            ResetAllTriggers();
-            _Animator.SetTrigger("WalkWithGun");
-            wasIdle = false;
-        }
-        else if (!isGun && isWalking && (!wasWalking || wasGun))
-        {
-            ResetAllTriggers();
-            _Animator.SetTrigger("Walk");
-            wasIdle = false;
-        }
+
+       
 
         wasWalking = isWalking;
         wasGun = isGun;
