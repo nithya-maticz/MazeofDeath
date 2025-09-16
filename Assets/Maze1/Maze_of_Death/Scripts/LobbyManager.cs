@@ -160,7 +160,6 @@ public class LobbyManager : MonoBehaviour
             femaleAniChar.SetActive(false);
             lobbyCharIcon.sprite = lobbyMaleIcon;
             lobbyCharName.sprite = lobbyMaleName;
-
         }
         else if (currentCharacter == 2)
         {
