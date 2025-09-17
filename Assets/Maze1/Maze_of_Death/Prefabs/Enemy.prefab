@@ -153,8 +153,10 @@ MonoBehaviour:
   isCollidingWithPlayer: 0
   isPatrolDoor: 0
   TargetLocked: {fileID: 7431871365076221689}
-  Health: 3
+  Health: 30
   maxHealth: 3
+  PistolBullet: 15
+  ShotGunBullet: 50
   HealthParent: {fileID: 5524638139309803725}
   FillHealth: {fileID: 8219686356089263212}
   defaultSpeed: 0
@@ -164,6 +166,9 @@ MonoBehaviour:
     patrolPoints: []
     isOccupied: 0
   playerInRange: 0
+  rotationSampleInterval: 0.06
+  rotationAngleThreshold: 1
+  predictionTime: 0.08
 --- !u!50 &2116278565407277633
 Rigidbody2D:
   serializedVersion: 5

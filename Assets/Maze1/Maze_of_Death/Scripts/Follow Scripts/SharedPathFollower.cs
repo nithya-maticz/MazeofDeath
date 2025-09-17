@@ -47,8 +47,10 @@ public class SharedPathFollower : MonoBehaviour, IGetBlastTank
     public GameObject TargetLocked;
 
     [Header("Health")]
-    public int Health = 3;
-    public int maxHealth = 3;
+    public int Health = 30;
+    public int maxHealth = 30;
+    public int PistolBullet;
+    public int ShotGunBullet;
 
     public GameObject HealthParent;
     public Image FillHealth;
@@ -422,7 +424,16 @@ public class SharedPathFollower : MonoBehaviour, IGetBlastTank
         else if (collision.CompareTag("Bullet"))
         {
             Destroy(collision.gameObject);
-            Health--;
+            if(Game_Manager.Instance.PrimaryGun=="Pistol")
+            {
+                Health = Health - PistolBullet;
+            }
+            else if (Game_Manager.Instance.PrimaryGun == "Shotgun")
+            {
+                Health = Health - ShotGunBullet;
+            }
+
+
 
             if (Health <= 0)
             {
