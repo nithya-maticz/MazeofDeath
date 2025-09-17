@@ -182,7 +182,7 @@ GameObject:
   - component: {fileID: 8311839817402392493}
   - component: {fileID: 3689842189205653162}
   m_Layer: 6
-  m_Name: VisionAuto Aim
+  m_Name: shotgun_VisionAutoAim
   m_TagString: Untagged
   m_Icon: {fileID: 0}
   m_NavMeshLayer: 0
@@ -197,7 +197,7 @@ Transform:
   m_GameObject: {fileID: 1783771154627490365}
   serializedVersion: 2
   m_LocalRotation: {x: 0, y: 0, z: 0.7071068, w: 0.7071068}
-  m_LocalPosition: {x: -0.88, y: 0.65, z: 0}
+  m_LocalPosition: {x: -1.85, y: -0.2, z: 0}
   m_LocalScale: {x: 1, y: 1, z: 1}
   m_ConstrainProportionsScale: 0
   m_Children: []
@@ -352,6 +352,7 @@ Transform:
   - {fileID: 2488802415315389666}
   - {fileID: 5032191966770204330}
   - {fileID: 8311839817402392493}
+  - {fileID: 6798101504427467661}
   - {fileID: 5901168041462127249}
   - {fileID: 3494255304341916003}
   - {fileID: 7548374160585611603}
@@ -531,10 +532,12 @@ MonoBehaviour:
   knifeAttack: {fileID: 8228679095106304056}
   ManualTarget: {fileID: 5901168041462127249}
   offSet: {fileID: 2488802415315389666}
-  bulletSpawn: {fileID: 8311839817402392493}
+  ShotGunbulletSpawn: {fileID: 8311839817402392493}
+  PistolbulletSpawn: {fileID: 6798101504427467661}
   speed: 2
   bombSpawnPoint: {fileID: 2905874370485677423}
   bombLight: {fileID: 2203036854494695465}
+  shotGun: 1
 --- !u!114 &8618990309587487403
 MonoBehaviour:
   m_ObjectHideFlags: 0
@@ -547,6 +550,8 @@ MonoBehaviour:
   m_Script: {fileID: 11500000, guid: a3e49c74797e3b94cbaf79162b1d49b9, type: 3}
   m_Name: 
   m_EditorClassIdentifier: 
+  PlayerHealthCount: 0
+  isFilling: 0
 --- !u!1 &2905874370485677423
 GameObject:
   m_ObjectHideFlags: 0
@@ -756,6 +761,61 @@ MonoBehaviour:
   - {x: 0.5, y: -0.5, z: 0}
   - {x: 0.5, y: 0.5, z: 0}
   - {x: -0.5, y: 0.5, z: 0}
+--- !u!1 &6248788754091618431
+GameObject:
+  m_ObjectHideFlags: 0
+  m_CorrespondingSourceObject: {fileID: 0}
+  m_PrefabInstance: {fileID: 0}
+  m_PrefabAsset: {fileID: 0}
+  serializedVersion: 6
+  m_Component:
+  - component: {fileID: 6798101504427467661}
+  - component: {fileID: 8187391500562675380}
+  m_Layer: 6
+  m_Name: pistol_VisionAutoAim
+  m_TagString: Untagged
+  m_Icon: {fileID: 0}
+  m_NavMeshLayer: 0
+  m_StaticEditorFlags: 0
+  m_IsActive: 1
+--- !u!4 &6798101504427467661
+Transform:
+  m_ObjectHideFlags: 0
+  m_CorrespondingSourceObject: {fileID: 0}
+  m_PrefabInstance: {fileID: 0}
+  m_PrefabAsset: {fileID: 0}
+  m_GameObject: {fileID: 6248788754091618431}
+  serializedVersion: 2
+  m_LocalRotation: {x: 0, y: 0, z: 0.7071068, w: 0.7071068}
+  m_LocalPosition: {x: -1.83, y: 0.63, z: 0}
+  m_LocalScale: {x: 1, y: 1, z: 1}
+  m_ConstrainProportionsScale: 0
+  m_Children: []
+  m_Father: {fileID: 3363662290159409776}
+  m_LocalEulerAnglesHint: {x: 0, y: 0, z: 90}
+--- !u!114 &8187391500562675380
+MonoBehaviour:
+  m_ObjectHideFlags: 0
+  m_CorrespondingSourceObject: {fileID: 0}
+  m_PrefabInstance: {fileID: 0}
+  m_PrefabAsset: {fileID: 0}
+  m_GameObject: {fileID: 6248788754091618431}
+  m_Enabled: 0
+  m_EditorHideFlags: 0
+  m_Script: {fileID: 11500000, guid: 23c0789199208a2479a2e1f0f91ece45, type: 3}
+  m_Name: 
+  m_EditorClassIdentifier: 
+  weaponPivot: {fileID: 6798101504427467661}
+  visionAngle: 60
+  visionDistance: 2
+  enemyLayer:
+    serializedVersion: 2
+    m_Bits: 512
+  obstacleLayer:
+    serializedVersion: 2
+    m_Bits: 128
+  fireCooldown: 1
+  currentTarget: {fileID: 0}
 --- !u!1 &6597236691723493882
 GameObject:
   m_ObjectHideFlags: 0
@@ -1003,7 +1063,7 @@ Transform:
   m_GameObject: {fileID: 8893160945063621038}
   serializedVersion: 2
   m_LocalRotation: {x: 0, y: 0, z: 0, w: 1}
-  m_LocalPosition: {x: 0, y: 0, z: 0}
+  m_LocalPosition: {x: -0.14, y: 0, z: 0}
   m_LocalScale: {x: 1, y: 1, z: 1}
   m_ConstrainProportionsScale: 0
   m_Children: []

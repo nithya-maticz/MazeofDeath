@@ -8,9 +8,7 @@ public class PlayerMovements : MonoBehaviour
     [Header("Joystick Movement")]
     private VariableJoystick movementJoystick;
     public float moveSpeed = 5f;
-
-
-    
+ 
 
     [Header("Rotation Settings")]
     public float rotationSensitivity = 0.2f;
@@ -25,6 +23,9 @@ public class PlayerMovements : MonoBehaviour
     public bool wasWalking = false;
     private bool wasIdle = false;
     public bool wasGun;
+    public bool wasWalking1 = false;
+    private bool wasIdle1 = false;
+    public bool wasGun1;
     public bool isGun;
     private Rigidbody2D rb;
     public bool isAttack = false;
@@ -38,7 +39,8 @@ public class PlayerMovements : MonoBehaviour
     [Header("Manual Target")]
     public Transform ManualTarget;
     public Transform offSet;
-    public Transform bulletSpawn;
+    public Transform ShotGunbulletSpawn;
+    public Transform PistolbulletSpawn;
     public float speed = 2f;
 
     // Bomb
@@ -46,6 +48,7 @@ public class PlayerMovements : MonoBehaviour
     public GameObject bombLight;
 
     public bool shotGun;
+    public bool PistolGun;
     ///
    // public GameObject autoAim;
 
@@ -108,10 +111,13 @@ public class PlayerMovements : MonoBehaviour
         // ✅ Skip animation change logic if attacking
         if (isAttack) return;
 
-        shotGun = true;
+        //shotGun = true;
 
-        if(shotGun)
+       // Debug.Log("GUNN    " +Game_Manager.Instance.PrimaryGun);
+
+        if (Game_Manager.Instance.PrimaryGun== "Shotgun")
         {
+           
             if (!isGun && !isWalking && (!wasIdle || wasGun))
             {
                 ResetAllTriggers();
@@ -137,8 +143,10 @@ public class PlayerMovements : MonoBehaviour
                 wasIdle = false;
             }
         }
-        else
+        else if (Game_Manager.Instance.PrimaryGun == "Pistol")
         {
+           
+
             if (!isGun && !isWalking && (!wasIdle || wasGun))
             {
                 ResetAllTriggers();
@@ -147,7 +155,8 @@ public class PlayerMovements : MonoBehaviour
             }
             else if (isGun && !isWalking && (!wasIdle || !wasGun))
             {
-                ResetAllTriggers();
+               
+                    ResetAllTriggers();
                 _Animator.SetTrigger("GunIdle");
                 wasIdle = true;
             }
@@ -172,6 +181,15 @@ public class PlayerMovements : MonoBehaviour
     }
 
 
+    public void ShorGunIdle()
+    {
+        _Animator.SetTrigger("shotgunidle");
+    }
+    public void PistolIdle()
+    {
+        _Animator.SetTrigger("GunIdle");
+    }
+
 
     public void ResetAllTriggers()
     {
@@ -179,6 +197,8 @@ public class PlayerMovements : MonoBehaviour
         _Animator.ResetTrigger("GunIdle");
         _Animator.ResetTrigger("Walk");
         _Animator.ResetTrigger("WalkWithGun");
+        _Animator.ResetTrigger("shotgunidle");
+        _Animator.ResetTrigger("shotgunwalk");
     }
 
 

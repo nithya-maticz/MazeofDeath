@@ -108,6 +108,8 @@ public class Game_Manager : MonoBehaviour
     public Sprite SniperImage;
     public Sprite UziImage;
 
+    
+
 
 
 
@@ -137,6 +139,11 @@ public class Game_Manager : MonoBehaviour
     public List<PatrolAreas> patrolAreas;
     public int currentPatrolId;
 
+    public String PrimaryGun;
+    public String SecondaryGun;
+    public int j;
+    public GameObject SelectWeaponPage;
+
     private void Awake()
     {
         if (Instance != null && Instance != this)
@@ -164,6 +171,105 @@ public class Game_Manager : MonoBehaviour
 
     void GetEquipedWeapons()
     {
+        
+            int i = 0;
+            foreach (Weapon weapon in userEquipedWeapons.weapons)
+            {
+                Debug.Log("fdfds");
+                if (weapon.isGun)
+                {
+                    i++;
+                    if (i == 1)
+                    {
+                        Debug.Log("inside if");
+                        if (weapon.name == "9mmPistol")
+                        {
+                            PrimaryGunImage.sprite = PistolImage;
+                            PrimaryGun = "Pistol";
+                        }
+                        else if (weapon.name == "Shotgun")
+                        {
+                            PrimaryGunImage.sprite = shortGunImage;
+                            PrimaryGun = "Shotgun";
+                        }
+                        else if (weapon.name == "AssaultRifle")
+                        {
+                            PrimaryGunImage.sprite = AssaultRifleImage;
+                            PrimaryGun = "AssaultRifle";
+                        }
+                        else if (weapon.name == "Sniper")
+                        {
+                            PrimaryGunImage.sprite = SniperImage;
+                            PrimaryGun = "Sniper";
+                        }
+                        else if (weapon.name == "Uzi")
+                        {
+                            PrimaryGunImage.sprite = UziImage;
+                            PrimaryGun = "Uzi";
+                        }
+
+
+                    }
+                    else if (i == 2)
+                    {
+                        if (weapon.name == "9mmPistol")
+                        {
+                            SecondaryGunImage.sprite = PistolImage;
+                            SecondaryGun = "Pistol";
+                        }
+                        else if (weapon.name == "Shotgun")
+                        {
+                            SecondaryGunImage.sprite = shortGunImage;
+                            SecondaryGun = "Shot";
+                        }
+                        else if (weapon.name == "AssaultRifle")
+                        {
+                            SecondaryGunImage.sprite = AssaultRifleImage;
+                            SecondaryGun = "AssaultRifle";
+                        }
+                        else if (weapon.name == "Sniper")
+                        {
+                            SecondaryGunImage.sprite = SniperImage;
+                            SecondaryGun = "Sniper";
+                        }
+                        else if (weapon.name == "Uzi")
+                        {
+                            SecondaryGunImage.sprite = UziImage;
+                            SecondaryGun = "Uzi";
+                        }
+                    }
+                }
+
+            }
+
+       
+      
+
+            
+    }
+
+   public void SwapGun()
+    {
+        if(j==0)
+        {
+            j = 1;
+            PlayerMovements.Instance.PistolIdle();
+            swapPistol();
+
+        }
+        else
+        {
+            j = 0;
+            PlayerMovements.Instance.ShorGunIdle();
+            GetEquipedWeapons();
+            
+
+        }
+           
+    }
+
+    public void swapPistol()
+    {
         int i = 0;
         foreach (Weapon weapon in userEquipedWeapons.weapons)
         {
@@ -173,60 +279,67 @@ public class Game_Manager : MonoBehaviour
                 i++;
                 if (i == 1)
                 {
-                    Debug.Log("inside if");
-                    if (weapon.name== "9mmPistol")
+                    if (weapon.name == "9mmPistol")
                     {
-                        PrimaryGunImage.sprite = PistolImage;
+                        SecondaryGunImage.sprite = PistolImage;
+                        SecondaryGun = "Pistol";
                     }
                     else if (weapon.name == "Shotgun")
                     {
-                        PrimaryGunImage.sprite = shortGunImage;
+                        SecondaryGunImage.sprite = shortGunImage;
+                        SecondaryGun = "Shot";
                     }
                     else if (weapon.name == "AssaultRifle")
                     {
-                        PrimaryGunImage.sprite = AssaultRifleImage;
+                        SecondaryGunImage.sprite = AssaultRifleImage;
+                        SecondaryGun = "AssaultRifle";
                     }
                     else if (weapon.name == "Sniper")
                     {
-                        PrimaryGunImage.sprite = SniperImage;
+                        SecondaryGunImage.sprite = SniperImage;
+                        SecondaryGun = "Sniper";
                     }
                     else if (weapon.name == "Uzi")
                     {
-                        PrimaryGunImage.sprite = UziImage;
+                        SecondaryGunImage.sprite = UziImage;
+                        SecondaryGun = "Uzi";
                     }
 
 
                 }
                 else if (i == 2)
                 {
+                    
                     if (weapon.name == "9mmPistol")
                     {
-                        SecondaryGunImage.sprite = PistolImage;
+                        PrimaryGunImage.sprite = PistolImage;
+                        PrimaryGun = "Pistol";
                     }
                     else if (weapon.name == "Shotgun")
                     {
-                        SecondaryGunImage.sprite = shortGunImage;
+                        PrimaryGunImage.sprite = shortGunImage;
+                        PrimaryGun = "Shotgun";
                     }
                     else if (weapon.name == "AssaultRifle")
                     {
-                        SecondaryGunImage.sprite = AssaultRifleImage;
+                        PrimaryGunImage.sprite = AssaultRifleImage;
+                        PrimaryGun = "AssaultRifle";
                     }
                     else if (weapon.name == "Sniper")
                     {
-                        SecondaryGunImage.sprite = SniperImage;
+                        PrimaryGunImage.sprite = SniperImage;
+                        PrimaryGun = "Sniper";
                     }
                     else if (weapon.name == "Uzi")
                     {
-                        SecondaryGunImage.sprite = UziImage;
+                        PrimaryGunImage.sprite = UziImage;
+                        PrimaryGun = "Uzi";
                     }
+
                 }
             }
-           
-        }
-    }
 
-    void setGunImage()
-    {
+        }
 
     }
 
@@ -259,13 +372,13 @@ public class Game_Manager : MonoBehaviour
 
     public void SpawnPlayer(Vector3 worldPos)
     {
-        /* playerTransform.position = worldPos;
-         Instantiate(playerPrefab, playerTransform.transform);
-         SmoothFollowCamera.Instance.target = PlayerMovements.Instance.offSet;
-         BulletSpawner = PlayerMovements.Instance.bulletSpawn;
-         AutoAim = AutoAimOnly.Instance;*/
+        playerTransform.position = worldPos;
+        Instantiate(playerPrefab, playerTransform.transform);
+        SmoothFollowCamera.Instance.target = PlayerMovements.Instance.offSet;
+       // BulletSpawner = PlayerMovements.Instance.bulletSpawn;
+        AutoAim = AutoAimOnly.Instance;
 
-        if (LobbyManager.currentCharacter == 1)
+       /* if (LobbyManager.currentCharacter == 1)
         {
             Debug.Log("Male");
             Instantiate(playerPrefab, worldPos, Quaternion.identity);
@@ -280,7 +393,7 @@ public class Game_Manager : MonoBehaviour
             SmoothFollowCamera.Instance.target = PlayerMovements.Instance.offSet;
             BulletSpawner = PlayerMovements.Instance.bulletSpawn;
             AutoAim = AutoAimOnly.Instance;
-        }
+        }*/
     }
 
 
@@ -408,17 +521,22 @@ public class Game_Manager : MonoBehaviour
                 currentBullets--;
                 Debug.Log("Shot fired! Bullets left: " + currentBullets);
                 UpdateUI();
-                if(PlayerMovements.Instance.shotGun)
+
+
+                if (PrimaryGun == "Shotgun")
                 {
+                    BulletSpawner = PlayerMovements.Instance.ShotGunbulletSpawn;
                     PlayerMovements.Instance._Animator.SetTrigger("shotgunshoot");
                 }
-                else
+                else if (PrimaryGun == "Pistol")
                 {
+                    BulletSpawner = PlayerMovements.Instance.PistolbulletSpawn;
                     PlayerMovements.Instance._Animator.SetTrigger("Shoot");
                 }
-                   
+
                 Bullet bullet = Instantiate(BulletPrefab, BulletSpawner);
                 bullet.transform.localPosition = Vector3.zero;
+                bullet.transform.localRotation = Quaternion.Euler(180, 180, 90);
                 bullet.Target = PlayerMovements.Instance.ManualTarget;
                 bullet.GO = true;
 
@@ -551,10 +669,6 @@ public class Game_Manager : MonoBehaviour
 
         IconImage.sprite = gunImage;
 
-       
-
-
-
         if (AutoAimAndManualShootToggle.isOn)
         {
             AutoAim.enabled = true;
@@ -656,6 +770,21 @@ public class Game_Manager : MonoBehaviour
         granadePanelObject.SetActive(true);
         IceGranadePanelObject.SetActive(false);
         IconImage.sprite = IcegerandeImage;
+    }
+
+
+    public void SelectWeaponPageView()
+    {
+        Debug.Log("SelectWeaponPage");
+        if(SelectWeaponPage.activeSelf)
+        {
+            SelectWeaponPage.SetActive(false);
+        }
+        else
+        {
+            SelectWeaponPage.SetActive(true);
+        }
+           
     }
     
 
