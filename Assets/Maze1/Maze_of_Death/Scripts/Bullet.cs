@@ -20,8 +20,12 @@ public class Bullet : MonoBehaviour
             transform.position = Vector3.MoveTowards(transform.position, Target.position, speed * Time.deltaTime);
 
 
-            Vector2 direction = Target.position - transform.position;
+            /*Vector2 direction = Target.position - transform.position;
             float angle = Mathf.Atan2(direction.y, direction.x) * Mathf.Rad2Deg;
+            transform.rotation = Quaternion.Euler(0f, 0f, angle);*/
+
+            Vector2 direction = Target.position - transform.position;
+            float angle = Mathf.Atan2(direction.y, direction.x) * Mathf.Rad2Deg + 180f;
             transform.rotation = Quaternion.Euler(0f, 0f, angle);
         }
 

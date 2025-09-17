@@ -522,21 +522,28 @@ public class Game_Manager : MonoBehaviour
                 Debug.Log("Shot fired! Bullets left: " + currentBullets);
                 UpdateUI();
 
+                switch (PrimaryGun)
+                {
+                    case "Shotgun":
+                        BulletSpawner = PlayerMovements.Instance.ShotGunbulletSpawn;
+                        PlayerMovements.Instance._Animator.SetTrigger("shotgunshoot");
+                        break;
 
-                if (PrimaryGun == "Shotgun")
-                {
-                    BulletSpawner = PlayerMovements.Instance.ShotGunbulletSpawn;
-                    PlayerMovements.Instance._Animator.SetTrigger("shotgunshoot");
+                    case "Pistol":
+                        BulletSpawner = PlayerMovements.Instance.PistolbulletSpawn;
+                        PlayerMovements.Instance._Animator.SetTrigger("Shoot");
+                        break;
+
+
+                    default:
+                        Debug.LogWarning("No valid weapon equipped!");
+                        break;
                 }
-                else if (PrimaryGun == "Pistol")
-                {
-                    BulletSpawner = PlayerMovements.Instance.PistolbulletSpawn;
-                    PlayerMovements.Instance._Animator.SetTrigger("Shoot");
-                }
+              
 
                 Bullet bullet = Instantiate(BulletPrefab, BulletSpawner);
                 bullet.transform.localPosition = Vector3.zero;
-                bullet.transform.localRotation = Quaternion.Euler(180, 180, 90);
+                //bullet.transform.rotation = BulletSpawner.rotation;
                 bullet.Target = PlayerMovements.Instance.ManualTarget;
                 bullet.GO = true;
 
