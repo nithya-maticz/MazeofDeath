@@ -1,4 +1,4 @@
-using System;
+﻿using System;
 using System.Collections;
 using System.Collections.Generic;
 using TMPro;
@@ -552,28 +552,24 @@ public class Game_Manager : MonoBehaviour
                 switch (PrimaryGun)
                 {
                     case "Shotgun":
-                        shotGunShoot();
-                       
+                        shotGunShoot(); // still pellet/projectile-based
                         break;
 
                     case "Pistol":
                         BulletSpawner = PlayerMovements.Instance.PistolbulletSpawn;
                         PlayerMovements.Instance._Animator.SetTrigger("Shoot");
-                        Bullet bullet = Instantiate(BulletPrefab, BulletSpawner);
-                        bullet.transform.localPosition = Vector3.zero;
-                        //bullet.transform.rotation = BulletSpawner.rotation;
-                        bullet.Target = PlayerMovements.Instance.ManualTarget;
-                        bullet.GO = true;
-                        break;
 
+                        // 🔫 use hitscan raycast instead of spawning a bullet prefab
+                        ShootRaycast(BulletSpawner, 20, 100f); // damage = 20, range = 100
+                        break;
 
                     default:
                         Debug.LogWarning("No valid weapon equipped!");
                         break;
                 }
-              
 
-              
+
+
 
                 if (currentBullets == 0)
                 {
@@ -657,6 +653,36 @@ public class Game_Manager : MonoBehaviour
         bullet.Target = PlayerMovements.Instance.ManualTarget;
         bullet.GO = true;
 
+    }
+
+
+    private void ShootRaycast(Transform spawner, int damage, float range = 5f)
+    {
+        Vector2 origin = spawner.position;
+        Vector2 direction = spawner.up; // assuming the gun points "up"
+        Debug.Log("shootRayCast");
+        // Debug line in Scene view
+        Debug.DrawRay(origin, direction * range, Color.red, 0.5f);
+
+        RaycastHit2D hit = Physics2D.Raycast(origin, direction, range);
+        
+        if (hit.collider != null)
+        {
+            Debug.Log("Hit: " + hit.collider.name);
+          
+            // Example: apply damage if enemy has health
+            SharedPathFollower enemy = hit.collider.GetComponentInParent<SharedPathFollower>();
+            if (enemy != null)
+            {
+                Debug.Log("enemyyyyyy");
+                enemy.Health -= damage;
+                enemy.HealthUpdate();
+                Debug.Log("Hit Enemy: " + enemy.name + " | Health: " + enemy.Health);
+            }
+
+            // Example: spawn impact effect
+            // Instantiate(hitEffectPrefab, hit.point, Quaternion.identity);
+        }
     }
     public void ManualReload()
     {
