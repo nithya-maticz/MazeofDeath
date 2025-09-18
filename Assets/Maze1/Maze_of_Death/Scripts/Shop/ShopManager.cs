@@ -13,7 +13,8 @@ public class ShopManager : MonoBehaviour
     public string userWeaponString;
     public string userEquippedString;
 
-    public string userEquippedSendString;
+    public static string userEquippedSendString;
+   
 
     [Header("PLAYER WEAPON")]
     public WeaponsData userEquipedWeapons;

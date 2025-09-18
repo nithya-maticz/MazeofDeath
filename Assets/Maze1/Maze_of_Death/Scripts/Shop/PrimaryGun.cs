@@ -1,6 +1,8 @@
 using TMPro;
 using Unity.VisualScripting;
 using UnityEngine;
+
+using System;
 using UnityEngine.UI;
 
 public class PrimaryGun : MonoBehaviour
@@ -175,12 +177,14 @@ public class PrimaryGun : MonoBehaviour
         }
         ShopManager.Instance.userEquipedWeapons.weapons.Add(data);
         ShopManager.Instance.equippedGunsList.Add(data);
+        ShopManager.userEquippedSendString = JsonUtility.ToJson(ShopManager.Instance.userEquipedWeapons);
     }
 
     void RemoveEquippedWeapon()
     {
         ShopManager.Instance.userEquipedWeapons.weapons.Remove(data);
         ShopManager.Instance.equippedGunsList.Remove(data);
+        ShopManager.userEquippedSendString = JsonUtility.ToJson(ShopManager.Instance.userEquipedWeapons);
     }
 
     public void Deselect()

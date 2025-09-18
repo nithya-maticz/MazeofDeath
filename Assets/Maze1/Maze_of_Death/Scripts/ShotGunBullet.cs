@@ -1,8 +1,9 @@
 using UnityEngine;
 
-public class Bullet : MonoBehaviour
+public class ShotGunBullet : MonoBehaviour
 {
-    public Transform Target;
+    
+   public Transform Target;
     public int BulletDamage;
 
     public float speed = 10f;
@@ -18,17 +19,17 @@ public class Bullet : MonoBehaviour
                 return;
             }
 
-          // transform.Translate(Vector3.up * speed * Time.deltaTime);
-            transform.position = Vector3.MoveTowards(transform.position, Target.position, speed * Time.deltaTime);
+            transform.Translate(Vector3.up * speed * Time.deltaTime);
+            // transform.position = Vector3.MoveTowards(transform.position, Target.position, speed * Time.deltaTime);
 
 
             /* Vector2 direction = Target.position - transform.position;
              float angle = Mathf.Atan2(direction.y, direction.x) * Mathf.Rad2Deg;
              transform.rotation = Quaternion.Euler(0f, 0f, angle);*/
 
-            Vector2 direction = Target.position - transform.position;
+           /* Vector2 direction = Target.position - transform.position;
             float angle = Mathf.Atan2(direction.y, direction.x) * Mathf.Rad2Deg + 180f;
-            transform.rotation = Quaternion.Euler(0f, 0f, angle);
+            transform.rotation = Quaternion.Euler(0f, 0f, angle);*/
         }
 
 
@@ -61,3 +62,4 @@ public class Bullet : MonoBehaviour
        
     }
 }
+

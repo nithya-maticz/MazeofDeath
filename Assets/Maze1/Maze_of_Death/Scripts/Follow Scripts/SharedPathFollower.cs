@@ -421,45 +421,42 @@ public class SharedPathFollower : MonoBehaviour, IGetBlastTank
             Destroy(gameObject);
             Game_Manager.Instance.EnemyCount();
         }
-        else if (collision.CompareTag("Bullet"))
+        /*else if (collision.CompareTag("Bullet"))
         {
-            Destroy(collision.gameObject);
-            if(Game_Manager.Instance.PrimaryGun=="Pistol")
-            {
-                Health = Health - PistolBullet;
-            }
-            else if (Game_Manager.Instance.PrimaryGun == "Shotgun")
-            {
-                Health = Health - ShotGunBullet;
-            }
+           
+           
 
 
-
-            if (Health <= 0)
-            {
-                Instantiate(Game_Manager.Instance.BloodPrefab, transform.position, Quaternion.identity);
-                Game_Manager.Instance.Enemies.Remove(this);
-                Destroy(gameObject);
-                Game_Manager.Instance.EnemyCount();
-                return;
-            }
-
-            UpdateHealthUI();
-            HealthParent.SetActive(true);
-
-            if (hideHealthCoroutine != null)
-                StopCoroutine(hideHealthCoroutine);
-
-            hideHealthCoroutine = StartCoroutine(HideHealthAfterDelay());
-
-            if (!playerDetected)
-            {
-                playerDetected = true;
-                playerLostTime = Time.time + 10f;
-            }
-        }
+            
+        }*/
     }
 
+
+    public void HealthUpdate()
+    {
+        if (Health <= 0)
+        {
+            Instantiate(Game_Manager.Instance.BloodPrefab, transform.position, Quaternion.identity);
+            Game_Manager.Instance.Enemies.Remove(this);
+            Destroy(gameObject);
+            Game_Manager.Instance.EnemyCount();
+            return;
+        }
+
+        UpdateHealthUI();
+        HealthParent.SetActive(true);
+
+        if (hideHealthCoroutine != null)
+            StopCoroutine(hideHealthCoroutine);
+
+        hideHealthCoroutine = StartCoroutine(HideHealthAfterDelay());
+
+        if (!playerDetected)
+        {
+            playerDetected = true;
+            playerLostTime = Time.time + 10f;
+        }
+    }
 
 
 
@@ -533,7 +530,7 @@ public class SharedPathFollower : MonoBehaviour, IGetBlastTank
        // if (!isCollidingWithPlayer) return;
        if(playerInRange)
        {
-            Game_Manager.Instance.playerHealth.GetAttack(1);
+            //Game_Manager.Instance.playerHealth.GetAttack(1);
        }
        
     }

@@ -71,6 +71,7 @@ public class Game_Manager : MonoBehaviour
     public AutoAimOnly AutoAim;
     public Transform BulletSpawner;
     public Bullet BulletPrefab;
+    public ShotGunBullet ShotGunBulletPrefab;
     public int totalBullets = 15;     
     public int currentBullets = 5;
     public TMP_Text totalBulletsText;
@@ -108,7 +109,9 @@ public class Game_Manager : MonoBehaviour
     public Sprite SniperImage;
     public Sprite UziImage;
 
-    
+    public bool swap;
+
+    public float prefabRotationOffset = 0f;
 
 
 
@@ -163,7 +166,9 @@ public class Game_Manager : MonoBehaviour
 
     void Start()
     {
-        userEquipedWeapons = JsonUtility.FromJson<WeaponsData>(userEquippedString);
+        userEquippedString = ShopManager.userEquippedSendString;
+        Debug.Log(userEquippedString);
+         userEquipedWeapons = JsonUtility.FromJson<WeaponsData>(userEquippedString);
         GetEquipedWeapons();
 
         //StartData();
@@ -181,17 +186,26 @@ public class Game_Manager : MonoBehaviour
                     i++;
                     if (i == 1)
                     {
-                        Debug.Log("inside if");
+                        
                         if (weapon.name == "9mmPistol")
                         {
                             PrimaryGunImage.sprite = PistolImage;
                             PrimaryGun = "Pistol";
+                        if(swap)
+                        {
+                            PlayerMovements.Instance.PistolIdle();
                         }
+                            
+                    }
                         else if (weapon.name == "Shotgun")
                         {
                             PrimaryGunImage.sprite = shortGunImage;
                             PrimaryGun = "Shotgun";
+                        if (swap)
+                        {
+                            PlayerMovements.Instance.ShorGunIdle();
                         }
+                    }
                         else if (weapon.name == "AssaultRifle")
                         {
                             PrimaryGunImage.sprite = AssaultRifleImage;
@@ -212,6 +226,7 @@ public class Game_Manager : MonoBehaviour
                     }
                     else if (i == 2)
                     {
+                      Debug.Log("tttttttttttttttttttttttttttt  "+ weapon.name);
                         if (weapon.name == "9mmPistol")
                         {
                             SecondaryGunImage.sprite = PistolImage;
@@ -220,7 +235,7 @@ public class Game_Manager : MonoBehaviour
                         else if (weapon.name == "Shotgun")
                         {
                             SecondaryGunImage.sprite = shortGunImage;
-                            SecondaryGun = "Shot";
+                            SecondaryGun = "Shotgun";
                         }
                         else if (weapon.name == "AssaultRifle")
                         {
@@ -250,17 +265,18 @@ public class Game_Manager : MonoBehaviour
 
    public void SwapGun()
     {
+        swap = true;
         if(j==0)
         {
             j = 1;
-            PlayerMovements.Instance.PistolIdle();
+           
             swapPistol();
 
         }
         else
         {
             j = 0;
-            PlayerMovements.Instance.ShorGunIdle();
+         
             GetEquipedWeapons();
             
 
@@ -283,11 +299,12 @@ public class Game_Manager : MonoBehaviour
                     {
                         SecondaryGunImage.sprite = PistolImage;
                         SecondaryGun = "Pistol";
+                       
                     }
                     else if (weapon.name == "Shotgun")
                     {
                         SecondaryGunImage.sprite = shortGunImage;
-                        SecondaryGun = "Shot";
+                        SecondaryGun = "Shotgun";
                     }
                     else if (weapon.name == "AssaultRifle")
                     {
@@ -314,11 +331,21 @@ public class Game_Manager : MonoBehaviour
                     {
                         PrimaryGunImage.sprite = PistolImage;
                         PrimaryGun = "Pistol";
+                        if (swap)
+                        {
+                            PlayerMovements.Instance.PistolIdle();
+                        }
+                       
                     }
                     else if (weapon.name == "Shotgun")
                     {
                         PrimaryGunImage.sprite = shortGunImage;
+                        
                         PrimaryGun = "Shotgun";
+                        if (swap)
+                        {
+                            PlayerMovements.Instance.ShorGunIdle();
+                        }
                     }
                     else if (weapon.name == "AssaultRifle")
                     {
@@ -525,13 +552,18 @@ public class Game_Manager : MonoBehaviour
                 switch (PrimaryGun)
                 {
                     case "Shotgun":
-                        BulletSpawner = PlayerMovements.Instance.ShotGunbulletSpawn;
-                        PlayerMovements.Instance._Animator.SetTrigger("shotgunshoot");
+                        shotGunShoot();
+                       
                         break;
 
                     case "Pistol":
                         BulletSpawner = PlayerMovements.Instance.PistolbulletSpawn;
                         PlayerMovements.Instance._Animator.SetTrigger("Shoot");
+                        Bullet bullet = Instantiate(BulletPrefab, BulletSpawner);
+                        bullet.transform.localPosition = Vector3.zero;
+                        //bullet.transform.rotation = BulletSpawner.rotation;
+                        bullet.Target = PlayerMovements.Instance.ManualTarget;
+                        bullet.GO = true;
                         break;
 
 
@@ -541,11 +573,7 @@ public class Game_Manager : MonoBehaviour
                 }
               
 
-                Bullet bullet = Instantiate(BulletPrefab, BulletSpawner);
-                bullet.transform.localPosition = Vector3.zero;
-                //bullet.transform.rotation = BulletSpawner.rotation;
-                bullet.Target = PlayerMovements.Instance.ManualTarget;
-                bullet.GO = true;
+              
 
                 if (currentBullets == 0)
                 {
@@ -603,7 +631,33 @@ public class Game_Manager : MonoBehaviour
        }
         
     }
+    public void shotGunShoot()
+    {
+        BulletSpawner = PlayerMovements.Instance.ShotGunbulletSpawn;
+        PlayerMovements.Instance._Animator.SetTrigger("shotgunshoot");
+        Bullet bullet = Instantiate(BulletPrefab, BulletSpawner);
+        bullet.transform.localPosition = Vector3.zero;
+        //bullet.transform.rotation = BulletSpawner.rotation;
+        bullet.Target = PlayerMovements.Instance.ManualTarget;
+        bullet.GO = true;
+        
+       // SpawnBullet(0f);                // straight
+       // SpawnBullet(-15f);      // left
+       // SpawnBullet(15f);
+       
+       
+       
+    }
 
+    public void SpawnBullet(float angle)
+    {
+       
+         Quaternion rot = BulletSpawner.rotation * Quaternion.Euler(0, 0, angle);
+        Bullet bullet = Instantiate(BulletPrefab, BulletSpawner.position,rot);
+        bullet.Target = PlayerMovements.Instance.ManualTarget;
+        bullet.GO = true;
+
+    }
     public void ManualReload()
     {
         if(!isReloading && currentBullets < maxMagazineSize && totalBullets > 0)
