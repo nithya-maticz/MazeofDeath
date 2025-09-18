@@ -1,4 +1,4 @@
-using UnityEngine;
+/*using UnityEngine;
 
 public class Bullet : MonoBehaviour
 {
@@ -22,9 +22,9 @@ public class Bullet : MonoBehaviour
             transform.position = Vector3.MoveTowards(transform.position, Target.position, speed * Time.deltaTime);
 
 
-            /* Vector2 direction = Target.position - transform.position;
+            *//* Vector2 direction = Target.position - transform.position;
              float angle = Mathf.Atan2(direction.y, direction.x) * Mathf.Rad2Deg;
-             transform.rotation = Quaternion.Euler(0f, 0f, angle);*/
+             transform.rotation = Quaternion.Euler(0f, 0f, angle);*//*
 
             Vector2 direction = Target.position - transform.position;
             float angle = Mathf.Atan2(direction.y, direction.x) * Mathf.Rad2Deg + 180f;
@@ -32,12 +32,12 @@ public class Bullet : MonoBehaviour
         }
 
 
-        /*// Destroy if very close (arrived)
+        *//*// Destroy if very close (arrived)
         if (Vector3.Distance(transform.position, Target.position) < 0.1f)
         {
             Destroy(gameObject);
             Destroy(Target.gameObject);
-        }*/
+        }*//*
 
         if(this.transform.position == Target.position)
         {
@@ -59,5 +59,52 @@ public class Bullet : MonoBehaviour
         }
        
        
+    }
+}
+*/
+
+using UnityEngine;
+using System.Collections;
+
+public class Bullet : MonoBehaviour
+{
+    public float speed = 20f;
+    private Vector2 targetPos;
+    private int damage;
+
+    public void Initialize(Vector2 start, Vector2 end, int damage)
+    {
+        transform.position = start;
+        targetPos = end;
+        this.damage = damage;
+
+        StartCoroutine(MoveToTarget());
+    }
+
+    private IEnumerator MoveToTarget()
+    {
+        float distance = Vector2.Distance(transform.position, targetPos);
+        float travelTime = distance / speed;
+        float t = 0f;
+        Vector2 startPos = transform.position;
+
+        while (t < 1f)
+        {
+            t += Time.deltaTime / travelTime;
+            transform.position = Vector2.Lerp(startPos, targetPos, t);
+            yield return null;
+        }
+
+        // Handle hit
+        RaycastHit2D hit = Physics2D.Raycast(startPos, (targetPos - startPos).normalized, distance, LayerMask.GetMask("Enemy", "Wall"));
+        if (hit.collider != null)
+        {
+            if (hit.collider.CompareTag("Enemy"))
+            {
+                // Example: hit.collider.GetComponent<Enemy>().TakeDamage(damage);
+            }
+        }
+
+        Destroy(gameObject);
     }
 }

@@ -603,8 +603,8 @@ public class Game_Manager : MonoBehaviour
                     PlayerMovements.Instance._Animator.SetTrigger("Shoot");
                     Bullet bullet = Instantiate(BulletPrefab, BulletSpawner);
                     bullet.transform.localPosition = Vector3.zero;
-                    bullet.Target = AutoAim.currentTarget.transform;
-                    bullet.GO = true;
+                   // bullet.Target = AutoAim.currentTarget.transform;
+                   // bullet.GO = true;
 
                     if (currentBullets == 0)
                     {
@@ -633,9 +633,9 @@ public class Game_Manager : MonoBehaviour
         PlayerMovements.Instance._Animator.SetTrigger("shotgunshoot");
         Bullet bullet = Instantiate(BulletPrefab, BulletSpawner);
         bullet.transform.localPosition = Vector3.zero;
-        //bullet.transform.rotation = BulletSpawner.rotation;
-        bullet.Target = PlayerMovements.Instance.ManualTarget;
-        bullet.GO = true;
+       
+       // bullet.Target = PlayerMovements.Instance.ManualTarget;
+       // bullet.GO = true;
         
        // SpawnBullet(0f);                // straight
        // SpawnBullet(-15f);      // left
@@ -650,8 +650,8 @@ public class Game_Manager : MonoBehaviour
        
          Quaternion rot = BulletSpawner.rotation * Quaternion.Euler(0, 0, angle);
         Bullet bullet = Instantiate(BulletPrefab, BulletSpawner.position,rot);
-        bullet.Target = PlayerMovements.Instance.ManualTarget;
-        bullet.GO = true;
+       // bullet.Target = PlayerMovements.Instance.ManualTarget;
+       // bullet.GO = true;
 
     }
 

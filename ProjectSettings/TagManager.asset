@@ -40,6 +40,7 @@ TagManager:
   - h
   - Direction
   - enemyDetected
+  - Wall
   layers:
   - Default
   - TransparentFX
