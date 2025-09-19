@@ -41,6 +41,7 @@ TagManager:
   - Direction
   - enemyDetected
   - Wall
+  - Object
   layers:
   - Default
   - TransparentFX

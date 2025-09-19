@@ -10,7 +10,7 @@ GameObject:
   m_Component:
   - component: {fileID: 620347104776984852}
   - component: {fileID: 5227599606617600793}
-  m_Layer: 0
+  m_Layer: 7
   m_Name: Blast
   m_TagString: Untagged
   m_Icon: {fileID: 0}
@@ -97,7 +97,7 @@ GameObject:
   m_Component:
   - component: {fileID: 8545209471180018590}
   - component: {fileID: 1976247023054770321}
-  m_Layer: 0
+  m_Layer: 7
   m_Name: Bomb
   m_TagString: Untagged
   m_Icon: {fileID: 0}
@@ -185,7 +185,7 @@ GameObject:
   - component: {fileID: 4149095284683557992}
   - component: {fileID: 2381691019052290128}
   - component: {fileID: 7940303482552431312}
-  m_Layer: 0
+  m_Layer: 7
   m_Name: BG
   m_TagString: Untagged
   m_Icon: {fileID: 0}
@@ -260,7 +260,7 @@ GameObject:
   m_Component:
   - component: {fileID: 763174365566469910}
   - component: {fileID: 7162623095513760266}
-  m_Layer: 0
+  m_Layer: 7
   m_Name: Circle
   m_TagString: Untagged
   m_Icon: {fileID: 0}
@@ -348,7 +348,7 @@ GameObject:
   - component: {fileID: 271764514368686338}
   - component: {fileID: 5388284748825700894}
   - component: {fileID: 7854405985576761498}
-  m_Layer: 0
+  m_Layer: 7
   m_Name: Radius
   m_TagString: Untagged
   m_Icon: {fileID: 0}
@@ -428,7 +428,7 @@ GameObject:
   serializedVersion: 6
   m_Component:
   - component: {fileID: 2187900941536490389}
-  m_Layer: 0
+  m_Layer: 7
   m_Name: Attributes
   m_TagString: Untagged
   m_Icon: {fileID: 0}
@@ -462,7 +462,7 @@ GameObject:
   m_Component:
   - component: {fileID: 3233983878086156675}
   - component: {fileID: 5131909622253000537}
-  m_Layer: 0
+  m_Layer: 7
   m_Name: shadow
   m_TagString: Untagged
   m_Icon: {fileID: 0}
@@ -551,7 +551,7 @@ GameObject:
   - component: {fileID: 8536999772953812560}
   - component: {fileID: 5049001445791929826}
   - component: {fileID: 6070787623311094756}
-  m_Layer: 0
+  m_Layer: 7
   m_Name: Canvas
   m_TagString: Untagged
   m_Icon: {fileID: 0}
@@ -655,9 +655,9 @@ GameObject:
   - component: {fileID: 5741610677045971767}
   - component: {fileID: 2944169823568744494}
   - component: {fileID: 3364130012430144465}
-  m_Layer: 0
+  m_Layer: 7
   m_Name: Tanker
-  m_TagString: Untagged
+  m_TagString: Object
   m_Icon: {fileID: 0}
   m_NavMeshLayer: 0
   m_StaticEditorFlags: 0
@@ -840,7 +840,7 @@ GameObject:
   - component: {fileID: 3594025956356418638}
   - component: {fileID: 1305599503010846051}
   - component: {fileID: 1651403264196452875}
-  m_Layer: 0
+  m_Layer: 7
   m_Name: Image
   m_TagString: Untagged
   m_Icon: {fileID: 0}

@@ -1,7 +1,7 @@
 ﻿using UnityEngine;
 using UnityEngine.UI;
 
-public class Tanker : MonoBehaviour
+public class Tanker : MonoBehaviour,IGetBulletDemage
 {
     public Animator animator;
     public int health = 3;
@@ -60,5 +60,16 @@ public class Tanker : MonoBehaviour
         }
     }
 
-  
+    public void GetBullet(int demage)
+    {
+        if (!attributes.activeSelf)
+        {
+            attributes.SetActive(true);
+            animator.SetTrigger("Radius");
+        }
+
+
+        health--;
+        UpdateHealth();
+    }
 }

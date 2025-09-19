@@ -100,16 +100,18 @@ public class Bullet : MonoBehaviour
         RaycastHit2D hit = Physics2D.Raycast(startPos, (targetPos - startPos).normalized, distance, LayerMask.GetMask("Enemy", "Wall"));
         if (hit.collider != null)
         {
-            if (hit.collider.CompareTag("enemy") || hit.collider.CompareTag("enemyDetected"))
+            if(hit.collider.GetComponent<IGetBulletDemage>() != null)
             {
-                Debug.Log("Bullet Detected : " +  hit.collider.name);
                 hit.collider.GetComponent<IGetBulletDemage>().GetBullet(bulletDamage);
-            /*    SharedPathFollower enemy = hit.collider.GetComponent<SharedPathFollower>();
-                enemy.Health = enemy.Health - BulletDamage;
-                Debug.Log("Enemy Health" + enemy.Health);
-                enemy.HealthUpdate();
-                Destroy(gameObject);*/
             }
+
+
+           /* if (hit.collider.CompareTag("enemy") || hit.collider.CompareTag("enemyDetected"))
+            {
+                
+                hit.collider.GetComponent<IGetBulletDemage>().GetBullet(bulletDamage);
+           
+            }*/
         }
 
         Destroy(gameObject);
