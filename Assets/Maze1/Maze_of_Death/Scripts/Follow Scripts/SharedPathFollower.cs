@@ -44,9 +44,9 @@ public class SharedPathFollower : MonoBehaviour
 
     [Header("Patrol Door")]
     public bool isPatrolDoor;
-    public GameObject TargetLocked;
 
-    
+
+    public GameObject TargetLocked;
 
     private Vector3 destination;
 
@@ -59,12 +59,7 @@ public class SharedPathFollower : MonoBehaviour
     public float rotationSampleInterval = 0.06f;
     public float rotationAngleThreshold = 1f;
     public float predictionTime = 0.08f;
-    private Vector3 moveDir;
-    private Vector3 cachedMoveDir;
-    private float rotationSampleTimer;
-    private float cachedTargetAngle;
-    private bool hasCachedAngle = false;
-    private Rigidbody2D playerRb;
+   
     private void Awake()
     {
         rb = GetComponent<Rigidbody2D>();

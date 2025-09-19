@@ -414,7 +414,7 @@ public class Game_Manager : MonoBehaviour
             Instantiate(playerPrefab, worldPos, Quaternion.identity);
             SmoothFollowCamera.Instance.target = PlayerMovements.Instance.offSet;
             //BulletSpawner = PlayerMovements.Instance.bulletSpawn;
-            AutoAim = AutoAimOnly.Instance;
+           // AutoAim = AutoAimOnly.Instance;
         }
         else if (LobbyManager.currentCharacter == 2)
         {
@@ -422,7 +422,7 @@ public class Game_Manager : MonoBehaviour
             Instantiate(F_PlayerPrefab, worldPos, Quaternion.identity);
             SmoothFollowCamera.Instance.target = PlayerMovements.Instance.offSet;
             //BulletSpawner = PlayerMovements.Instance.bulletSpawn;
-            AutoAim = AutoAimOnly.Instance;
+           // AutoAim = AutoAimOnly.Instance;
         }
     }
 

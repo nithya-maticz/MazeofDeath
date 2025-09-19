@@ -2,7 +2,7 @@
 
 public class AutoAimOnly : MonoBehaviour
 {
-    public static AutoAimOnly Instance;
+    /*public static AutoAimOnly Instance;
     [Header("References")]
     public Transform weaponPivot;
 
@@ -28,7 +28,7 @@ public class AutoAimOnly : MonoBehaviour
         //HandleAutoShoot();
     }
 
-    /*void HandleAutoShoot()
+    *//*void HandleAutoShoot()
     {
         if (Game_Manager.Instance.AutoAimAndAutoShootToggle.isOn && !Game_Manager.Instance.isReloading)
         {
@@ -53,7 +53,7 @@ public class AutoAimOnly : MonoBehaviour
         {
             fireTimer = 0f;
         }
-    }*/
+    }*//*
 
     void FindTargetInCone()
     {
@@ -111,5 +111,5 @@ public class AutoAimOnly : MonoBehaviour
             Gizmos.color = Color.green;
             Gizmos.DrawRay(weaponPivot.position, dir * visionDistance);
         }
-    }
+    }*/
 }

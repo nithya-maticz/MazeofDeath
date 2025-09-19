@@ -35,9 +35,9 @@ public class PlayerShooting : MonoBehaviour
     }
     private void Awake()
     {
-       
+
         Instance = this;
-       
+
     }
     public void GunSetting()
     {
@@ -65,6 +65,8 @@ public class PlayerShooting : MonoBehaviour
 
             Color lineColor = (hit.collider != null) ? Color.red : Color.green;
             Debug.DrawLine(start, end, lineColor);
+
+
         }
     }
 
@@ -143,4 +145,9 @@ public class PlayerShooting : MonoBehaviour
         }
         return closest;
     }
+
+
+
 }
+
+

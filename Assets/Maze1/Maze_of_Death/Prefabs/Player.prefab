@@ -128,17 +128,6 @@ MonoBehaviour:
   m_Script: {fileID: 11500000, guid: 23c0789199208a2479a2e1f0f91ece45, type: 3}
   m_Name: 
   m_EditorClassIdentifier: 
-  weaponPivot: {fileID: 8311839817402392493}
-  visionAngle: 60
-  visionDistance: 2
-  enemyLayer:
-    serializedVersion: 2
-    m_Bits: 512
-  obstacleLayer:
-    serializedVersion: 2
-    m_Bits: 128
-  fireCooldown: 1
-  currentTarget: {fileID: 0}
 --- !u!1 &2668052700186017056
 GameObject:
   m_ObjectHideFlags: 0
@@ -418,6 +407,16 @@ MonoBehaviour:
   hitLayers:
     serializedVersion: 2
     m_Bits: 640
+  autoAimEnabled: 1
+  weaponPivot: {fileID: 2430518515722744503}
+  visionAngle: 60
+  enemyLayer:
+    serializedVersion: 2
+    m_Bits: 512
+  obstacleLayer:
+    serializedVersion: 2
+    m_Bits: 128
+  currentTarget: {fileID: 0}
 --- !u!1 &3397437653896214640
 GameObject:
   m_ObjectHideFlags: 0
@@ -577,17 +576,6 @@ MonoBehaviour:
   m_Script: {fileID: 11500000, guid: 23c0789199208a2479a2e1f0f91ece45, type: 3}
   m_Name: 
   m_EditorClassIdentifier: 
-  weaponPivot: {fileID: 6798101504427467661}
-  visionAngle: 60
-  visionDistance: 2
-  enemyLayer:
-    serializedVersion: 2
-    m_Bits: 512
-  obstacleLayer:
-    serializedVersion: 2
-    m_Bits: 128
-  fireCooldown: 1
-  currentTarget: {fileID: 0}
 --- !u!1 &6597236691723493882
 GameObject:
   m_ObjectHideFlags: 0
@@ -729,6 +717,7 @@ MonoBehaviour:
   knife:
     name: Militay Knife
     demage: 25
+  collider: {fileID: 0}
 --- !u!1 &8163226585294764765
 GameObject:
   m_ObjectHideFlags: 0
