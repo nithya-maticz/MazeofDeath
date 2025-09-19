@@ -14,6 +14,7 @@ GameObject:
   - component: {fileID: 1412178391942878467}
   - component: {fileID: 2116278565407277633}
   - component: {fileID: 2422324640924424007}
+  - component: {fileID: 7036815802097767790}
   m_Layer: 9
   m_Name: Enemy
   m_TagString: enemy
@@ -146,6 +147,7 @@ MonoBehaviour:
   playerMask:
     serializedVersion: 2
     m_Bits: 64
+  playerLostTime: 0
   playerDetected: 0
   animator: {fileID: 0}
   rb: {fileID: 0}
@@ -153,12 +155,6 @@ MonoBehaviour:
   isCollidingWithPlayer: 0
   isPatrolDoor: 0
   TargetLocked: {fileID: 7431871365076221689}
-  Health: 30
-  maxHealth: 3
-  PistolBullet: 15
-  ShotGunBullet: 50
-  HealthParent: {fileID: 5524638139309803725}
-  FillHealth: {fileID: 8219686356089263212}
   defaultSpeed: 0
   maxSpeed: 1.8
   patrolArea:
@@ -233,6 +229,23 @@ CapsuleCollider2D:
   m_Offset: {x: 0.5, y: 0}
   m_Size: {x: 1.8, y: 1}
   m_Direction: 0
+--- !u!114 &7036815802097767790
+MonoBehaviour:
+  m_ObjectHideFlags: 0
+  m_CorrespondingSourceObject: {fileID: 0}
+  m_PrefabInstance: {fileID: 0}
+  m_PrefabAsset: {fileID: 0}
+  m_GameObject: {fileID: 1063016537689038058}
+  m_Enabled: 1
+  m_EditorHideFlags: 0
+  m_Script: {fileID: 11500000, guid: 2d01a8f8e026e83489748ef06a7bafd2, type: 3}
+  m_Name: 
+  m_EditorClassIdentifier: 
+  enemy: {fileID: 1412178391942878467}
+  Health: 30
+  maxHealth: 30
+  HealthParent: {fileID: 5524638139309803725}
+  FillHealth: {fileID: 8219686356089263212}
 --- !u!1 &2150173074051072105
 GameObject:
   m_ObjectHideFlags: 0
@@ -380,7 +393,7 @@ GameObject:
   - component: {fileID: 2373241462035955596}
   m_Layer: 9
   m_Name: Enemy Range
-  m_TagString: Untagged
+  m_TagString: enemy
   m_Icon: {fileID: 0}
   m_NavMeshLayer: 0
   m_StaticEditorFlags: 0
@@ -514,6 +527,7 @@ MonoBehaviour:
   m_Name: 
   m_EditorClassIdentifier: 
   enemy: {fileID: 1412178391942878467}
+  health: {fileID: 7036815802097767790}
 --- !u!1 &7431871365076221689
 GameObject:
   m_ObjectHideFlags: 0

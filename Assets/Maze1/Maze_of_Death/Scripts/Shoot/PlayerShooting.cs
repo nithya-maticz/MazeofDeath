@@ -118,7 +118,7 @@ public class PlayerShooting : MonoBehaviour
         // Optional: log hit
         if (hit.collider != null)
         {
-            if (hit.collider.CompareTag("Enemy") || hit.collider.CompareTag("enemyDetected"))
+            if (hit.collider.CompareTag("enemy") || hit.collider.CompareTag("enemyDetected"))
                 Debug.Log("Hit enemy: " + hit.collider.name);
             else if (hit.collider.CompareTag("Wall"))
                 Debug.Log("Hit wall!");

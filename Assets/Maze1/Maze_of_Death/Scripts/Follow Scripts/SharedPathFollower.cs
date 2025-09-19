@@ -7,7 +7,7 @@ using UnityEngine.UI;
 [RequireComponent(typeof(Animator))]
 [RequireComponent(typeof(Rigidbody2D))]
 [RequireComponent(typeof(CapsuleCollider2D))]
-public class SharedPathFollower : MonoBehaviour, IGetBlastTank
+public class SharedPathFollower : MonoBehaviour
 {
     [Header("Movement Settings")]
     public float speed = 3f;
@@ -33,7 +33,7 @@ public class SharedPathFollower : MonoBehaviour, IGetBlastTank
     private bool isFollowing = false;
     private bool isChasingPlayer = false;
     private Vector3 lastTargetPosition;
-    private float playerLostTime;
+    public float playerLostTime;
     public bool playerDetected = false;
 
     public Animator animator;
@@ -46,15 +46,7 @@ public class SharedPathFollower : MonoBehaviour, IGetBlastTank
     public bool isPatrolDoor;
     public GameObject TargetLocked;
 
-    [Header("Health")]
-    public int Health = 30;
-    public int maxHealth = 30;
-    public int PistolBullet;
-    public int ShotGunBullet;
-
-    public GameObject HealthParent;
-    public Image FillHealth;
-    private Coroutine hideHealthCoroutine;
+    
 
     private Vector3 destination;
 
@@ -87,8 +79,7 @@ public class SharedPathFollower : MonoBehaviour, IGetBlastTank
 
     private void Start()
     {
-        UpdateHealthUI();
-        HealthParent.SetActive(false);
+       
 
         if (PlayerMovements.Instance != null)
             player = PlayerMovements.Instance.transform;
@@ -432,31 +423,7 @@ public class SharedPathFollower : MonoBehaviour, IGetBlastTank
     }
 
 
-    public void HealthUpdate()
-    {
-        if (Health <= 0)
-        {
-            Instantiate(Game_Manager.Instance.BloodPrefab, transform.position, Quaternion.identity);
-            Game_Manager.Instance.Enemies.Remove(this);
-            Destroy(gameObject);
-            Game_Manager.Instance.EnemyCount();
-            return;
-        }
-
-        UpdateHealthUI();
-        HealthParent.SetActive(true);
-
-        if (hideHealthCoroutine != null)
-            StopCoroutine(hideHealthCoroutine);
-
-        hideHealthCoroutine = StartCoroutine(HideHealthAfterDelay());
-
-        if (!playerDetected)
-        {
-            playerDetected = true;
-            playerLostTime = Time.time + 10f;
-        }
-    }
+  
 
 
 
@@ -482,16 +449,7 @@ public class SharedPathFollower : MonoBehaviour, IGetBlastTank
     }
 
     // ---------------- HEALTH ----------------
-    private void UpdateHealthUI() =>
-        FillHealth.fillAmount = (float)Health / maxHealth;
-
-    private IEnumerator HideHealthAfterDelay()
-    {
-        yield return new WaitForSeconds(1f);
-        HealthParent.SetActive(false);
-        hideHealthCoroutine = null;
-    }
-
+   
     // ---------------- UTILS ----------------
     private void OnDrawGizmosSelected()
     {
@@ -535,37 +493,7 @@ public class SharedPathFollower : MonoBehaviour, IGetBlastTank
        
     }
 
-    public void TankBlastUpdate()
-    {
-        Health -= 3;
-
-        if (Health <= 0)
-        {
-            Instantiate(Game_Manager.Instance.BloodPrefab, transform.position, Quaternion.identity);
-            Game_Manager.Instance.Enemies.Remove(this);
-
-            for (int i = 0; i < Game_Manager.Instance.patrolAreas.Count; i++)
-            {
-                if (Game_Manager.Instance.patrolAreas[i]._id == patrolArea._id)
-                {
-                    Game_Manager.Instance.patrolAreas[i].isOccupied = false;
-                    break;
-                }
-            }
-
-            Destroy(gameObject);
-            Game_Manager.Instance.EnemyCount();
-            return;
-        }
-
-        UpdateHealthUI();
-        HealthParent.SetActive(true);
-
-        if (hideHealthCoroutine != null)
-            StopCoroutine(hideHealthCoroutine);
-
-        hideHealthCoroutine = StartCoroutine(HideHealthAfterDelay());
-    }
+    
 
     private void SetEnemyTagAndCollision(bool detected)
     {
@@ -597,6 +525,7 @@ public class SharedPathFollower : MonoBehaviour, IGetBlastTank
         }
     }
 
+    
 }
 
 

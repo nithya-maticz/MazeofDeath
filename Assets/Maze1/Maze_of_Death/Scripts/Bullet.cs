@@ -71,7 +71,7 @@ public class Bullet : MonoBehaviour
     public float speed = 20f;
     private Vector2 targetPos;
     private int damage;
-    public int BulletDamage;
+    public int bulletDamage;
 
     public void Initialize(Vector2 start, Vector2 end, int damage)
     {
@@ -102,12 +102,13 @@ public class Bullet : MonoBehaviour
         {
             if (hit.collider.CompareTag("enemy") || hit.collider.CompareTag("enemyDetected"))
             {
-
-                SharedPathFollower enemy = hit.collider.GetComponent<SharedPathFollower>();
+                Debug.Log("Bullet Detected : " +  hit.collider.name);
+                hit.collider.GetComponent<IGetBulletDemage>().GetBullet(bulletDamage);
+            /*    SharedPathFollower enemy = hit.collider.GetComponent<SharedPathFollower>();
                 enemy.Health = enemy.Health - BulletDamage;
                 Debug.Log("Enemy Health" + enemy.Health);
                 enemy.HealthUpdate();
-                Destroy(gameObject);
+                Destroy(gameObject);*/
             }
         }
 

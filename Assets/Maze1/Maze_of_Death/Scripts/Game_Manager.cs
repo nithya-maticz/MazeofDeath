@@ -71,7 +71,7 @@ public class Game_Manager : MonoBehaviour
     public AutoAimOnly AutoAim;
     public Transform BulletSpawner;
     public Bullet BulletPrefab;
-    public ShotGunBullet ShotGunBulletPrefab;
+    
     public int totalBullets = 15;     
     public int currentBullets = 5;
     public TMP_Text totalBulletsText;
@@ -432,7 +432,7 @@ public class Game_Manager : MonoBehaviour
     {
         if (IsGun)
         {
-            Shoot();
+            //Shoot();
         }
         else
         {
@@ -542,151 +542,12 @@ public class Game_Manager : MonoBehaviour
            
     }
 
-    public void Shoot()
-    {
-       if(ManualAimAndShootToggle.isOn)
-       {
-            if (currentBullets > 0 && !isReloading)
-            {
-                currentBullets--;
-                Debug.Log("Shot fired! Bullets left: " + currentBullets);
-                UpdateUI();
+    
+   
 
-                switch (PrimaryGun)
-                {
-                    case "Shotgun":
-                        shotGunShoot(); // still pellet/projectile-based
-                        break;
+  
 
-                    case "Pistol":
-                        BulletSpawner = PlayerMovements.Instance.PistolbulletSpawn;
-                        PlayerMovements.Instance._Animator.SetTrigger("Shoot");
-
-                        // 🔫 use hitscan raycast instead of spawning a bullet prefab
-                        ShootRaycast(BulletSpawner, 20, 100f); // damage = 20, range = 100
-                        break;
-
-                    default:
-                        Debug.LogWarning("No valid weapon equipped!");
-                        break;
-                }
-
-
-
-
-                if (currentBullets == 0)
-                {
-                    StartCoroutine(Reload());
-                }
-            }
-            else
-            {
-                Debug.Log("No bullets in magazine!");
-
-                if (totalBullets <= 0)
-                {
-                    Debug.Log("Totally out of ammo!");
-                    GunButton.interactable = false;
-
-                }
-            }
-
-       }
-       else
-       {
-            if (AutoAim.currentTarget != null)
-            {
-
-                if (currentBullets > 0 && !isReloading)
-                {
-                    currentBullets--;
-                    Debug.Log("Shot fired! Bullets left: " + currentBullets);
-                    UpdateUI();
-                    PlayerMovements.Instance.isAttack = true;
-                    PlayerMovements.Instance._Animator.SetTrigger("Shoot");
-                    Bullet bullet = Instantiate(BulletPrefab, BulletSpawner);
-                    bullet.transform.localPosition = Vector3.zero;
-                   // bullet.Target = AutoAim.currentTarget.transform;
-                   // bullet.GO = true;
-
-                    if (currentBullets == 0)
-                    {
-                        StartCoroutine(Reload());
-                    }
-                }
-                else
-                {
-                    Debug.Log("No bullets in magazine!");
-
-                    if (totalBullets <= 0)
-                    {
-                        Debug.Log("Totally out of ammo!");
-                        GunButton.interactable = false;
-
-                    }
-                }
-
-            }
-       }
-        
-    }
-    public void shotGunShoot()
-    {
-        BulletSpawner = PlayerMovements.Instance.ShotGunbulletSpawn;
-        PlayerMovements.Instance._Animator.SetTrigger("shotgunshoot");
-        Bullet bullet = Instantiate(BulletPrefab, BulletSpawner);
-        bullet.transform.localPosition = Vector3.zero;
-       
-       // bullet.Target = PlayerMovements.Instance.ManualTarget;
-       // bullet.GO = true;
-        
-       // SpawnBullet(0f);                // straight
-       // SpawnBullet(-15f);      // left
-       // SpawnBullet(15f);
-       
-       
-       
-    }
-
-    public void SpawnBullet(float angle)
-    {
-       
-         Quaternion rot = BulletSpawner.rotation * Quaternion.Euler(0, 0, angle);
-        Bullet bullet = Instantiate(BulletPrefab, BulletSpawner.position,rot);
-       // bullet.Target = PlayerMovements.Instance.ManualTarget;
-       // bullet.GO = true;
-
-    }
-
-
-    private void ShootRaycast(Transform spawner, int damage, float range = 5f)
-    {
-        Vector2 origin = spawner.position;
-        Vector2 direction = spawner.up; // assuming the gun points "up"
-        Debug.Log("shootRayCast");
-        // Debug line in Scene view
-        Debug.DrawRay(origin, direction * range, Color.red, 0.5f);
-
-        RaycastHit2D hit = Physics2D.Raycast(origin, direction, range);
-        
-        if (hit.collider != null)
-        {
-            Debug.Log("Hit: " + hit.collider.name);
-          
-            // Example: apply damage if enemy has health
-            SharedPathFollower enemy = hit.collider.GetComponentInParent<SharedPathFollower>();
-            if (enemy != null)
-            {
-                Debug.Log("enemyyyyyy");
-                enemy.Health -= damage;
-                enemy.HealthUpdate();
-                Debug.Log("Hit Enemy: " + enemy.name + " | Health: " + enemy.Health);
-            }
-
-            // Example: spawn impact effect
-            // Instantiate(hitEffectPrefab, hit.point, Quaternion.identity);
-        }
-    }
+   
     public void ManualReload()
     {
         if(!isReloading && currentBullets < maxMagazineSize && totalBullets > 0)

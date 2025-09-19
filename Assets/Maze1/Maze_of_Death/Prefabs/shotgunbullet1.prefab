@@ -10,7 +10,6 @@ GameObject:
   m_Component:
   - component: {fileID: 2999577882206759458}
   - component: {fileID: 2548448933261818076}
-  - component: {fileID: 8430147834623134763}
   - component: {fileID: 7573204883944314375}
   - component: {fileID: 232196064775038027}
   m_Layer: 0
@@ -90,22 +89,6 @@ SpriteRenderer:
   m_WasSpriteAssigned: 1
   m_MaskInteraction: 0
   m_SpriteSortPoint: 0
---- !u!114 &8430147834623134763
-MonoBehaviour:
-  m_ObjectHideFlags: 0
-  m_CorrespondingSourceObject: {fileID: 0}
-  m_PrefabInstance: {fileID: 0}
-  m_PrefabAsset: {fileID: 0}
-  m_GameObject: {fileID: 4211710346547811048}
-  m_Enabled: 0
-  m_EditorHideFlags: 0
-  m_Script: {fileID: 11500000, guid: dba3026e37d9d9943a5c8c4d374c2c63, type: 3}
-  m_Name: 
-  m_EditorClassIdentifier: 
-  Target: {fileID: 0}
-  BulletDamage: 50
-  speed: 10
-  GO: 0
 --- !u!114 &7573204883944314375
 MonoBehaviour:
   m_ObjectHideFlags: 0
@@ -118,10 +101,8 @@ MonoBehaviour:
   m_Script: {fileID: 11500000, guid: 5ca862b2be8ba624aaf31961fc911c9b, type: 3}
   m_Name: 
   m_EditorClassIdentifier: 
-  Target: {fileID: 0}
-  BulletDamage: 50
   speed: 10
-  GO: 0
+  BulletDamage: 50
 --- !u!58 &232196064775038027
 CircleCollider2D:
   m_ObjectHideFlags: 0
