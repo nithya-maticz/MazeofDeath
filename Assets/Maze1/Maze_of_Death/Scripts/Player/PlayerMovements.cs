@@ -206,28 +206,30 @@ public class PlayerMovements : MonoBehaviour
 
     void AttackEnd()
     {
-        Debug.Log("OutSide enemy");
+       
         if (knifeAttack._currentEnemy != null)
         {
-            Debug.Log("inside enemy");
-            Debug.Log("inside enemy" + knifeAttack.IsStayEnemy);
-            if (knifeAttack.IsStayEnemy)
-            {
-                Debug.Log("Destroy...");
-                GameObject blood = Instantiate(Game_Manager.Instance.BloodPrefab, knifeAttack._currentEnemy.gameObject.transform.position, Quaternion.identity);
-                Game_Manager.Instance.Enemies.Remove(knifeAttack._currentEnemy);
-                for(int i = 0; i < Game_Manager.Instance.patrolAreas.Count; i++)
-                {
-                    if (Game_Manager.Instance.patrolAreas[i]._id == knifeAttack._currentEnemy.patrolArea._id)
-                    {
-                        Game_Manager.Instance.patrolAreas[i].isOccupied = false;
-                        break;
-                    }
-                }
-               
-                Destroy(knifeAttack._currentEnemy.gameObject);
-                Game_Manager.Instance.EnemyCount();
-            }
+            /* Debug.Log("inside enemy");
+             Debug.Log("inside enemy" + knifeAttack.IsStayEnemy);
+             if (knifeAttack.IsStayEnemy)
+             {
+                 Debug.Log("Destroy...");
+                 GameObject blood = Instantiate(Game_Manager.Instance.BloodPrefab, knifeAttack._currentEnemy.gameObject.transform.position, Quaternion.identity);
+                 Game_Manager.Instance.Enemies.Remove(knifeAttack._currentEnemy);
+                 for(int i = 0; i < Game_Manager.Instance.patrolAreas.Count; i++)
+                 {
+                     if (Game_Manager.Instance.patrolAreas[i]._id == knifeAttack._currentEnemy.patrolArea._id)
+                     {
+                         Game_Manager.Instance.patrolAreas[i].isOccupied = false;
+                         break;
+                     }
+                 }
+
+                 Destroy(knifeAttack._currentEnemy.gameObject);
+                 Game_Manager.Instance.EnemyCount();
+             }*/
+
+            knifeAttack._currentEnemy.GetComponent<ZombieHealth>().KnifeDemage(knifeAttack, knifeAttack.knife.demage);
         }    
         
     }

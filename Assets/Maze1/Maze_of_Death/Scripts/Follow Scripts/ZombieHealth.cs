@@ -2,7 +2,7 @@ using System.Collections;
 using UnityEngine;
 using UnityEngine.UI;
 
-public class ZombieHealth : MonoBehaviour,IGetBulletDemage,IGetBlastTank
+public class ZombieHealth : MonoBehaviour,IGetBulletDemage,IGetBlastTank, IGetKnifeDemage
 {
     [SerializeField] SharedPathFollower enemy;
 
@@ -72,6 +72,41 @@ public class ZombieHealth : MonoBehaviour,IGetBulletDemage,IGetBlastTank
         hideHealthCoroutine = null;
     }
 
+
+    public void KnifeDemage(KnifeAttack knifeAttack, int demage)
+    {
+        Health = Health - demage;
+        HealthUpdateByKnife(knifeAttack);
+    }
+
+    public void HealthUpdateByKnife(KnifeAttack knifeAttack)
+    {
+        if (Health <= 0)
+        {
+            Instantiate(Game_Manager.Instance.BloodPrefab, transform.position, Quaternion.identity);
+            Game_Manager.Instance.Enemies.Remove(enemy);
+            Destroy(gameObject);
+            knifeAttack.IsStayEnemy = false;
+            knifeAttack.collider.enabled = false;
+            knifeAttack.collider.enabled = true;
+            Game_Manager.Instance.EnemyCount();
+            return;
+        }
+
+        UpdateHealthUI();
+        HealthParent.SetActive(true);
+
+        if (hideHealthCoroutine != null)
+            StopCoroutine(hideHealthCoroutine);
+
+        hideHealthCoroutine = StartCoroutine(HideHealthAfterDelay());
+
+        if (!enemy.playerDetected)
+        {
+            enemy.playerDetected = true;
+            enemy.playerLostTime = Time.time + 10f;
+        }
+    }
     public void TankBlastUpdate()
     {
         Health -= 3;
@@ -104,4 +139,5 @@ public class ZombieHealth : MonoBehaviour,IGetBulletDemage,IGetBlastTank
         hideHealthCoroutine = StartCoroutine(HideHealthAfterDelay());
     }
 
+    
 }

@@ -1,3 +1,4 @@
+using System;
 using Unity.VisualScripting;
 using UnityEngine;
 
@@ -6,10 +7,12 @@ public class KnifeAttack : MonoBehaviour
     [SerializeField] Animator _animator;
     public SharedPathFollower _currentEnemy;
     public bool IsStayEnemy;
+    public Knife knife;
+    [HideInInspector] public PolygonCollider2D collider;
     // Start is called once before the first execution of Update after the MonoBehaviour is created
     void Start()
     {
-       
+        collider = GetComponent<PolygonCollider2D>();
     }
 
     // Update is called once per frame
@@ -64,4 +67,12 @@ public class KnifeAttack : MonoBehaviour
         }
        
     }
+}
+
+
+[Serializable]
+public class Knife
+{
+    public string name;
+    public int demage;
 }

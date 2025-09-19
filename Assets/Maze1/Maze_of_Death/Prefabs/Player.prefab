@@ -726,6 +726,9 @@ MonoBehaviour:
   _animator: {fileID: 7095232461178488304}
   _currentEnemy: {fileID: 0}
   IsStayEnemy: 0
+  knife:
+    name: Militay Knife
+    demage: 25
 --- !u!1 &8163226585294764765
 GameObject:
   m_ObjectHideFlags: 0
