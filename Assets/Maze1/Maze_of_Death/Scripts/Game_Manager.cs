@@ -623,13 +623,13 @@ public class Game_Manager : MonoBehaviour
 
         if (AutoAimAndManualShootToggle.isOn)
         {
-            AutoAim.enabled = true;
+            //AutoAim.enabled = true;
             GunButton.interactable = true;
 
         }
         else if (ManualAimAndShootToggle.isOn)
         {
-            AutoAim.enabled = false;
+           // AutoAim.enabled = false;
             GunButton.interactable = true;
         }
     }

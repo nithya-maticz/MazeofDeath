@@ -407,16 +407,7 @@ MonoBehaviour:
   hitLayers:
     serializedVersion: 2
     m_Bits: 640
-  autoAimEnabled: 1
-  weaponPivot: {fileID: 2430518515722744503}
-  visionAngle: 60
-  enemyLayer:
-    serializedVersion: 2
-    m_Bits: 512
-  obstacleLayer:
-    serializedVersion: 2
-    m_Bits: 128
-  currentTarget: {fileID: 0}
+  aimDotPrefab: {fileID: 4746933218376740094, guid: 532b40ea0d91cb141a2dfb202d03358c, type: 3}
 --- !u!1 &3397437653896214640
 GameObject:
   m_ObjectHideFlags: 0
