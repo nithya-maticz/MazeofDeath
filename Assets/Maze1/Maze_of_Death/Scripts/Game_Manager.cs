@@ -402,18 +402,18 @@ public class Game_Manager : MonoBehaviour
 
     public void SpawnPlayer(Vector3 worldPos)
     {
-        playerTransform.position = worldPos;
-        Instantiate(playerPrefab, playerTransform.transform);
-        SmoothFollowCamera.Instance.target = PlayerMovements.Instance.offSet;
-       // BulletSpawner = PlayerMovements.Instance.bulletSpawn;
-        AutoAim = AutoAimOnly.Instance;
+        /*  playerTransform.position = worldPos;
+          Instantiate(playerPrefab, playerTransform.transform);
+          SmoothFollowCamera.Instance.target = PlayerMovements.Instance.offSet;
+         // BulletSpawner = PlayerMovements.Instance.bulletSpawn;
+          AutoAim = AutoAimOnly.Instance;*/
 
-       /* if (LobbyManager.currentCharacter == 1)
+        if (LobbyManager.currentCharacter == 1)
         {
             Debug.Log("Male");
             Instantiate(playerPrefab, worldPos, Quaternion.identity);
             SmoothFollowCamera.Instance.target = PlayerMovements.Instance.offSet;
-            BulletSpawner = PlayerMovements.Instance.bulletSpawn;
+            //BulletSpawner = PlayerMovements.Instance.bulletSpawn;
             AutoAim = AutoAimOnly.Instance;
         }
         else if (LobbyManager.currentCharacter == 2)
@@ -421,9 +421,9 @@ public class Game_Manager : MonoBehaviour
             Debug.Log("Female");
             Instantiate(F_PlayerPrefab, worldPos, Quaternion.identity);
             SmoothFollowCamera.Instance.target = PlayerMovements.Instance.offSet;
-            BulletSpawner = PlayerMovements.Instance.bulletSpawn;
+            //BulletSpawner = PlayerMovements.Instance.bulletSpawn;
             AutoAim = AutoAimOnly.Instance;
-        }*/
+        }
     }
 
 
@@ -433,6 +433,7 @@ public class Game_Manager : MonoBehaviour
         if (IsGun)
         {
             //Shoot();
+            PlayerShooting.Instance.OnShootButton();
         }
         else
         {
