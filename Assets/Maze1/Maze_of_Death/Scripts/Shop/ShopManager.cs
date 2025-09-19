@@ -54,6 +54,11 @@ public class ShopManager : MonoBehaviour
     {
         allWeapons = JsonUtility.FromJson<WeaponsData>(weaponDB);
         userWeapons = JsonUtility.FromJson<WeaponsData>(userWeaponString);
+
+        if(Game_Manager.LobbyButtonClick)
+        {
+            userEquippedString = userEquippedSendString;
+        }
         userEquipedWeapons = JsonUtility.FromJson<WeaponsData>(userEquippedString);
         GetAllWeapons();
         GetOwnedWeapons();
@@ -99,6 +104,8 @@ public class ShopManager : MonoBehaviour
             }
         }
     }
+    
+
 
     void GetOwnedWeapons()
     {

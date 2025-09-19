@@ -8,7 +8,7 @@ using UnityEngine.UI;
 
 public class Game_Manager : MonoBehaviour
 {
-
+    public static bool LobbyButtonClick;
     public string userEquippedString;
     public WeaponsData userEquipedWeapons;
     public static Game_Manager Instance;
@@ -110,6 +110,7 @@ public class Game_Manager : MonoBehaviour
     public Sprite UziImage;
 
     public bool swap;
+   
 
     public float prefabRotationOffset = 0f;
 
@@ -267,26 +268,21 @@ public class Game_Manager : MonoBehaviour
    public void SwapGun()
     {
         swap = true;
-       
-        if (j==0)
+        if (j == 0)
         {
             j = 1;
-           
-            swapPistol();
-
+            swapGun();
         }
         else
         {
             j = 0;
-         
             GetEquipedWeapons();
-            
 
         }
-           
+
     }
 
-    public void swapPistol()
+    public void swapGun()
     {
         int i = 0;
         foreach (Weapon weapon in userEquipedWeapons.weapons)
@@ -782,6 +778,7 @@ public class Game_Manager : MonoBehaviour
 
     public void SceneLoad(string sceneName)
     {
+        LobbyButtonClick = true;
         SceneManager.LoadScene(sceneName, LoadSceneMode.Single);
         Resources.UnloadUnusedAssets();
         GC.Collect();
