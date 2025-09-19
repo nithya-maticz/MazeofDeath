@@ -18,6 +18,7 @@ public class PlayerShooting : MonoBehaviour
     [Header("Guns")]
     public Gun pistol;
     public Gun shotgun;
+    public static PlayerShooting Instance;
 
     private Gun currentGun;
 
@@ -28,7 +29,27 @@ public class PlayerShooting : MonoBehaviour
 
     void Start()
     {
-        currentGun = pistol; // Default gun
+        Game_Manager.Instance.GunShootBtn.onClick.AddListener(OnShootButton);
+        GunSetting();
+
+    }
+    private void Awake()
+    {
+       
+        Instance = this;
+       
+    }
+    public void GunSetting()
+    {
+        Debug.Log("Gun NAme " + Game_Manager.Instance.PrimaryGun);
+        if (Game_Manager.Instance.PrimaryGun == "Pistol")
+        {
+            currentGun = pistol; // Default gun
+        }
+        else if (Game_Manager.Instance.PrimaryGun == "Shotgun")
+        {
+            currentGun = shotgun; // Default gun
+        }
     }
 
     void Update()

@@ -146,6 +146,7 @@ public class Game_Manager : MonoBehaviour
     public String SecondaryGun;
     public int j;
     public GameObject SelectWeaponPage;
+    public Button GunShootBtn;
 
     private void Awake()
     {
@@ -256,17 +257,18 @@ public class Game_Manager : MonoBehaviour
                 }
 
             }
+        PlayerShooting.Instance.GunSetting();
 
-       
-      
 
-            
+
+
     }
 
    public void SwapGun()
     {
         swap = true;
-        if(j==0)
+       
+        if (j==0)
         {
             j = 1;
            
@@ -367,6 +369,7 @@ public class Game_Manager : MonoBehaviour
             }
 
         }
+        PlayerShooting.Instance.GunSetting();
 
     }
 

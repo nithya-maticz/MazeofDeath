@@ -71,6 +71,7 @@ public class Bullet : MonoBehaviour
     public float speed = 20f;
     private Vector2 targetPos;
     private int damage;
+    public int BulletDamage;
 
     public void Initialize(Vector2 start, Vector2 end, int damage)
     {
@@ -99,9 +100,14 @@ public class Bullet : MonoBehaviour
         RaycastHit2D hit = Physics2D.Raycast(startPos, (targetPos - startPos).normalized, distance, LayerMask.GetMask("Enemy", "Wall"));
         if (hit.collider != null)
         {
-            if (hit.collider.CompareTag("Enemy"))
+            if (hit.collider.CompareTag("enemy") || hit.collider.CompareTag("enemyDetected"))
             {
-                // Example: hit.collider.GetComponent<Enemy>().TakeDamage(damage);
+
+                SharedPathFollower enemy = hit.collider.GetComponent<SharedPathFollower>();
+                enemy.Health = enemy.Health - BulletDamage;
+                Debug.Log("Enemy Health" + enemy.Health);
+                enemy.HealthUpdate();
+                Destroy(gameObject);
             }
         }
 

@@ -401,7 +401,7 @@ MonoBehaviour:
     gunName: Pistol
     firePoint: {fileID: 2430518515722744503}
     fireRate: 0.25
-    range: 2
+    range: 4
     pellets: 1
     spread: 1
     damage: 10
@@ -409,12 +409,12 @@ MonoBehaviour:
   shotgun:
     gunName: ShotGun
     firePoint: {fileID: 3783766648443134889}
-    fireRate: 0.25
-    range: 15
-    pellets: 2
-    spread: 1
+    fireRate: 1
+    range: 2
+    pellets: 3
+    spread: 3
     damage: 10
-    bulletPrefab: {fileID: 4211710346547811048, guid: f5a99813f5858fc4ba8c44466561f269, type: 3}
+    bulletPrefab: {fileID: 4211710346547811048, guid: 6bcf22c5e4ed30e47ae3cb05d53226cf, type: 3}
   hitLayers:
     serializedVersion: 2
     m_Bits: 640
