@@ -65,19 +65,22 @@ public class Game_Manager : MonoBehaviour
     public Button UseMediKit;
     public int MedikitCount;
     public TMP_Text MedikitCountText;
-    
+
 
     [Header("Shoot")]
-    public AutoAimOnly AutoAim;
-    public Transform BulletSpawner;
-    public Bullet BulletPrefab;
-    
-    public int totalBullets = 15;     
-    public int currentBullets = 5;
-    public TMP_Text totalBulletsText;
+    public TMP_Text bulletText;
+    public Button reloadBtn;
     public Image reloadFillImage;
-    public int maxMagazineSize = 5;
-    public bool isReloading = false;
+    /*  public AutoAimOnly AutoAim;
+      public Transform BulletSpawner;
+      public Bullet BulletPrefab;
+
+      public int totalBullets = 15;     
+      public int currentBullets = 5;
+      public TMP_Text totalBulletsText;
+      public Image reloadFillImage;
+      public int maxMagazineSize = 5;
+      public bool isReloading = false;*/
 
     [Header("Auto Controls")]
     public GameObject KnifeObject;
@@ -272,6 +275,7 @@ public class Game_Manager : MonoBehaviour
         {
             j = 1;
             swapGun();
+            
         }
         else
         {
@@ -284,89 +288,58 @@ public class Game_Manager : MonoBehaviour
 
     public void swapGun()
     {
+        // Map weapon names to UI sprites
+        Dictionary<string, Sprite> weaponSprites = new Dictionary<string, Sprite>()
+    {
+        { "9mmPistol", PistolImage },
+        { "Shotgun", shortGunImage },
+        { "AssaultRifle", AssaultRifleImage },
+        { "Sniper", SniperImage },
+        { "Uzi", UziImage }
+    };
+
         int i = 0;
         foreach (Weapon weapon in userEquipedWeapons.weapons)
         {
-            Debug.Log("fdfds");
-            if (weapon.isGun)
+            if (!weapon.isGun) continue;
+
+            i++;
+            Sprite sprite;
+            weaponSprites.TryGetValue(weapon.name, out sprite);
+
+            if (i == 1) // Secondary Gun
             {
-                i++;
-                if (i == 1)
+                SecondaryGunImage.sprite = sprite;
+                SecondaryGun = weapon.name switch
                 {
-                    if (weapon.name == "9mmPistol")
-                    {
-                        SecondaryGunImage.sprite = PistolImage;
-                        SecondaryGun = "Pistol";
-                       
-                    }
-                    else if (weapon.name == "Shotgun")
-                    {
-                        SecondaryGunImage.sprite = shortGunImage;
-                        SecondaryGun = "Shotgun";
-                    }
-                    else if (weapon.name == "AssaultRifle")
-                    {
-                        SecondaryGunImage.sprite = AssaultRifleImage;
-                        SecondaryGun = "AssaultRifle";
-                    }
-                    else if (weapon.name == "Sniper")
-                    {
-                        SecondaryGunImage.sprite = SniperImage;
-                        SecondaryGun = "Sniper";
-                    }
-                    else if (weapon.name == "Uzi")
-                    {
-                        SecondaryGunImage.sprite = UziImage;
-                        SecondaryGun = "Uzi";
-                    }
-
-
-                }
-                else if (i == 2)
-                {
-                    
-                    if (weapon.name == "9mmPistol")
-                    {
-                        PrimaryGunImage.sprite = PistolImage;
-                        PrimaryGun = "Pistol";
-                        if (swap)
-                        {
-                            PlayerMovements.Instance.PistolIdle();
-                        }
-                       
-                    }
-                    else if (weapon.name == "Shotgun")
-                    {
-                        PrimaryGunImage.sprite = shortGunImage;
-                        
-                        PrimaryGun = "Shotgun";
-                        if (swap)
-                        {
-                            PlayerMovements.Instance.ShorGunIdle();
-                        }
-                    }
-                    else if (weapon.name == "AssaultRifle")
-                    {
-                        PrimaryGunImage.sprite = AssaultRifleImage;
-                        PrimaryGun = "AssaultRifle";
-                    }
-                    else if (weapon.name == "Sniper")
-                    {
-                        PrimaryGunImage.sprite = SniperImage;
-                        PrimaryGun = "Sniper";
-                    }
-                    else if (weapon.name == "Uzi")
-                    {
-                        PrimaryGunImage.sprite = UziImage;
-                        PrimaryGun = "Uzi";
-                    }
-
-                }
+                    "9mmPistol" => "Pistol",
+                    "Shotgun" => "Shotgun",
+                    "AssaultRifle" => "AssaultRifle",
+                    "Sniper" => "Sniper",
+                    "Uzi" => "Uzi",
+                    _ => weapon.name
+                };
             }
+            else if (i == 2) // Primary Gun
+            {
+                PrimaryGunImage.sprite = sprite;
+                PrimaryGun = weapon.name switch
+                {
+                    "9mmPistol" => "Pistol",
+                    "Shotgun" => "Shotgun",
+                    "AssaultRifle" => "AssaultRifle",
+                    "Sniper" => "Sniper",
+                    "Uzi" => "Uzi",
+                    _ => weapon.name
+                };
 
+                if (swap && weapon.name == "9mmPistol") PlayerMovements.Instance.PistolIdle();
+                else if (swap && weapon.name == "Shotgun") PlayerMovements.Instance.ShorGunIdle();
+            }
         }
-        PlayerShooting.Instance.GunSetting();
 
+        // Equip the primary gun in PlayerShooting
+        PlayerShooting.Instance.GunSetting();
     }
 
     private void Update()
@@ -387,8 +360,8 @@ public class Game_Manager : MonoBehaviour
         // AutoAim = AutoAimOnly.Instance;
         //PlayerHealthCount = 4;
         UpdateAttackSettings();
-        UpdateUI();
-        reloadFillImage.fillAmount = 0f;
+       // UpdateUI();
+        //reloadFillImage.fillAmount = 0f;
         yield return new WaitForSeconds(0.5f);
         BoxCount();
         ZombieDoorCount();
@@ -545,7 +518,7 @@ public class Game_Manager : MonoBehaviour
   
 
    
-    public void ManualReload()
+  /*  public void ManualReload()
     {
         if(!isReloading && currentBullets < maxMagazineSize && totalBullets > 0)
         {
@@ -595,7 +568,7 @@ public class Game_Manager : MonoBehaviour
     public void DiableAutoAim()
     {
         AutoAim.enabled = false;
-    }
+    }*/
 
     public void GunChange()
     {
@@ -658,7 +631,7 @@ public class Game_Manager : MonoBehaviour
             KnifeButton.interactable= true;
         }
 
-        AutoAim.enabled = false;
+       // AutoAim.enabled = false;
     }
 
     public void MolotovChange()
