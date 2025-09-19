@@ -163,7 +163,7 @@ public class PlayerShooting : MonoBehaviour
 
 using UnityEngine;
 using System.Collections;
-using TMPro;
+
 
 [System.Serializable]
 public class Gun
@@ -181,18 +181,14 @@ public class Gun
     public GameObject bulletPrefab;   // Bullet sprite prefab
 }
 
-public enum GunType
-{
-    Pistol,
-    Shotgun
-}
+
 
 public class PlayerShooting : MonoBehaviour
 {
     [Header("Guns")]
     public Gun pistol;
     public Gun shotgun;
-    public GunType primaryGun;
+   
 
     public static PlayerShooting Instance;
 
@@ -254,22 +250,11 @@ public class PlayerShooting : MonoBehaviour
         {
             EquipGun(shotgun);
         }
-        /*switch (primaryGun)
-        {
-            case GunType.Pistol: EquipGun(pistol); break;
-            case GunType.Shotgun: EquipGun(shotgun); break;
-        }*/
+       
     }
 
 
-    /* public void GunSetting()
-     {
-         Debug.Log("Gun Name: " + Game_Manager.Instance.PrimaryGun);
-         if (Game_Manager.Instance.PrimaryGun == "Pistol")
-             currentGun = pistol;
-         else if (Game_Manager.Instance.PrimaryGun == "Shotgun")
-             currentGun = shotgun;
-     }*/
+    
     public void EquipGun(Gun gun)
     {
         currentGun = gun;
@@ -369,9 +354,14 @@ public class PlayerShooting : MonoBehaviour
             yield return null;
         }
 
+        // Add leftover bullets back to reserve
+        currentReserve += currentAmmo;
+
+        // Reload bullets
         int bulletsToReload = Mathf.Min(currentGun.magazineSize, currentReserve);
         currentAmmo = bulletsToReload;
         currentReserve -= bulletsToReload;
+
         isReloading = false;
 
         UpdateAmmoUI(); // Update UI after reload
@@ -380,6 +370,7 @@ public class PlayerShooting : MonoBehaviour
 
         Debug.Log("Reloaded! Ammo: " + currentAmmo + " | Reserve: " + currentReserve);
     }
+
 
 
     // ----------------- Fire Bullet -----------------

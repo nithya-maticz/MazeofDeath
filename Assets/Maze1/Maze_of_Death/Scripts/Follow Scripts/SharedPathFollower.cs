@@ -483,7 +483,7 @@ public class SharedPathFollower : MonoBehaviour
        // if (!isCollidingWithPlayer) return;
        if(playerInRange)
        {
-            //Game_Manager.Instance.playerHealth.GetAttack(1);
+            Game_Manager.Instance.playerHealth.GetAttack(1);
        }
        
     }
