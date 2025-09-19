@@ -84,6 +84,37 @@ MonoBehaviour:
   - {x: 0.5, y: -0.5, z: 0}
   - {x: 0.5, y: 0.5, z: 0}
   - {x: -0.5, y: 0.5, z: 0}
+--- !u!1 &3520565174643007692
+GameObject:
+  m_ObjectHideFlags: 0
+  m_CorrespondingSourceObject: {fileID: 0}
+  m_PrefabInstance: {fileID: 0}
+  m_PrefabAsset: {fileID: 0}
+  serializedVersion: 6
+  m_Component:
+  - component: {fileID: 1637434014803686940}
+  m_Layer: 6
+  m_Name: Pistol Spawn
+  m_TagString: Untagged
+  m_Icon: {fileID: 0}
+  m_NavMeshLayer: 0
+  m_StaticEditorFlags: 0
+  m_IsActive: 1
+--- !u!4 &1637434014803686940
+Transform:
+  m_ObjectHideFlags: 0
+  m_CorrespondingSourceObject: {fileID: 0}
+  m_PrefabInstance: {fileID: 0}
+  m_PrefabAsset: {fileID: 0}
+  m_GameObject: {fileID: 3520565174643007692}
+  serializedVersion: 2
+  m_LocalRotation: {x: -0, y: -0, z: 1, w: 0}
+  m_LocalPosition: {x: -1.834, y: 0.631, z: 0}
+  m_LocalScale: {x: 1, y: 1, z: 1}
+  m_ConstrainProportionsScale: 0
+  m_Children: []
+  m_Father: {fileID: 5760764332051867543}
+  m_LocalEulerAnglesHint: {x: 0, y: 0, z: 180}
 --- !u!1 &4496110320213368751
 GameObject:
   m_ObjectHideFlags: 0
@@ -159,17 +190,6 @@ MonoBehaviour:
   m_Script: {fileID: 11500000, guid: 23c0789199208a2479a2e1f0f91ece45, type: 3}
   m_Name: 
   m_EditorClassIdentifier: 
-  weaponPivot: {fileID: 8499391333404727983}
-  visionAngle: 60
-  visionDistance: 2
-  enemyLayer:
-    serializedVersion: 2
-    m_Bits: 512
-  obstacleLayer:
-    serializedVersion: 2
-    m_Bits: 128
-  fireCooldown: 1
-  currentTarget: {fileID: 0}
 --- !u!1 &6025874924717241749
 GameObject:
   m_ObjectHideFlags: 0
@@ -268,6 +288,7 @@ GameObject:
   - component: {fileID: 714459789346383298}
   - component: {fileID: 516687484562757985}
   - component: {fileID: 4781255212238485364}
+  - component: {fileID: 3669727853383046596}
   m_Layer: 6
   m_Name: Female
   m_TagString: Player
@@ -295,6 +316,8 @@ Transform:
   - {fileID: 5409729039173828486}
   - {fileID: 8499391333404727983}
   - {fileID: 5100239844800713380}
+  - {fileID: 1637434014803686940}
+  - {fileID: 2431514085775988752}
   m_Father: {fileID: 0}
   m_LocalEulerAnglesHint: {x: 0, y: 0, z: 0}
 --- !u!212 &5812235566879715037
@@ -432,13 +455,20 @@ MonoBehaviour:
   _Animator: {fileID: 4781255212238485364}
   wasWalking: 0
   wasGun: 0
+  wasWalking1: 0
+  wasGun1: 0
   isGun: 0
   isAttack: 0
   knifeAttack: {fileID: 4655536268699705355}
   ManualTarget: {fileID: 5100239844800713380}
   offSet: {fileID: 7172283758517830902}
-  bulletSpawn: {fileID: 8499391333404727983}
+  ShotGunbulletSpawn: {fileID: 0}
+  PistolbulletSpawn: {fileID: 0}
   speed: 2
+  bombSpawnPoint: {fileID: 0}
+  bombLight: {fileID: 0}
+  shotGun: 0
+  PistolGun: 0
 --- !u!95 &4781255212238485364
 Animator:
   serializedVersion: 7
@@ -461,6 +491,46 @@ Animator:
   m_AllowConstantClipSamplingOptimization: 1
   m_KeepAnimatorStateOnDisable: 0
   m_WriteDefaultValuesOnDisable: 0
+--- !u!114 &3669727853383046596
+MonoBehaviour:
+  m_ObjectHideFlags: 0
+  m_CorrespondingSourceObject: {fileID: 0}
+  m_PrefabInstance: {fileID: 0}
+  m_PrefabAsset: {fileID: 0}
+  m_GameObject: {fileID: 6083060975177489311}
+  m_Enabled: 1
+  m_EditorHideFlags: 0
+  m_Script: {fileID: 11500000, guid: 781fe48c4c23a6444b093ad66a972a61, type: 3}
+  m_Name: 
+  m_EditorClassIdentifier: 
+  pistol:
+    gunName: Pistol
+    firePoint: {fileID: 1637434014803686940}
+    fireRate: 0.25
+    range: 5
+    pellets: 1
+    spread: 1
+    damage: 10
+    magazineSize: 12
+    totalBullets: 50
+    reloadTime: 1.5
+    bulletPrefab: {fileID: 4211710346547811048, guid: 02b93abaf63a7f04682f4ca78c4e6827, type: 3}
+  shotgun:
+    gunName: ShotGun
+    firePoint: {fileID: 2431514085775988752}
+    fireRate: 1
+    range: 2
+    pellets: 3
+    spread: 5
+    damage: 10
+    magazineSize: 6
+    totalBullets: 20
+    reloadTime: 3
+    bulletPrefab: {fileID: 4211710346547811048, guid: 6bcf22c5e4ed30e47ae3cb05d53226cf, type: 3}
+  hitLayers:
+    serializedVersion: 2
+    m_Bits: 640
+  aimDotPrefab: {fileID: 4746933218376740094, guid: 532b40ea0d91cb141a2dfb202d03358c, type: 3}
 --- !u!1 &7176037205228497003
 GameObject:
   m_ObjectHideFlags: 0
@@ -570,6 +640,10 @@ MonoBehaviour:
   _animator: {fileID: 4781255212238485364}
   _currentEnemy: {fileID: 0}
   IsStayEnemy: 0
+  knife:
+    name: 
+    demage: 0
+  collider: {fileID: 0}
 --- !u!1 &7980708856082946366
 GameObject:
   m_ObjectHideFlags: 0
@@ -685,3 +759,34 @@ MonoBehaviour:
   - {x: 0.5, y: -0.5, z: 0}
   - {x: 0.5, y: 0.5, z: 0}
   - {x: -0.5, y: 0.5, z: 0}
+--- !u!1 &8596865110100106785
+GameObject:
+  m_ObjectHideFlags: 0
+  m_CorrespondingSourceObject: {fileID: 0}
+  m_PrefabInstance: {fileID: 0}
+  m_PrefabAsset: {fileID: 0}
+  serializedVersion: 6
+  m_Component:
+  - component: {fileID: 2431514085775988752}
+  m_Layer: 6
+  m_Name: ShotGun Point
+  m_TagString: Untagged
+  m_Icon: {fileID: 0}
+  m_NavMeshLayer: 0
+  m_StaticEditorFlags: 0
+  m_IsActive: 1
+--- !u!4 &2431514085775988752
+Transform:
+  m_ObjectHideFlags: 0
+  m_CorrespondingSourceObject: {fileID: 0}
+  m_PrefabInstance: {fileID: 0}
+  m_PrefabAsset: {fileID: 0}
+  m_GameObject: {fileID: 8596865110100106785}
+  serializedVersion: 2
+  m_LocalRotation: {x: -0, y: -0, z: 1, w: 0}
+  m_LocalPosition: {x: -1.867, y: -0.176, z: 0}
+  m_LocalScale: {x: 1, y: 1, z: 1}
+  m_ConstrainProportionsScale: 0
+  m_Children: []
+  m_Father: {fileID: 5760764332051867543}
+  m_LocalEulerAnglesHint: {x: 0, y: 0, z: 180}

@@ -85,6 +85,14 @@ public class ZombieHealth : MonoBehaviour,IGetBulletDemage,IGetBlastTank, IGetKn
         {
             Instantiate(Game_Manager.Instance.BloodPrefab, transform.position, Quaternion.identity);
             Game_Manager.Instance.Enemies.Remove(enemy);
+            for (int i = 0; i < Game_Manager.Instance.patrolAreas.Count; i++)
+            {
+                if (Game_Manager.Instance.patrolAreas[i]._id == enemy.patrolArea._id)
+                {
+                    Game_Manager.Instance.patrolAreas[i].isOccupied = false;
+                    break;
+                }
+            }
             Destroy(gameObject);
             knifeAttack.IsStayEnemy = false;
             knifeAttack.collider.enabled = false;
