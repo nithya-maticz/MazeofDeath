@@ -113,6 +113,8 @@ public class Game_Manager : MonoBehaviour
     public Sprite UziImage;
 
     public bool swap;
+    public GameObject swapbtn;
+    public GameObject secondartgun;
    
 
     public float prefabRotationOffset = 0f;
@@ -181,86 +183,60 @@ public class Game_Manager : MonoBehaviour
 
     void GetEquipedWeapons()
     {
-        
-            int i = 0;
-            foreach (Weapon weapon in userEquipedWeapons.weapons)
+
+        Dictionary<string, Sprite> weaponSprites = new Dictionary<string, Sprite>()
+{
+    { "9mmPistol", PistolImage },
+    { "Shotgun", shortGunImage },
+    { "AssaultRifle", AssaultRifleImage },
+    { "Sniper", SniperImage },
+    { "Uzi", UziImage }
+};
+
+        int i = 0;
+        foreach (Weapon weapon in userEquipedWeapons.weapons)
+        {
+            if (!weapon.isGun) continue;
+
+            i++;
+            Sprite sprite;
+            weaponSprites.TryGetValue(weapon.name, out sprite);
+
+            if (i == 1) // Primary Gun
             {
-                Debug.Log("fdfds");
-                if (weapon.isGun)
+                PrimaryGunImage.sprite = sprite;
+                PrimaryGun = weapon.name switch
                 {
-                    i++;
-                    if (i == 1)
-                    {
-                        
-                        if (weapon.name == "9mmPistol")
-                        {
-                            PrimaryGunImage.sprite = PistolImage;
-                            PrimaryGun = "Pistol";
-                        if(swap)
-                        {
-                            PlayerMovements.Instance.PistolIdle();
-                        }
-                            
-                    }
-                        else if (weapon.name == "Shotgun")
-                        {
-                            PrimaryGunImage.sprite = shortGunImage;
-                            PrimaryGun = "Shotgun";
-                        if (swap)
-                        {
-                            PlayerMovements.Instance.ShorGunIdle();
-                        }
-                    }
-                        else if (weapon.name == "AssaultRifle")
-                        {
-                            PrimaryGunImage.sprite = AssaultRifleImage;
-                            PrimaryGun = "AssaultRifle";
-                        }
-                        else if (weapon.name == "Sniper")
-                        {
-                            PrimaryGunImage.sprite = SniperImage;
-                            PrimaryGun = "Sniper";
-                        }
-                        else if (weapon.name == "Uzi")
-                        {
-                            PrimaryGunImage.sprite = UziImage;
-                            PrimaryGun = "Uzi";
-                        }
+                    "9mmPistol" => "Pistol",
+                    "Shotgun" => "Shotgun",
+                    "AssaultRifle" => "AssaultRifle",
+                    "Sniper" => "Sniper",
+                    "Uzi" => "Uzi",
+                    _ => weapon.name
+                };
 
-
-                    }
-                    else if (i == 2)
-                    {
-                      Debug.Log("tttttttttttttttttttttttttttt  "+ weapon.name);
-                        if (weapon.name == "9mmPistol")
-                        {
-                            SecondaryGunImage.sprite = PistolImage;
-                            SecondaryGun = "Pistol";
-                        }
-                        else if (weapon.name == "Shotgun")
-                        {
-                            SecondaryGunImage.sprite = shortGunImage;
-                            SecondaryGun = "Shotgun";
-                        }
-                        else if (weapon.name == "AssaultRifle")
-                        {
-                            SecondaryGunImage.sprite = AssaultRifleImage;
-                            SecondaryGun = "AssaultRifle";
-                        }
-                        else if (weapon.name == "Sniper")
-                        {
-                            SecondaryGunImage.sprite = SniperImage;
-                            SecondaryGun = "Sniper";
-                        }
-                        else if (weapon.name == "Uzi")
-                        {
-                            SecondaryGunImage.sprite = UziImage;
-                            SecondaryGun = "Uzi";
-                        }
-                    }
+                if (swap)
+                {
+                    if (weapon.name == "9mmPistol") PlayerMovements.Instance.PistolIdle();
+                    else if (weapon.name == "Shotgun") PlayerMovements.Instance.ShorGunIdle();
                 }
-
             }
+            else if (i == 2) // Secondary Gun
+            {
+                SecondaryGunImage.sprite = sprite;
+                SecondaryGun = weapon.name switch
+                {
+                    "9mmPistol" => "Pistol",
+                    "Shotgun" => "Shotgun",
+                    "AssaultRifle" => "AssaultRifle",
+                    "Sniper" => "Sniper",
+                    "Uzi" => "Uzi",
+                    _ => weapon.name
+                };
+            }
+        }
+
+        // Equip gun in PlayerShooting
         PlayerShooting.Instance.GunSetting();
 
 
@@ -589,7 +565,18 @@ public class Game_Manager : MonoBehaviour
         IceGranadePanelObject.SetActive(true);
 
         IconImage.sprite = gunImage;
-
+       
+        
+        if(SecondaryGun=="")
+        {
+            swapbtn.SetActive(false);
+            secondartgun.SetActive(false);
+        }
+        else
+        {
+            swapbtn.SetActive(true);
+            secondartgun.SetActive(true);
+        }
         if (AutoAimAndManualShootToggle.isOn)
         {
             //AutoAim.enabled = true;
@@ -598,7 +585,7 @@ public class Game_Manager : MonoBehaviour
         }
         else if (ManualAimAndShootToggle.isOn)
         {
-           // AutoAim.enabled = false;
+            // AutoAim.enabled = false;
             GunButton.interactable = true;
         }
     }
