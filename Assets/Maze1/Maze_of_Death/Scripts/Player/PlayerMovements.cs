@@ -156,7 +156,7 @@ public class PlayerMovements : MonoBehaviour
             else if (isGun && !isWalking && (!wasIdle || !wasGun))
             {
                
-                    ResetAllTriggers();
+                  ResetAllTriggers();
                 _Animator.SetTrigger("GunIdle");
                 wasIdle = true;
             }

@@ -153,6 +153,8 @@ public class Game_Manager : MonoBehaviour
     public int j;
     public GameObject SelectWeaponPage;
     public Button GunShootBtn;
+    public Button GunIntractBtn;
+    public bool Guns;
 
     private void Awake()
     {
@@ -175,10 +177,33 @@ public class Game_Manager : MonoBehaviour
     {
         userEquippedString = ShopManager.userEquippedSendString;
         Debug.Log(userEquippedString);
-         userEquipedWeapons = JsonUtility.FromJson<WeaponsData>(userEquippedString);
-        GetEquipedWeapons();
+        userEquipedWeapons = JsonUtility.FromJson<WeaponsData>(userEquippedString);
+        GunIntract();
+       // GetEquipedWeapons();
+       
 
         //StartData();
+    }
+     void GunIntract()
+    {
+        Debug.Log("inside Gun Intract");
+        foreach (Weapon weapon in userEquipedWeapons.weapons)
+        {
+            Debug.Log("GunIntraction " +weapon.isGun);
+            if (weapon.isGun)
+            {
+                Guns = true;
+            }
+        }
+        if(Guns)
+        {
+            GunIntractBtn.interactable = true;
+        }
+        else
+        {
+            GunIntractBtn.interactable = false;
+        }
+        
     }
 
     void GetEquipedWeapons()
@@ -237,6 +262,7 @@ public class Game_Manager : MonoBehaviour
         }
 
         // Equip gun in PlayerShooting
+
         PlayerShooting.Instance.GunSetting();
 
 
@@ -350,8 +376,9 @@ public class Game_Manager : MonoBehaviour
         playerTransform.position = worldPos;
         Instantiate(playerPrefab, playerTransform.transform);
         SmoothFollowCamera.Instance.target = PlayerMovements.Instance.offSet;
+        GetEquipedWeapons();
         // BulletSpawner = PlayerMovements.Instance.bulletSpawn;
-      //  AutoAim = AutoAimOnly.Instance;
+        //  AutoAim = AutoAimOnly.Instance;
 
         /* if (LobbyManager.currentCharacter == 1)
          {
@@ -563,10 +590,7 @@ public class Game_Manager : MonoBehaviour
         MolotovPanelObject.SetActive(true);
         granadePanelObject.SetActive(true);
         IceGranadePanelObject.SetActive(true);
-
         IconImage.sprite = gunImage;
-       
-        
         if(SecondaryGun=="")
         {
             swapbtn.SetActive(false);

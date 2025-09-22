@@ -5,6 +5,7 @@ using TMPro;
 using UnityEngine.UI;
 using System;
 using UnityEngine.Playables;
+using UnityEditor.Experimental.GraphView;
 
 public class LobbyManager : MonoBehaviour
 {
@@ -36,6 +37,7 @@ public class LobbyManager : MonoBehaviour
     public Sprite lobbyMaleName;
     public Sprite lobbyFemaleIcon;
     public Sprite lobbyFemaleName;
+  
 
 
     [Header("Fader")]
@@ -52,7 +54,7 @@ public class LobbyManager : MonoBehaviour
     void Start()
     {
         
-        if(!PlayerPrefs.HasKey("Localdata") && !OnTutorial)
+        if (!PlayerPrefs.HasKey("Localdata") && !OnTutorial)
         {
             //New User
             print("=======> New User <=======");
@@ -112,7 +114,8 @@ public class LobbyManager : MonoBehaviour
     
     void OnVideoPlay()
     {
-        Fade();
+      
+         Fade();
         LoadingPage.SetActive(false);
         VideoController.Instance.PlayNextVideo();
     }
@@ -124,8 +127,9 @@ public class LobbyManager : MonoBehaviour
     }
     public void PlayGame()
     {
-        Fade();
-        SceneManager.LoadScene("Game Loader");
+            Fade();
+            SceneManager.LoadScene("Game Loader");
+       
     }
    public void OpenCharacterPage()
    {
